@@ -1,0 +1,17 @@
+channels:
+  - defaults
+dependencies:
+  - pip
+  - pip:
+      - numpy==1.26.3
+      - pandas==2.0.1
+      - scipy==1.13.1
+      - scikit-learn==1.4.0
+      - dcor==0.6
+      - networkx==3.2.1
+      - pyvis==0.3.2
+      - matplotlib==3.8.2
+      - torch==2.2.2
+      - torchvision==0.17.2
+      - torchaudio==2.2.2
+

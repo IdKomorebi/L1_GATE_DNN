@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 100%;
+                 height: 800px;
+                 background-color: #222222;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#ff6b6b", "font": {"color": "white"}, "id": "y1", "label": "y1", "shape": "dot", "size": 30, "title": "Target: y1\u003cbr\u003eFunction: Linear"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x1", "label": "x1", "shape": "dot", "size": 20, "title": "Feature: x1"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x2", "label": "x2", "shape": "dot", "size": 20, "title": "Feature: x2"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x3", "label": "x3", "shape": "dot", "size": 20, "title": "Feature: x3"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x4", "label": "x4", "shape": "dot", "size": 20, "title": "Feature: x4"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x5", "label": "x5", "shape": "dot", "size": 20, "title": "Feature: x5"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x7", "label": "x7", "shape": "dot", "size": 20, "title": "Feature: x7"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y2", "label": "y2", "shape": "dot", "size": 30, "title": "Target: y2\u003cbr\u003eFunction: Sine"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y3", "label": "y3", "shape": "dot", "size": 30, "title": "Target: y3\u003cbr\u003eFunction: Quadratic"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y4", "label": "y4", "shape": "dot", "size": 30, "title": "Target: y4\u003cbr\u003eFunction: Exponential"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y5", "label": "y5", "shape": "dot", "size": 30, "title": "Target: y5\u003cbr\u003eFunction: Logarithmic"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y6", "label": "y6", "shape": "dot", "size": 30, "title": "Target: y6\u003cbr\u003eFunction: Trigonometric"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y7", "label": "y7", "shape": "dot", "size": 30, "title": "Target: y7\u003cbr\u003eFunction: Polynomial"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y8", "label": "y8", "shape": "dot", "size": 30, "title": "Target: y8\u003cbr\u003eFunction: Piecewise"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y9", "label": "y9", "shape": "dot", "size": 30, "title": "Target: y9\u003cbr\u003eFunction: Composite"}, {"color": "#ff6b6b", "font": {"color": "white"}, "id": "y10", "label": "y10", "shape": "dot", "size": 30, "title": "Target: y10\u003cbr\u003eFunction: Complex_Nonlinear"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x10", "label": "x10", "shape": "dot", "size": 20, "title": "Feature: x10"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x8", "label": "x8", "shape": "dot", "size": 20, "title": "Feature: x8"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x6", "label": "x6", "shape": "dot", "size": 20, "title": "Feature: x6"}, {"color": "#4ecdc4", "font": {"color": "white"}, "id": "x9", "label": "x9", "shape": "dot", "size": 20, "title": "Feature: x9"}]);
+                  edges = new vis.DataSet([{"color": "#ffaa44", "from": "y1", "title": "Correlation (Pearson): 0.4237\u003cbr\u003eWeight: 0.4237\u003cbr\u003eOriginal Weight: 0.90", "to": "x1", "width": 4}, {"color": "#ffaa44", "from": "y1", "title": "Correlation (Pearson): 0.3133\u003cbr\u003eWeight: 0.3133\u003cbr\u003eOriginal Weight: 0.80", "to": "x2", "width": 4}, {"color": "#ffcc88", "from": "y1", "title": "Correlation (Pearson): 0.1186\u003cbr\u003eWeight: 0.1186\u003cbr\u003eOriginal Weight: 0.70", "to": "x3", "width": 2}, {"color": "#ffaa44", "from": "y1", "title": "Correlation (Pearson): 0.3053\u003cbr\u003eWeight: 0.3053\u003cbr\u003eOriginal Weight: 0.60", "to": "x4", "width": 4}, {"color": "#ff4444", "from": "y1", "title": "Correlation (Pearson): 0.8783\u003cbr\u003eWeight: 0.8783\u003cbr\u003eOriginal Weight: 0.10", "to": "x5", "width": 8}, {"color": "#ff4444", "from": "y1", "title": "Correlation (Pearson): 0.9611\u003cbr\u003eWeight: 0.9611\u003cbr\u003eOriginal Weight: 0.10", "to": "x7", "width": 8}, {"color": "#ff8844", "from": "y1", "title": "Correlation (Pearson): 0.5192\u003cbr\u003eWeight: 0.5192\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 6}, {"color": "#ff4444", "from": "y1", "title": "Correlation (Pearson): 0.9548\u003cbr\u003eWeight: 0.9548\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 8}, {"color": "#ffcc88", "from": "y1", "title": "Correlation (Pearson): 0.2223\u003cbr\u003eWeight: 0.2223\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ff8844", "from": "y1", "title": "Correlation (Pearson): 0.5853\u003cbr\u003eWeight: 0.5853\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 6}, {"color": "#ffcc88", "from": "x1", "title": "Correlation (Pearson): 0.1332\u003cbr\u003eWeight: 0.1332\u003cbr\u003eOriginal Weight: 0.80", "to": "y2", "width": 2}, {"color": "#ffaa44", "from": "x1", "title": "Correlation (Pearson): 0.3008\u003cbr\u003eWeight: 0.3008\u003cbr\u003eOriginal Weight: 0.90", "to": "y3", "width": 4}, {"color": "#ff8844", "from": "x1", "title": "Correlation (Pearson): 0.5515\u003cbr\u003eWeight: 0.5515\u003cbr\u003eOriginal Weight: 0.90", "to": "y5", "width": 6}, {"color": "#ffcc88", "from": "x1", "title": "Correlation (Pearson): 0.2837\u003cbr\u003eWeight: 0.2837\u003cbr\u003eOriginal Weight: 0.80", "to": "y6", "width": 2}, {"color": "#ffcc88", "from": "x1", "title": "Correlation (Pearson): 0.2929\u003cbr\u003eWeight: 0.2929\u003cbr\u003eOriginal Weight: 0.90", "to": "y7", "width": 2}, {"color": "#ffaa44", "from": "x1", "title": "Correlation (Pearson): 0.3027\u003cbr\u003eWeight: 0.3027\u003cbr\u003eOriginal Weight: 0.90", "to": "y8", "width": 4}, {"color": "#ffaa44", "from": "x1", "title": "Correlation (Pearson): 0.4156\u003cbr\u003eWeight: 0.4156\u003cbr\u003eOriginal Weight: 0.90", "to": "y9", "width": 4}, {"color": "#ffaa44", "from": "x1", "title": "Correlation (Pearson): 0.3670\u003cbr\u003eWeight: 0.3670\u003cbr\u003eOriginal Weight: 0.90", "to": "y10", "width": 4}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): 0.2569\u003cbr\u003eWeight: 0.2569\u003cbr\u003eOriginal Weight: 0.80", "to": "y3", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): 0.2985\u003cbr\u003eWeight: 0.2985\u003cbr\u003eOriginal Weight: 0.80", "to": "y5", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): 0.2512\u003cbr\u003eWeight: 0.2512\u003cbr\u003eOriginal Weight: 0.80", "to": "y7", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): 0.2596\u003cbr\u003eWeight: 0.2596\u003cbr\u003eOriginal Weight: 0.80", "to": "y8", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): 0.1585\u003cbr\u003eWeight: 0.1585\u003cbr\u003eOriginal Weight: 0.80", "to": "y10", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): -0.1140\u003cbr\u003eWeight: 0.1140\u003cbr\u003eOriginal Weight: 0.80", "to": "y2", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): -0.2436\u003cbr\u003eWeight: 0.2436\u003cbr\u003eOriginal Weight: 0.80", "to": "y9", "width": 2}, {"color": "#ffcc88", "from": "x2", "title": "Correlation (Pearson): -0.2770\u003cbr\u003eWeight: 0.2770\u003cbr\u003eOriginal Weight: 0.80", "to": "y6", "width": 2}, {"color": "#ffcc88", "from": "x3", "title": "Correlation (Pearson): 0.1100\u003cbr\u003eWeight: 0.1100\u003cbr\u003eOriginal Weight: 0.70", "to": "y5", "width": 2}, {"color": "#ff8844", "from": "x3", "title": "Correlation (Pearson): 0.5083\u003cbr\u003eWeight: 0.5083\u003cbr\u003eOriginal Weight: 0.10", "to": "y8", "width": 6}, {"color": "#ffcc88", "from": "x3", "title": "Correlation (Pearson): 0.1157\u003cbr\u003eWeight: 0.1157\u003cbr\u003eOriginal Weight: 0.10", "to": "y10", "width": 2}, {"color": "#ff8844", "from": "x3", "title": "Correlation (Pearson): 0.5083\u003cbr\u003eWeight: 0.5083\u003cbr\u003eOriginal Weight: 0.10", "to": "y3", "width": 6}, {"color": "#ffcc88", "from": "x3", "title": "Correlation (Pearson): 0.1149\u003cbr\u003eWeight: 0.1149\u003cbr\u003eOriginal Weight: 0.10", "to": "y2", "width": 2}, {"color": "#ffaa44", "from": "x3", "title": "Correlation (Pearson): 0.3223\u003cbr\u003eWeight: 0.3223\u003cbr\u003eOriginal Weight: 0.10", "to": "y7", "width": 4}, {"color": "#ffcc88", "from": "x3", "title": "Correlation (Pearson): -0.2937\u003cbr\u003eWeight: 0.2937\u003cbr\u003eOriginal Weight: 0.10", "to": "y9", "width": 2}, {"color": "#ffaa44", "from": "x4", "title": "Correlation (Pearson): 0.4650\u003cbr\u003eWeight: 0.4650\u003cbr\u003eOriginal Weight: 0.60", "to": "y3", "width": 4}, {"color": "#ff8844", "from": "x4", "title": "Correlation (Pearson): 0.6738\u003cbr\u003eWeight: 0.6738\u003cbr\u003eOriginal Weight: 0.60", "to": "y4", "width": 6}, {"color": "#ffcc88", "from": "x4", "title": "Correlation (Pearson): 0.2238\u003cbr\u003eWeight: 0.2238\u003cbr\u003eOriginal Weight: 0.60", "to": "y5", "width": 2}, {"color": "#ffaa44", "from": "x4", "title": "Correlation (Pearson): 0.4991\u003cbr\u003eWeight: 0.4991\u003cbr\u003eOriginal Weight: 0.60", "to": "y7", "width": 4}, {"color": "#ffaa44", "from": "x4", "title": "Correlation (Pearson): 0.4651\u003cbr\u003eWeight: 0.4651\u003cbr\u003eOriginal Weight: 0.60", "to": "y8", "width": 4}, {"color": "#ffcc88", "from": "x4", "title": "Correlation (Pearson): 0.1225\u003cbr\u003eWeight: 0.1225\u003cbr\u003eOriginal Weight: 0.90", "to": "y10", "width": 2}, {"color": "#ffcc88", "from": "x4", "title": "Correlation (Pearson): -0.1188\u003cbr\u003eWeight: 0.1188\u003cbr\u003eOriginal Weight: 0.60", "to": "y9", "width": 2}, {"color": "#ffcc88", "from": "x5", "title": "Correlation (Pearson): 0.1239\u003cbr\u003eWeight: 0.1239\u003cbr\u003eOriginal Weight: 0.10", "to": "y10", "width": 2}, {"color": "#ff4444", "from": "x5", "title": "Correlation (Pearson): 0.7873\u003cbr\u003eWeight: 0.7873\u003cbr\u003eOriginal Weight: 0.10", "to": "y5", "width": 8}, {"color": "#ff4444", "from": "x5", "title": "Correlation (Pearson): 0.8763\u003cbr\u003eWeight: 0.8763\u003cbr\u003eOriginal Weight: 0.10", "to": "y3", "width": 8}, {"color": "#ffcc88", "from": "x5", "title": "Correlation (Pearson): -0.1452\u003cbr\u003eWeight: 0.1452\u003cbr\u003eOriginal Weight: 1.00", "to": "y6", "width": 2}, {"color": "#ff4444", "from": "x5", "title": "Correlation (Pearson): 0.8764\u003cbr\u003eWeight: 0.8764\u003cbr\u003eOriginal Weight: 0.10", "to": "y8", "width": 8}, {"color": "#ffaa44", "from": "x5", "title": "Correlation (Pearson): -0.3299\u003cbr\u003eWeight: 0.3299\u003cbr\u003eOriginal Weight: 0.10", "to": "y9", "width": 4}, {"color": "#ffaa44", "from": "x5", "title": "Correlation (Pearson): 0.3934\u003cbr\u003eWeight: 0.3934\u003cbr\u003eOriginal Weight: 0.10", "to": "y4", "width": 4}, {"color": "#ff4444", "from": "x5", "title": "Correlation (Pearson): 0.8490\u003cbr\u003eWeight: 0.8490\u003cbr\u003eOriginal Weight: 0.10", "to": "y7", "width": 8}, {"color": "#ff4444", "from": "x7", "title": "Correlation (Pearson): 0.9201\u003cbr\u003eWeight: 0.9201\u003cbr\u003eOriginal Weight: 0.10", "to": "y3", "width": 8}, {"color": "#ff4444", "from": "x7", "title": "Correlation (Pearson): 0.8631\u003cbr\u003eWeight: 0.8631\u003cbr\u003eOriginal Weight: 0.10", "to": "y5", "width": 8}, {"color": "#ff4444", "from": "x7", "title": "Correlation (Pearson): 0.9204\u003cbr\u003eWeight: 0.9204\u003cbr\u003eOriginal Weight: 0.10", "to": "y8", "width": 8}, {"color": "#ffcc88", "from": "x7", "title": "Correlation (Pearson): 0.1554\u003cbr\u003eWeight: 0.1554\u003cbr\u003eOriginal Weight: 0.10", "to": "y10", "width": 2}, {"color": "#ffaa44", "from": "x7", "title": "Correlation (Pearson): -0.4520\u003cbr\u003eWeight: 0.4520\u003cbr\u003eOriginal Weight: 1.00", "to": "y6", "width": 4}, {"color": "#ff4444", "from": "x7", "title": "Correlation (Pearson): 0.8585\u003cbr\u003eWeight: 0.8585\u003cbr\u003eOriginal Weight: 0.10", "to": "y7", "width": 8}, {"color": "#ffaa44", "from": "x7", "title": "Correlation (Pearson): -0.3790\u003cbr\u003eWeight: 0.3790\u003cbr\u003eOriginal Weight: 0.10", "to": "y9", "width": 4}, {"color": "#ffcc88", "from": "x7", "title": "Correlation (Pearson): 0.2575\u003cbr\u003eWeight: 0.2575\u003cbr\u003eOriginal Weight: 0.10", "to": "y4", "width": 2}, {"color": "#ffcc88", "from": "y2", "title": "Correlation (Pearson): -0.1093\u003cbr\u003eWeight: 0.1093\u003cbr\u003eOriginal Weight: 0.80", "to": "x9", "width": 2}, {"color": "#ffaa44", "from": "y3", "title": "Correlation (Pearson): 0.4473\u003cbr\u003eWeight: 0.4473\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 4}, {"color": "#ffcc88", "from": "y3", "title": "Correlation (Pearson): -0.2549\u003cbr\u003eWeight: 0.2549\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 2}, {"color": "#ffcc88", "from": "y3", "title": "Correlation (Pearson): 0.1740\u003cbr\u003eWeight: 0.1740\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ff8844", "from": "y3", "title": "Correlation (Pearson): 0.5419\u003cbr\u003eWeight: 0.5419\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 6}, {"color": "#ffcc88", "from": "y4", "title": "Correlation (Pearson): 0.1168\u003cbr\u003eWeight: 0.1168\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 2}, {"color": "#ffcc88", "from": "y4", "title": "Correlation (Pearson): 0.2077\u003cbr\u003eWeight: 0.2077\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 2}, {"color": "#ffcc88", "from": "y4", "title": "Correlation (Pearson): 0.1645\u003cbr\u003eWeight: 0.1645\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 2}, {"color": "#ffaa44", "from": "y5", "title": "Correlation (Pearson): 0.4609\u003cbr\u003eWeight: 0.4609\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 4}, {"color": "#ffcc88", "from": "y5", "title": "Correlation (Pearson): 0.1351\u003cbr\u003eWeight: 0.1351\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 2}, {"color": "#ffcc88", "from": "y5", "title": "Correlation (Pearson): 0.2250\u003cbr\u003eWeight: 0.2250\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ff8844", "from": "y5", "title": "Correlation (Pearson): 0.5297\u003cbr\u003eWeight: 0.5297\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 6}, {"color": "#ffcc88", "from": "y6", "title": "Correlation (Pearson): -0.1643\u003cbr\u003eWeight: 0.1643\u003cbr\u003eOriginal Weight: 0.90", "to": "x8", "width": 2}, {"color": "#ffcc88", "from": "y6", "title": "Correlation (Pearson): -0.1322\u003cbr\u003eWeight: 0.1322\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ffaa44", "from": "y6", "title": "Correlation (Pearson): -0.3804\u003cbr\u003eWeight: 0.3804\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 4}, {"color": "#ffaa44", "from": "y6", "title": "Correlation (Pearson): -0.4488\u003cbr\u003eWeight: 0.4488\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 4}, {"color": "#ffaa44", "from": "y7", "title": "Correlation (Pearson): 0.4398\u003cbr\u003eWeight: 0.4398\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 4}, {"color": "#ff8844", "from": "y7", "title": "Correlation (Pearson): 0.6573\u003cbr\u003eWeight: 0.6573\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 6}, {"color": "#ffcc88", "from": "y7", "title": "Correlation (Pearson): 0.1747\u003cbr\u003eWeight: 0.1747\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ff8844", "from": "y7", "title": "Correlation (Pearson): 0.5266\u003cbr\u003eWeight: 0.5266\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 6}, {"color": "#ffaa44", "from": "y8", "title": "Correlation (Pearson): 0.4534\u003cbr\u003eWeight: 0.4534\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 4}, {"color": "#ff4444", "from": "y8", "title": "Correlation (Pearson): 0.7715\u003cbr\u003eWeight: 0.7715\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 8}, {"color": "#ffcc88", "from": "y8", "title": "Correlation (Pearson): 0.1769\u003cbr\u003eWeight: 0.1769\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ff8844", "from": "y8", "title": "Correlation (Pearson): 0.5440\u003cbr\u003eWeight: 0.5440\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 6}, {"color": "#ffaa44", "from": "y9", "title": "Correlation (Pearson): -0.3242\u003cbr\u003eWeight: 0.3242\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 4}, {"color": "#ffcc88", "from": "y9", "title": "Correlation (Pearson): 0.2252\u003cbr\u003eWeight: 0.2252\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 2}, {"color": "#ffcc88", "from": "y9", "title": "Correlation (Pearson): -0.1266\u003cbr\u003eWeight: 0.1266\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ffaa44", "from": "y9", "title": "Correlation (Pearson): -0.3951\u003cbr\u003eWeight: 0.3951\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 4}, {"color": "#ffcc88", "from": "y10", "title": "Correlation (Pearson): 0.2587\u003cbr\u003eWeight: 0.2587\u003cbr\u003eOriginal Weight: 1.00", "to": "x10", "width": 2}, {"color": "#ff8844", "from": "y10", "title": "Correlation (Pearson): 0.6730\u003cbr\u003eWeight: 0.6730\u003cbr\u003eOriginal Weight: 0.10", "to": "x8", "width": 6}, {"color": "#ffcc88", "from": "y10", "title": "Correlation (Pearson): 0.1363\u003cbr\u003eWeight: 0.1363\u003cbr\u003eOriginal Weight: 0.10", "to": "x6", "width": 2}, {"color": "#ffcc88", "from": "y10", "title": "Correlation (Pearson): 0.2549\u003cbr\u003eWeight: 0.2549\u003cbr\u003eOriginal Weight: 0.10", "to": "x9", "width": 2}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
