@@ -1,0 +1,11 @@
+{
+  "threshold": 0.06,
+  "count": 1,
+  "features": [
+    {
+      "index": 1,
+      "name": "net_sched_interchange_mw",
+      "gate": 0.49900123476982117
+    }
+  ]
+}

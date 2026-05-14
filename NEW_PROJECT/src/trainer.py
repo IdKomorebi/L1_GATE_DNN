@@ -18,9 +18,10 @@ from .data_utils import (
     save_json,
     write_name_mapping,
 )
+from .knowledge_graph import generate_knowledge_graph
 from .models import DNNRegressor, ImprovedGateRegressor, L1GateRegressor, SimpleAdam
 from .plotting import plot_active_features, plot_gate_history, plot_loss_and_r2, plot_meta_history
-from .relation_analyzer import analyze_center_relationships, correlation_vectors, select_features
+from .relation_analyzer import analyze_center_relationships, center_relation_analysis_dir, correlation_vectors, select_features
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -151,12 +152,16 @@ def train_center_model(
     relation_cfg = cfg.get("relations", {})
     metrics = relation_cfg.get("metrics", [])
     thresholds = relation_cfg.get("thresholds", {})
+    sample_size = int(relation_cfg.get("sample_size", 3000))
+    expensive_sample_size = int(relation_cfg.get("expensive_sample_size", 1200))
     params = merged_training_params(cfg, model_name, overrides)
 
     data_path = resolve_project_path(cfg, dataset_cfg["processed_csv"])
     output_root = resolve_project_path(cfg, dataset_cfg["output_root"])
     center_dir = center_output_dir(output_root, center)
-    center_rel_path = center_dir / "center_relationships.csv"
+    center_rel_dir = center_relation_analysis_dir(output_root, center, metrics, thresholds, sample_size, expensive_sample_size)
+    center_rel_path = center_rel_dir / "center_relationships.csv"
+    center_graph_path = center_rel_dir / "center_knowledge_graph.html"
 
     if force_relations or not center_rel_path.exists():
         center_rel = analyze_center_relationships(
@@ -165,12 +170,23 @@ def train_center_model(
             output_csv=center_rel_path,
             metrics=metrics,
             thresholds=thresholds,
-            sample_size=int(relation_cfg.get("sample_size", 3000)),
-            expensive_sample_size=int(relation_cfg.get("expensive_sample_size", 1200)),
+            sample_size=sample_size,
+            expensive_sample_size=expensive_sample_size,
             random_state=int(params.get("random_state", 42)),
+            progress_every=10,
         )
     else:
         center_rel = pd.read_csv(center_rel_path)
+
+    if force_relations or not center_graph_path.exists():
+        generate_knowledge_graph(
+            center_rel,
+            center_graph_path,
+            metrics=metrics,
+            thresholds=thresholds,
+            title=f"Center Relationship Graph - {center}",
+            center=center,
+        )
 
     features = select_features(center_rel, cfg.get("feature_selection", {}))
     if not features:
@@ -210,6 +226,7 @@ def train_center_model(
             "model": model_name,
             "data_path": str(data_path),
             "center_relationships": str(center_rel_path),
+            "relationship_analysis_dir": str(center_rel_dir),
             "features": features,
             "params": params,
         },
@@ -318,7 +335,7 @@ def train_center_model(
             for f_idx, feature in enumerate(features):
                 gate_long.append({"epoch": epoch, "feature_index": f_idx + 1, "feature": feature, "gate": gate_arr[e_idx, f_idx]})
         pd.DataFrame(gate_long).to_csv(run_dir / "gate_params.csv", index=False, encoding="utf-8-sig")
-        plot_gate_history(gate_arr, epochs, run_dir / "gate_params.png")
+        plot_gate_history(gate_arr, epochs, run_dir / "gate_params.png", feature_names=features)
         plot_active_features(log_df, run_dir / "active_features.png")
         if keydata:
             save_json(run_dir / "keydata_for_pointdata.json", keydata)

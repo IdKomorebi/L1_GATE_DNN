@@ -18,7 +18,9 @@ def main() -> None:
     parser.add_argument(
         "--model",
         required=True,
+        nargs="+",
         choices=["DNN", "L1GateDNN", "ImprovedL1GateDNN", "ImprovedL2GateDNN"],
+        help="One or more model names.",
     )
     parser.add_argument("--epochs", type=int)
     parser.add_argument("--batch-size", type=int)
@@ -37,15 +39,20 @@ def main() -> None:
         "lambda_l1": args.lambda_l1,
         "lambda_l2": args.lambda_l2,
     }
-    run_dir = train_center_model(
-        cfg,
-        center=args.center,
-        model_name=args.model,
-        overrides=overrides,
-        run_name=args.run_name,
-        force_relations=args.force_relations,
-    )
-    print(f"Saved run to {run_dir}")
+    for model_name in args.model:
+        run_name = args.run_name
+        if run_name and len(args.model) > 1:
+            run_name = f"{run_name}_{model_name}"
+        print(f"=== Training center={args.center} model={model_name} ===")
+        run_dir = train_center_model(
+            cfg,
+            center=args.center,
+            model_name=model_name,
+            overrides=overrides,
+            run_name=run_name,
+            force_relations=args.force_relations,
+        )
+        print(f"Saved run to {run_dir}")
 
 
 if __name__ == "__main__":

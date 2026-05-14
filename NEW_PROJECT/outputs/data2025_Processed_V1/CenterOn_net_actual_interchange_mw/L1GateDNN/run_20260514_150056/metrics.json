@@ -1,0 +1,10 @@
+{
+  "center": "net_actual_interchange_mw",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V1\\CenterOn_net_actual_interchange_mw\\L1GateDNN\\run_20260514_150056",
+  "feature_count": 47,
+  "best_test_r2": 0.9999999403953552,
+  "final_train_r2": 0.9999998807907104,
+  "final_test_r2": 0.9999998807907104,
+  "epochs_completed": 200
+}

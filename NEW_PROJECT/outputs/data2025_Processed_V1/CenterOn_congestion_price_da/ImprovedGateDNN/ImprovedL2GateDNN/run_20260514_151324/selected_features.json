@@ -1,0 +1,31 @@
+{
+  "threshold": 0.5,
+  "count": 5,
+  "features": [
+    {
+      "index": 16,
+      "name": "total_lmp_da",
+      "gate": 0.7779103517532349
+    },
+    {
+      "index": 17,
+      "name": "system_energy_price_da",
+      "gate": 0.7780008912086487
+    },
+    {
+      "index": 18,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.5738227963447571
+    },
+    {
+      "index": 19,
+      "name": "system_energy_price_rt",
+      "gate": 0.6833586096763611
+    },
+    {
+      "index": 32,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.5115434527397156
+    }
+  ]
+}

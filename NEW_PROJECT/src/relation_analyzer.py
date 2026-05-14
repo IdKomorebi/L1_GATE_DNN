@@ -25,10 +25,66 @@ except Exception:
     dcor = None
     DCOR_AVAILABLE = False
 
-from .data_utils import ensure_dir, read_numeric_csv
+from .data_utils import center_output_dir, ensure_dir, read_numeric_csv
 
 
 DEFAULT_METRICS = ["nmi", "spearman", "pearson", "kendall", "distance_corr", "hsic"]
+METRIC_ABBR = {
+    "nmi": "nmi",
+    "spearman": "sp",
+    "pearson": "pe",
+    "kendall": "ke",
+    "distance_corr": "dc",
+    "hsic": "hsic",
+}
+
+
+def _value_tag(value: float) -> str:
+    text = f"{float(value):g}"
+    return text.replace("-", "m").replace(".", "p")
+
+
+def relation_set_name(
+    metrics: Sequence[str],
+    thresholds: Dict[str, float],
+    sample_size: int,
+    expensive_sample_size: int,
+) -> str:
+    parts = []
+    for metric in metrics:
+        if metric in thresholds:
+            parts.append(f"{METRIC_ABBR.get(metric, metric)}{_value_tag(float(thresholds[metric]))}")
+    threshold_part = "_".join(parts) if parts else "no_thresholds"
+    return f"thr_{threshold_part}_s{sample_size}_e{expensive_sample_size}"
+
+
+def relation_analysis_dir(
+    output_root: str | Path,
+    metrics: Sequence[str],
+    thresholds: Dict[str, float],
+    sample_size: int,
+    expensive_sample_size: int,
+) -> Path:
+    return ensure_dir(
+        Path(output_root)
+        / "RelationshipAnalysis"
+        / relation_set_name(metrics, thresholds, sample_size, expensive_sample_size)
+    )
+
+
+def center_relation_analysis_dir(
+    output_root: str | Path,
+    center: str,
+    metrics: Sequence[str],
+    thresholds: Dict[str, float],
+    sample_size: int,
+    expensive_sample_size: int,
+) -> Path:
+    return ensure_dir(
+        center_output_dir(output_root, center)
+        / "RelationshipAnalysis"
+        / relation_set_name(metrics, thresholds, sample_size, expensive_sample_size)
+    )
 
 
 def _finite_pair(x: np.ndarray, y: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
@@ -206,10 +262,15 @@ def analyze_all_relationships(
     sample_size: int = 3000,
     expensive_sample_size: int = 1200,
     random_state: int = 42,
+    progress_every: int = 100,
 ) -> pd.DataFrame:
     df = read_numeric_csv(data_path)
+    pairs = list(itertools.combinations(df.columns, 2))
+    total = len(pairs)
+    if progress_every:
+        print(f"Analyzing {total} column pairs from {df.shape[1]} columns...")
     rows = []
-    for idx, (col_a, col_b) in enumerate(itertools.combinations(df.columns, 2), start=1):
+    for idx, (col_a, col_b) in enumerate(pairs, start=1):
         values = analyze_pair(
             df[col_a].to_numpy(),
             df[col_b].to_numpy(),
@@ -219,6 +280,8 @@ def analyze_all_relationships(
             random_state=random_state + idx,
         )
         rows.append({"index": idx, "column_a": col_a, "column_b": col_b, **values})
+        if progress_every and (idx == 1 or idx % progress_every == 0 or idx == total):
+            print(f"  processed {idx}/{total} pairs")
     result = add_threshold_columns(pd.DataFrame(rows), metrics, thresholds or {})
     ensure_dir(Path(output_csv).parent)
     result.to_csv(output_csv, index=False, encoding="utf-8-sig")
@@ -234,13 +297,17 @@ def analyze_center_relationships(
     sample_size: int = 3000,
     expensive_sample_size: int = 1200,
     random_state: int = 42,
+    progress_every: int = 10,
 ) -> pd.DataFrame:
     df = read_numeric_csv(data_path)
     if center not in df.columns:
         raise ValueError(f"Center column not found: {center}")
 
     rows = []
-    related_cols: Iterable[str] = (c for c in df.columns if c != center)
+    related_cols: List[str] = [c for c in df.columns if c != center]
+    total = len(related_cols)
+    if progress_every:
+        print(f"Analyzing center '{center}' against {total} columns...")
     for idx, related in enumerate(related_cols, start=1):
         values = analyze_pair(
             df[center].to_numpy(),
@@ -251,6 +318,8 @@ def analyze_center_relationships(
             random_state=random_state + idx,
         )
         rows.append({"index": idx, "center": center, "related": related, **values})
+        if progress_every and (idx == 1 or idx % progress_every == 0 or idx == total):
+            print(f"  processed {idx}/{total} center pairs")
     result = add_threshold_columns(pd.DataFrame(rows), metrics, thresholds or {})
     result = result.sort_values(["pass_count", "max_abs_score"], ascending=[False, False]).reset_index(drop=True)
     result.insert(0, "rank", np.arange(1, len(result) + 1))

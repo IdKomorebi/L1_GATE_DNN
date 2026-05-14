@@ -1,0 +1,10 @@
+{
+  "center": "congestion_price_rt",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V1\\CenterOn_congestion_price_rt\\L1GateDNN\\run_20260514_150710",
+  "feature_count": 38,
+  "best_test_r2": 0.648695707321167,
+  "final_train_r2": 0.9399604797363281,
+  "final_test_r2": 0.6277947425842285,
+  "epochs_completed": 200
+}

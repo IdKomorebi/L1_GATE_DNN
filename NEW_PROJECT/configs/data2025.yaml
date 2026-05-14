@@ -46,16 +46,16 @@ model_params:
   DNN: {}
 
   L1GateDNN:
-    lambda_l1: 0.002
+    lambda_l1: 0.0002
     active_threshold: 0.06
 
   ImprovedL1GateDNN:
-    lambda_l1: 0.03
+    lambda_l1: 0.0002
     warmup_epochs: 50
     active_threshold: 0.06
 
   ImprovedL2GateDNN:
-    lambda_l2: 0.001
+    lambda_l2: 0.0003
     warmup_epochs: 50
     risk_threshold: 0.50
     dropout: 0.05

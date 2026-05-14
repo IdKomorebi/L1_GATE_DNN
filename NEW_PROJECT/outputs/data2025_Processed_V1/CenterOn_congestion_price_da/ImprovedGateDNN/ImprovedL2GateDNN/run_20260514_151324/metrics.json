@@ -1,0 +1,10 @@
+{
+  "center": "congestion_price_da",
+  "model": "ImprovedL2GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V1\\CenterOn_congestion_price_da\\ImprovedGateDNN\\ImprovedL2GateDNN\\run_20260514_151324",
+  "feature_count": 49,
+  "best_test_r2": 0.9969686269760132,
+  "final_train_r2": 0.9927822351455688,
+  "final_test_r2": 0.9938912987709045,
+  "epochs_completed": 179
+}

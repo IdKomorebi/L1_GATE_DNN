@@ -1,0 +1,16 @@
+{
+  "threshold": 0.06,
+  "count": 2,
+  "features": [
+    {
+      "index": 1,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.15963473916053772
+    },
+    {
+      "index": 3,
+      "name": "total_gen",
+      "gate": 0.24725043773651123
+    }
+  ]
+}
