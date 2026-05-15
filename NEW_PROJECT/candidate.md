@@ -18,3 +18,12 @@ prelim_load_avg_hourly和total_gen，验证了一下只需要一个就能推断�
 用selected9个（0.9993，0，6886）
 
 6.total_losses:推的有点不准r^2为0.95，没有特别突出的，有一个稍微领先marginal_loss_price_rt的gate是0.28
+只用最高的一个（0.336，0.945）
+用最高的三个（0.74，0.945）
+用最高的五个（0.87，0.94）
+用最高的10个（0.918，0.931）
+用selected20个（0.95，0.89）
+
+7.total_lmp_rt：推的挺准，有两个特别高，system_energy_price_rt的gate有1.159，marginal_loss_price_rt有0.819
+只用最高的一个（1.0，0.96）
+只用这两个特别高的（1.00，0.70）
