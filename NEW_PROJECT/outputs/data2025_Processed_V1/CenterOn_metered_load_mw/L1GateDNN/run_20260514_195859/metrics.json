@@ -1,0 +1,10 @@
+{
+  "center": "metered_load_mw",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V1\\CenterOn_metered_load_mw\\L1GateDNN\\run_20260514_195859",
+  "feature_count": 50,
+  "best_test_r2": 0.9999249577522278,
+  "final_train_r2": 0.9998428225517273,
+  "final_test_r2": 0.9997859001159668,
+  "epochs_completed": 200
+}

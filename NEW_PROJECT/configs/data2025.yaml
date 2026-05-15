@@ -46,7 +46,7 @@ model_params:
   DNN: {}
 
   L1GateDNN:
-    lambda_l1: 0.0002
+    lambda_l1: 0.001
     active_threshold: 0.06
 
   ImprovedL1GateDNN:
