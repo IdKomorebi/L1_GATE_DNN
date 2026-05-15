@@ -1,0 +1,10 @@
+{
+  "center": "marginal_loss_price_rt",
+  "model": "DNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V1\\CenterOn_marginal_loss_price_rt\\DNN\\run_20260514_193008",
+  "feature_count": 47,
+  "best_test_r2": 0.9683651328086853,
+  "final_train_r2": 0.9968954920768738,
+  "final_test_r2": 0.9623020887374878,
+  "epochs_completed": 200
+}

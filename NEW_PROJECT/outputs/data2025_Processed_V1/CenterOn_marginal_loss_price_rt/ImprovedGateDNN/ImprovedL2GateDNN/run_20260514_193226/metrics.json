@@ -1,0 +1,10 @@
+{
+  "center": "marginal_loss_price_rt",
+  "model": "ImprovedL2GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V1\\CenterOn_marginal_loss_price_rt\\ImprovedGateDNN\\ImprovedL2GateDNN\\run_20260514_193226",
+  "feature_count": 47,
+  "best_test_r2": 0.9671921730041504,
+  "final_train_r2": 0.9818974733352661,
+  "final_test_r2": 0.9597491025924683,
+  "epochs_completed": 78
+}
