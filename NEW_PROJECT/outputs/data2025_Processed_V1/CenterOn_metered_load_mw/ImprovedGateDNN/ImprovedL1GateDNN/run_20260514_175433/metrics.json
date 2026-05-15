@@ -1,0 +1,10 @@
+{
+  "center": "metered_load_mw",
+  "model": "ImprovedL1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/ImprovedGateDNN/ImprovedL1GateDNN/run_20260514_175433",
+  "feature_count": 50,
+  "best_test_r2": 0.9999300241470337,
+  "final_train_r2": 0.9999775886535645,
+  "final_test_r2": 0.9999144077301025,
+  "epochs_completed": 200
+}

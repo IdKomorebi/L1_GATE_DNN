@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_drop_03",
+  "exp_type": "drop_one",
+  "x_label": "Drop #03\nn=2",
+  "feature_count": 2,
+  "dropped_id": 3,
+  "dropped_feature": "net_actual_interchange_mw",
+  "best_test_r2": 0.9998993277549744,
+  "final_test_r2": 0.9998568892478943,
+  "best_epoch": 74,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/top3_e100/DNN_drop_03"
+}

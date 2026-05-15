@@ -1,0 +1,39 @@
+﻿exp_name,exp_type,x_label,feature_count,dropped_id,dropped_feature,best_test_r2,final_test_r2,best_epoch,output_dir
+DNN_full_all,all,"Full
+n=49",49,,,0.9736434817314148,0.9389680624008179,91,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_full_all
+DNN_selected,selected,"Selected
+n=16",16,,,0.967595636844635,0.9586660861968994,89,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_selected
+DNN_drop_01,drop_one,"Drop #01
+n=15",15,1.0,gen_fuel_nuclear_pct,0.9685298204421997,0.9630703926086426,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_01
+DNN_drop_02,drop_one,"Drop #02
+n=15",15,2.0,congestion_price_rt,0.966636598110199,0.9608089923858643,89,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_02
+DNN_drop_03,drop_one,"Drop #03
+n=15",15,3.0,congestion_price_da,0.9696687459945679,0.9328015446662903,73,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_03
+DNN_drop_04,drop_one,"Drop #04
+n=15",15,4.0,da_as_mcp_synchronized_reserve,0.9682559370994568,0.9430402517318726,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_04
+DNN_drop_05,drop_one,"Drop #05
+n=15",15,5.0,gen_fuel_storage_mw,0.9723867774009705,0.9638281464576721,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_05
+DNN_drop_06,drop_one,"Drop #06
+n=15",15,6.0,system_energy_price_rt,0.9702888131141663,0.9661600589752197,81,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_06
+DNN_drop_07,drop_one,"Drop #07
+n=15",15,7.0,total_lmp_rt,0.9697039723396301,0.9667106866836548,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_07
+DNN_drop_08,drop_one,"Drop #08
+n=15",15,8.0,gen_fuel_nuclear_mw,0.9645484089851379,0.9567328691482544,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_08
+DNN_drop_09,drop_one,"Drop #09
+n=15",15,9.0,gen_fuel_multiple_fuels_mw,0.9670944809913635,0.960792064666748,95,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_09
+DNN_drop_10,drop_one,"Drop #10
+n=15",15,10.0,total_lmp_da,0.9686245322227478,0.9649078845977783,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_10
+DNN_drop_11,drop_one,"Drop #11
+n=15",15,11.0,total_losses,0.9642274975776672,0.952208936214447,88,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_11
+DNN_drop_12,drop_one,"Drop #12
+n=15",15,12.0,da_as_mcp_primary_reserve,0.9656498432159424,0.9589746594429016,97,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_12
+DNN_drop_13,drop_one,"Drop #13
+n=15",15,13.0,gross_actual_interchange_mw,0.964667797088623,0.9508072733879089,37,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_13
+DNN_drop_14,drop_one,"Drop #14
+n=15",15,14.0,gen_fuel_hydro_pct,0.9661267399787903,0.9625500440597534,37,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_14
+DNN_drop_15,drop_one,"Drop #15
+n=15",15,15.0,gen_fuel_wind_pct,0.9640127420425415,0.9537960290908813,37,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_15
+DNN_drop_16,drop_one,"Drop #16
+n=15",15,16.0,net_actual_interchange_mw,0.9650255441665649,0.9564250111579895,98,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_16
+DNN_unselected,unselected,"Unselected
+n=33",33,,,0.5748094320297241,0.5287814140319824,82,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_unselected

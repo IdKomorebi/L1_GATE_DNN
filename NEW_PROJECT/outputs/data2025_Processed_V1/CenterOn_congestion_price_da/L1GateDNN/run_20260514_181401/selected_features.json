@@ -1,0 +1,56 @@
+{
+  "threshold": 0.06,
+  "count": 10,
+  "features": [
+    {
+      "index": 1,
+      "name": "marginal_loss_price_da",
+      "gate": 0.34627923369407654
+    },
+    {
+      "index": 8,
+      "name": "metered_load_mw",
+      "gate": 0.3061322867870331
+    },
+    {
+      "index": 13,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.3125869035720825
+    },
+    {
+      "index": 16,
+      "name": "total_lmp_da",
+      "gate": 1.3914088010787964
+    },
+    {
+      "index": 17,
+      "name": "system_energy_price_da",
+      "gate": 1.3573392629623413
+    },
+    {
+      "index": 19,
+      "name": "system_energy_price_rt",
+      "gate": 0.5589061379432678
+    },
+    {
+      "index": 20,
+      "name": "total_lmp_rt",
+      "gate": 0.5316739082336426
+    },
+    {
+      "index": 26,
+      "name": "da_as_as_req_mw_primary_reserve",
+      "gate": 0.3394823372364044
+    },
+    {
+      "index": 27,
+      "name": "da_as_as_req_mw_synchronized_reserve",
+      "gate": 0.2009020298719406
+    },
+    {
+      "index": 34,
+      "name": "gen_fuel_coal_pct",
+      "gate": 0.11483046412467957
+    }
+  ]
+}

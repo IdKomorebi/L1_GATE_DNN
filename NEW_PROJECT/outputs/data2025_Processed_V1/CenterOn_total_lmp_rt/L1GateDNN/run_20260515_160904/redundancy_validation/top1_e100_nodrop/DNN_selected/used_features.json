@@ -1,0 +1,6 @@
+{
+  "center": "total_lmp_rt",
+  "features": [
+    "system_energy_price_rt"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_selected",
+  "exp_type": "selected",
+  "x_label": "Selected\nn=2",
+  "feature_count": 2,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9999799728393555,
+  "final_test_r2": 0.999945342540741,
+  "best_epoch": 96,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_total_lmp_rt/L1GateDNN/run_20260515_160904/redundancy_validation/top2_e100_nodrop/DNN_selected"
+}

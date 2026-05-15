@@ -1,0 +1,10 @@
+{
+  "center": "total_losses",
+  "model": "ImprovedL1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_total_losses/ImprovedGateDNN/ImprovedL1GateDNN/run_20260515_101547",
+  "feature_count": 48,
+  "best_test_r2": 0.9519978761672974,
+  "final_train_r2": 0.9881167411804199,
+  "final_test_r2": 0.9510896801948547,
+  "epochs_completed": 200
+}

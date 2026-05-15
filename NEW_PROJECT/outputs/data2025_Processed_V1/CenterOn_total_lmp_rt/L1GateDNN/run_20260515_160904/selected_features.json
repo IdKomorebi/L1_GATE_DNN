@@ -1,0 +1,16 @@
+{
+  "threshold": 0.06,
+  "count": 2,
+  "features": [
+    {
+      "index": 3,
+      "name": "system_energy_price_rt",
+      "gate": 1.1589387655258179
+    },
+    {
+      "index": 19,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.8191351294517517
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "total_gen"
+  ]
+}

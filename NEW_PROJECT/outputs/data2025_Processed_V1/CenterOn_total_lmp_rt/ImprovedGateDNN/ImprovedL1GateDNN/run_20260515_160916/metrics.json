@@ -1,0 +1,10 @@
+{
+  "center": "total_lmp_rt",
+  "model": "ImprovedL1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_total_lmp_rt/ImprovedGateDNN/ImprovedL1GateDNN/run_20260515_160916",
+  "feature_count": 48,
+  "best_test_r2": 0.9997094869613647,
+  "final_train_r2": 0.9995872378349304,
+  "final_test_r2": 0.9988706111907959,
+  "epochs_completed": 200
+}

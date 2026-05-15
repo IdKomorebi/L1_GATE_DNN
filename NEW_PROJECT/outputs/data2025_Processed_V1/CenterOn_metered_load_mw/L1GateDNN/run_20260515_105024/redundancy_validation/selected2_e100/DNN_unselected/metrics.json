@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_unselected",
+  "exp_type": "unselected",
+  "x_label": "Unselected\nn=48",
+  "feature_count": 48,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9989814758300781,
+  "final_test_r2": 0.9989340901374817,
+  "best_epoch": 83,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/selected2_e100/DNN_unselected"
+}

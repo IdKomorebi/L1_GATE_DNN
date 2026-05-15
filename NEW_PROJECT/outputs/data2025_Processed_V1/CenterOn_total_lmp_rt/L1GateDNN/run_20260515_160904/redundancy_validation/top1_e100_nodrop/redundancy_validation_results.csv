@@ -1,0 +1,7 @@
+﻿exp_name,exp_type,x_label,feature_count,dropped_id,dropped_feature,best_test_r2,final_test_r2,best_epoch,output_dir
+DNN_full_all,all,"Full
+n=48",48,,,0.9982966780662537,0.9905208945274353,99,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_total_lmp_rt/L1GateDNN/run_20260515_160904/redundancy_validation/top1_e100_nodrop/DNN_full_all
+DNN_selected,selected,"Selected
+n=1",1,,,0.9999906420707703,0.9999906420707703,100,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_total_lmp_rt/L1GateDNN/run_20260515_160904/redundancy_validation/top1_e100_nodrop/DNN_selected
+DNN_unselected,unselected,"Unselected
+n=47",47,,,0.9623802900314331,0.9580017924308777,87,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_total_lmp_rt/L1GateDNN/run_20260515_160904/redundancy_validation/top1_e100_nodrop/DNN_unselected

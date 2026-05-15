@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_rt",
+  "features": [
+    "system_energy_price_rt",
+    "total_lmp_rt",
+    "gen_fuel_hydro_pct",
+    "congestion_price_rt",
+    "total_losses",
+    "gen_fuel_multiple_fuels_mw",
+    "total_lmp_da",
+    "net_actual_interchange_mw",
+    "da_as_mcp_primary_reserve",
+    "congestion_price_da"
+  ]
+}

@@ -1,0 +1,4 @@
+﻿drop_id,feature_index,name,gate
+1,21,marginal_loss_price_rt,0.28696597
+2,7,gen_fuel_nuclear_mw,0.16464397
+3,43,net_actual_interchange_mw,0.16125566

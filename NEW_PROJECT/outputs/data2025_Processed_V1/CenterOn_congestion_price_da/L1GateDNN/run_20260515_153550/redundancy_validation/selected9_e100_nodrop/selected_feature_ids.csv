@@ -1,0 +1,10 @@
+﻿drop_id,feature_index,name,gate
+1,1,marginal_loss_price_da,0.27545595169067383
+2,8,metered_load_mw,0.1317201554775238
+3,13,gen_fuel_coal_mw,0.1622670441865921
+4,16,total_lmp_da,1.3998547792434692
+5,17,system_energy_price_da,1.3708949089050293
+6,19,system_energy_price_rt,0.5388294458389282
+7,20,total_lmp_rt,0.5215237736701965
+8,26,da_as_as_req_mw_primary_reserve,0.16188541054725647
+9,27,da_as_as_req_mw_synchronized_reserve,0.14283396303653717

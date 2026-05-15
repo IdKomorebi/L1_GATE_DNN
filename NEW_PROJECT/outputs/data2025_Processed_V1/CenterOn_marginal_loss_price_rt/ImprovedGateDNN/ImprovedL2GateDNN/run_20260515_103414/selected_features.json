@@ -1,0 +1,106 @@
+{
+  "threshold": 0.5,
+  "count": 20,
+  "features": [
+    {
+      "index": 1,
+      "name": "marginal_loss_price_da",
+      "gate": 0.5184493660926819
+    },
+    {
+      "index": 7,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.5348218083381653
+    },
+    {
+      "index": 11,
+      "name": "forecast_load_mw_latest_available",
+      "gate": 0.6157932877540588
+    },
+    {
+      "index": 12,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.6178576946258545
+    },
+    {
+      "index": 13,
+      "name": "system_energy_price_da",
+      "gate": 0.675412118434906
+    },
+    {
+      "index": 14,
+      "name": "system_energy_price_rt",
+      "gate": 0.713879406452179
+    },
+    {
+      "index": 15,
+      "name": "total_lmp_rt",
+      "gate": 0.7216193079948425
+    },
+    {
+      "index": 16,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.5936611890792847
+    },
+    {
+      "index": 18,
+      "name": "gen_fuel_multiple_fuels_mw",
+      "gate": 0.5603926181793213
+    },
+    {
+      "index": 19,
+      "name": "metered_load_mw",
+      "gate": 0.6133618950843811
+    },
+    {
+      "index": 20,
+      "name": "total_lmp_da",
+      "gate": 0.6524773240089417
+    },
+    {
+      "index": 21,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.5960345268249512
+    },
+    {
+      "index": 22,
+      "name": "total_gen",
+      "gate": 0.5943776965141296
+    },
+    {
+      "index": 23,
+      "name": "total_losses",
+      "gate": 0.5921694040298462
+    },
+    {
+      "index": 24,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.5752116441726685
+    },
+    {
+      "index": 25,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.5691569447517395
+    },
+    {
+      "index": 26,
+      "name": "da_as_mcp_primary_reserve",
+      "gate": 0.5121951699256897
+    },
+    {
+      "index": 27,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.5116315484046936
+    },
+    {
+      "index": 28,
+      "name": "gross_actual_interchange_mw",
+      "gate": 0.5120263695716858
+    },
+    {
+      "index": 29,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.5033986568450928
+    }
+  ]
+}

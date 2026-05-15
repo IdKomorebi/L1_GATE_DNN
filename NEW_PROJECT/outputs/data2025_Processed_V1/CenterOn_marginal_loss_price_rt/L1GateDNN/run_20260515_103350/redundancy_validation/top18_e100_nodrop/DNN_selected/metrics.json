@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_selected",
+  "exp_type": "selected",
+  "x_label": "Selected\nn=18",
+  "feature_count": 18,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9672800898551941,
+  "final_test_r2": 0.9644818305969238,
+  "best_epoch": 90,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/top18_e100_nodrop/DNN_selected"
+}

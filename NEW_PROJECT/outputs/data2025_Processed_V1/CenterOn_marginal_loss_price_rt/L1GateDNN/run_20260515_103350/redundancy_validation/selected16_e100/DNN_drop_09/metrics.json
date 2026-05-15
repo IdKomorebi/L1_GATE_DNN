@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_drop_09",
+  "exp_type": "drop_one",
+  "x_label": "Drop #09\nn=15",
+  "feature_count": 15,
+  "dropped_id": 9,
+  "dropped_feature": "gen_fuel_multiple_fuels_mw",
+  "best_test_r2": 0.9670944809913635,
+  "final_test_r2": 0.960792064666748,
+  "best_epoch": 95,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_09"
+}

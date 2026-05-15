@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_drop_13",
+  "exp_type": "drop_one",
+  "x_label": "Drop #13\nn=15",
+  "feature_count": 15,
+  "dropped_id": 13,
+  "dropped_feature": "gross_actual_interchange_mw",
+  "best_test_r2": 0.964667797088623,
+  "final_test_r2": 0.9508072733879089,
+  "best_epoch": 37,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/L1GateDNN/run_20260515_103350/redundancy_validation/selected16_e100/DNN_drop_13"
+}

@@ -1,0 +1,10 @@
+{
+  "center": "marginal_loss_price_rt",
+  "model": "ImprovedL1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_marginal_loss_price_rt/ImprovedGateDNN/ImprovedL1GateDNN/run_20260515_103401",
+  "feature_count": 49,
+  "best_test_r2": 0.9729560613632202,
+  "final_train_r2": 0.9957830905914307,
+  "final_test_r2": 0.9661619067192078,
+  "epochs_completed": 200
+}

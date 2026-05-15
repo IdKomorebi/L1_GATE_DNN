@@ -1,0 +1,7 @@
+{
+  "center": "marginal_loss_price_rt",
+  "features": [
+    "system_energy_price_rt",
+    "total_lmp_rt"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "center": "total_losses",
+  "features": [
+    "marginal_loss_price_rt",
+    "gen_fuel_nuclear_mw",
+    "net_actual_interchange_mw",
+    "gen_fuel_coal_mw",
+    "wind_generation_mw"
+  ]
+}

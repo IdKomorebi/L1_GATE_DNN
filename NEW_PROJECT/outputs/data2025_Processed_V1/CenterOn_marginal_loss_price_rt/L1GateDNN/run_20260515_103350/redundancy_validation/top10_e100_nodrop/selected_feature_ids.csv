@@ -1,0 +1,11 @@
+﻿drop_id,feature_index,name,gate
+1,14,system_energy_price_rt,0.76720047
+2,15,total_lmp_rt,0.7263597
+3,32,gen_fuel_hydro_pct,0.32847485
+4,5,congestion_price_rt,0.25604162
+5,23,total_losses,0.2096128
+6,18,gen_fuel_multiple_fuels_mw,0.18490821
+7,20,total_lmp_da,0.17986535
+8,35,net_actual_interchange_mw,0.14705467
+9,26,da_as_mcp_primary_reserve,0.11857295
+10,6,congestion_price_da,0.11208888

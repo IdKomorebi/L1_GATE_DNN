@@ -1,0 +1,10 @@
+{
+  "center": "congestion_price_da",
+  "model": "L1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_congestion_price_da/L1GateDNN/run_20260514_181540",
+  "feature_count": 49,
+  "best_test_r2": 0.9999566078186035,
+  "final_train_r2": 0.9974996447563171,
+  "final_test_r2": 0.9969263672828674,
+  "epochs_completed": 200
+}

@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_full_all",
+  "exp_type": "all",
+  "x_label": "Full\nn=49",
+  "feature_count": 49,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9838660359382629,
+  "final_test_r2": 0.9812707304954529,
+  "best_epoch": 99,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_congestion_price_da/L1GateDNN/run_20260515_153550/redundancy_validation/selected9_e100_nodrop/DNN_full_all"
+}

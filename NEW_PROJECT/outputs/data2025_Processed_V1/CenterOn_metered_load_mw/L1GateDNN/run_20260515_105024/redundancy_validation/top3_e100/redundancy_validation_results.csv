@@ -1,0 +1,11 @@
+﻿exp_name,exp_type,x_label,feature_count,dropped_id,dropped_feature,best_test_r2,final_test_r2,best_epoch,output_dir
+DNN_full_all,all,"Full
+n=50",50,,,0.9998601078987122,0.9998409152030945,97,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/top3_e100/DNN_full_all
+DNN_selected,selected,"Selected
+n=3",3,,,0.9999319911003113,0.9999242424964905,85,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/top3_e100/DNN_selected
+DNN_drop_01,drop_one,"Drop #01
+n=2",2,1.0,total_gen,0.9998968839645386,0.9998536109924316,51,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/top3_e100/DNN_drop_01
+DNN_drop_02,drop_one,"Drop #02
+n=2",2,2.0,prelim_load_avg_hourly,0.9999366402626038,0.9999040365219116,99,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/top3_e100/DNN_drop_02
+DNN_drop_03,drop_one,"Drop #03
+n=2",2,3.0,net_actual_interchange_mw,0.9998993277549744,0.9998568892478943,74,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V1/CenterOn_metered_load_mw/L1GateDNN/run_20260515_105024/redundancy_validation/top3_e100/DNN_drop_03
