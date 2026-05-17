@@ -1,0 +1,13 @@
+{
+  "center": "total_losses",
+  "model": "ImprovedL2GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_total_losses\\ImprovedGateDNN\\ImprovedL2GateDNN\\run_20260516_224217",
+  "feature_count": 62,
+  "best_test_r2": 0.9422520399093628,
+  "best_epoch": 95,
+  "last_epoch_train_r2": 0.973580539226532,
+  "last_epoch_test_r2": 0.938287615776062,
+  "final_train_r2": 0.9750393033027649,
+  "final_test_r2": 0.9422520399093628,
+  "epochs_completed": 120
+}

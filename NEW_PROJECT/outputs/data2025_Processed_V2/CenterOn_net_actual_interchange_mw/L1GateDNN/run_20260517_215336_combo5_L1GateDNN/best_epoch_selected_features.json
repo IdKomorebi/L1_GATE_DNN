@@ -1,0 +1,103 @@
+{
+  "threshold": 0.06,
+  "count": 19,
+  "features": [
+    {
+      "index": 2,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.6283771991729736
+    },
+    {
+      "index": 3,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.0859718769788742
+    },
+    {
+      "index": 5,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.1324930340051651
+    },
+    {
+      "index": 6,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.4842102825641632
+    },
+    {
+      "index": 8,
+      "name": "da_as_as_req_mw_synchronized_reserve",
+      "gate": 0.09499315172433853
+    },
+    {
+      "index": 11,
+      "name": "da_as_as_mw_synchronized_reserve",
+      "gate": 0.060512855648994446
+    },
+    {
+      "index": 20,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.7929596304893494
+    },
+    {
+      "index": 22,
+      "name": "gen_fuel_wind_mw",
+      "gate": 0.1572137027978897
+    },
+    {
+      "index": 26,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.09510891139507294
+    },
+    {
+      "index": 27,
+      "name": "gen_fuel_multiple_fuels_mw",
+      "gate": 0.10491764545440674
+    },
+    {
+      "index": 39,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.6728492379188538
+    },
+    {
+      "index": 40,
+      "name": "metered_load_mw",
+      "gate": 0.6326147317886353
+    },
+    {
+      "index": 41,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.08428431302309036
+    },
+    {
+      "index": 42,
+      "name": "total_losses",
+      "gate": 0.1337781846523285
+    },
+    {
+      "index": 43,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.09005402028560638
+    },
+    {
+      "index": 46,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.6380044221878052
+    },
+    {
+      "index": 54,
+      "name": "gen_fuel_nuclear_pct",
+      "gate": 0.4309956133365631
+    },
+    {
+      "index": 55,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.23878474533557892
+    },
+    {
+      "index": 58,
+      "name": "gen_fuel_solar_mw",
+      "gate": 0.3245771527290344
+    }
+  ],
+  "epoch": 172,
+  "source": "best_test_r2_epoch"
+}

@@ -1,0 +1,8 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "net_actual_interchange_mw",
+    "total_gen",
+    "metered_load_mw"
+  ]
+}

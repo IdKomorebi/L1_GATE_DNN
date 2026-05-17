@@ -1,0 +1,8 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "net_sched_interchange_mw",
+    "net_inadv_interchange_mw",
+    "da_as_as_req_mw_synchronized_reserve"
+  ]
+}

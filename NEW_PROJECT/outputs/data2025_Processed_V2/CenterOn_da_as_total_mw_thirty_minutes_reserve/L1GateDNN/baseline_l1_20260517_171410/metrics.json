@@ -1,0 +1,13 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_da_as_total_mw_thirty_minutes_reserve\\L1GateDNN\\baseline_l1_20260517_171410",
+  "feature_count": 64,
+  "best_test_r2": 0.9999998211860657,
+  "best_epoch": 183,
+  "last_epoch_train_r2": 0.9999812841415405,
+  "last_epoch_test_r2": 0.9999798536300659,
+  "final_train_r2": 0.9999997019767761,
+  "final_test_r2": 0.9999998211860657,
+  "epochs_completed": 200
+}

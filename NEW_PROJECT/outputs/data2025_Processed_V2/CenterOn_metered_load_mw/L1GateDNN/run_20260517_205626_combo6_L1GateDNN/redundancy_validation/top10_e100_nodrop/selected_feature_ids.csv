@@ -1,0 +1,11 @@
+﻿drop_id,feature_index,name,gate
+1,29,gen_fuel_nuclear_pct,0.067155875
+2,9,gen_fuel_nuclear_mw,0.030009624
+3,2,forecast_load_mw_latest_available,0.023625307
+4,55,net_sched_interchange_mw,0.014411757
+5,4,gen_fuel_gas_mw,0.011209377
+6,42,gen_fuel_solar_mw,0.010352974
+7,10,gen_fuel_hydro_mw,0.009268575
+8,5,gen_fuel_coal_mw,0.007390093
+9,21,da_as_nsr_mw_primary_reserve,0.0068216966
+10,15,system_energy_price_da,0.0065267244

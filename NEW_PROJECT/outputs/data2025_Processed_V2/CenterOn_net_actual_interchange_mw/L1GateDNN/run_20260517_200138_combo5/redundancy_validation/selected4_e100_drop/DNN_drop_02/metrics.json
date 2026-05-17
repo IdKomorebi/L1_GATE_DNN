@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_drop_02",
+  "exp_type": "drop_one",
+  "x_label": "Drop #02\nn=3",
+  "feature_count": 3,
+  "dropped_id": 2,
+  "dropped_feature": "metered_load_mw",
+  "best_test_r2": 0.9987390041351318,
+  "final_test_r2": 0.9980713725090027,
+  "best_epoch": 87,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_net_actual_interchange_mw\\L1GateDNN\\run_20260517_200138_combo5\\redundancy_validation\\selected4_e100_drop\\DNN_drop_02"
+}

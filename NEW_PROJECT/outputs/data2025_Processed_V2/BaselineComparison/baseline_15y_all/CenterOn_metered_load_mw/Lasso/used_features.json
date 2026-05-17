@@ -1,0 +1,8 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "total_gen",
+    "net_actual_interchange_mw",
+    "forecast_load_mw_latest_available"
+  ]
+}

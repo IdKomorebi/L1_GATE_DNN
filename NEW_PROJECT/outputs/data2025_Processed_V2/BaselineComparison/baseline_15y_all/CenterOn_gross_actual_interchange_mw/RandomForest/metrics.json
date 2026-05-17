@@ -1,0 +1,9 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "method": "RandomForest",
+  "feature_count": 32,
+  "best_test_r2": 0.8846615552902222,
+  "final_test_r2": 0.8836585283279419,
+  "best_epoch": 142,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_gross_actual_interchange_mw\\RandomForest"
+}

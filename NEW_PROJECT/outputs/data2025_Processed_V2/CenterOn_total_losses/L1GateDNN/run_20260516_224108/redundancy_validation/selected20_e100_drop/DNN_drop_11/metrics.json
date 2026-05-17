@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_drop_11",
+  "exp_type": "drop_one",
+  "x_label": "Drop #11\nn=19",
+  "feature_count": 19,
+  "dropped_id": 11,
+  "dropped_feature": "marginal_loss_price_rt",
+  "best_test_r2": 0.938406765460968,
+  "final_test_r2": 0.9351441860198975,
+  "best_epoch": 96,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_total_losses\\L1GateDNN\\run_20260516_224108\\redundancy_validation\\selected20_e100_drop\\DNN_drop_11"
+}

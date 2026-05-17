@@ -1,0 +1,8 @@
+{
+  "center": "total_lmp_da",
+  "features": [
+    "system_energy_price_da",
+    "system_energy_price_rt",
+    "total_lmp_rt"
+  ]
+}

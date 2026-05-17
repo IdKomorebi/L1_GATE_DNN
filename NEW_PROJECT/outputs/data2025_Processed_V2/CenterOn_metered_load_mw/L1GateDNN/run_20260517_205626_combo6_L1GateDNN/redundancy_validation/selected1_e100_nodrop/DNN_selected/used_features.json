@@ -1,0 +1,6 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "gen_fuel_nuclear_pct"
+  ]
+}

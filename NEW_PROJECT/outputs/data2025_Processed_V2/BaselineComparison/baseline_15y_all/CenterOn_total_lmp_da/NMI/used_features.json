@@ -1,0 +1,8 @@
+{
+  "center": "total_lmp_da",
+  "features": [
+    "marginal_loss_price_rt",
+    "rmccp",
+    "system_energy_price_da"
+  ]
+}

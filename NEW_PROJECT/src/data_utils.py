@@ -5,7 +5,7 @@ import re
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Sequence
+from typing import Any, Dict, List, Sequence
 
 import numpy as np
 import pandas as pd
@@ -52,13 +52,44 @@ def ensure_dir(path: str | Path) -> Path:
     return path
 
 
-def read_numeric_csv(path: str | Path) -> pd.DataFrame:
+def normalize_column_list(value: Any) -> List[str]:
+    if value is None:
+        return []
+    if isinstance(value, str):
+        candidates = [value]
+    else:
+        try:
+            candidates = list(value)
+        except TypeError:
+            candidates = [value]
+
+    seen = set()
+    columns = []
+    for item in candidates:
+        column = str(item).strip()
+        if column and column not in seen:
+            seen.add(column)
+            columns.append(column)
+    return columns
+
+
+def read_numeric_csv(
+    path: str | Path,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
+) -> pd.DataFrame:
     df = pd.read_csv(path)
     unnamed = [c for c in df.columns if str(c).lower().startswith("unnamed:")]
     if unnamed:
         df = df.drop(columns=unnamed)
     numeric = df.apply(pd.to_numeric, errors="coerce")
     numeric = numeric.dropna(axis=1, how="all")
+    if drop_all_zero_columns:
+        has_non_zero = numeric.fillna(0).ne(0).any(axis=0)
+        numeric = numeric.loc[:, has_non_zero]
+    excluded = normalize_column_list(exclude_columns)
+    if excluded:
+        numeric = numeric.drop(columns=[c for c in excluded if c in numeric.columns])
     return numeric
 
 
@@ -68,8 +99,14 @@ def prepare_supervised_dataset(
     features: Sequence[str],
     train_ratio: float,
     random_state: int,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> DatasetBundle:
-    df = read_numeric_csv(data_path)
+    df = read_numeric_csv(
+        data_path,
+        drop_all_zero_columns=drop_all_zero_columns,
+        exclude_columns=exclude_columns,
+    )
     missing = [c for c in [center, *features] if c not in df.columns]
     if missing:
         raise ValueError(f"Columns not found in data: {missing}")
@@ -149,7 +186,9 @@ def create_run_dir(center_dir: str | Path, model_name: str, run_name: str | None
 
 
 def save_json(path: str | Path, data: Dict) -> None:
-    with Path(path).open("w", encoding="utf-8") as f:
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 

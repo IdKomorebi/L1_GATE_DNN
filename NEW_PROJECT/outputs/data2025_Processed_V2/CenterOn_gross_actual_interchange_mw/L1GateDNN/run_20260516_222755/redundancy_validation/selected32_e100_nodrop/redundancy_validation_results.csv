@@ -1,0 +1,7 @@
+﻿exp_name,exp_type,x_label,feature_count,dropped_id,dropped_feature,best_test_r2,final_test_r2,best_epoch,output_dir
+DNN_full_all,all,"Full
+n=63",63,,,0.8654323220252991,0.8577938675880432,64,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_gross_actual_interchange_mw\L1GateDNN\run_20260516_222755\redundancy_validation\selected32_e100_nodrop\DNN_full_all
+DNN_selected,selected,"Selected
+n=32",32,,,0.8767936825752258,0.8663512468338013,56,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_gross_actual_interchange_mw\L1GateDNN\run_20260516_222755\redundancy_validation\selected32_e100_nodrop\DNN_selected
+DNN_unselected,unselected,"Unselected
+n=31",31,,,0.5266345739364624,0.5165489912033081,38,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_gross_actual_interchange_mw\L1GateDNN\run_20260516_222755\redundancy_validation\selected32_e100_nodrop\DNN_unselected

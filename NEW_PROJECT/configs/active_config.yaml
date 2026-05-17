@@ -1,0 +1,5 @@
+# Change this single value to switch the default config used by all scripts.
+# Options now:
+# - data2025.yaml
+# - data2025_v2.yaml
+active_config: data2025_v2.yaml

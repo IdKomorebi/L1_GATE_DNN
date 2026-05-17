@@ -1,0 +1,9 @@
+{
+  "center": "congestion_price_rt",
+  "method": "NMI",
+  "feature_count": 40,
+  "best_test_r2": 0.714081883430481,
+  "final_test_r2": 0.6975257396697998,
+  "best_epoch": 100,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_congestion_price_rt\\NMI"
+}

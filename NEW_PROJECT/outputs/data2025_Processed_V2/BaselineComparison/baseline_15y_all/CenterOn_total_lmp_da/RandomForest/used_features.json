@@ -1,0 +1,8 @@
+{
+  "center": "total_lmp_da",
+  "features": [
+    "system_energy_price_da",
+    "congestion_price_da",
+    "da_as_mcp_primary_reserve"
+  ]
+}

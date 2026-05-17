@@ -1,0 +1,8 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "da_as_as_mw_thirty_minutes_reserve",
+    "gen_fuel_coal_mw",
+    "gen_fuel_nuclear_mw"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_full_all",
+  "exp_type": "all",
+  "x_label": "Full\nn=62",
+  "feature_count": 62,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9415989518165588,
+  "final_test_r2": 0.9353927373886108,
+  "best_epoch": 79,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_total_losses\\L1GateDNN\\run_20260516_224108\\redundancy_validation\\selected20_e100_drop\\DNN_full_all"
+}

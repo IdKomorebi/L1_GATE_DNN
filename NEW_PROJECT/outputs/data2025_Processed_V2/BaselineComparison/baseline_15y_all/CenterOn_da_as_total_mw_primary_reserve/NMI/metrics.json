@@ -1,0 +1,9 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "method": "NMI",
+  "feature_count": 3,
+  "best_test_r2": 0.9999990463256836,
+  "final_test_r2": 0.9999939799308777,
+  "best_epoch": 141,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_da_as_total_mw_primary_reserve\\NMI"
+}

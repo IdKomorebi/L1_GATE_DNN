@@ -1,0 +1,6 @@
+﻿drop_id,feature_index,name,gate
+1,29,gen_fuel_nuclear_pct,0.067155875
+2,9,gen_fuel_nuclear_mw,0.030009624
+3,2,forecast_load_mw_latest_available,0.023625307
+4,55,net_sched_interchange_mw,0.014411757
+5,4,gen_fuel_gas_mw,0.011209377

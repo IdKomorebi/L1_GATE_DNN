@@ -1,0 +1,9 @@
+{
+  "center": "total_gen",
+  "method": "Pearson",
+  "feature_count": 3,
+  "best_test_r2": 0.981312096118927,
+  "final_test_r2": 0.981156587600708,
+  "best_epoch": 146,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_total_gen\\Pearson"
+}

@@ -1,0 +1,13 @@
+{
+  "threshold": 0.06,
+  "count": 1,
+  "features": [
+    {
+      "index": 1,
+      "name": "system_energy_price_da",
+      "gate": 0.16972222924232483
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

@@ -1,0 +1,25 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "total_gen",
+    "metered_load_mw",
+    "prelim_load_avg_hourly",
+    "total_pjm_rt_load_mwh",
+    "total_losses",
+    "gen_fuel_wind_pct",
+    "solar_generation_mw",
+    "da_as_total_mw_primary_reserve",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "da_as_nsr_mw_primary_reserve",
+    "congestion_price_rt",
+    "total_pjm_assigned_reg",
+    "rmpcp",
+    "gen_fuel_other_renewables_mw",
+    "gen_fuel_other_renewables_pct",
+    "da_as_ss_mw_synchronized_reserve",
+    "gen_fuel_nuclear_mw",
+    "total_pjm_reg_purchases",
+    "da_as_as_req_mw_primary_reserve",
+    "gen_fuel_hydro_mw"
+  ]
+}

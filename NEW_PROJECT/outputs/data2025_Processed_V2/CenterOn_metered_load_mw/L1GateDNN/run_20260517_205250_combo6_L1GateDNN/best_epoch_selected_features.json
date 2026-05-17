@@ -1,0 +1,13 @@
+{
+  "threshold": 0.06,
+  "count": 1,
+  "features": [
+    {
+      "index": 1,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.08840685337781906
+    }
+  ],
+  "epoch": 112,
+  "source": "best_test_r2_epoch"
+}

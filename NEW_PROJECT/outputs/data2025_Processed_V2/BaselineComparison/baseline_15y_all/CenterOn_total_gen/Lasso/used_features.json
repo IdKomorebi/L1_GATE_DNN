@@ -1,0 +1,8 @@
+{
+  "center": "total_gen",
+  "features": [
+    "prelim_load_avg_hourly",
+    "net_actual_interchange_mw",
+    "wind_generation_mw"
+  ]
+}

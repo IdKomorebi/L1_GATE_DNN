@@ -1,0 +1,9 @@
+{
+  "center": "metered_load_mw",
+  "method": "RandomForest",
+  "feature_count": 3,
+  "best_test_r2": 0.9999093413352966,
+  "final_test_r2": 0.9998934268951416,
+  "best_epoch": 149,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_metered_load_mw\\RandomForest"
+}

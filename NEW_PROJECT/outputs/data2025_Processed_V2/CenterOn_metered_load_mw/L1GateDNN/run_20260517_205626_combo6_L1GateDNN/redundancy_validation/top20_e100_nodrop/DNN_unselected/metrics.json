@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_unselected",
+  "exp_type": "unselected",
+  "x_label": "Unselected\nn=41",
+  "feature_count": 41,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9961552619934082,
+  "final_test_r2": 0.9959620833396912,
+  "best_epoch": 80,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_metered_load_mw\\L1GateDNN\\run_20260517_205626_combo6_L1GateDNN\\redundancy_validation\\top20_e100_nodrop\\DNN_unselected"
+}

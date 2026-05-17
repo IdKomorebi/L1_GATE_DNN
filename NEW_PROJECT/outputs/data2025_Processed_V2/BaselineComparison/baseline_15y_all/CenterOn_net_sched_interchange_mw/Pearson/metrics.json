@@ -1,0 +1,9 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "Pearson",
+  "feature_count": 3,
+  "best_test_r2": 0.998848021030426,
+  "final_test_r2": 0.9986831545829773,
+  "best_epoch": 129,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_net_sched_interchange_mw\\Pearson"
+}

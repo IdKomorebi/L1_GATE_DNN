@@ -15,7 +15,7 @@ from src.config import load_config, resolve_project_path
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Summarize saved training runs.")
-    parser.add_argument("--config", default=str(PROJECT_ROOT / "configs" / "data2025.yaml"))
+    parser.add_argument("--config", help="Config YAML path. Defaults to configs/active_config.yaml.")
     args = parser.parse_args()
 
     cfg = load_config(args.config)

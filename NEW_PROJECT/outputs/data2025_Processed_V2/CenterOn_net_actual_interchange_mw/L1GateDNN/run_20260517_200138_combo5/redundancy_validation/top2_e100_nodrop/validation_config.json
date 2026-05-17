@@ -1,0 +1,26 @@
+{
+  "source_run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_net_actual_interchange_mw\\L1GateDNN\\run_20260517_200138_combo5",
+  "source_run_dir_config_value": "outputs\\data2025_Processed_V2\\CenterOn_net_actual_interchange_mw\\L1GateDNN\\run_20260517_200138_combo5",
+  "config_path": "E:\\L1_GATE_DNN\\NEW_PROJECT\\configs\\data2025_v2.yaml",
+  "center": "net_actual_interchange_mw",
+  "combo_name": "combo5_net_actual_interchange_mw_no_net_sched_interchange_mw",
+  "data_path": "E:\\L1_GATE_DNN\\NEW_PROJECT\\data\\processed\\data2025_Processed_V2\\pjm_rto_hourly_2025_aligned_processed_one_header.csv",
+  "selection": "top 2 by |gate|",
+  "epochs": 100,
+  "batch_size": 50,
+  "lr": 0.001,
+  "train_ratio": 0.8,
+  "random_state": 42,
+  "device": "cpu",
+  "hidden_dims": [
+    64,
+    32,
+    16
+  ],
+  "drop_all_zero_columns": false,
+  "exclude_columns": [
+    "net_sched_interchange_mw"
+  ],
+  "include_drop_one": false,
+  "include_unselected": true
+}

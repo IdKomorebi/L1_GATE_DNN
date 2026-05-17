@@ -1,0 +1,6 @@
+﻿drop_id,feature_index,name,gate
+1,10,gross_inadv_interchange_mw,0.40836528
+2,11,gross_sched_interchange_mw,0.20081387
+3,12,gen_fuel_nuclear_mw,0.19192798
+4,2,forecast_load_mw_day_ahead,0.1659185
+5,24,gen_fuel_other_renewables_mw,0.16195743

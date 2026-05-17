@@ -1,0 +1,11 @@
+﻿drop_id,feature_index,name,gate
+1,19,total_gen,0.8830104
+2,40,metered_load_mw,0.6016647
+3,41,prelim_load_avg_hourly,0.31724235
+4,42,total_pjm_rt_load_mwh,0.30961648
+5,50,total_losses,0.0029991295
+6,37,gen_fuel_wind_pct,0.002198773
+7,54,solar_generation_mw,0.001621659
+8,10,da_as_total_mw_primary_reserve,0.0009420213
+9,3,da_as_total_mw_thirty_minutes_reserve,0.0005138025
+10,58,da_as_nsr_mw_primary_reserve,0.0005109725

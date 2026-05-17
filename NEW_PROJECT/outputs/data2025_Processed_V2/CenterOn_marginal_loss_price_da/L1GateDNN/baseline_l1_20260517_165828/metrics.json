@@ -1,0 +1,13 @@
+{
+  "center": "marginal_loss_price_da",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_marginal_loss_price_da\\L1GateDNN\\baseline_l1_20260517_165828",
+  "feature_count": 58,
+  "best_test_r2": 0.9028909206390381,
+  "best_epoch": 85,
+  "last_epoch_train_r2": 0.9780011773109436,
+  "last_epoch_test_r2": 0.8911490440368652,
+  "final_train_r2": 0.960815966129303,
+  "final_test_r2": 0.9028909206390381,
+  "epochs_completed": 200
+}

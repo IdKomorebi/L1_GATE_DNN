@@ -1,0 +1,7 @@
+﻿drop_id,feature_index,name,gate
+1,19,total_gen,0.8830104
+2,40,metered_load_mw,0.6016647
+3,41,prelim_load_avg_hourly,0.31724235
+4,42,total_pjm_rt_load_mwh,0.30961648
+5,50,total_losses,0.0029991295
+6,37,gen_fuel_wind_pct,0.002198773

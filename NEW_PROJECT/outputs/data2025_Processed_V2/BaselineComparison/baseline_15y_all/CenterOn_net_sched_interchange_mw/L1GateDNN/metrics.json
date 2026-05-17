@@ -1,0 +1,9 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "L1GateDNN",
+  "feature_count": 3,
+  "best_test_r2": 0.999997079372406,
+  "final_test_r2": 0.9999855756759644,
+  "best_epoch": 147,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_net_sched_interchange_mw\\L1GateDNN"
+}

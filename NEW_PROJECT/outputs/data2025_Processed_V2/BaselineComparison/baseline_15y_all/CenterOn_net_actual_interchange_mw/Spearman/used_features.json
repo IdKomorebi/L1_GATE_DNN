@@ -1,0 +1,8 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "net_sched_interchange_mw",
+    "gross_sched_interchange_mw",
+    "da_as_as_mw_thirty_minutes_reserve"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "center": "total_gen",
+  "features": [
+    "marginal_loss_price_rt",
+    "total_pjm_rt_load_mwh",
+    "metered_load_mw"
+  ]
+}

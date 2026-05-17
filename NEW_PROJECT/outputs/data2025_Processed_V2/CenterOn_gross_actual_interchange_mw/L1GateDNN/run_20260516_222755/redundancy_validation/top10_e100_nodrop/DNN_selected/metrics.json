@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_selected",
+  "exp_type": "selected",
+  "x_label": "Selected\nn=10",
+  "feature_count": 10,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.8519869446754456,
+  "final_test_r2": 0.8437668085098267,
+  "best_epoch": 95,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_gross_actual_interchange_mw\\L1GateDNN\\run_20260516_222755\\redundancy_validation\\top10_e100_nodrop\\DNN_selected"
+}

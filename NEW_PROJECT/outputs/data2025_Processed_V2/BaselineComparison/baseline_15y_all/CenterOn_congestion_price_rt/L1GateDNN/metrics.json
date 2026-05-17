@@ -1,0 +1,9 @@
+{
+  "center": "congestion_price_rt",
+  "method": "L1GateDNN",
+  "feature_count": 40,
+  "best_test_r2": 0.6890160441398621,
+  "final_test_r2": 0.6689339876174927,
+  "best_epoch": 138,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_congestion_price_rt\\L1GateDNN"
+}

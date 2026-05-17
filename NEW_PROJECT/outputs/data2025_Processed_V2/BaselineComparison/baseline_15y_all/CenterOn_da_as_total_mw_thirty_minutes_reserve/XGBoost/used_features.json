@@ -1,0 +1,8 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "da_as_as_mw_thirty_minutes_reserve",
+    "da_as_mcp_synchronized_reserve",
+    "forecast_load_mw_day_ahead"
+  ]
+}

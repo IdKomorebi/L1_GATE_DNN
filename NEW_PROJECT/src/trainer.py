@@ -1,8 +1,9 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Sequence
 
 import numpy as np
 import pandas as pd
@@ -14,6 +15,8 @@ from .config import merged_training_params, resolve_project_path
 from .data_utils import (
     center_output_dir,
     create_run_dir,
+    ensure_dir,
+    normalize_column_list,
     prepare_supervised_dataset,
     save_json,
     write_name_mapping,
@@ -126,7 +129,14 @@ def _active_count(model_name: str, gates: np.ndarray, params: Dict[str, Any]) ->
     return int(np.sum(gates >= threshold))
 
 
-def _selected_features(model_name: str, features: List[str], gates: np.ndarray, params: Dict[str, Any]) -> Dict[str, Any]:
+def _selected_features(
+    model_name: str,
+    features: List[str],
+    gates: np.ndarray,
+    params: Dict[str, Any],
+    epoch: int | None = None,
+    source: str | None = None,
+) -> Dict[str, Any]:
     if model_name == "L1GateDNN":
         threshold = float(params.get("active_threshold", 0.06))
         mask = np.abs(gates) > threshold
@@ -137,7 +147,12 @@ def _selected_features(model_name: str, features: List[str], gates: np.ndarray, 
         threshold = float(params.get("active_threshold", 0.06))
         mask = gates >= threshold
     selected = [{"index": i + 1, "name": f, "gate": float(gates[i])} for i, f in enumerate(features) if mask[i]]
-    return {"threshold": threshold, "count": len(selected), "features": selected}
+    payload: Dict[str, Any] = {"threshold": threshold, "count": len(selected), "features": selected}
+    if epoch is not None:
+        payload["epoch"] = int(epoch)
+    if source is not None:
+        payload["source"] = source
+    return payload
 
 
 def train_center_model(
@@ -147,6 +162,10 @@ def train_center_model(
     overrides: Dict[str, Any] | None = None,
     run_name: str | None = None,
     force_relations: bool = False,
+    exclude_columns: Sequence[str] | None = None,
+    combo_name: str | None = None,
+    output_run_dir: str | Path | None = None,
+    feature_top_n: int | None = None,
 ) -> Path:
     dataset_cfg = cfg["dataset"]
     relation_cfg = cfg.get("relations", {})
@@ -155,11 +174,27 @@ def train_center_model(
     sample_size = int(relation_cfg.get("sample_size", 3000))
     expensive_sample_size = int(relation_cfg.get("expensive_sample_size", 1200))
     params = merged_training_params(cfg, model_name, overrides)
+    preprocessing = cfg.get("preprocessing", {})
+    drop_all_zero_columns = bool(preprocessing.get("drop_all_zero_columns", False))
+    merged_exclude_columns = normalize_column_list(
+        [*normalize_column_list(preprocessing.get("exclude_columns")), *normalize_column_list(exclude_columns)]
+    )
+    if center in merged_exclude_columns:
+        raise ValueError(f"Center column cannot be excluded: {center}")
 
     data_path = resolve_project_path(cfg, dataset_cfg["processed_csv"])
     output_root = resolve_project_path(cfg, dataset_cfg["output_root"])
     center_dir = center_output_dir(output_root, center)
-    center_rel_dir = center_relation_analysis_dir(output_root, center, metrics, thresholds, sample_size, expensive_sample_size)
+    center_rel_dir = center_relation_analysis_dir(
+        output_root,
+        center,
+        metrics,
+        thresholds,
+        sample_size,
+        expensive_sample_size,
+        drop_all_zero_columns,
+        merged_exclude_columns,
+    )
     center_rel_path = center_rel_dir / "center_relationships.csv"
     center_graph_path = center_rel_dir / "center_knowledge_graph.html"
 
@@ -174,6 +209,8 @@ def train_center_model(
             expensive_sample_size=expensive_sample_size,
             random_state=int(params.get("random_state", 42)),
             progress_every=10,
+            drop_all_zero_columns=drop_all_zero_columns,
+            exclude_columns=merged_exclude_columns,
         )
     else:
         center_rel = pd.read_csv(center_rel_path)
@@ -188,7 +225,12 @@ def train_center_model(
             center=center,
         )
 
-    features = select_features(center_rel, cfg.get("feature_selection", {}))
+    feature_cfg = deepcopy(cfg.get("feature_selection", {}))
+    if feature_top_n is not None:
+        if int(feature_top_n) <= 0:
+            raise ValueError("feature_top_n must be positive.")
+        feature_cfg["top_n_by_sum"] = int(feature_top_n)
+    features = select_features(center_rel, feature_cfg)
     if not features:
         raise ValueError(f"No features selected for center: {center}")
 
@@ -202,6 +244,8 @@ def train_center_model(
         features=features,
         train_ratio=float(params.get("train_ratio", 0.8)),
         random_state=int(params.get("random_state", 42)),
+        drop_all_zero_columns=drop_all_zero_columns,
+        exclude_columns=merged_exclude_columns,
     )
 
     torch.manual_seed(int(params.get("random_state", 42)))
@@ -215,7 +259,7 @@ def train_center_model(
     model = _build_model(model_name, len(features), params, corr_vectors).to(DEVICE)
     optimizer = SimpleAdam(_model_params_for_optimizer(model, model_name, params), lr=float(params.get("lr", 1e-3)))
 
-    run_dir = create_run_dir(center_dir, model_name, run_name)
+    run_dir = ensure_dir(output_run_dir) if output_run_dir is not None else create_run_dir(center_dir, model_name, run_name)
     write_name_mapping(run_dir / "name_mapping.csv", center, features)
 
     save_json(
@@ -227,6 +271,13 @@ def train_center_model(
             "data_path": str(data_path),
             "center_relationships": str(center_rel_path),
             "relationship_analysis_dir": str(center_rel_dir),
+            "combo_name": combo_name,
+            "preprocessing": {
+                "drop_all_zero_columns": drop_all_zero_columns,
+                "exclude_columns": merged_exclude_columns,
+            },
+            "feature_selection": feature_cfg,
+            "feature_top_n": feature_top_n,
             "features": features,
             "params": params,
         },
@@ -241,6 +292,7 @@ def train_center_model(
     key_epochs.add(int(params.get("epochs", 1)))
 
     best_r2 = -1e18
+    best_epoch = 0
     best_state: Dict[str, Any] | None = None
     best_gate_values: np.ndarray | None = None
     no_improve = 0
@@ -275,7 +327,7 @@ def train_center_model(
             gate_history.append(gates_np.copy())
             active_features = _active_count(model_name, gates_np, params)
             if epoch in key_epochs:
-                keydata[str(epoch)] = _selected_features(model_name, features, gates_np, params)
+                keydata[str(epoch)] = _selected_features(model_name, features, gates_np, params, epoch=epoch, source="epoch_snapshot")
 
         if isinstance(model, ImprovedGateRegressor):
             w_history.append(model.W_meta.detach().cpu().numpy().reshape(-1).copy())
@@ -297,10 +349,11 @@ def train_center_model(
 
         if test_r2 > best_r2 + min_delta:
             best_r2 = test_r2
+            best_epoch = epoch
             no_improve = 0
             best_gate_values = gates_np.copy() if gates_np is not None else None
             best_state = {
-                "model_state": model.state_dict(),
+                "model_state": {k: v.detach().cpu().clone() for k, v in model.state_dict().items()},
                 "center": center,
                 "features": features,
                 "x_mean": bundle.x_mean,
@@ -308,6 +361,10 @@ def train_center_model(
                 "y_mean": bundle.y_mean,
                 "y_std": bundle.y_std,
                 "params": params,
+                "preprocessing": {
+                    "drop_all_zero_columns": drop_all_zero_columns,
+                    "exclude_columns": merged_exclude_columns,
+                },
             }
             if corr_vectors is not None:
                 best_state["correlation_vectors"] = corr_vectors
@@ -353,10 +410,24 @@ def train_center_model(
         torch.save(best_state, run_dir / "model.pth")
 
     if best_gate_values is not None:
-        save_json(run_dir / "selected_features.json", _selected_features(model_name, features, best_gate_values, params))
+        if gate_history:
+            final_epoch = int(log_df["epoch"].iloc[-1])
+            final_gate_values = np.asarray(gate_history[-1])
+            save_json(
+                run_dir / "selected_features.json",
+                _selected_features(model_name, features, final_gate_values, params, epoch=final_epoch, source="final_epoch"),
+            )
+            save_json(
+                run_dir / "best_epoch_selected_features.json",
+                _selected_features(model_name, features, best_gate_values, params, epoch=best_epoch, source="best_test_r2_epoch"),
+            )
         risk_df = center_rel.set_index("related").loc[features].reset_index()
         risk_df.insert(0, "feature_index", range(1, len(features) + 1))
-        risk_df["best_gate"] = best_gate_values
+        if gate_history:
+            final_gate_values = np.asarray(gate_history[-1])
+            risk_df["gate"] = final_gate_values
+            risk_df["final_gate"] = final_gate_values
+        risk_df["best_epoch_gate"] = best_gate_values
         risk_df.to_csv(run_dir / "risk_map.csv", index=False, encoding="utf-8-sig")
 
     if best_state is not None:
@@ -381,6 +452,9 @@ def train_center_model(
         "run_dir": str(run_dir),
         "feature_count": len(features),
         "best_test_r2": float(best_r2),
+        "best_epoch": int(best_epoch),
+        "last_epoch_train_r2": float(log_df["train_r2"].iloc[-1]),
+        "last_epoch_test_r2": float(log_df["test_r2"].iloc[-1]),
         "final_train_r2": float(final_train_r2),
         "final_test_r2": float(final_test_r2),
         "epochs_completed": int(log_df["epoch"].max()),

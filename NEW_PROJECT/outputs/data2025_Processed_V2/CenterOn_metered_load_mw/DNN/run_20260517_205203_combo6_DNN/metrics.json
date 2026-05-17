@@ -1,0 +1,13 @@
+{
+  "center": "metered_load_mw",
+  "model": "DNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_metered_load_mw\\DNN\\run_20260517_205203_combo6_DNN",
+  "feature_count": 62,
+  "best_test_r2": 0.9997748732566833,
+  "best_epoch": 193,
+  "last_epoch_train_r2": 0.9997771978378296,
+  "last_epoch_test_r2": 0.9996595978736877,
+  "final_train_r2": 0.9999261498451233,
+  "final_test_r2": 0.9997748732566833,
+  "epochs_completed": 200
+}

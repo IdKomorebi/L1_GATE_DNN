@@ -1,0 +1,113 @@
+{
+  "threshold": 0.06,
+  "count": 21,
+  "features": [
+    {
+      "index": 1,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.24410542845726013
+    },
+    {
+      "index": 7,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.11771947145462036
+    },
+    {
+      "index": 8,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.17151163518428802
+    },
+    {
+      "index": 10,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.07478358596563339
+    },
+    {
+      "index": 13,
+      "name": "gross_actual_interchange_mw",
+      "gate": 0.09648147970438004
+    },
+    {
+      "index": 14,
+      "name": "total_lmp_rt",
+      "gate": 0.10523198544979095
+    },
+    {
+      "index": 15,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.08145596086978912
+    },
+    {
+      "index": 18,
+      "name": "system_energy_price_rt",
+      "gate": 0.10442734509706497
+    },
+    {
+      "index": 21,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.11062771826982498
+    },
+    {
+      "index": 25,
+      "name": "gen_fuel_coal_pct",
+      "gate": 0.10324463993310928
+    },
+    {
+      "index": 26,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.2914051413536072
+    },
+    {
+      "index": 27,
+      "name": "marginal_loss_price_da",
+      "gate": 0.09913746267557144
+    },
+    {
+      "index": 28,
+      "name": "gen_fuel_nuclear_pct",
+      "gate": 0.067547507584095
+    },
+    {
+      "index": 31,
+      "name": "wind_generation_mw",
+      "gate": 0.08842403441667557
+    },
+    {
+      "index": 32,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.09100191295146942
+    },
+    {
+      "index": 33,
+      "name": "da_as_as_req_mw_primary_reserve",
+      "gate": 0.08832723647356033
+    },
+    {
+      "index": 35,
+      "name": "gen_fuel_oil_pct",
+      "gate": 0.06980540603399277
+    },
+    {
+      "index": 48,
+      "name": "gen_fuel_multiple_fuels_mw",
+      "gate": 0.10726314038038254
+    },
+    {
+      "index": 50,
+      "name": "net_sched_interchange_mw",
+      "gate": 0.07871896773576736
+    },
+    {
+      "index": 51,
+      "name": "net_actual_interchange_mw",
+      "gate": 0.08333864063024521
+    },
+    {
+      "index": 59,
+      "name": "gen_fuel_gas_pct",
+      "gate": 0.09706256538629532
+    }
+  ],
+  "epoch": 175,
+  "source": "best_test_r2_epoch"
+}

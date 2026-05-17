@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_drop_10",
+  "exp_type": "drop_one",
+  "x_label": "Drop #10\nn=19",
+  "feature_count": 19,
+  "dropped_id": 10,
+  "dropped_feature": "gen_fuel_coal_pct",
+  "best_test_r2": 0.9447601437568665,
+  "final_test_r2": 0.9419108033180237,
+  "best_epoch": 97,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_total_losses\\L1GateDNN\\run_20260516_224108\\redundancy_validation\\selected20_e100_drop\\DNN_drop_10"
+}

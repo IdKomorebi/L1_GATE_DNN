@@ -1,0 +1,13 @@
+{
+  "center": "total_gen",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_total_gen\\L1GateDNN\\baseline_l1_20260517_164012",
+  "feature_count": 64,
+  "best_test_r2": 0.9999743700027466,
+  "best_epoch": 42,
+  "last_epoch_train_r2": 0.9999289512634277,
+  "last_epoch_test_r2": 0.9999292492866516,
+  "final_train_r2": 0.9999762773513794,
+  "final_test_r2": 0.9999743700027466,
+  "epochs_completed": 200
+}

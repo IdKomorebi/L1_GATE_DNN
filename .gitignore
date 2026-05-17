@@ -29,6 +29,9 @@ env/
 *.temp
 *.bak
 *.old
+~$*.docx
+~$*.pptx
+~$*.xlsx
 
 # Model checkpoints
 *.pth

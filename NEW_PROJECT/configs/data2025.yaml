@@ -4,6 +4,10 @@ dataset:
   time_index_csv: data/processed/data2025_Processed_V1/data2025_processed_with_time_index.csv
   output_root: outputs/data2025_Processed_V1
 
+preprocessing:
+  drop_all_zero_columns: false
+  exclude_columns: []
+
 relations:
   metrics: [nmi, spearman, pearson, kendall, distance_corr, hsic]
   thresholds:
@@ -32,6 +36,30 @@ experiment:
     - L1GateDNN
     - ImprovedL1GateDNN
     - ImprovedL2GateDNN
+
+column_combinations:
+  1:
+    name: total_lmp_rt_no_formula
+    center: total_lmp_rt
+    exclude_columns:
+      - system_energy_price_rt
+      - congestion_price_rt
+      - marginal_loss_price_rt
+
+  2:
+    name: total_lmp_da_no_formula
+    center: total_lmp_da
+    exclude_columns:
+      - system_energy_price_da
+      - congestion_price_da
+      - marginal_loss_price_da
+
+  3:
+    name: gross_actual_interchange_no_gross_related
+    center: gross_actual_interchange_mw
+    exclude_columns:
+      - gross_sched_interchange_mw
+      - gross_inadv_interchange_mw
 
 training:
   epochs: 200

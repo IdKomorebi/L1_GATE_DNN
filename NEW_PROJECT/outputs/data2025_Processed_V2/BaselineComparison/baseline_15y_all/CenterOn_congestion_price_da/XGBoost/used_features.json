@@ -1,0 +1,8 @@
+{
+  "center": "congestion_price_da",
+  "features": [
+    "metered_load_mw",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_req_mw_primary_reserve"
+  ]
+}

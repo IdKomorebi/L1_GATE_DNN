@@ -1,0 +1,8 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "da_as_as_mw_thirty_minutes_reserve",
+    "total_pjm_rmccp_cr",
+    "da_as_mcp_synchronized_reserve"
+  ]
+}

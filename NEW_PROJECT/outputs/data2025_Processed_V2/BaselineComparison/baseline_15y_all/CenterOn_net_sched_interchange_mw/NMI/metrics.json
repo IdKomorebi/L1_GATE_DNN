@@ -1,0 +1,9 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "NMI",
+  "feature_count": 3,
+  "best_test_r2": 0.9987593293190002,
+  "final_test_r2": 0.9987381100654602,
+  "best_epoch": 104,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_net_sched_interchange_mw\\NMI"
+}

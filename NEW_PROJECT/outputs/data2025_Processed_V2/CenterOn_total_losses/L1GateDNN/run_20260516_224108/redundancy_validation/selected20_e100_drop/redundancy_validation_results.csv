@@ -1,0 +1,47 @@
+﻿exp_name,exp_type,x_label,feature_count,dropped_id,dropped_feature,best_test_r2,final_test_r2,best_epoch,output_dir
+DNN_full_all,all,"Full
+n=62",62,,,0.9415989518165588,0.9353927373886108,79,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_full_all
+DNN_selected,selected,"Selected
+n=20",20,,,0.9452862739562988,0.9375312924385071,99,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_selected
+DNN_drop_01,drop_one,"Drop #01
+n=19",19,1.0,gen_fuel_coal_mw,0.9479696750640869,0.94577956199646,75,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_01
+DNN_drop_02,drop_one,"Drop #02
+n=19",19,2.0,forecast_load_mw_day_ahead,0.9508549571037292,0.9419753551483154,99,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_02
+DNN_drop_03,drop_one,"Drop #03
+n=19",19,3.0,gen_fuel_nuclear_mw,0.943560004234314,0.9435119032859802,76,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_03
+DNN_drop_04,drop_one,"Drop #04
+n=19",19,4.0,gross_inadv_interchange_mw,0.9470369815826416,0.9470369815826416,100,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_04
+DNN_drop_05,drop_one,"Drop #05
+n=19",19,5.0,gross_actual_interchange_mw,0.9442898035049438,0.9416413903236389,97,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_05
+DNN_drop_06,drop_one,"Drop #06
+n=19",19,6.0,total_lmp_rt,0.9511950612068176,0.9511950612068176,100,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_06
+DNN_drop_07,drop_one,"Drop #07
+n=19",19,7.0,da_as_total_mw_thirty_minutes_reserve,0.951210618019104,0.9494960308074951,95,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_07
+DNN_drop_08,drop_one,"Drop #08
+n=19",19,8.0,system_energy_price_rt,0.9467896223068237,0.944771409034729,87,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_08
+DNN_drop_09,drop_one,"Drop #09
+n=19",19,9.0,gen_fuel_other_renewables_mw,0.9412285685539246,0.9411536455154419,92,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_09
+DNN_drop_10,drop_one,"Drop #10
+n=19",19,10.0,gen_fuel_coal_pct,0.9447601437568665,0.9419108033180237,97,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_10
+DNN_drop_11,drop_one,"Drop #11
+n=19",19,11.0,marginal_loss_price_rt,0.938406765460968,0.9351441860198975,96,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_11
+DNN_drop_12,drop_one,"Drop #12
+n=19",19,12.0,marginal_loss_price_da,0.9467302560806274,0.9438956379890442,87,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_12
+DNN_drop_13,drop_one,"Drop #13
+n=19",19,13.0,wind_generation_mw,0.9319972991943359,0.927793562412262,99,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_13
+DNN_drop_14,drop_one,"Drop #14
+n=19",19,14.0,gross_sched_interchange_mw,0.9454687833786011,0.9436781406402588,91,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_14
+DNN_drop_15,drop_one,"Drop #15
+n=19",19,15.0,da_as_as_req_mw_primary_reserve,0.9444934129714966,0.9444934129714966,100,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_15
+DNN_drop_16,drop_one,"Drop #16
+n=19",19,16.0,gen_fuel_oil_pct,0.9423834085464478,0.939365029335022,96,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_16
+DNN_drop_17,drop_one,"Drop #17
+n=19",19,17.0,gen_fuel_multiple_fuels_mw,0.9449639320373535,0.9409887790679932,93,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_17
+DNN_drop_18,drop_one,"Drop #18
+n=19",19,18.0,net_sched_interchange_mw,0.9488733410835266,0.9488733410835266,100,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_18
+DNN_drop_19,drop_one,"Drop #19
+n=19",19,19.0,net_actual_interchange_mw,0.9451383948326111,0.9426018595695496,96,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_19
+DNN_drop_20,drop_one,"Drop #20
+n=19",19,20.0,gen_fuel_gas_pct,0.9444762468338013,0.9426683783531189,84,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_drop_20
+DNN_unselected,unselected,"Unselected
+n=42",42,,,0.9057959318161011,0.8969122171401978,75,E:\L1_GATE_DNN\NEW_PROJECT\outputs\data2025_Processed_V2\CenterOn_total_losses\L1GateDNN\run_20260516_224108\redundancy_validation\selected20_e100_drop\DNN_unselected

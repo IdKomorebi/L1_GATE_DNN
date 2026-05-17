@@ -1,0 +1,6 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "total_gen"
+  ]
+}

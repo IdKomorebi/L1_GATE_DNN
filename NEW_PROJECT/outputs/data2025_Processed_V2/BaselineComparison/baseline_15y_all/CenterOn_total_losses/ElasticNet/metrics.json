@@ -1,0 +1,9 @@
+{
+  "center": "total_losses",
+  "method": "ElasticNet",
+  "feature_count": 20,
+  "best_test_r2": 0.9018310904502869,
+  "final_test_r2": 0.898859977722168,
+  "best_epoch": 145,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_total_losses\\ElasticNet"
+}

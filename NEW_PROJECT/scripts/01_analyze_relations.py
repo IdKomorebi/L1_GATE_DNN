@@ -8,6 +8,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.config import load_config, resolve_project_path
+from src.data_utils import normalize_column_list
 from src.knowledge_graph import generate_knowledge_graph
 from src.relation_analyzer import (
     analyze_all_relationships,
@@ -20,7 +21,7 @@ from src.relation_analyzer import (
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Analyze field relationships for a dataset.")
-    parser.add_argument("--config", default=str(PROJECT_ROOT / "configs" / "data2025.yaml"))
+    parser.add_argument("--config", help="Config YAML path. Defaults to configs/active_config.yaml.")
     parser.add_argument("--center", help="If provided, only analyze this center against all other columns.")
     parser.add_argument("--no-graph", action="store_true", help="Skip knowledge graph HTML generation.")
     parser.add_argument("--progress-every", type=int, help="Print progress every N pairs. Use 0 to disable.")
@@ -36,11 +37,23 @@ def main() -> None:
     sample_size = int(rel_cfg.get("sample_size", 3000))
     expensive_sample_size = int(rel_cfg.get("expensive_sample_size", 1200))
     random_state = int(cfg.get("training", {}).get("random_state", 42))
-    tag = relation_set_name(metrics, thresholds, sample_size, expensive_sample_size)
+    preprocessing = cfg.get("preprocessing", {})
+    drop_all_zero_columns = bool(preprocessing.get("drop_all_zero_columns", False))
+    exclude_columns = normalize_column_list(preprocessing.get("exclude_columns"))
+    tag = relation_set_name(metrics, thresholds, sample_size, expensive_sample_size, drop_all_zero_columns, exclude_columns)
     print(f"Relationship setting: {tag}")
 
     if args.center:
-        out_dir = center_relation_analysis_dir(output_root, args.center, metrics, thresholds, sample_size, expensive_sample_size)
+        out_dir = center_relation_analysis_dir(
+            output_root,
+            args.center,
+            metrics,
+            thresholds,
+            sample_size,
+            expensive_sample_size,
+            drop_all_zero_columns,
+            exclude_columns,
+        )
         output_csv = out_dir / "center_relationships.csv"
         result = analyze_center_relationships(
             data_path=data_path,
@@ -52,6 +65,8 @@ def main() -> None:
             expensive_sample_size=expensive_sample_size,
             random_state=random_state,
             progress_every=10 if args.progress_every is None else args.progress_every,
+            drop_all_zero_columns=drop_all_zero_columns,
+            exclude_columns=exclude_columns,
         )
         if not args.no_graph:
             graph_path = generate_knowledge_graph(
@@ -64,7 +79,7 @@ def main() -> None:
             )
             print(f"Saved knowledge graph to {graph_path}")
     else:
-        out_dir = relation_analysis_dir(output_root, metrics, thresholds, sample_size, expensive_sample_size)
+        out_dir = relation_analysis_dir(output_root, metrics, thresholds, sample_size, expensive_sample_size, drop_all_zero_columns, exclude_columns)
         output_csv = out_dir / "relationships.csv"
         result = analyze_all_relationships(
             data_path=data_path,
@@ -75,6 +90,8 @@ def main() -> None:
             expensive_sample_size=expensive_sample_size,
             random_state=random_state,
             progress_every=100 if args.progress_every is None else args.progress_every,
+            drop_all_zero_columns=drop_all_zero_columns,
+            exclude_columns=exclude_columns,
         )
         if not args.no_graph:
             graph_path = generate_knowledge_graph(

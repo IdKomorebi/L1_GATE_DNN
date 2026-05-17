@@ -1,0 +1,13 @@
+{
+  "threshold": 0.06,
+  "count": 1,
+  "features": [
+    {
+      "index": 1,
+      "name": "net_actual_interchange_mw",
+      "gate": 0.8236424326896667
+    }
+  ],
+  "epoch": 32,
+  "source": "best_test_r2_epoch"
+}

@@ -1,0 +1,9 @@
+{
+  "center": "total_lmp_da",
+  "method": "RandomForest",
+  "feature_count": 3,
+  "best_test_r2": 0.9999169111251831,
+  "final_test_r2": 0.9996612071990967,
+  "best_epoch": 149,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_total_lmp_da\\RandomForest"
+}

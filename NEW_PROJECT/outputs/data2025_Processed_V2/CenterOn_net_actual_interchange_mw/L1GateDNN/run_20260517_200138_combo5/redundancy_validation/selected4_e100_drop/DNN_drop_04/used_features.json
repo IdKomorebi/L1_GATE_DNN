@@ -1,0 +1,8 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "total_gen",
+    "metered_load_mw",
+    "prelim_load_avg_hourly"
+  ]
+}

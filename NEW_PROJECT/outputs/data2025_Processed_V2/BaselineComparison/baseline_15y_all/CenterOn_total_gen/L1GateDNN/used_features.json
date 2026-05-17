@@ -1,0 +1,8 @@
+{
+  "center": "total_gen",
+  "features": [
+    "prelim_load_avg_hourly",
+    "net_sched_interchange_mw",
+    "solar_generation_mw"
+  ]
+}

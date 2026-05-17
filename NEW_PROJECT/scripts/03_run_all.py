@@ -13,7 +13,7 @@ from src.trainer import train_center_model
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run configured centers and models.")
-    parser.add_argument("--config", default=str(PROJECT_ROOT / "configs" / "data2025.yaml"))
+    parser.add_argument("--config", help="Config YAML path. Defaults to configs/active_config.yaml.")
     parser.add_argument("--centers", nargs="*")
     parser.add_argument("--models", nargs="*", choices=["DNN", "L1GateDNN", "ImprovedL1GateDNN", "ImprovedL2GateDNN"])
     parser.add_argument("--epochs", type=int)

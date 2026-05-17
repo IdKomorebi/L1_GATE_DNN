@@ -1,0 +1,13 @@
+{
+  "center": "total_lmp_rt",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_total_lmp_rt\\L1GateDNN\\run_20260517_211859_combo1_L1GateDNN",
+  "feature_count": 61,
+  "best_test_r2": 0.8978652954101562,
+  "best_epoch": 21,
+  "last_epoch_train_r2": 0.9893801808357239,
+  "last_epoch_test_r2": 0.8022365570068359,
+  "final_train_r2": 0.9423507452011108,
+  "final_test_r2": 0.8978652954101562,
+  "epochs_completed": 200
+}

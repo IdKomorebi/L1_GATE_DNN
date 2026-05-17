@@ -1,0 +1,13 @@
+{
+  "threshold": 0.06,
+  "count": 1,
+  "features": [
+    {
+      "index": 1,
+      "name": "net_sched_interchange_mw",
+      "gate": 0.7691214084625244
+    }
+  ],
+  "epoch": 35,
+  "source": "best_test_r2_epoch"
+}

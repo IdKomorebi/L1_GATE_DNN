@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import sys
@@ -23,9 +24,12 @@ from torch.utils.data import DataLoader, TensorDataset
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.data_utils import ensure_dir, prepare_supervised_dataset, read_numeric_csv, save_json
+from src.data_utils import ensure_dir, normalize_column_list, prepare_supervised_dataset, read_numeric_csv, save_json
 from src.config import load_config, resolve_project_path
 from src.models import DNNRegressor, SimpleAdam
+
+
+WINDOWS_SAFE_PATH_LIMIT = 240
 
 
 @dataclass
@@ -48,6 +52,39 @@ class ExperimentResult:
     final_test_r2: float
     best_epoch: int
     output_dir: str
+
+
+def _short_run_label(run_dir: Path) -> str:
+    parts = run_dir.name.split("_")
+    if len(parts) >= 3 and parts[0] == "run":
+        prefix = "_".join(parts[:3])
+    else:
+        prefix = run_dir.name[:32].rstrip("_") or "run"
+    digest = hashlib.sha1(str(run_dir).encode("utf-8")).hexdigest()[:8]
+    return f"{prefix}_{digest}"
+
+
+def _select_output_root(
+    project_cfg: Dict[str, Any],
+    validation_cfg: Dict[str, Any],
+    run_dir: Path,
+    output_name: str,
+) -> tuple[Path, str, str | None]:
+    output_dir_cfg = validation_cfg.get("output_dir")
+    if output_dir_cfg:
+        base = resolve_project_path(project_cfg, output_dir_cfg)
+        preferred = base / _short_run_label(run_dir) / output_name
+    else:
+        preferred = run_dir / "redundancy_validation" / output_name
+
+    probe_path = preferred / "selected_feature_ids.csv"
+    if len(str(probe_path)) < WINDOWS_SAFE_PATH_LIMIT:
+        return preferred, "preferred", None
+
+    dataset_output_root = resolve_project_path(project_cfg, project_cfg["dataset"]["output_root"])
+    fallback = dataset_output_root / "L1RedundancyValidation" / _short_run_label(run_dir) / output_name
+    reason = f"preferred output path is too long on Windows ({len(str(probe_path))} chars)"
+    return fallback, "path_length_fallback", reason
 
 
 def _load_json(path: str | Path) -> Dict[str, Any]:
@@ -126,16 +163,17 @@ def _top_gate_features(run_dir: Path, top_n: int) -> List[FeatureEntry]:
     risk_path = run_dir / "risk_map.csv"
     if risk_path.exists():
         risk_df = pd.read_csv(risk_path)
-        if {"related", "best_gate"}.issubset(risk_df.columns):
+        gate_col = next((col for col in ["final_gate", "gate", "best_epoch_gate", "best_gate"] if col in risk_df.columns), None)
+        if "related" in risk_df.columns and gate_col is not None:
             risk_df = risk_df.copy()
-            risk_df["abs_gate"] = risk_df["best_gate"].abs()
+            risk_df["abs_gate"] = risk_df[gate_col].abs()
             risk_df = risk_df.sort_values("abs_gate", ascending=False).head(top_n)
             return [
                 FeatureEntry(
                     drop_id=i,
                     feature_index=None if pd.isna(row.get("feature_index")) else int(row.get("feature_index")),
                     name=str(row["related"]),
-                    gate=float(row["best_gate"]),
+                    gate=float(row[gate_col]),
                 )
                 for i, (_, row) in enumerate(risk_df.iterrows(), start=1)
             ]
@@ -160,16 +198,35 @@ def _top_gate_features(run_dir: Path, top_n: int) -> List[FeatureEntry]:
     raise FileNotFoundError(f"Neither risk_map.csv nor gate_params.csv exists under {run_dir}")
 
 
-def _all_run_features(cfg: Dict[str, Any], data_path: Path, center: str) -> List[str]:
+def _all_run_features(
+    cfg: Dict[str, Any],
+    data_path: Path,
+    center: str,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
+) -> List[str]:
     features = [str(f) for f in cfg.get("features", [])]
     if features:
         return features
-    df = read_numeric_csv(data_path)
+    df = read_numeric_csv(data_path, drop_all_zero_columns=drop_all_zero_columns, exclude_columns=exclude_columns)
     return [str(c) for c in df.columns if str(c) != center]
 
 
-def _check_features(data_path: Path, center: str, feature_groups: Sequence[Sequence[str]]) -> None:
-    columns = set(str(c) for c in read_numeric_csv(data_path).columns)
+def _check_features(
+    data_path: Path,
+    center: str,
+    feature_groups: Sequence[Sequence[str]],
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
+) -> None:
+    columns = set(
+        str(c)
+        for c in read_numeric_csv(
+            data_path,
+            drop_all_zero_columns=drop_all_zero_columns,
+            exclude_columns=exclude_columns,
+        ).columns
+    )
     missing = []
     if center not in columns:
         missing.append(center)
@@ -197,6 +254,8 @@ def _train_dnn(
     lr: float,
     device: torch.device,
     output_dir: Path,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> ExperimentResult:
     if not features:
         raise ValueError("Feature list cannot be empty.")
@@ -212,6 +271,8 @@ def _train_dnn(
         features=features,
         train_ratio=train_ratio,
         random_state=random_state,
+        drop_all_zero_columns=drop_all_zero_columns,
+        exclude_columns=exclude_columns,
     )
 
     train_ds = TensorDataset(torch.from_numpy(bundle.X_train), torch.from_numpy(bundle.y_train))
@@ -366,6 +427,7 @@ def _plot_bar_summary(
     )
 
     fig.tight_layout()
+    ensure_dir(output_path.parent)
     fig.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close(fig)
 
@@ -384,6 +446,9 @@ def run_validation(args: argparse.Namespace) -> Path:
     run_cfg = _load_json(run_dir / "config.json")
     if run_cfg.get("model") != "L1GateDNN":
         raise ValueError(f"Expected an L1GateDNN run, got model={run_cfg.get('model')!r}")
+    source_preprocessing = run_cfg.get("preprocessing") or project_cfg.get("preprocessing", {})
+    drop_all_zero_columns = bool(source_preprocessing.get("drop_all_zero_columns", False))
+    exclude_columns = normalize_column_list(source_preprocessing.get("exclude_columns"))
 
     center = str(run_cfg["center"])
     data_path = Path(run_cfg["data_path"]).expanduser().resolve()
@@ -400,10 +465,22 @@ def run_validation(args: argparse.Namespace) -> Path:
         selection_label = f"top {args.top_n} by |gate|"
 
     selected_features = [entry.name for entry in selected_entries]
-    full_features = _all_run_features(run_cfg, data_path, center)
+    full_features = _all_run_features(
+        run_cfg,
+        data_path,
+        center,
+        drop_all_zero_columns=drop_all_zero_columns,
+        exclude_columns=exclude_columns,
+    )
     selected_feature_set = set(selected_features)
     unselected_features = [feature for feature in full_features if feature not in selected_feature_set]
-    _check_features(data_path, center, [full_features, selected_features, unselected_features])
+    _check_features(
+        data_path,
+        center,
+        [full_features, selected_features, unselected_features],
+        drop_all_zero_columns=drop_all_zero_columns,
+        exclude_columns=exclude_columns,
+    )
 
     params = run_cfg.get("params", {})
     hidden_dims = [int(v) for v in _config_get(validation_cfg, "hidden_dims", params.get("hidden_dims", [64, 32, 16]))]
@@ -422,15 +499,20 @@ def run_validation(args: argparse.Namespace) -> Path:
         output_root = resolve_project_path(project_cfg, output_dir_cfg) / run_dir.name / output_name
     else:
         output_root = run_dir / "redundancy_validation" / output_name
-    ensure_dir(output_root)
+    output_root = ensure_dir(output_root)
+    validation_config_path = output_root / "validation_config.json"
+    selected_ids_path = output_root / "selected_feature_ids.csv"
+    results_path = output_root / "redundancy_validation_results.csv"
+    plot_path = output_root / "redundancy_validation_r2.png"
 
     save_json(
-        output_root / "validation_config.json",
+        validation_config_path,
         {
             "source_run_dir": str(run_dir),
             "source_run_dir_config_value": str(run_dir_value),
-            "config_path": str(Path(args.config).expanduser().resolve()),
+            "config_path": str(Path(project_cfg["_config_path"]).expanduser().resolve()),
             "center": center,
+            "combo_name": run_cfg.get("combo_name"),
             "data_path": str(data_path),
             "selection": selection_label,
             "epochs": epochs,
@@ -440,12 +522,15 @@ def run_validation(args: argparse.Namespace) -> Path:
             "random_state": random_state,
             "device": str(device),
             "hidden_dims": hidden_dims,
+            "drop_all_zero_columns": drop_all_zero_columns,
+            "exclude_columns": exclude_columns,
             "include_drop_one": include_drop_one,
             "include_unselected": include_unselected,
         },
     )
+    ensure_dir(selected_ids_path.parent)
     pd.DataFrame([entry.__dict__ for entry in selected_entries]).to_csv(
-        output_root / "selected_feature_ids.csv",
+        selected_ids_path,
         index=False,
         encoding="utf-8-sig",
     )
@@ -497,6 +582,8 @@ def run_validation(args: argparse.Namespace) -> Path:
             lr=lr,
             device=device,
             output_dir=exp_dir,
+            drop_all_zero_columns=drop_all_zero_columns,
+            exclude_columns=exclude_columns,
         )
         result.exp_type = exp_type
         result.x_label = x_label
@@ -507,11 +594,12 @@ def run_validation(args: argparse.Namespace) -> Path:
         results.append(result)
 
     result_df = pd.DataFrame([r.__dict__ for r in results])
-    result_df.to_csv(output_root / "redundancy_validation_results.csv", index=False, encoding="utf-8-sig")
+    ensure_dir(results_path.parent)
+    result_df.to_csv(results_path, index=False, encoding="utf-8-sig")
     _plot_bar_summary(
         results=results,
         selected_entries=selected_entries,
-        output_path=output_root / "redundancy_validation_r2.png",
+        output_path=plot_path,
     )
 
     print(f"Saved validation outputs to {output_root}")
@@ -521,7 +609,7 @@ def run_validation(args: argparse.Namespace) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Validate L1GateDNN selected-feature redundancy with ordinary DNNs.")
     parser.add_argument("run_dir", nargs="?", help="Optional L1GateDNN run directory. Defaults to validation.l1_redundancy.run_dir in the config.")
-    parser.add_argument("--config", default=str(PROJECT_ROOT / "configs" / "data2025.yaml"))
+    parser.add_argument("--config", help="Config YAML path. Defaults to configs/active_config.yaml.")
     parser.add_argument("--top-n", type=int, help="Use the top N features by absolute gate value instead of selected_features.json.")
     parser.add_argument(
         "--drop-one",

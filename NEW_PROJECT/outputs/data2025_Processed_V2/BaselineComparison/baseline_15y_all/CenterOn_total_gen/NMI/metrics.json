@@ -1,0 +1,9 @@
+{
+  "center": "total_gen",
+  "method": "NMI",
+  "feature_count": 3,
+  "best_test_r2": 0.9842101335525513,
+  "final_test_r2": 0.9840709567070007,
+  "best_epoch": 128,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_total_gen\\NMI"
+}

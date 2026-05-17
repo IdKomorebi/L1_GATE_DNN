@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import hashlib
 import itertools
+import warnings
 from pathlib import Path
 from typing import Dict, Iterable, List, Sequence
 
@@ -25,7 +27,7 @@ except Exception:
     dcor = None
     DCOR_AVAILABLE = False
 
-from .data_utils import center_output_dir, ensure_dir, read_numeric_csv
+from .data_utils import center_output_dir, ensure_dir, normalize_column_list, read_numeric_csv
 
 
 DEFAULT_METRICS = ["nmi", "spearman", "pearson", "kendall", "distance_corr", "hsic"]
@@ -44,18 +46,29 @@ def _value_tag(value: float) -> str:
     return text.replace("-", "m").replace(".", "p")
 
 
+def _exclude_tag(exclude_columns: Sequence[str] | None) -> str:
+    columns = sorted(normalize_column_list(exclude_columns))
+    if not columns:
+        return ""
+    digest = hashlib.sha1("\n".join(columns).encode("utf-8")).hexdigest()[:8]
+    return f"_excl{digest}"
+
+
 def relation_set_name(
     metrics: Sequence[str],
     thresholds: Dict[str, float],
     sample_size: int,
     expensive_sample_size: int,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> str:
     parts = []
     for metric in metrics:
         if metric in thresholds:
             parts.append(f"{METRIC_ABBR.get(metric, metric)}{_value_tag(float(thresholds[metric]))}")
     threshold_part = "_".join(parts) if parts else "no_thresholds"
-    return f"thr_{threshold_part}_s{sample_size}_e{expensive_sample_size}"
+    zero_part = "_dropzero" if drop_all_zero_columns else ""
+    return f"thr_{threshold_part}_s{sample_size}_e{expensive_sample_size}{zero_part}{_exclude_tag(exclude_columns)}"
 
 
 def relation_analysis_dir(
@@ -64,11 +77,13 @@ def relation_analysis_dir(
     thresholds: Dict[str, float],
     sample_size: int,
     expensive_sample_size: int,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> Path:
     return ensure_dir(
         Path(output_root)
         / "RelationshipAnalysis"
-        / relation_set_name(metrics, thresholds, sample_size, expensive_sample_size)
+        / relation_set_name(metrics, thresholds, sample_size, expensive_sample_size, drop_all_zero_columns, exclude_columns)
     )
 
 
@@ -79,11 +94,13 @@ def center_relation_analysis_dir(
     thresholds: Dict[str, float],
     sample_size: int,
     expensive_sample_size: int,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> Path:
     return ensure_dir(
         center_output_dir(output_root, center)
         / "RelationshipAnalysis"
-        / relation_set_name(metrics, thresholds, sample_size, expensive_sample_size)
+        / relation_set_name(metrics, thresholds, sample_size, expensive_sample_size, drop_all_zero_columns, exclude_columns)
     )
 
 
@@ -226,7 +243,9 @@ def analyze_pair(
                 result[metric] = kendall_corr(x_exp, y_exp)
             elif metric == "distance_corr":
                 if DCOR_AVAILABLE and dcor is not None:
-                    result[metric] = float(dcor.distance_correlation(x_exp, y_exp))
+                    with warnings.catch_warnings():
+                        warnings.filterwarnings("ignore", message="Falling back to uncompiled AVL.*")
+                        result[metric] = float(dcor.distance_correlation(x_exp, y_exp))
                 else:
                     result[metric] = fallback_distance_corr(x_exp, y_exp)
             elif metric == "hsic":
@@ -263,8 +282,10 @@ def analyze_all_relationships(
     expensive_sample_size: int = 1200,
     random_state: int = 42,
     progress_every: int = 100,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> pd.DataFrame:
-    df = read_numeric_csv(data_path)
+    df = read_numeric_csv(data_path, drop_all_zero_columns=drop_all_zero_columns, exclude_columns=exclude_columns)
     pairs = list(itertools.combinations(df.columns, 2))
     total = len(pairs)
     if progress_every:
@@ -298,8 +319,10 @@ def analyze_center_relationships(
     expensive_sample_size: int = 1200,
     random_state: int = 42,
     progress_every: int = 10,
+    drop_all_zero_columns: bool = False,
+    exclude_columns: Sequence[str] | None = None,
 ) -> pd.DataFrame:
-    df = read_numeric_csv(data_path)
+    df = read_numeric_csv(data_path, drop_all_zero_columns=drop_all_zero_columns, exclude_columns=exclude_columns)
     if center not in df.columns:
         raise ValueError(f"Center column not found: {center}")
 
@@ -335,6 +358,7 @@ def select_features(center_rel: pd.DataFrame, feature_cfg: Dict) -> List[str]:
     require_any = bool(feature_cfg.get("require_any_metric", True))
     fallback_top_k = int(feature_cfg.get("fallback_top_k") or 15)
     max_features = feature_cfg.get("max_features")
+    top_n_by_sum = feature_cfg.get("top_n_by_sum")
 
     rel = center_rel.copy()
     if require_any and "pass_count" in rel.columns:
@@ -345,7 +369,16 @@ def select_features(center_rel: pd.DataFrame, feature_cfg: Dict) -> List[str]:
     if selected.empty:
         selected = rel.sort_values("max_abs_score", ascending=False).head(fallback_top_k).copy()
 
-    selected = selected.sort_values(["pass_count", "max_abs_score"], ascending=[False, False])
+    if top_n_by_sum:
+        metric_cols = [metric for metric in DEFAULT_METRICS if metric in selected.columns]
+        if not metric_cols:
+            raise ValueError("Cannot apply top_n_by_sum because no relationship metric columns are available.")
+        selected = selected.copy()
+        selected["metric_abs_sum"] = selected[metric_cols].abs().sum(axis=1)
+        selected = selected.sort_values(["metric_abs_sum", "pass_count", "max_abs_score"], ascending=[False, False, False])
+        selected = selected.head(int(top_n_by_sum))
+    else:
+        selected = selected.sort_values(["pass_count", "max_abs_score"], ascending=[False, False])
     if max_features:
         selected = selected.head(int(max_features))
     return selected["related"].astype(str).tolist()

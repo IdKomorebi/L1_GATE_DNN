@@ -1,0 +1,25 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "gen_fuel_nuclear_pct",
+    "gen_fuel_nuclear_mw",
+    "forecast_load_mw_latest_available",
+    "net_sched_interchange_mw",
+    "gen_fuel_gas_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_coal_mw",
+    "da_as_nsr_mw_primary_reserve",
+    "system_energy_price_da",
+    "gen_fuel_wind_mw",
+    "net_inadv_interchange_mw",
+    "gen_fuel_multiple_fuels_mw",
+    "da_as_as_req_mw_synchronized_reserve",
+    "congestion_price_da",
+    "total_pjm_rmpcp_cr",
+    "total_lmp_rt",
+    "total_pjm_self_sched_reg",
+    "congestion_price_rt",
+    "gross_sched_interchange_mw"
+  ]
+}

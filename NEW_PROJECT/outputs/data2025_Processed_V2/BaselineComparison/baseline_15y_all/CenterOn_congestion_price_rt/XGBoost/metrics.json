@@ -1,0 +1,9 @@
+{
+  "center": "congestion_price_rt",
+  "method": "XGBoost",
+  "feature_count": 40,
+  "best_test_r2": 0.7382176518440247,
+  "final_test_r2": 0.7283633351325989,
+  "best_epoch": 118,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\baseline_15y_all\\CenterOn_congestion_price_rt\\XGBoost"
+}
