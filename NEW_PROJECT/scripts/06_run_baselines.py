@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import argparse
+import contextlib
+import io
 import json
 import math
 import sys
@@ -32,6 +34,7 @@ from src.trainer import train_center_model
 
 BASELINE_NAMES = ["L1GateDNN", "NMI", "Pearson", "Spearman", "Lasso", "ElasticNet", "RandomForest", "XGBoost"]
 FULL_DNN_NAME = "DNN_AllFeatures"
+RUN_CONTEXT_FILE = "run_context.json"
 
 
 @dataclass
@@ -388,6 +391,19 @@ def _ensure_l1_run(
     baseline_cfg: Dict[str, Any],
     output_run_dir: Path,
 ) -> Path:
+    local_config_path = output_run_dir / "config.json"
+    local_selected_path = output_run_dir / "selected_features.json"
+    if bool(baseline_cfg.get("resume_l1_sources", True)) and local_config_path.exists() and local_selected_path.exists():
+        try:
+            run_cfg = _load_json(local_config_path)
+        except Exception:
+            run_cfg = {}
+        if run_cfg.get("center") == center and run_cfg.get("model") == "L1GateDNN" and _preprocessing_matches(
+            run_cfg, data_path, drop_all_zero_columns, exclude_columns
+        ):
+            print(f"  L1GateDNN source: {output_run_dir}")
+            return output_run_dir
+
     if bool(baseline_cfg.get("reuse_l1_runs", False)):
         existing = _latest_l1_run(output_root, center, data_path, drop_all_zero_columns, exclude_columns)
         if existing is not None:
@@ -400,8 +416,7 @@ def _ensure_l1_run(
     overrides = baseline_cfg.get("l1_training_overrides") or {}
     print(f"  Training L1GateDNN source for {center}")
     run_tag = safe_name(combo_name or center, 80)
-    return train_center_model(
-        cfg,
+    train_kwargs = dict(
         center=center,
         model_name="L1GateDNN",
         overrides=overrides,
@@ -411,6 +426,15 @@ def _ensure_l1_run(
         combo_name=combo_name,
         output_run_dir=output_run_dir,
     )
+    if bool(baseline_cfg.get("quiet_l1_training", True)):
+        with contextlib.redirect_stdout(io.StringIO()):
+            run_dir = train_center_model(cfg, **train_kwargs)
+        metrics_path = run_dir / "metrics.json"
+        if metrics_path.exists():
+            metrics = _load_json(metrics_path)
+            print(f"  L1GateDNN source trained: best_test_r2={float(metrics.get('best_test_r2', np.nan)):.6f}")
+        return run_dir
+    return train_center_model(cfg, **train_kwargs)
 
 
 def _baseline_features(
@@ -441,7 +465,154 @@ def _baseline_features(
     return _top_features_from_scores(scores, n_features), scores
 
 
-def _plot_summary(summary_df: pd.DataFrame, methods: Sequence[str], output_path: Path, main_method: str = "L1GateDNN") -> None:
+def _row_from_metrics(
+    metrics: Dict[str, Any],
+    method: str,
+    output_dir: Path,
+    context: Dict[str, Any],
+) -> Dict[str, Any]:
+    row = dict(context)
+    row.update(
+        {
+            "method": method,
+            "feature_count": int(metrics.get("feature_count", 0)),
+            "best_test_r2": float(metrics.get("best_test_r2", np.nan)),
+            "best_train_r2": float(metrics.get("best_train_r2", np.nan)),
+            "min_test_loss": float(metrics.get("min_test_loss", np.nan)),
+            "min_train_loss": float(metrics.get("min_train_loss", np.nan)),
+            "final_test_r2": float(metrics.get("final_test_r2", np.nan)),
+            "final_train_r2": float(metrics.get("final_train_r2", np.nan)),
+            "final_test_loss": float(metrics.get("final_test_loss", np.nan)),
+            "final_train_loss": float(metrics.get("final_train_loss", np.nan)),
+            "best_epoch": int(metrics.get("best_epoch", 0)),
+            "output_dir": str(output_dir),
+        }
+    )
+    return row
+
+
+def _row_from_result(result: DNNResult, context: Dict[str, Any]) -> Dict[str, Any]:
+    row = dict(context)
+    row.update(result.__dict__)
+    return row
+
+
+def _stable_json(value: Any) -> str:
+    return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+
+
+def _dnn_run_context(
+    *,
+    data_path: Path,
+    center: str,
+    method: str,
+    features: Sequence[str],
+    params: Dict[str, Any],
+    drop_all_zero_columns: bool,
+    exclude_columns: Sequence[str],
+    extra: Dict[str, Any] | None = None,
+) -> Dict[str, Any]:
+    context = {
+        "data_path": str(Path(data_path).resolve()),
+        "center": center,
+        "method": method,
+        "features": list(features),
+        "training_params": params,
+        "preprocessing": {
+            "drop_all_zero_columns": bool(drop_all_zero_columns),
+            "exclude_columns": normalize_column_list(exclude_columns),
+        },
+    }
+    if extra:
+        context.update(extra)
+    return context
+
+
+def _can_reuse_dnn(output_dir: Path, expected_context: Dict[str, Any]) -> bool:
+    if not (output_dir / "metrics.json").exists() or not (output_dir / "used_features.json").exists():
+        return False
+    context_path = output_dir / RUN_CONTEXT_FILE
+    if not context_path.exists():
+        return False
+    try:
+        current_context = _load_json(context_path)
+    except Exception:
+        return False
+    return _stable_json(current_context) == _stable_json(expected_context)
+
+
+def _run_remaining_validation(
+    *,
+    method: str,
+    selected_features: Sequence[str],
+    all_features: Sequence[str],
+    center_dir: Path,
+    data_path: Path,
+    center: str,
+    dnn_params: Dict[str, Any],
+    device: torch.device,
+    drop_all_zero_columns: bool,
+    exclude_columns: Sequence[str],
+    skip_existing: bool,
+    context: Dict[str, Any],
+) -> Dict[str, Any] | None:
+    selected_set = set(selected_features)
+    remaining_features = [feature for feature in all_features if feature not in selected_set]
+    if not remaining_features:
+        return None
+
+    output_dir = ensure_dir(center_dir / "RemainingValidation" / safe_name(method))
+    metrics_path = output_dir / "metrics.json"
+    run_context = _dnn_run_context(
+        data_path=data_path,
+        center=center,
+        method=f"RemainingValidation::{method}",
+        features=remaining_features,
+        params=dnn_params,
+        drop_all_zero_columns=drop_all_zero_columns,
+        exclude_columns=exclude_columns,
+        extra={"removed_features": list(selected_features)},
+    )
+    if skip_existing and _can_reuse_dnn(output_dir, run_context):
+        result_row = _row_from_metrics(_load_json(metrics_path), method, output_dir, context)
+    else:
+        save_json(
+            output_dir / "removed_features.json",
+            {
+                "center": center,
+                "method": method,
+                "removed_features": list(selected_features),
+                "remaining_features": remaining_features,
+            },
+        )
+        result = _train_dnn(
+            data_path=data_path,
+            center=center,
+            features=remaining_features,
+            params=dnn_params,
+            output_dir=output_dir,
+            device=device,
+                drop_all_zero_columns=drop_all_zero_columns,
+                exclude_columns=exclude_columns,
+            )
+        save_json(output_dir / RUN_CONTEXT_FILE, run_context)
+        result_row = _row_from_result(result, context)
+
+    result_row["method"] = method
+    result_row["removed_feature_count"] = len(selected_features)
+    result_row["remaining_feature_count"] = len(remaining_features)
+    result_row["removed_features"] = "|".join(str(v) for v in selected_features)
+    return result_row
+
+
+def _plot_summary(
+    summary_df: pd.DataFrame,
+    methods: Sequence[str],
+    output_path: Path,
+    main_method: str = "L1GateDNN",
+    title: str = r"Baseline Comparison by Test $R^2$",
+    ylabel: str = r"Best Test $R^2$",
+) -> None:
     x_col = "plot_label" if "plot_label" in summary_df.columns else ("target_label" if "target_label" in summary_df.columns else "center")
     pivot = summary_df.pivot(index=x_col, columns="method", values="best_test_r2")
     labels = summary_df[x_col].drop_duplicates().tolist()
@@ -468,9 +639,9 @@ def _plot_summary(summary_df: pd.DataFrame, methods: Sequence[str], output_path:
             label=method,
         )
 
-    ax.set_title(r"Baseline Comparison by Test $R^2$")
+    ax.set_title(title)
     ax.set_xlabel("Center Target")
-    ax.set_ylabel(r"Best Test $R^2$")
+    ax.set_ylabel(ylabel)
     ax.set_xticks(x)
     ax.set_xticklabels(labels, rotation=35, ha="right")
     ax.grid(True, axis="y", alpha=0.3)
@@ -490,7 +661,86 @@ def _resolve_methods(value: Any) -> List[str]:
     return values
 
 
-def _feature_count(l1_count: int, candidate_count: int, min_features: int, max_features: int | None, fixed_feature_count: int | None) -> int:
+def _positive_int_or_none(value: Any) -> int | None:
+    if value in {None, ""}:
+        return None
+    out = int(value)
+    if out <= 0:
+        raise ValueError("Feature count overrides must be positive.")
+    return out
+
+
+def _raw_target_items(value: Any) -> List[Dict[str, Any]]:
+    if value is None:
+        return []
+    if isinstance(value, (str, int)):
+        return [{"value": str(value)}]
+    items: List[Dict[str, Any]] = []
+    for item in value:
+        if isinstance(item, dict):
+            raw_value = item.get("combo", item.get("target", item.get("center", item.get("value"))))
+            if raw_value is None:
+                raise ValueError(f"Baseline center item is missing center/combo/value: {item}")
+            cfg = dict(item)
+            cfg["value"] = str(raw_value)
+            items.append(cfg)
+        else:
+            items.append({"value": str(item)})
+    return items
+
+
+def _target_override_keys(target: Dict[str, Any], raw_value: str) -> List[str]:
+    keys = [
+        raw_value,
+        str(target.get("label", "")),
+        str(target.get("center", "")),
+        str(target.get("name", "")),
+        str(target.get("id", "")),
+    ]
+    if target.get("kind") == "combo":
+        keys.append(f"combo{target['id']}_{target['name']}")
+    seen = set()
+    return [key for key in keys if key and not (key in seen or seen.add(key))]
+
+
+def _resolve_targets(cfg: Dict[str, Any], baseline_cfg: Dict[str, Any], centers_value: Any) -> List[Dict[str, Any]]:
+    overrides = baseline_cfg.get("target_overrides") or {}
+    if not isinstance(overrides, dict):
+        raise ValueError("baseline_comparison.target_overrides must be a mapping.")
+
+    targets = []
+    for item in _raw_target_items(centers_value):
+        raw_value = str(item["value"])
+        target = resolve_center_spec(cfg, raw_value)
+        inline_exclude = normalize_column_list(item.get("exclude_columns") or item.get("exclude"))
+        inline_n = item.get("n_features", item.get("feature_count", item.get("n")))
+
+        override_cfg: Dict[str, Any] = {}
+        for key in _target_override_keys(target, raw_value):
+            if isinstance(overrides.get(key), dict):
+                override_cfg = dict(overrides[key])
+                break
+
+        override_exclude = normalize_column_list(override_cfg.get("exclude_columns") or override_cfg.get("exclude"))
+        override_n = override_cfg.get("n_features", override_cfg.get("feature_count", override_cfg.get("n", inline_n)))
+        target["raw_value"] = raw_value
+        target["baseline_exclude_columns"] = normalize_column_list([*inline_exclude, *override_exclude])
+        target["n_features_override"] = _positive_int_or_none(override_n)
+        target["override_note"] = str(override_cfg.get("note", item.get("note", "")) or "")
+        targets.append(target)
+    return targets
+
+
+def _feature_count(
+    l1_count: int,
+    candidate_count: int,
+    min_features: int,
+    max_features: int | None,
+    fixed_feature_count: int | None,
+    target_n_features: int | None = None,
+) -> int:
+    if target_n_features is not None:
+        return max(1, min(int(target_n_features), candidate_count))
     if fixed_feature_count is not None:
         return max(1, min(int(fixed_feature_count), candidate_count))
     n = max(int(l1_count), int(min_features))
@@ -510,9 +760,16 @@ def _line_data(log_path: Path) -> Dict[str, List[float]]:
     return out
 
 
-def _write_html_report(output_dir: Path, summary_df: pd.DataFrame, methods: Sequence[str], main_method: str = "L1GateDNN") -> Path:
+def _write_html_report(
+    output_dir: Path,
+    summary_df: pd.DataFrame,
+    methods: Sequence[str],
+    main_method: str = "L1GateDNN",
+    remaining_df: pd.DataFrame | None = None,
+) -> Path:
     payload = {
         "summary": summary_df.to_dict(orient="records"),
+        "remaining": [] if remaining_df is None or remaining_df.empty else remaining_df.to_dict(orient="records"),
         "methods": list(methods),
         "main_method": main_method,
         "full_method": FULL_DNN_NAME,
@@ -553,8 +810,12 @@ def _write_html_report(output_dir: Path, summary_df: pd.DataFrame, methods: Sequ
   <canvas id="curve" width="1200" height="380"></canvas>
   <h3>Across Centers</h3>
   <canvas id="summary" width="1200" height="380"></canvas>
+  <h3>Remaining-Feature Validation</h3>
+  <canvas id="remaining" width="1200" height="380"></canvas>
   <h3>Summary</h3>
   <div id="table"></div>
+  <h3>Remaining Summary</h3>
+  <div id="remainingTable"></div>
 <script>
 const DATA = __DATA__;
 const colors = ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f"];
@@ -593,10 +854,15 @@ function update(){
   const summaryLabel = {test_r2:"best test R²", train_r2:"best train R²", test_loss:"min test loss", train_loss:"min train loss"}[metric] || summaryMetric;
   const summarySeries = ms.map(m => ({name:m, main:isMain(m), full:isFull(m), y:centers.map(cn => { const r=DATA.summary.find(r=>(r.target_label||r.center)===cn && r.method===m); return r ? Number(r[summaryMetric]) : NaN; })}));
   drawLine(document.getElementById("summary"), summarySeries, centerLabels, summaryLabel);
+  const remMethods = ms.filter(m => !isFull(m));
+  const remSeries = remMethods.map(m => ({name:m, main:isMain(m), full:false, y:centers.map(cn => { const r=DATA.remaining.find(r=>(r.target_label||r.center)===cn && r.method===m); return r ? Number(r.best_test_r2) : NaN; })}));
+  drawLine(document.getElementById("remaining"), remSeries, centerLabels, "remaining best test R²");
 }
 function table(){
   const rows = DATA.summary.map(r => `<tr><td>${r.plot_label||r.target_label||r.center}</td><td>${r.method}</td><td>${r.feature_count}</td><td>${Number(r.best_test_r2).toFixed(6)}</td><td>${Number(r.min_test_loss).toExponential(3)}</td><td>${r.best_epoch}</td></tr>`).join("");
   document.getElementById("table").innerHTML = `<table><tr><th>Center</th><th>Method</th><th>X count</th><th>Best test R²</th><th>Min test loss</th><th>Best epoch</th></tr>${rows}</table>`;
+  const remRows = DATA.remaining.map(r => `<tr><td>${r.plot_label||r.target_label||r.center}</td><td>${r.method}</td><td>${r.removed_feature_count}</td><td>${r.remaining_feature_count}</td><td>${Number(r.best_test_r2).toFixed(6)}</td><td>${r.best_epoch}</td></tr>`).join("");
+  document.getElementById("remainingTable").innerHTML = `<table><tr><th>Center</th><th>Method</th><th>Removed Top-n</th><th>Remaining X</th><th>Best test R²</th><th>Best epoch</th></tr>${remRows}</table>`;
 }
 centerSel.onchange=update; methodSel.onchange=update; metricSel.onchange=update; table(); update();
 </script>
@@ -615,10 +881,10 @@ def run_baselines(args: argparse.Namespace) -> Path:
     drop_all_zero_columns = bool(preprocessing.get("drop_all_zero_columns", False))
     exclude_columns = normalize_column_list(preprocessing.get("exclude_columns"))
 
-    center_values = normalize_column_list(args.centers) or normalize_column_list(baseline_cfg.get("centers"))
-    if not center_values:
+    centers_value = args.centers if args.centers else baseline_cfg.get("centers")
+    if not centers_value:
         raise ValueError("No centers configured. Set baseline_comparison.centers or pass --centers.")
-    targets = [resolve_center_spec(cfg, value) for value in center_values]
+    targets = _resolve_targets(cfg, baseline_cfg, centers_value)
     methods = _resolve_methods(args.baselines or baseline_cfg.get("baselines", "all"))
     min_features = int(args.min_features or baseline_cfg.get("min_features", 3))
     if min_features <= 0:
@@ -633,7 +899,17 @@ def run_baselines(args: argparse.Namespace) -> Path:
     data_path = resolve_project_path(cfg, dataset_cfg["processed_csv"])
     output_root = resolve_project_path(cfg, dataset_cfg["output_root"])
     if args.check_only:
-        all_excludes = sorted({col for target in targets for col in [*exclude_columns, *normalize_column_list(target["exclude_columns"])]})
+        all_excludes = sorted(
+            {
+                col
+                for target in targets
+                for col in [
+                    *exclude_columns,
+                    *normalize_column_list(target["exclude_columns"]),
+                    *normalize_column_list(target.get("baseline_exclude_columns")),
+                ]
+            }
+        )
         columns = set(read_numeric_csv(data_path, drop_all_zero_columns=drop_all_zero_columns, exclude_columns=[]).columns)
         missing = [target["center"] for target in targets if target["center"] not in columns]
         if missing:
@@ -644,6 +920,12 @@ def run_baselines(args: argparse.Namespace) -> Path:
         )
         print(f"data_path={data_path}")
         print(f"output_root={output_root}")
+        for target in targets:
+            print(
+                f"  target={target['label']} center={target['center']} "
+                f"n_override={target.get('n_features_override')} "
+                f"extra_exclude={normalize_column_list(target.get('baseline_exclude_columns'))}"
+            )
         if all_excludes:
             print(f"combination/global excluded columns: {all_excludes}")
         return output_root
@@ -661,6 +943,8 @@ def run_baselines(args: argparse.Namespace) -> Path:
     random_state = int(dnn_params.get("random_state", baseline_cfg.get("random_state", 42)))
     device = _choose_device(str(baseline_cfg.get("device", "auto")))
     skip_existing = bool(baseline_cfg.get("skip_existing", True))
+    remaining_cfg = baseline_cfg.get("remaining_validation") or {}
+    remaining_enabled = bool(remaining_cfg.get("enabled", True))
 
     save_json(
         output_dir / "baseline_config.json",
@@ -671,6 +955,8 @@ def run_baselines(args: argparse.Namespace) -> Path:
             "centers": targets,
             "baselines": methods,
             "control_method": FULL_DNN_NAME,
+            "target_overrides": baseline_cfg.get("target_overrides") or {},
+            "remaining_validation": {"enabled": remaining_enabled},
             "min_features": min_features,
             "max_features": max_features,
             "fixed_feature_count": fixed_feature_count,
@@ -681,12 +967,19 @@ def run_baselines(args: argparse.Namespace) -> Path:
     )
 
     all_results: List[Dict[str, Any]] = []
+    remaining_results: List[Dict[str, Any]] = []
     for center_idx, target in enumerate(targets, start=1):
         center = str(target["center"])
         combo_name = None
         if target["kind"] == "combo":
             combo_name = f"combo{target['id']}_{target['name']}"
-        target_exclude_columns = normalize_column_list([*exclude_columns, *normalize_column_list(target["exclude_columns"])])
+        target_exclude_columns = normalize_column_list(
+            [
+                *exclude_columns,
+                *normalize_column_list(target["exclude_columns"]),
+                *normalize_column_list(target.get("baseline_exclude_columns")),
+            ]
+        )
         target_label = str(target["label"])
         print(f"[{center_idx}/{len(targets)}] Center={center}" + (f" ({combo_name})" if combo_name else ""))
         if target_exclude_columns:
@@ -712,10 +1005,22 @@ def run_baselines(args: argparse.Namespace) -> Path:
             train_ratio=float(dnn_params.get("train_ratio", 0.8)),
             random_state=random_state,
         )
-        n_features = _feature_count(l1_selected_count, len(features), min_features, max_features, fixed_feature_count)
-        print(f"  L1 selected={l1_selected_count}; protected n_i={n_features}; candidates={len(features)}")
+        n_override = target.get("n_features_override")
+        n_features = _feature_count(l1_selected_count, len(features), min_features, max_features, fixed_feature_count, n_override)
+        n_source = f"target_override={n_override}" if n_override is not None else "global_rule"
+        print(f"  L1 selected={l1_selected_count}; protected n_i={n_features}; candidates={len(features)} ({n_source})")
 
         plot_label = f"{target_label}\nn={n_features}/all={len(features)}"
+        row_context = {
+            "center": center,
+            "target_label": target_label,
+            "plot_label": plot_label,
+            "combo_name": combo_name or "",
+            "protected_feature_count": n_features,
+            "l1_selected_count": l1_selected_count,
+            "n_features_source": n_source,
+            "l1_run_dir": str(l1_run_dir),
+        }
         save_json(
             center_dir / "center_config.json",
             {
@@ -725,13 +1030,25 @@ def run_baselines(args: argparse.Namespace) -> Path:
                 "l1_run_dir": str(l1_run_dir),
                 "l1_selected_count": l1_selected_count,
                 "protected_feature_count": n_features,
+                "n_features_source": n_source,
+                "override_note": target.get("override_note", ""),
             },
         )
 
         full_method_dir = ensure_dir(center_dir / FULL_DNN_NAME)
         full_metrics_path = full_method_dir / "metrics.json"
         print(f"  [control] {FULL_DNN_NAME} with all {len(features)} candidate features")
-        if skip_existing and full_metrics_path.exists() and (full_method_dir / "used_features.json").exists():
+        full_run_context = _dnn_run_context(
+            data_path=data_path,
+            center=center,
+            method=FULL_DNN_NAME,
+            features=features,
+            params=dnn_params,
+            drop_all_zero_columns=drop_all_zero_columns,
+            exclude_columns=target_exclude_columns,
+            extra={"target_label": target_label, "protected_feature_count": n_features},
+        )
+        if skip_existing and _can_reuse_dnn(full_method_dir, full_run_context):
             full_metrics = _load_json(full_metrics_path)
             full_row = {
                 "center": center,
@@ -769,6 +1086,7 @@ def run_baselines(args: argparse.Namespace) -> Path:
                 drop_all_zero_columns=drop_all_zero_columns,
                 exclude_columns=target_exclude_columns,
             )
+            save_json(full_method_dir / RUN_CONTEXT_FILE, full_run_context)
             full_row = {
                 "center": center,
                 "target_label": target_label,
@@ -798,7 +1116,25 @@ def run_baselines(args: argparse.Namespace) -> Path:
             print(f"  [{method_idx}/{len(methods)}] {method}")
             method_dir = ensure_dir(center_dir / safe_name(method))
             metrics_path = method_dir / "metrics.json"
-            if skip_existing and metrics_path.exists() and (method_dir / "used_features.json").exists():
+            selected, scores = _baseline_features(method, n_features, l1_run_dir, features, X_train, y_train, random_state, baseline_cfg)
+            if len(selected) < n_features:
+                remaining = [feature for feature in features if feature not in selected]
+                selected = [*selected, *remaining[: n_features - len(selected)]]
+            run_context = _dnn_run_context(
+                data_path=data_path,
+                center=center,
+                method=method,
+                features=selected,
+                params=dnn_params,
+                drop_all_zero_columns=drop_all_zero_columns,
+                exclude_columns=target_exclude_columns,
+                extra={
+                    "target_label": target_label,
+                    "protected_feature_count": n_features,
+                    "l1_run_dir": str(l1_run_dir),
+                },
+            )
+            if skip_existing and _can_reuse_dnn(method_dir, run_context):
                 metrics = _load_json(metrics_path)
                 row = {
                     "center": center,
@@ -824,11 +1160,27 @@ def run_baselines(args: argparse.Namespace) -> Path:
                 all_results.append(row)
                 pd.DataFrame(all_results).to_csv(output_dir / "baseline_summary_long.csv", index=False, encoding="utf-8-sig")
                 print(f"    reused existing metrics: best_test_r2={row['best_test_r2']:.6f}")
+                if remaining_enabled:
+                    rem_row = _run_remaining_validation(
+                        method=method,
+                        selected_features=selected,
+                        all_features=features,
+                        center_dir=center_dir,
+                        data_path=data_path,
+                        center=center,
+                        dnn_params=dnn_params,
+                        device=device,
+                        drop_all_zero_columns=drop_all_zero_columns,
+                        exclude_columns=target_exclude_columns,
+                        skip_existing=skip_existing,
+                        context=row_context,
+                    )
+                    if rem_row is not None:
+                        remaining_results.append(rem_row)
+                        pd.DataFrame(remaining_results).to_csv(
+                            output_dir / "remaining_validation_summary_long.csv", index=False, encoding="utf-8-sig"
+                        )
                 continue
-            selected, scores = _baseline_features(method, n_features, l1_run_dir, features, X_train, y_train, random_state, baseline_cfg)
-            if len(selected) < n_features:
-                remaining = [feature for feature in features if feature not in selected]
-                selected = [*selected, *remaining[: n_features - len(selected)]]
             score_rows = [{"feature": feature, "score": float(scores.get(feature, np.nan)), "selected": feature in selected} for feature in features]
             pd.DataFrame(score_rows).sort_values(["selected", "score"], ascending=[False, False]).to_csv(
                 method_dir / "feature_scores.csv", index=False, encoding="utf-8-sig"
@@ -843,6 +1195,7 @@ def run_baselines(args: argparse.Namespace) -> Path:
                 drop_all_zero_columns=drop_all_zero_columns,
                 exclude_columns=target_exclude_columns,
             )
+            save_json(method_dir / RUN_CONTEXT_FILE, run_context)
             row = {
                 "center": center,
                 "target_label": target_label,
@@ -867,6 +1220,27 @@ def run_baselines(args: argparse.Namespace) -> Path:
             all_results.append(row)
             pd.DataFrame(all_results).to_csv(output_dir / "baseline_summary_long.csv", index=False, encoding="utf-8-sig")
             print(f"    best_test_r2={result.best_test_r2:.6f} at epoch {result.best_epoch}")
+            if remaining_enabled:
+                rem_row = _run_remaining_validation(
+                    method=method,
+                    selected_features=selected,
+                    all_features=features,
+                    center_dir=center_dir,
+                    data_path=data_path,
+                    center=center,
+                    dnn_params=dnn_params,
+                    device=device,
+                    drop_all_zero_columns=drop_all_zero_columns,
+                    exclude_columns=target_exclude_columns,
+                    skip_existing=skip_existing,
+                    context=row_context,
+                )
+                if rem_row is not None:
+                    remaining_results.append(rem_row)
+                    pd.DataFrame(remaining_results).to_csv(
+                        output_dir / "remaining_validation_summary_long.csv", index=False, encoding="utf-8-sig"
+                    )
+                    print(f"    remaining_best_test_r2={rem_row['best_test_r2']:.6f}")
 
     summary_df = pd.DataFrame(all_results)
     summary_df.to_csv(output_dir / "baseline_summary_long.csv", index=False, encoding="utf-8-sig")
@@ -874,10 +1248,25 @@ def run_baselines(args: argparse.Namespace) -> Path:
     summary_df.pivot(index=pivot_index, columns="method", values="best_test_r2").to_csv(
         output_dir / "baseline_summary_wide.csv", encoding="utf-8-sig"
     )
+    remaining_df = pd.DataFrame(remaining_results)
+    if not remaining_df.empty:
+        remaining_df.to_csv(output_dir / "remaining_validation_summary_long.csv", index=False, encoding="utf-8-sig")
+        remaining_df.pivot(index=pivot_index, columns="method", values="best_test_r2").to_csv(
+            output_dir / "remaining_validation_summary_wide.csv", encoding="utf-8-sig"
+        )
     display_methods = [FULL_DNN_NAME, *methods]
     main_method = str(baseline_cfg.get("main_method", "L1GateDNN"))
     _plot_summary(summary_df, display_methods, output_dir / "baseline_test_r2.png", main_method=main_method)
-    _write_html_report(output_dir, summary_df, display_methods, main_method=main_method)
+    if not remaining_df.empty:
+        _plot_summary(
+            remaining_df,
+            methods,
+            output_dir / "remaining_validation_r2.png",
+            main_method=main_method,
+            title=r"Remaining-Feature Validation by Test $R^2$",
+            ylabel=r"Best Test $R^2$ After Removing Top-n",
+        )
+    _write_html_report(output_dir, summary_df, display_methods, main_method=main_method, remaining_df=remaining_df)
     print(f"Saved baseline comparison to {output_dir}")
     return output_dir
 

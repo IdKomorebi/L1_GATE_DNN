@@ -1,0 +1,13 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "prelim_load_avg_hourly",
+    "net_inadv_interchange_mw",
+    "da_as_total_mw_primary_reserve",
+    "total_pjm_assigned_reg",
+    "total_pjm_rmpcp_cr",
+    "da_as_as_mw_primary_reserve",
+    "total_lmp_da",
+    "rmpcp"
+  ]
+}

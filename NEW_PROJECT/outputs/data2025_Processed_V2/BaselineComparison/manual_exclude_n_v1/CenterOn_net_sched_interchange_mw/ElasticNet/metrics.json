@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "ElasticNet",
+  "feature_count": 10,
+  "best_test_r2": 0.9980728030204773,
+  "best_train_r2": 0.9985093474388123,
+  "min_test_loss": 0.0019999003089904853,
+  "min_train_loss": 0.0014906576005336452,
+  "final_test_r2": 0.9967137575149536,
+  "final_train_r2": 0.9971615672111511,
+  "final_test_loss": 0.0034102623761694275,
+  "final_train_loss": 0.002838425834674513,
+  "best_epoch": 114,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_net_sched_interchange_mw\\ElasticNet"
+}

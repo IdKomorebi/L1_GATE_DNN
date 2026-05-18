@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "Spearman",
+  "feature_count": 8,
+  "best_test_r2": 0.9999765753746033,
+  "best_train_r2": 0.9999803304672241,
+  "min_test_loss": 2.341508071844501e-05,
+  "min_train_loss": 1.96798885066317e-05,
+  "final_test_r2": 0.9999735355377197,
+  "final_train_r2": 0.9999768137931824,
+  "final_test_loss": 2.6423979356766766e-05,
+  "final_train_loss": 2.3209568789849788e-05,
+  "best_epoch": 121,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\Spearman"
+}

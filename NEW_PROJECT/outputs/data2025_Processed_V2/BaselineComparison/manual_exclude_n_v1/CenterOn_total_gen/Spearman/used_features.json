@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "features": [
+    "total_pjm_rt_load_mwh",
+    "metered_load_mw",
+    "prelim_load_avg_hourly",
+    "forecast_load_mw_latest_available",
+    "forecast_load_mw_day_ahead",
+    "gen_fuel_gas_mw",
+    "gen_fuel_nuclear_pct",
+    "gen_fuel_coal_mw",
+    "gen_fuel_other_renewables_pct",
+    "total_losses"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "ElasticNet",
+  "feature_count": 8,
+  "best_test_r2": 0.999917209148407,
+  "best_train_r2": 0.9999797344207764,
+  "min_test_loss": 8.252539711277565e-05,
+  "min_train_loss": 2.0249720971496973e-05,
+  "final_test_r2": 0.9999156594276428,
+  "final_train_r2": 0.9999756813049316,
+  "final_test_loss": 8.405436632670217e-05,
+  "final_train_loss": 2.4299096507252753e-05,
+  "best_epoch": 146,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\ElasticNet"
+}

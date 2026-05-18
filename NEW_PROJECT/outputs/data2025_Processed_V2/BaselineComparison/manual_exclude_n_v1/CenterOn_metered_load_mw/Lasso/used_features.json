@@ -1,0 +1,13 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "prelim_load_avg_hourly",
+    "total_pjm_rt_load_mwh",
+    "wind_generation_mw",
+    "gen_fuel_wind_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_gas_mw",
+    "forecast_load_mw_latest_available",
+    "solar_generation_mw"
+  ]
+}

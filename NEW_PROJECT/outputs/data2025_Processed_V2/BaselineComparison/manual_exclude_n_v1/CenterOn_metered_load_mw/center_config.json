@@ -1,0 +1,25 @@
+{
+  "center": "metered_load_mw",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "metered_load_mw",
+    "label": "metered_load_mw",
+    "center": "metered_load_mw",
+    "exclude_columns": [],
+    "raw_value": "metered_load_mw",
+    "baseline_exclude_columns": [
+      "total_gen"
+    ],
+    "n_features_override": 8,
+    "override_note": "user-tested exclude total_gen only"
+  },
+  "exclude_columns": [
+    "total_gen"
+  ],
+  "l1_run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\L1GateDNN_source",
+  "l1_selected_count": 0,
+  "protected_feature_count": 8,
+  "n_features_source": "target_override=8",
+  "override_note": "user-tested exclude total_gen only"
+}

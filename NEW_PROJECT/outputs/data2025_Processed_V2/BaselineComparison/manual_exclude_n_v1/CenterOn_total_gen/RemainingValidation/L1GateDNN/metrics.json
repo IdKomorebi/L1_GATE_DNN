@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "L1GateDNN",
+  "feature_count": 59,
+  "best_test_r2": 0.9999127984046936,
+  "best_train_r2": 0.9999546408653259,
+  "min_test_loss": 8.66332306608589e-05,
+  "min_train_loss": 4.537230228702768e-05,
+  "final_test_r2": 0.9998906850814819,
+  "final_train_r2": 0.9999337196350098,
+  "final_test_loss": 0.00010856627972227615,
+  "final_train_loss": 6.630489056172314e-05,
+  "best_epoch": 140,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_total_gen\\RemainingValidation\\L1GateDNN"
+}

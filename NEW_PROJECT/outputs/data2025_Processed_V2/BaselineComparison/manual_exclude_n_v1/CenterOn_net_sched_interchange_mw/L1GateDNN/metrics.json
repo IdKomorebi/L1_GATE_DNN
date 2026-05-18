@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "L1GateDNN",
+  "feature_count": 10,
+  "best_test_r2": 0.9999824166297913,
+  "best_train_r2": 0.9999858140945435,
+  "min_test_loss": 1.8260383540727364e-05,
+  "min_train_loss": 1.421141019704351e-05,
+  "final_test_r2": 0.9999824166297913,
+  "final_train_r2": 0.9999805688858032,
+  "final_test_loss": 1.8260383540727364e-05,
+  "final_train_loss": 1.941389316777767e-05,
+  "best_epoch": 150,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_net_sched_interchange_mw\\L1GateDNN"
+}

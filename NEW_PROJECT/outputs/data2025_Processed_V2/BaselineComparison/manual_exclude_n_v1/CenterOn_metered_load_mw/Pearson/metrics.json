@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "Pearson",
+  "feature_count": 8,
+  "best_test_r2": 0.9999668598175049,
+  "best_train_r2": 0.999973475933075,
+  "min_test_loss": 3.311801461821721e-05,
+  "min_train_loss": 2.655311629335334e-05,
+  "final_test_r2": 0.9999589920043945,
+  "final_train_r2": 0.9999653100967407,
+  "final_test_loss": 4.095452576310469e-05,
+  "final_train_loss": 3.46914168353651e-05,
+  "best_epoch": 144,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\Pearson"
+}

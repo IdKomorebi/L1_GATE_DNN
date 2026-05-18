@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "total_gen",
+    "prelim_load_avg_hourly",
+    "metered_load_mw",
+    "gen_fuel_wind_mw",
+    "wind_generation_mw",
+    "total_pjm_rt_load_mwh",
+    "net_inadv_interchange_mw",
+    "gen_fuel_gas_mw",
+    "gen_fuel_wind_pct",
+    "gen_fuel_hydro_mw"
+  ]
+}

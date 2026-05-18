@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "Spearman",
+  "feature_count": 10,
+  "best_test_r2": 0.9988351464271545,
+  "best_train_r2": 0.9988935589790344,
+  "min_test_loss": 0.0012088119048928496,
+  "min_train_loss": 0.001106420373677879,
+  "final_test_r2": 0.9984706044197083,
+  "final_train_r2": 0.9986210465431213,
+  "final_test_loss": 0.0015870975557388844,
+  "final_train_loss": 0.0013789373063924407,
+  "best_epoch": 100,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_net_sched_interchange_mw\\Spearman"
+}

@@ -1,0 +1,28 @@
+{
+  "threshold": 0.15,
+  "count": 4,
+  "features": [
+    {
+      "index": 20,
+      "name": "total_gen",
+      "gate": 0.9566606283187866
+    },
+    {
+      "index": 37,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.36044996976852417
+    },
+    {
+      "index": 45,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.5401366949081421
+    },
+    {
+      "index": 46,
+      "name": "metered_load_mw",
+      "gate": 0.5152093768119812
+    }
+  ],
+  "epoch": 199,
+  "source": "best_test_r2_epoch"
+}

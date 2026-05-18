@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "Lasso",
+  "feature_count": 10,
+  "best_test_r2": 0.9999744296073914,
+  "best_train_r2": 0.9999851584434509,
+  "min_test_loss": 2.5720666737312497e-05,
+  "min_train_loss": 1.4832636254899344e-05,
+  "final_test_r2": 0.9997925758361816,
+  "final_train_r2": 0.999808132648468,
+  "final_test_loss": 0.00020867376508548448,
+  "final_train_loss": 0.00019187896394994784,
+  "best_epoch": 111,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_total_gen\\Lasso"
+}

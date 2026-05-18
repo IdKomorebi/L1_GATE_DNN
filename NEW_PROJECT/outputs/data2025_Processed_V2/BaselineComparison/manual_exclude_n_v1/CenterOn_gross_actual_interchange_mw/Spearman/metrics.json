@@ -1,0 +1,15 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "method": "Spearman",
+  "feature_count": 12,
+  "best_test_r2": 0.8140814304351807,
+  "best_train_r2": 0.8762699365615845,
+  "min_test_loss": 0.19726780554509327,
+  "min_train_loss": 0.12373009399922404,
+  "final_test_r2": 0.8077090382575989,
+  "final_train_r2": 0.8716315031051636,
+  "final_test_loss": 0.2040292203647497,
+  "final_train_loss": 0.12836850729693183,
+  "best_epoch": 119,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\Spearman"
+}

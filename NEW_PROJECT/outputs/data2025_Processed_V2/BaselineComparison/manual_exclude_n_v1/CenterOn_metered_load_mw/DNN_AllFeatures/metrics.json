@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "DNN_AllFeatures",
+  "feature_count": 68,
+  "best_test_r2": 0.9998630285263062,
+  "best_train_r2": 0.9999344944953918,
+  "min_test_loss": 0.00013683362113824397,
+  "min_train_loss": 6.551415687406168e-05,
+  "final_test_r2": 0.9998149871826172,
+  "final_train_r2": 0.9998946189880371,
+  "final_test_loss": 0.0001848365101267984,
+  "final_train_loss": 0.00010539163087615794,
+  "best_epoch": 141,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\DNN_AllFeatures"
+}

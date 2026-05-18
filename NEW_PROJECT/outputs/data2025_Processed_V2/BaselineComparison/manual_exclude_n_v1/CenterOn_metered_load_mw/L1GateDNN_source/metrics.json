@@ -1,0 +1,13 @@
+{
+  "center": "metered_load_mw",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\L1GateDNN_source",
+  "feature_count": 63,
+  "best_test_r2": 0.999966025352478,
+  "best_epoch": 117,
+  "last_epoch_train_r2": 0.9999282360076904,
+  "last_epoch_test_r2": 0.9999276399612427,
+  "final_train_r2": 0.9999656677246094,
+  "final_test_r2": 0.999966025352478,
+  "epochs_completed": 200
+}

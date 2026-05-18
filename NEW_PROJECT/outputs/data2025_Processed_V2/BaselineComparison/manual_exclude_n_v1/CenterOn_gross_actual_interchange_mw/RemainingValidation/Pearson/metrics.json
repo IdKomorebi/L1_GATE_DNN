@@ -1,0 +1,15 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "method": "Pearson",
+  "feature_count": 57,
+  "best_test_r2": 0.6374102830886841,
+  "best_train_r2": 0.9451016783714294,
+  "min_test_loss": 0.3539634016683189,
+  "min_train_loss": 0.05489831232102794,
+  "final_test_r2": 0.5655627250671387,
+  "final_train_r2": 0.9451016783714294,
+  "final_test_loss": 0.4241015874985151,
+  "final_train_loss": 0.05489831232102794,
+  "best_epoch": 42,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\RemainingValidation\\Pearson"
+}

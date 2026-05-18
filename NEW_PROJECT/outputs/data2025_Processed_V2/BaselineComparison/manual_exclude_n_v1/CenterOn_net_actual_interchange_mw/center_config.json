@@ -1,0 +1,27 @@
+{
+  "center": "net_actual_interchange_mw",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "net_actual_interchange_mw",
+    "label": "net_actual_interchange_mw",
+    "center": "net_actual_interchange_mw",
+    "exclude_columns": [],
+    "raw_value": "net_actual_interchange_mw",
+    "baseline_exclude_columns": [
+      "net_sched_interchange_mw",
+      "total_gen"
+    ],
+    "n_features_override": 16,
+    "override_note": "user-tested exclude; n selected by top-n validation target"
+  },
+  "exclude_columns": [
+    "net_sched_interchange_mw",
+    "total_gen"
+  ],
+  "l1_run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_net_actual_interchange_mw\\L1GateDNN_source",
+  "l1_selected_count": 9,
+  "protected_feature_count": 16,
+  "n_features_source": "target_override=16",
+  "override_note": "user-tested exclude; n selected by top-n validation target"
+}

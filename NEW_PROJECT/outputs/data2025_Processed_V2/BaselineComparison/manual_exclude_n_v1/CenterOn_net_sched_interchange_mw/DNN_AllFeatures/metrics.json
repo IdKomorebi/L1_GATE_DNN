@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "DNN_AllFeatures",
+  "feature_count": 69,
+  "best_test_r2": 0.9999260306358337,
+  "best_train_r2": 0.9999480247497559,
+  "min_test_loss": 7.010412723391754e-05,
+  "min_train_loss": 5.200024511905795e-05,
+  "final_test_r2": 0.999570906162262,
+  "final_train_r2": 0.9994330406188965,
+  "final_test_loss": 0.00040666312716206357,
+  "final_train_loss": 0.0005669645523669039,
+  "best_epoch": 136,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_net_sched_interchange_mw\\DNN_AllFeatures"
+}

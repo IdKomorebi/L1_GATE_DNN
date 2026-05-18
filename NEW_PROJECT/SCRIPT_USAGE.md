@@ -134,6 +134,8 @@ python NEW_PROJECT/scripts/06_run_baselines.py
 
 YAML 里 `min_features`/`max_features` 控制 Top-X 下限和上限；`fixed_feature_count: 5` 表示所有 Y 固定取 5 个 X，留空则按 L1GateDNN 的有效变量数并受 min/max 约束。
 
+YAML 里 `target_overrides` 可以给每个 Y/combo 单独写 `exclude_columns` 和 `n_features`；一旦某个 Y 写了 `n_features`，该 Y 不再使用全局 min/max。
+
 YAML 里 `reuse_l1_runs: false` 表示 baseline 每次都在 BaselineComparison 目录下重新训练 L1 来源模型，避免排除字段或参数不一致时误用旧 run。
 
 ```bash
@@ -148,6 +150,6 @@ python NEW_PROJECT/scripts/06_run_baselines.py --fixed-feature-count 5 --max-fea
 
 临时让所有中心目标固定取 5 个 X，并设置动态模式下的最大 X 数为 10。
 
-输出位置：`NEW_PROJECT/outputs/{数据集名}/BaselineComparison/{run_name}/`，包含 `baseline_summary_long.csv`、`baseline_summary_wide.csv`、`baseline_test_r2.png`、`baseline_report.html` 和每个中心/方法的特征与训练结果。脚本会额外训练 `DNN_AllFeatures` 作为全量 X 的普通 DNN 对照；图中横坐标显示 `n=Top-X数量/all=候选X总数`；HTML 可切换单个 Y 的 loss/R² 曲线，也可切换多个 Y 之间的 loss/R² 对比。
+输出位置：`NEW_PROJECT/outputs/{数据集名}/BaselineComparison/{run_name}/`，包含 `baseline_summary_long.csv`、`baseline_summary_wide.csv`、`baseline_test_r2.png`、`remaining_validation_summary_long.csv`、`remaining_validation_r2.png`、`baseline_report.html` 和每个中心/方法的特征与训练结果。脚本会额外训练 `DNN_AllFeatures` 作为全量 X 的普通 DNN 对照；剩余验证会把每个方法选出的 Top-n 从 X 中排除后再训练普通 DNN；HTML 可切换单个 Y 的 loss/R² 曲线，也可查看多个 Y 的 Top-n 与剩余验证对比。
 
 以后新增或修改 baseline 脚本时，也同步修改本文件。

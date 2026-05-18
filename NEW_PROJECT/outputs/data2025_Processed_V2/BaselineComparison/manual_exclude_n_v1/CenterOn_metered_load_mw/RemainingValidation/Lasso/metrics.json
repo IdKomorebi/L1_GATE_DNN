@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "Lasso",
+  "feature_count": 60,
+  "best_test_r2": 0.998837947845459,
+  "best_train_r2": 0.9996113181114197,
+  "min_test_loss": 0.0011608442862158948,
+  "min_train_loss": 0.0003886944354281098,
+  "final_test_r2": 0.9987539649009705,
+  "final_train_r2": 0.9995874762535095,
+  "final_test_loss": 0.0012447118706626408,
+  "final_train_loss": 0.0004125475832713131,
+  "best_epoch": 127,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_metered_load_mw\\RemainingValidation\\Lasso"
+}

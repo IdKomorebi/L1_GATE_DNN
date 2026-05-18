@@ -1,0 +1,13 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "model": "L1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\L1GateDNN_source",
+  "feature_count": 63,
+  "best_test_r2": 0.8739383816719055,
+  "best_epoch": 79,
+  "last_epoch_train_r2": 0.9752044081687927,
+  "last_epoch_test_r2": 0.868901789188385,
+  "final_train_r2": 0.9553639888763428,
+  "final_test_r2": 0.8739383816719055,
+  "epochs_completed": 200
+}

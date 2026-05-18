@@ -1,0 +1,15 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "method": "RandomForest",
+  "feature_count": 12,
+  "best_test_r2": 0.8582091927528381,
+  "best_train_r2": 0.9191803932189941,
+  "min_test_loss": 0.15044632059049934,
+  "min_train_loss": 0.0808196456240042,
+  "final_test_r2": 0.8582091927528381,
+  "final_train_r2": 0.9191803932189941,
+  "final_test_loss": 0.15044632059049934,
+  "final_train_loss": 0.0808196456240042,
+  "best_epoch": 150,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\RandomForest"
+}

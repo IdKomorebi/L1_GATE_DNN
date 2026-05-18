@@ -1,0 +1,15 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "method": "NMI",
+  "feature_count": 57,
+  "best_test_r2": 0.6674321889877319,
+  "best_train_r2": 0.9463244676589966,
+  "min_test_loss": 0.3246556843471963,
+  "min_train_loss": 0.05367556239693538,
+  "final_test_r2": 0.6450568437576294,
+  "final_train_r2": 0.9442416429519653,
+  "final_test_loss": 0.346498711943263,
+  "final_train_loss": 0.05575834497778153,
+  "best_epoch": 101,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\RemainingValidation\\NMI"
+}

@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "net_actual_interchange_mw",
+    "net_inadv_interchange_mw",
+    "da_as_as_req_mw_primary_reserve",
+    "total_pjm_reg_purchases",
+    "gen_fuel_multiple_fuels_pct",
+    "gen_fuel_oil_mw",
+    "total_lmp_da",
+    "da_as_mcp_primary_reserve",
+    "rmccp",
+    "marginal_loss_price_rt"
+  ]
+}

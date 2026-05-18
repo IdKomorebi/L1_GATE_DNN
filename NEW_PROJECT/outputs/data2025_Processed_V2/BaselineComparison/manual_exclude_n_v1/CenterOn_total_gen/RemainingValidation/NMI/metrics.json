@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "NMI",
+  "feature_count": 59,
+  "best_test_r2": 0.998827338218689,
+  "best_train_r2": 0.999546229839325,
+  "min_test_loss": 0.0011797456287929882,
+  "min_train_loss": 0.00045379002292794733,
+  "final_test_r2": 0.9984486103057861,
+  "final_train_r2": 0.999214768409729,
+  "final_test_loss": 0.0015607736166194507,
+  "final_train_loss": 0.0007852570274758348,
+  "best_epoch": 139,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_total_gen\\RemainingValidation\\NMI"
+}

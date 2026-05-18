@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "ElasticNet",
+  "feature_count": 59,
+  "best_test_r2": 0.9987962245941162,
+  "best_train_r2": 0.9995943903923035,
+  "min_test_loss": 0.0011957362894907241,
+  "min_train_loss": 0.0004055954242910757,
+  "final_test_r2": 0.9980068206787109,
+  "final_train_r2": 0.9990358948707581,
+  "final_test_loss": 0.0019798997657234415,
+  "final_train_loss": 0.0009640883724507112,
+  "best_epoch": 86,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_total_gen\\RemainingValidation\\ElasticNet"
+}

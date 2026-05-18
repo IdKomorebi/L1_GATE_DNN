@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "Lasso",
+  "feature_count": 58,
+  "best_test_r2": 0.9272261261940002,
+  "best_train_r2": 0.9872282147407532,
+  "min_test_loss": 0.0689685804678536,
+  "min_train_loss": 0.012771804997282605,
+  "final_test_r2": 0.9255700707435608,
+  "final_train_r2": 0.9858378767967224,
+  "final_test_loss": 0.07053808034568025,
+  "final_train_loss": 0.014162127147013112,
+  "best_epoch": 97,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_net_sched_interchange_mw\\RemainingValidation\\Lasso"
+}

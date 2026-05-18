@@ -144,17 +144,87 @@ baseline_comparison:
     - da_as_total_mw_primary_reserve
     - da_as_total_mw_thirty_minutes_reserve
 
+  target_overrides:
+    net_actual_interchange_mw:
+      exclude_columns:
+        - net_sched_interchange_mw
+        - total_gen
+      n_features: 16
+      note: user-tested exclude; n selected by top-n validation target
+
+    gross_actual_interchange_mw:
+      exclude_columns: []
+      n_features: 12
+      note: user suggested no exclude, n in 10-15 range
+
+    net_sched_interchange_mw:
+      exclude_columns:
+        - net_actual_interchange_mw
+        - total_gen
+      n_features: 10
+      note: exclude by largest observed gate candidates, then validate n by top-n
+
+    total_gen:
+      exclude_columns:
+        - prelim_load_avg_hourly
+      n_features: 10
+      note: exclude largest observed final-gate shortcut
+
+    metered_load_mw:
+      exclude_columns:
+        - total_gen
+      n_features: 8
+      note: user-tested exclude total_gen only
+
+    total_losses:
+      exclude_columns: []
+      n_features: 14
+      note: user suggested no exclude, n in 11-18 range
+
+    congestion_price_da:
+      exclude_columns: []
+      n_features: 2
+      note: user-tested no exclude because excluding one feature dropped R2 too much
+
+    congestion_price_rt:
+      exclude_columns: []
+      n_features: 3
+
+    marginal_loss_price_da:
+      exclude_columns: []
+      n_features: 6
+
+    total_lmp_da:
+      exclude_columns:
+        - system_energy_price_da
+        - congestion_price_da
+        - marginal_loss_price_da
+      n_features: 10
+      note: formula-component exclude, keep full-data R2 check
+
+    da_as_total_mw_primary_reserve:
+      exclude_columns: []
+      n_features: 5
+
+    da_as_total_mw_thirty_minutes_reserve:
+      exclude_columns: []
+      n_features: 5
+
   baselines: all
   min_features: 2
   max_features: 10
   fixed_feature_count:
   main_method: L1GateDNN
   output_dir: BaselineComparison
-  run_name: baseline_15y_all
-  skip_existing: false
+  run_name: manual_exclude_n_gate_v1
+  skip_existing: true
+  remaining_validation:
+    enabled: true
+  resume_l1_sources: true
   reuse_l1_runs: false
   train_l1_if_missing: true
   force_l1_relations: false
+  quiet_l1_training: true
   device: auto
   random_state: 42
   dnn_training_overrides:

@@ -1,0 +1,13 @@
+{
+  "threshold": 0.15,
+  "count": 1,
+  "features": [
+    {
+      "index": 4,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.17633092403411865
+    }
+  ],
+  "epoch": 42,
+  "source": "best_test_r2_epoch"
+}

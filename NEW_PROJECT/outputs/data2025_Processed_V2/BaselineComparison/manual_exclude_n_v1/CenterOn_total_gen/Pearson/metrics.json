@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "Pearson",
+  "feature_count": 10,
+  "best_test_r2": 0.9926925301551819,
+  "best_train_r2": 0.9938490390777588,
+  "min_test_loss": 0.007258847570217147,
+  "min_train_loss": 0.006150961804280411,
+  "final_test_r2": 0.992337167263031,
+  "final_train_r2": 0.993659496307373,
+  "final_test_loss": 0.007611796303180887,
+  "final_train_loss": 0.006340508507390618,
+  "best_epoch": 133,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_total_gen\\Pearson"
+}

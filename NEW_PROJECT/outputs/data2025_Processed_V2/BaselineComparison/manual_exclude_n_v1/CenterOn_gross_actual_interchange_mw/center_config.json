@@ -1,0 +1,21 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "gross_actual_interchange_mw",
+    "label": "gross_actual_interchange_mw",
+    "center": "gross_actual_interchange_mw",
+    "exclude_columns": [],
+    "raw_value": "gross_actual_interchange_mw",
+    "baseline_exclude_columns": [],
+    "n_features_override": 12,
+    "override_note": "user suggested no exclude, n in 10-15 range"
+  },
+  "exclude_columns": [],
+  "l1_run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\L1GateDNN_source",
+  "l1_selected_count": 8,
+  "protected_feature_count": 12,
+  "n_features_source": "target_override=12",
+  "override_note": "user suggested no exclude, n in 10-15 range"
+}

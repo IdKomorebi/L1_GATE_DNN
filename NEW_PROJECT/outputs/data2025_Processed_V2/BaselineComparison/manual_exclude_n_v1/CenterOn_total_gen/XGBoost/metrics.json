@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "XGBoost",
+  "feature_count": 10,
+  "best_test_r2": 0.9999873638153076,
+  "best_train_r2": 0.9999896883964539,
+  "min_test_loss": 1.2575847787912807e-05,
+  "min_train_loss": 1.0298502785210184e-05,
+  "final_test_r2": 0.9999819397926331,
+  "final_train_r2": 0.9999849796295166,
+  "final_test_loss": 1.7963359798669422e-05,
+  "final_train_loss": 1.5040822875927901e-05,
+  "best_epoch": 149,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_total_gen\\XGBoost"
+}

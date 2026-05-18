@@ -1,0 +1,15 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "method": "ElasticNet",
+  "feature_count": 12,
+  "best_test_r2": 0.8144618272781372,
+  "best_train_r2": 0.8859574794769287,
+  "min_test_loss": 0.18112407238563386,
+  "min_train_loss": 0.1140425260669625,
+  "final_test_r2": 0.8021997213363647,
+  "final_train_r2": 0.880368173122406,
+  "final_test_loss": 0.1930944522751904,
+  "final_train_loss": 0.1196318440775804,
+  "best_epoch": 148,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\BaselineComparison\\manual_exclude_n_v1\\CenterOn_gross_actual_interchange_mw\\ElasticNet"
+}

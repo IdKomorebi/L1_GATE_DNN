@@ -1,0 +1,13 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "marginal_loss_price_rt",
+    "prelim_load_avg_hourly",
+    "total_pjm_rt_load_mwh",
+    "forecast_load_mw_latest_available",
+    "system_energy_price_rt",
+    "total_lmp_rt",
+    "forecast_load_mw_day_ahead",
+    "total_pjm_rmccp_cr"
+  ]
+}
