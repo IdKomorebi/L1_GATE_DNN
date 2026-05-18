@@ -1,0 +1,21 @@
+{
+  "center": "total_losses",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "total_losses",
+    "label": "total_losses",
+    "center": "total_losses",
+    "exclude_columns": [],
+    "raw_value": "total_losses",
+    "baseline_exclude_columns": [],
+    "n_features_override": 16,
+    "override_note": "manual_exclude_n_v2; full_r2=0.943239; topn_r2=0.936411; no shortcut; top14 was just below full-0.01, top16 passes"
+  },
+  "exclude_columns": [],
+  "l1_run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_total_losses/L1GateDNN_source",
+  "l1_selected_count": 3,
+  "protected_feature_count": 16,
+  "n_features_source": "target_override=16",
+  "override_note": "manual_exclude_n_v2; full_r2=0.943239; topn_r2=0.936411; no shortcut; top14 was just below full-0.01, top16 passes"
+}

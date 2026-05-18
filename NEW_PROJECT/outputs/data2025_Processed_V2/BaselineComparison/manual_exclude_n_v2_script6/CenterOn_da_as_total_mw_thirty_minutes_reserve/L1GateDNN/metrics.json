@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "method": "L1GateDNN",
+  "feature_count": 18,
+  "best_test_r2": 0.8978617191314697,
+  "best_train_r2": 0.9700025320053101,
+  "min_test_loss": 0.09359100166276642,
+  "min_train_loss": 0.029997484657620765,
+  "final_test_r2": 0.8944496512413025,
+  "final_train_r2": 0.9692167639732361,
+  "final_test_loss": 0.09671754555822146,
+  "final_train_loss": 0.03078326607452639,
+  "best_epoch": 131,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_thirty_minutes_reserve/L1GateDNN"
+}

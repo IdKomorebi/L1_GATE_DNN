@@ -1,0 +1,58 @@
+{
+  "threshold": 0.15,
+  "count": 10,
+  "features": [
+    {
+      "index": 2,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.5845633149147034
+    },
+    {
+      "index": 6,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.4292720556259155
+    },
+    {
+      "index": 20,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.7718548774719238
+    },
+    {
+      "index": 22,
+      "name": "gen_fuel_wind_mw",
+      "gate": 0.1550358384847641
+    },
+    {
+      "index": 39,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.6325288414955139
+    },
+    {
+      "index": 40,
+      "name": "metered_load_mw",
+      "gate": 0.5963488221168518
+    },
+    {
+      "index": 46,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.6029930710792542
+    },
+    {
+      "index": 54,
+      "name": "gen_fuel_nuclear_pct",
+      "gate": 0.3487164378166199
+    },
+    {
+      "index": 55,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.21959735453128815
+    },
+    {
+      "index": 58,
+      "name": "gen_fuel_solar_mw",
+      "gate": 0.2924947440624237
+    }
+  ],
+  "epoch": 191,
+  "source": "best_test_r2_epoch"
+}

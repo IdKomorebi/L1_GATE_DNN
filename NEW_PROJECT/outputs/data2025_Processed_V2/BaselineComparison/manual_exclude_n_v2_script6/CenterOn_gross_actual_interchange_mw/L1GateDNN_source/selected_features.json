@@ -1,0 +1,43 @@
+{
+  "threshold": 0.15,
+  "count": 7,
+  "features": [
+    {
+      "index": 2,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.15985149145126343
+    },
+    {
+      "index": 10,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.41262713074684143
+    },
+    {
+      "index": 11,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.1978936344385147
+    },
+    {
+      "index": 12,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.19290870428085327
+    },
+    {
+      "index": 24,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.16320224106311798
+    },
+    {
+      "index": 38,
+      "name": "gen_fuel_coal_pct",
+      "gate": 0.16519084572792053
+    },
+    {
+      "index": 43,
+      "name": "gen_fuel_multiple_fuels_pct",
+      "gate": 0.16423030197620392
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

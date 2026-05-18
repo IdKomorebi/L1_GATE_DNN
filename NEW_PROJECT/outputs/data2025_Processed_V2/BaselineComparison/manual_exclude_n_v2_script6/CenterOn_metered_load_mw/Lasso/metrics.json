@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "Lasso",
+  "feature_count": 15,
+  "best_test_r2": 0.8854235410690308,
+  "best_train_r2": 0.9384198784828186,
+  "min_test_loss": 0.113786273380767,
+  "min_train_loss": 0.06158011251014389,
+  "final_test_r2": 0.8816271424293518,
+  "final_train_r2": 0.9351803064346313,
+  "final_test_loss": 0.11755649261091534,
+  "final_train_loss": 0.06481969098243692,
+  "best_epoch": 120,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_metered_load_mw/Lasso"
+}

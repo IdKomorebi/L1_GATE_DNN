@@ -1,0 +1,25 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "da_as_total_mw_thirty_minutes_reserve",
+    "label": "da_as_total_mw_thirty_minutes_reserve",
+    "center": "da_as_total_mw_thirty_minutes_reserve",
+    "exclude_columns": [],
+    "raw_value": "da_as_total_mw_thirty_minutes_reserve",
+    "baseline_exclude_columns": [
+      "da_as_as_mw_thirty_minutes_reserve"
+    ],
+    "n_features_override": 18,
+    "override_note": "manual_exclude_n_v2; full_r2=0.903935; topn_r2=0.896541; exclude exact as_mw; top18 within 0.01"
+  },
+  "exclude_columns": [
+    "da_as_as_mw_thirty_minutes_reserve"
+  ],
+  "l1_run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_thirty_minutes_reserve/L1GateDNN_source",
+  "l1_selected_count": 1,
+  "protected_feature_count": 18,
+  "n_features_source": "target_override=18",
+  "override_note": "manual_exclude_n_v2; full_r2=0.903935; topn_r2=0.896541; exclude exact as_mw; top18 within 0.01"
+}

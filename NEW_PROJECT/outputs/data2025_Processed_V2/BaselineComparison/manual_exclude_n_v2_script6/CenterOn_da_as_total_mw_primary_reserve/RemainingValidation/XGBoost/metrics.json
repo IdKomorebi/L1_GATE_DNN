@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "method": "XGBoost",
+  "feature_count": 59,
+  "best_test_r2": 0.7460148334503174,
+  "best_train_r2": 0.9694889783859253,
+  "min_test_loss": 0.25648313208778456,
+  "min_train_loss": 0.030510991249122665,
+  "final_test_r2": 0.7176978588104248,
+  "final_train_r2": 0.9685678482055664,
+  "final_test_loss": 0.2850786211173527,
+  "final_train_loss": 0.031432120392665915,
+  "best_epoch": 27,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_primary_reserve/RemainingValidation/XGBoost"
+}

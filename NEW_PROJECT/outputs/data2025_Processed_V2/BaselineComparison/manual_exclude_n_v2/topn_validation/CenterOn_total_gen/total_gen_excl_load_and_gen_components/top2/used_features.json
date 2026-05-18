@@ -1,0 +1,7 @@
+{
+  "center": "total_gen",
+  "features": [
+    "system_energy_price_da",
+    "total_losses"
+  ]
+}

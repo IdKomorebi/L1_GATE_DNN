@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "method": "NMI",
+  "feature_count": 59,
+  "best_test_r2": 0.7509114146232605,
+  "best_train_r2": 0.9672927260398865,
+  "min_test_loss": 0.2515384227310012,
+  "min_train_loss": 0.03270725799904899,
+  "final_test_r2": 0.7045636773109436,
+  "final_train_r2": 0.9672927260398865,
+  "final_test_loss": 0.2983420075189958,
+  "final_train_loss": 0.03270725799904899,
+  "best_epoch": 31,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_primary_reserve/RemainingValidation/NMI"
+}

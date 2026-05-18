@@ -1,0 +1,20 @@
+{
+  "center": "total_gen",
+  "features": [
+    "system_energy_price_da",
+    "total_losses",
+    "da_as_mcp_synchronized_reserve",
+    "system_energy_price_rt",
+    "total_pjm_reg_purchases",
+    "total_pjm_assigned_reg",
+    "net_actual_interchange_mw",
+    "marginal_loss_price_rt",
+    "da_as_mcp_primary_reserve",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "total_pjm_rmccp_cr",
+    "marginal_loss_price_da",
+    "gross_sched_interchange_mw",
+    "da_as_as_req_mw_primary_reserve",
+    "rmccp"
+  ]
+}

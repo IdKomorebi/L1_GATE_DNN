@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "XGBoost",
+  "feature_count": 55,
+  "best_test_r2": 0.9526693820953369,
+  "best_train_r2": 0.9882423877716064,
+  "min_test_loss": 0.04485576049560999,
+  "min_train_loss": 0.011757589927444719,
+  "final_test_r2": 0.9501534104347229,
+  "final_train_r2": 0.9874614477157593,
+  "final_test_loss": 0.047240187839900215,
+  "final_train_loss": 0.01253853047914479,
+  "best_epoch": 135,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_net_sched_interchange_mw/RemainingValidation/XGBoost"
+}

@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "method": "Spearman",
+  "feature_count": 12,
+  "best_test_r2": 0.8115472197532654,
+  "best_train_r2": 0.8960583209991455,
+  "min_test_loss": 0.19608599289388554,
+  "min_train_loss": 0.10394171348891579,
+  "final_test_r2": 0.790276288986206,
+  "final_train_r2": 0.8890190124511719,
+  "final_test_loss": 0.2182184779085219,
+  "final_train_loss": 0.11098100767420459,
+  "best_epoch": 41,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_marginal_loss_price_da/Spearman"
+}

@@ -1,0 +1,15 @@
+{
+  "center": "total_losses",
+  "method": "NMI",
+  "feature_count": 53,
+  "best_test_r2": 0.9247777462005615,
+  "best_train_r2": 0.9861705303192139,
+  "min_test_loss": 0.07535884773026999,
+  "min_train_loss": 0.013829498890146539,
+  "final_test_r2": 0.9230170249938965,
+  "final_train_r2": 0.9845948815345764,
+  "final_test_loss": 0.07712279082399252,
+  "final_train_loss": 0.01540511018323375,
+  "best_epoch": 124,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_total_losses/RemainingValidation/NMI"
+}

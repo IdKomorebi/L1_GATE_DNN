@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "Spearman",
+  "feature_count": 27,
+  "best_test_r2": 0.7122967839241028,
+  "best_train_r2": 0.9172173738479614,
+  "min_test_loss": 0.2857191097076353,
+  "min_train_loss": 0.08278263226623507,
+  "final_test_r2": 0.6938097476959229,
+  "final_train_r2": 0.9119781851768494,
+  "final_test_loss": 0.30407867165597063,
+  "final_train_loss": 0.08802180762985322,
+  "best_epoch": 76,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_metered_load_mw/RemainingValidation/Spearman"
+}

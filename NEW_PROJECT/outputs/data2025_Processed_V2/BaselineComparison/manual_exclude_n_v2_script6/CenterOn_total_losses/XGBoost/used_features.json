@@ -1,0 +1,21 @@
+{
+  "center": "total_losses",
+  "features": [
+    "gen_fuel_coal_mw",
+    "metered_load_mw",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "prelim_load_avg_hourly",
+    "gen_fuel_nuclear_mw",
+    "marginal_loss_price_da",
+    "gen_fuel_wind_mw",
+    "gen_fuel_wind_pct",
+    "wind_generation_mw",
+    "gen_fuel_solar_pct",
+    "marginal_loss_price_rt",
+    "gen_fuel_coal_pct",
+    "net_sched_interchange_mw",
+    "net_actual_interchange_mw",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "da_as_total_mw_thirty_minutes_reserve"
+  ]
+}

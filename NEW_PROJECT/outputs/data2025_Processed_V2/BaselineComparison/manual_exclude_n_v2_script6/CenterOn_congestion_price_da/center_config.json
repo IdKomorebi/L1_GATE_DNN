@@ -1,0 +1,21 @@
+{
+  "center": "congestion_price_da",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "congestion_price_da",
+    "label": "congestion_price_da",
+    "center": "congestion_price_da",
+    "exclude_columns": [],
+    "raw_value": "congestion_price_da",
+    "baseline_exclude_columns": [],
+    "n_features_override": 2,
+    "override_note": "manual_exclude_n_v2; full_r2=0.936812; topn_r2=0.995009; top2 captures formula pair; excluding one caused large drop in earlier test"
+  },
+  "exclude_columns": [],
+  "l1_run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_congestion_price_da/L1GateDNN_source",
+  "l1_selected_count": 2,
+  "protected_feature_count": 2,
+  "n_features_source": "target_override=2",
+  "override_note": "manual_exclude_n_v2; full_r2=0.936812; topn_r2=0.995009; top2 captures formula pair; excluding one caused large drop in earlier test"
+}

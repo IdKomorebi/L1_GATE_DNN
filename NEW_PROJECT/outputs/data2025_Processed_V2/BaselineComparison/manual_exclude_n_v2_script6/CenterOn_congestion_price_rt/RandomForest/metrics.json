@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "method": "RandomForest",
+  "feature_count": 10,
+  "best_test_r2": 0.6659987568855286,
+  "best_train_r2": 0.8428590297698975,
+  "min_test_loss": 0.28525736093623183,
+  "min_train_loss": 0.157140929578969,
+  "final_test_r2": 0.6483234167098999,
+  "final_train_r2": 0.8428590297698975,
+  "final_test_loss": 0.30035320387570585,
+  "final_train_loss": 0.157140929578969,
+  "best_epoch": 107,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_congestion_price_rt/RandomForest"
+}

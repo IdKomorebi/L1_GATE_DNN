@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "method": "XGBoost",
+  "feature_count": 12,
+  "best_test_r2": 0.8711026906967163,
+  "best_train_r2": 0.9333356022834778,
+  "min_test_loss": 0.12871461460626255,
+  "min_train_loss": 0.06666439347737585,
+  "final_test_r2": 0.8697974681854248,
+  "final_train_r2": 0.9308943748474121,
+  "final_test_loss": 0.13001796389721573,
+  "final_train_loss": 0.06910560273437054,
+  "best_epoch": 142,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_marginal_loss_price_da/XGBoost"
+}

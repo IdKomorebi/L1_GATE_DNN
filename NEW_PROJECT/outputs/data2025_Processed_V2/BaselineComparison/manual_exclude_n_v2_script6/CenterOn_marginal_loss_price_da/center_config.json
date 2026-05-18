@@ -1,0 +1,21 @@
+{
+  "center": "marginal_loss_price_da",
+  "target": {
+    "kind": "center",
+    "id": "",
+    "name": "marginal_loss_price_da",
+    "label": "marginal_loss_price_da",
+    "center": "marginal_loss_price_da",
+    "exclude_columns": [],
+    "raw_value": "marginal_loss_price_da",
+    "baseline_exclude_columns": [],
+    "n_features_override": 12,
+    "override_note": "manual_exclude_n_v2; full_r2=0.897897; topn_r2=0.898318; top12 reaches full level"
+  },
+  "exclude_columns": [],
+  "l1_run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_marginal_loss_price_da/L1GateDNN_source",
+  "l1_selected_count": 10,
+  "protected_feature_count": 12,
+  "n_features_source": "target_override=12",
+  "override_note": "manual_exclude_n_v2; full_r2=0.897897; topn_r2=0.898318; top12 reaches full level"
+}

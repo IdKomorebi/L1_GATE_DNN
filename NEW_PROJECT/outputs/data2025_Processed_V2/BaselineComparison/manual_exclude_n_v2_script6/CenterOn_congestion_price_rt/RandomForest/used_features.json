@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "features": [
+    "total_lmp_rt",
+    "marginal_loss_price_rt",
+    "congestion_price_da",
+    "gen_fuel_gas_pct",
+    "system_energy_price_rt",
+    "gen_fuel_multiple_fuels_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_solar_pct",
+    "rmccp",
+    "net_actual_interchange_mw"
+  ]
+}

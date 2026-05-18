@@ -1,0 +1,21 @@
+{
+  "center": "total_losses",
+  "features": [
+    "total_pjm_rt_load_mwh",
+    "metered_load_mw",
+    "total_gen",
+    "prelim_load_avg_hourly",
+    "gen_fuel_coal_mw",
+    "solar_generation_mw",
+    "gen_fuel_coal_pct",
+    "marginal_loss_price_rt",
+    "gen_fuel_gas_mw",
+    "total_pjm_rmccp_cr",
+    "gen_fuel_solar_mw",
+    "gen_fuel_wind_pct",
+    "rmccp",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_multiple_fuels_mw",
+    "wind_generation_mw"
+  ]
+}

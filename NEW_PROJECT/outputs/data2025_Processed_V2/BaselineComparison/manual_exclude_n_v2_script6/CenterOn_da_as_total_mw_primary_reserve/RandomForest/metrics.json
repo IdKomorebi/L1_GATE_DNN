@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "method": "RandomForest",
+  "feature_count": 8,
+  "best_test_r2": 0.8169963955879211,
+  "best_train_r2": 0.8368047475814819,
+  "min_test_loss": 0.17427553581796826,
+  "min_train_loss": 0.16319524024647222,
+  "final_test_r2": 0.814922571182251,
+  "final_train_r2": 0.8366045951843262,
+  "final_test_loss": 0.1762504357691497,
+  "final_train_loss": 0.16339535804648275,
+  "best_epoch": 146,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_primary_reserve/RandomForest"
+}

@@ -1,0 +1,13 @@
+{
+  "center": "marginal_loss_price_da",
+  "features": [
+    "total_lmp_da",
+    "system_energy_price_da",
+    "total_losses",
+    "forecast_load_mw_day_ahead",
+    "congestion_price_da",
+    "da_as_mcp_primary_reserve",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_oil_mw"
+  ]
+}

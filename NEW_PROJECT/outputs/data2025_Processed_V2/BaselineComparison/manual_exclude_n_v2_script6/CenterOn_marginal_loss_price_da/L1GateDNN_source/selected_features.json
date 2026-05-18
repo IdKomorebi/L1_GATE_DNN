@@ -1,0 +1,58 @@
+{
+  "threshold": 0.15,
+  "count": 10,
+  "features": [
+    {
+      "index": 5,
+      "name": "da_as_mcp_primary_reserve",
+      "gate": 0.1776234656572342
+    },
+    {
+      "index": 7,
+      "name": "congestion_price_da",
+      "gate": 0.19885966181755066
+    },
+    {
+      "index": 11,
+      "name": "total_lmp_da",
+      "gate": 0.6309851408004761
+    },
+    {
+      "index": 13,
+      "name": "system_energy_price_da",
+      "gate": 0.27461376786231995
+    },
+    {
+      "index": 15,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.16605734825134277
+    },
+    {
+      "index": 18,
+      "name": "total_losses",
+      "gate": 0.19674254953861237
+    },
+    {
+      "index": 22,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.22408384084701538
+    },
+    {
+      "index": 33,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.1838236302137375
+    },
+    {
+      "index": 40,
+      "name": "gen_fuel_gas_pct",
+      "gate": 0.17079533636569977
+    },
+    {
+      "index": 53,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.1588277667760849
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

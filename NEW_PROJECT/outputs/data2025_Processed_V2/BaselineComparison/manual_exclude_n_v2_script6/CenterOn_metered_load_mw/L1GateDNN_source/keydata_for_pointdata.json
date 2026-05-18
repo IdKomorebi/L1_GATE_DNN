@@ -1,0 +1,637 @@
+{
+  "10": {
+    "threshold": 0.15,
+    "count": 38,
+    "features": [
+      {
+        "index": 1,
+        "name": "total_pjm_rmccp_cr",
+        "gate": 0.7294875383377075
+      },
+      {
+        "index": 2,
+        "name": "gross_actual_interchange_mw",
+        "gate": 0.7975767850875854
+      },
+      {
+        "index": 3,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.79571133852005
+      },
+      {
+        "index": 4,
+        "name": "total_losses",
+        "gate": 0.9916909337043762
+      },
+      {
+        "index": 5,
+        "name": "total_lmp_rt",
+        "gate": 0.6100406050682068
+      },
+      {
+        "index": 6,
+        "name": "total_pjm_loc_credit",
+        "gate": 0.6304976344108582
+      },
+      {
+        "index": 7,
+        "name": "total_lmp_da",
+        "gate": 0.9605391621589661
+      },
+      {
+        "index": 8,
+        "name": "system_energy_price_da",
+        "gate": 1.036420464515686
+      },
+      {
+        "index": 9,
+        "name": "system_energy_price_rt",
+        "gate": 0.8993775844573975
+      },
+      {
+        "index": 10,
+        "name": "da_as_nsr_mw_primary_reserve",
+        "gate": 0.401998907327652
+      },
+      {
+        "index": 11,
+        "name": "congestion_price_da",
+        "gate": 0.7674145698547363
+      },
+      {
+        "index": 12,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.9398640990257263
+      },
+      {
+        "index": 13,
+        "name": "da_as_mcp_primary_reserve",
+        "gate": 0.8695513606071472
+      },
+      {
+        "index": 14,
+        "name": "da_as_as_req_mw_synchronized_reserve",
+        "gate": 0.633663535118103
+      },
+      {
+        "index": 15,
+        "name": "da_as_as_mw_primary_reserve",
+        "gate": 0.6354177594184875
+      },
+      {
+        "index": 16,
+        "name": "da_as_as_req_mw_primary_reserve",
+        "gate": 0.8106285929679871
+      },
+      {
+        "index": 17,
+        "name": "da_as_total_mw_primary_reserve",
+        "gate": 0.7731332778930664
+      },
+      {
+        "index": 18,
+        "name": "rmccp",
+        "gate": 0.47778254747390747
+      },
+      {
+        "index": 19,
+        "name": "marginal_loss_price_rt",
+        "gate": 0.6376954317092896
+      },
+      {
+        "index": 20,
+        "name": "gross_sched_interchange_mw",
+        "gate": 0.8031545877456665
+      },
+      {
+        "index": 21,
+        "name": "marginal_loss_price_da",
+        "gate": 0.9217352271080017
+      },
+      {
+        "index": 22,
+        "name": "net_inadv_interchange_mw",
+        "gate": 0.7038775086402893
+      },
+      {
+        "index": 23,
+        "name": "total_pjm_reg_purchases",
+        "gate": 0.7027769684791565
+      },
+      {
+        "index": 24,
+        "name": "congestion_price_rt",
+        "gate": 0.6984727382659912
+      },
+      {
+        "index": 25,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.7424061298370361
+      },
+      {
+        "index": 26,
+        "name": "da_as_total_mw_synchronized_reserve",
+        "gate": 0.4620465934276581
+      },
+      {
+        "index": 27,
+        "name": "da_as_as_mw_synchronized_reserve",
+        "gate": 0.5707392692565918
+      },
+      {
+        "index": 28,
+        "name": "total_pjm_self_sched_reg",
+        "gate": 0.6165691018104553
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_mw_thirty_minutes_reserve",
+        "gate": 0.9287722706794739
+      },
+      {
+        "index": 30,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.9331778287887573
+      },
+      {
+        "index": 31,
+        "name": "net_actual_interchange_mw",
+        "gate": 0.8532212972640991
+      },
+      {
+        "index": 32,
+        "name": "total_pjm_assigned_reg",
+        "gate": 0.8393334746360779
+      },
+      {
+        "index": 33,
+        "name": "da_as_ss_mw_primary_reserve",
+        "gate": 0.6886962056159973
+      },
+      {
+        "index": 34,
+        "name": "da_as_ss_mw_thirty_minutes_reserve",
+        "gate": 0.665219247341156
+      },
+      {
+        "index": 35,
+        "name": "total_pjm_rmpcp_cr",
+        "gate": 0.620991587638855
+      },
+      {
+        "index": 36,
+        "name": "rmpcp",
+        "gate": 0.5355543494224548
+      },
+      {
+        "index": 37,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.8518603444099426
+      },
+      {
+        "index": 38,
+        "name": "da_as_ss_mw_synchronized_reserve",
+        "gate": 0.624746561050415
+      }
+    ],
+    "epoch": 10,
+    "source": "epoch_snapshot"
+  },
+  "20": {
+    "threshold": 0.15,
+    "count": 36,
+    "features": [
+      {
+        "index": 1,
+        "name": "total_pjm_rmccp_cr",
+        "gate": 0.44895628094673157
+      },
+      {
+        "index": 2,
+        "name": "gross_actual_interchange_mw",
+        "gate": 0.5983370542526245
+      },
+      {
+        "index": 3,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.6103935837745667
+      },
+      {
+        "index": 4,
+        "name": "total_losses",
+        "gate": 0.8990556001663208
+      },
+      {
+        "index": 5,
+        "name": "total_lmp_rt",
+        "gate": 0.2787531614303589
+      },
+      {
+        "index": 6,
+        "name": "total_pjm_loc_credit",
+        "gate": 0.3869840204715729
+      },
+      {
+        "index": 7,
+        "name": "total_lmp_da",
+        "gate": 0.8518574833869934
+      },
+      {
+        "index": 8,
+        "name": "system_energy_price_da",
+        "gate": 0.9490335583686829
+      },
+      {
+        "index": 9,
+        "name": "system_energy_price_rt",
+        "gate": 0.7361627221107483
+      },
+      {
+        "index": 11,
+        "name": "congestion_price_da",
+        "gate": 0.5002604126930237
+      },
+      {
+        "index": 12,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.85403972864151
+      },
+      {
+        "index": 13,
+        "name": "da_as_mcp_primary_reserve",
+        "gate": 0.6429943442344666
+      },
+      {
+        "index": 14,
+        "name": "da_as_as_req_mw_synchronized_reserve",
+        "gate": 0.3644161522388458
+      },
+      {
+        "index": 15,
+        "name": "da_as_as_mw_primary_reserve",
+        "gate": 0.4129357933998108
+      },
+      {
+        "index": 16,
+        "name": "da_as_as_req_mw_primary_reserve",
+        "gate": 0.6010667085647583
+      },
+      {
+        "index": 17,
+        "name": "da_as_total_mw_primary_reserve",
+        "gate": 0.5583868026733398
+      },
+      {
+        "index": 19,
+        "name": "marginal_loss_price_rt",
+        "gate": 0.32575806975364685
+      },
+      {
+        "index": 20,
+        "name": "gross_sched_interchange_mw",
+        "gate": 0.6432768702507019
+      },
+      {
+        "index": 21,
+        "name": "marginal_loss_price_da",
+        "gate": 0.8031019568443298
+      },
+      {
+        "index": 22,
+        "name": "net_inadv_interchange_mw",
+        "gate": 0.46276044845581055
+      },
+      {
+        "index": 23,
+        "name": "total_pjm_reg_purchases",
+        "gate": 0.5353705883026123
+      },
+      {
+        "index": 24,
+        "name": "congestion_price_rt",
+        "gate": 0.4761202335357666
+      },
+      {
+        "index": 25,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.5509852766990662
+      },
+      {
+        "index": 26,
+        "name": "da_as_total_mw_synchronized_reserve",
+        "gate": 0.20506447553634644
+      },
+      {
+        "index": 27,
+        "name": "da_as_as_mw_synchronized_reserve",
+        "gate": 0.2849350571632385
+      },
+      {
+        "index": 28,
+        "name": "total_pjm_self_sched_reg",
+        "gate": 0.42764148116111755
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_mw_thirty_minutes_reserve",
+        "gate": 0.7953160405158997
+      },
+      {
+        "index": 30,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.7532405257225037
+      },
+      {
+        "index": 31,
+        "name": "net_actual_interchange_mw",
+        "gate": 0.6637499332427979
+      },
+      {
+        "index": 32,
+        "name": "total_pjm_assigned_reg",
+        "gate": 0.6927138566970825
+      },
+      {
+        "index": 33,
+        "name": "da_as_ss_mw_primary_reserve",
+        "gate": 0.5052384734153748
+      },
+      {
+        "index": 34,
+        "name": "da_as_ss_mw_thirty_minutes_reserve",
+        "gate": 0.4555754065513611
+      },
+      {
+        "index": 35,
+        "name": "total_pjm_rmpcp_cr",
+        "gate": 0.47098061442375183
+      },
+      {
+        "index": 36,
+        "name": "rmpcp",
+        "gate": 0.25424596667289734
+      },
+      {
+        "index": 37,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.6766656041145325
+      },
+      {
+        "index": 38,
+        "name": "da_as_ss_mw_synchronized_reserve",
+        "gate": 0.3702053427696228
+      }
+    ],
+    "epoch": 20,
+    "source": "epoch_snapshot"
+  },
+  "50": {
+    "threshold": 0.15,
+    "count": 28,
+    "features": [
+      {
+        "index": 1,
+        "name": "total_pjm_rmccp_cr",
+        "gate": 0.15196464955806732
+      },
+      {
+        "index": 2,
+        "name": "gross_actual_interchange_mw",
+        "gate": 0.2959495186805725
+      },
+      {
+        "index": 3,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.3330141007900238
+      },
+      {
+        "index": 4,
+        "name": "total_losses",
+        "gate": 0.5976877808570862
+      },
+      {
+        "index": 7,
+        "name": "total_lmp_da",
+        "gate": 0.5808898210525513
+      },
+      {
+        "index": 8,
+        "name": "system_energy_price_da",
+        "gate": 0.723288357257843
+      },
+      {
+        "index": 9,
+        "name": "system_energy_price_rt",
+        "gate": 0.3507036864757538
+      },
+      {
+        "index": 11,
+        "name": "congestion_price_da",
+        "gate": 0.25963032245635986
+      },
+      {
+        "index": 12,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.5797340869903564
+      },
+      {
+        "index": 13,
+        "name": "da_as_mcp_primary_reserve",
+        "gate": 0.25938937067985535
+      },
+      {
+        "index": 15,
+        "name": "da_as_as_mw_primary_reserve",
+        "gate": 0.15315088629722595
+      },
+      {
+        "index": 16,
+        "name": "da_as_as_req_mw_primary_reserve",
+        "gate": 0.2852424085140228
+      },
+      {
+        "index": 17,
+        "name": "da_as_total_mw_primary_reserve",
+        "gate": 0.27672556042671204
+      },
+      {
+        "index": 20,
+        "name": "gross_sched_interchange_mw",
+        "gate": 0.3470434248447418
+      },
+      {
+        "index": 21,
+        "name": "marginal_loss_price_da",
+        "gate": 0.4640100598335266
+      },
+      {
+        "index": 22,
+        "name": "net_inadv_interchange_mw",
+        "gate": 0.1818646341562271
+      },
+      {
+        "index": 23,
+        "name": "total_pjm_reg_purchases",
+        "gate": 0.29968205094337463
+      },
+      {
+        "index": 24,
+        "name": "congestion_price_rt",
+        "gate": 0.208452969789505
+      },
+      {
+        "index": 25,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.31181156635284424
+      },
+      {
+        "index": 28,
+        "name": "total_pjm_self_sched_reg",
+        "gate": 0.1955615133047104
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_mw_thirty_minutes_reserve",
+        "gate": 0.4927732050418854
+      },
+      {
+        "index": 30,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.3952467739582062
+      },
+      {
+        "index": 31,
+        "name": "net_actual_interchange_mw",
+        "gate": 0.3267674446105957
+      },
+      {
+        "index": 32,
+        "name": "total_pjm_assigned_reg",
+        "gate": 0.36350223422050476
+      },
+      {
+        "index": 33,
+        "name": "da_as_ss_mw_primary_reserve",
+        "gate": 0.2581632435321808
+      },
+      {
+        "index": 34,
+        "name": "da_as_ss_mw_thirty_minutes_reserve",
+        "gate": 0.1619635671377182
+      },
+      {
+        "index": 35,
+        "name": "total_pjm_rmpcp_cr",
+        "gate": 0.22315973043441772
+      },
+      {
+        "index": 37,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.34165671467781067
+      }
+    ],
+    "epoch": 50,
+    "source": "epoch_snapshot"
+  },
+  "100": {
+    "threshold": 0.15,
+    "count": 15,
+    "features": [
+      {
+        "index": 2,
+        "name": "gross_actual_interchange_mw",
+        "gate": 0.15818223357200623
+      },
+      {
+        "index": 3,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.1735951155424118
+      },
+      {
+        "index": 4,
+        "name": "total_losses",
+        "gate": 0.340493768453598
+      },
+      {
+        "index": 7,
+        "name": "total_lmp_da",
+        "gate": 0.27308690547943115
+      },
+      {
+        "index": 8,
+        "name": "system_energy_price_da",
+        "gate": 0.474369078874588
+      },
+      {
+        "index": 9,
+        "name": "system_energy_price_rt",
+        "gate": 0.16859230399131775
+      },
+      {
+        "index": 12,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.2923106849193573
+      },
+      {
+        "index": 20,
+        "name": "gross_sched_interchange_mw",
+        "gate": 0.1881578266620636
+      },
+      {
+        "index": 21,
+        "name": "marginal_loss_price_da",
+        "gate": 0.25422829389572144
+      },
+      {
+        "index": 25,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.17589665949344635
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_mw_thirty_minutes_reserve",
+        "gate": 0.26673051714897156
+      },
+      {
+        "index": 30,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.18924257159233093
+      },
+      {
+        "index": 31,
+        "name": "net_actual_interchange_mw",
+        "gate": 0.15638364851474762
+      },
+      {
+        "index": 32,
+        "name": "total_pjm_assigned_reg",
+        "gate": 0.1525937020778656
+      },
+      {
+        "index": 37,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.17015931010246277
+      }
+    ],
+    "epoch": 100,
+    "source": "epoch_snapshot"
+  },
+  "200": {
+    "threshold": 0.15,
+    "count": 2,
+    "features": [
+      {
+        "index": 4,
+        "name": "total_losses",
+        "gate": 0.18583959341049194
+      },
+      {
+        "index": 8,
+        "name": "system_energy_price_da",
+        "gate": 0.2975657284259796
+      }
+    ],
+    "epoch": 200,
+    "source": "epoch_snapshot"
+  }
+}

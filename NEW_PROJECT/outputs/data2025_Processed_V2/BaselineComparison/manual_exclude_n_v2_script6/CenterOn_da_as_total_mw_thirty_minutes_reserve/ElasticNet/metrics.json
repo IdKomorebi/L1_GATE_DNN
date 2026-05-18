@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "method": "ElasticNet",
+  "feature_count": 18,
+  "best_test_r2": 0.8574366569519043,
+  "best_train_r2": 0.9241873621940613,
+  "min_test_loss": 0.1306331409595725,
+  "min_train_loss": 0.07581263823075253,
+  "final_test_r2": 0.8546425700187683,
+  "final_train_r2": 0.9241873621940613,
+  "final_test_loss": 0.13319342265405307,
+  "final_train_loss": 0.07581263823075253,
+  "best_epoch": 130,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_thirty_minutes_reserve/ElasticNet"
+}

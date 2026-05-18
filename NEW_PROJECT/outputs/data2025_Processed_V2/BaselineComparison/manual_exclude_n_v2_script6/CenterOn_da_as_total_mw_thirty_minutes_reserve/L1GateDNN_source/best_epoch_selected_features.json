@@ -1,0 +1,23 @@
+{
+  "threshold": 0.15,
+  "count": 3,
+  "features": [
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.18683981895446777
+    },
+    {
+      "index": 11,
+      "name": "system_energy_price_da",
+      "gate": 0.1641816645860672
+    },
+    {
+      "index": 30,
+      "name": "total_losses",
+      "gate": 0.15156769752502441
+    }
+  ],
+  "epoch": 172,
+  "source": "best_test_r2_epoch"
+}

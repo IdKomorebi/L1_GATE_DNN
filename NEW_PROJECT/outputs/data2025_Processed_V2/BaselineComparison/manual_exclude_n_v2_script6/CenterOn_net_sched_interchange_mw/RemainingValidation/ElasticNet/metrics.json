@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "ElasticNet",
+  "feature_count": 55,
+  "best_test_r2": 0.9090514779090881,
+  "best_train_r2": 0.9847789406776428,
+  "min_test_loss": 0.08619291468796025,
+  "min_train_loss": 0.015221042679317301,
+  "final_test_r2": 0.9052048325538635,
+  "final_train_r2": 0.9847789406776428,
+  "final_test_loss": 0.08983842573105925,
+  "final_train_loss": 0.015221042679317301,
+  "best_epoch": 139,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_net_sched_interchange_mw/RemainingValidation/ElasticNet"
+}

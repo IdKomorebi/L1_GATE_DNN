@@ -1,0 +1,8 @@
+{
+  "center": "congestion_price_rt",
+  "features": [
+    "marginal_loss_price_rt",
+    "total_lmp_rt",
+    "gen_fuel_coal_pct"
+  ]
+}

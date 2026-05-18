@@ -1,0 +1,9 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "system_energy_price_da",
+    "total_losses",
+    "marginal_loss_price_da",
+    "da_as_as_mw_thirty_minutes_reserve"
+  ]
+}

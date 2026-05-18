@@ -1,0 +1,15 @@
+{
+  "center": "total_lmp_da",
+  "method": "Pearson",
+  "feature_count": 54,
+  "best_test_r2": 0.9336571097373962,
+  "best_train_r2": 0.9889671802520752,
+  "min_test_loss": 0.06161567313130414,
+  "min_train_loss": 0.011032842616846441,
+  "final_test_r2": 0.9210928082466125,
+  "final_train_r2": 0.9867302179336548,
+  "final_test_loss": 0.07328470570904938,
+  "final_train_loss": 0.01326979854829519,
+  "best_epoch": 84,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_total_lmp_da/RemainingValidation/Pearson"
+}

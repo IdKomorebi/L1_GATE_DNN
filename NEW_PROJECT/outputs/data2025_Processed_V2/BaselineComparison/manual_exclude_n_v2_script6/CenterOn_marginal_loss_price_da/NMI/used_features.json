@@ -1,0 +1,17 @@
+{
+  "center": "marginal_loss_price_da",
+  "features": [
+    "marginal_loss_price_rt",
+    "total_lmp_rt",
+    "system_energy_price_rt",
+    "rmccp",
+    "total_pjm_rmccp_cr",
+    "system_energy_price_da",
+    "total_lmp_da",
+    "da_as_mcp_synchronized_reserve",
+    "total_losses",
+    "forecast_load_mw_latest_available",
+    "prelim_load_avg_hourly",
+    "da_as_mcp_primary_reserve"
+  ]
+}

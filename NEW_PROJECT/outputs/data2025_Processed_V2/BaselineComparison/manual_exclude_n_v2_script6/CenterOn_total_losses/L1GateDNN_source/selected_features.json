@@ -1,0 +1,23 @@
+{
+  "threshold": 0.15,
+  "count": 3,
+  "features": [
+    {
+      "index": 1,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.21311111748218536
+    },
+    {
+      "index": 8,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.1577158272266388
+    },
+    {
+      "index": 26,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.24433493614196777
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

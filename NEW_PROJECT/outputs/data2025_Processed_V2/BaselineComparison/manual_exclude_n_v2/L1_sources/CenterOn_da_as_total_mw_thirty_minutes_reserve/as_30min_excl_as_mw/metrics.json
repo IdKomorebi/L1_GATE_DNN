@@ -1,0 +1,13 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "model": "L1GateDNN",
+  "run_dir": "NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2/L1_sources/CenterOn_da_as_total_mw_thirty_minutes_reserve/as_30min_excl_as_mw",
+  "feature_count": 63,
+  "best_test_r2": 0.9103455543518066,
+  "best_epoch": 172,
+  "last_epoch_train_r2": 0.9865357875823975,
+  "last_epoch_test_r2": 0.9028388261795044,
+  "final_train_r2": 0.9845597743988037,
+  "final_test_r2": 0.9103455543518066,
+  "epochs_completed": 200
+}

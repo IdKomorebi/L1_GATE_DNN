@@ -1,0 +1,23 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "total_pjm_rmccp_cr",
+    "da_as_mcp_synchronized_reserve",
+    "marginal_loss_price_rt",
+    "total_lmp_rt",
+    "system_energy_price_rt",
+    "da_as_mcp_primary_reserve",
+    "rmccp",
+    "gen_fuel_nuclear_mw",
+    "da_as_as_mw_primary_reserve",
+    "da_as_total_mw_primary_reserve",
+    "total_lmp_da",
+    "system_energy_price_da",
+    "da_as_nsr_mw_primary_reserve",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_mw_synchronized_reserve",
+    "da_as_total_mw_synchronized_reserve",
+    "gen_fuel_oil_mw"
+  ]
+}

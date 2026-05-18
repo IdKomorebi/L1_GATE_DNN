@@ -1,0 +1,13 @@
+{
+  "center": "net_sched_interchange_mw",
+  "model": "L1GateDNN",
+  "run_dir": "NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2/L1_sources/CenterOn_net_sched_interchange_mw/net_sched_excl_net_actual_total_gen",
+  "feature_count": 59,
+  "best_test_r2": 0.9772738218307495,
+  "best_epoch": 175,
+  "last_epoch_train_r2": 0.9908807873725891,
+  "last_epoch_test_r2": 0.9764989018440247,
+  "final_train_r2": 0.9918048977851868,
+  "final_test_r2": 0.9772738218307495,
+  "epochs_completed": 200
+}

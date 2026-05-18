@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "XGBoost",
+  "feature_count": 15,
+  "best_test_r2": 0.8848270773887634,
+  "best_train_r2": 0.936951220035553,
+  "min_test_loss": 0.11437866327748315,
+  "min_train_loss": 0.0630487694748418,
+  "final_test_r2": 0.8737586736679077,
+  "final_train_r2": 0.9317723512649536,
+  "final_test_loss": 0.12537073632319495,
+  "final_train_loss": 0.06822767971321668,
+  "best_epoch": 104,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_metered_load_mw/XGBoost"
+}

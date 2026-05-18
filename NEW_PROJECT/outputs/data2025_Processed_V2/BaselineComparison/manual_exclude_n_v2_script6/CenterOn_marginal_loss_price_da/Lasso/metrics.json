@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "method": "Lasso",
+  "feature_count": 12,
+  "best_test_r2": 0.902501106262207,
+  "best_train_r2": 0.9436583518981934,
+  "min_test_loss": 0.1014480320566402,
+  "min_train_loss": 0.056341644638650615,
+  "final_test_r2": 0.8999236226081848,
+  "final_train_r2": 0.9436583518981934,
+  "final_test_loss": 0.10412996424725507,
+  "final_train_loss": 0.056341644638650615,
+  "best_epoch": 135,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_marginal_loss_price_da/Lasso"
+}

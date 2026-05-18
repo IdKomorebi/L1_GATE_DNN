@@ -1,0 +1,73 @@
+{
+  "threshold": 0.15,
+  "count": 13,
+  "features": [
+    {
+      "index": 1,
+      "name": "da_as_as_req_mw_primary_reserve",
+      "gate": 0.2414630651473999
+    },
+    {
+      "index": 2,
+      "name": "da_as_as_req_mw_synchronized_reserve",
+      "gate": 0.22214215993881226
+    },
+    {
+      "index": 3,
+      "name": "da_as_as_req_mw_thirty_minutes_reserve",
+      "gate": 0.23612427711486816
+    },
+    {
+      "index": 4,
+      "name": "da_as_total_mw_synchronized_reserve",
+      "gate": 0.5701944828033447
+    },
+    {
+      "index": 5,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.37500494718551636
+    },
+    {
+      "index": 6,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.2604464888572693
+    },
+    {
+      "index": 7,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.2598741054534912
+    },
+    {
+      "index": 8,
+      "name": "da_as_mcp_primary_reserve",
+      "gate": 0.6209328770637512
+    },
+    {
+      "index": 18,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.1901773363351822
+    },
+    {
+      "index": 20,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.2140076905488968
+    },
+    {
+      "index": 21,
+      "name": "gen_fuel_hydro_pct",
+      "gate": 0.1657211184501648
+    },
+    {
+      "index": 27,
+      "name": "gen_fuel_nuclear_pct",
+      "gate": 0.2414827197790146
+    },
+    {
+      "index": 36,
+      "name": "total_pjm_self_sched_reg",
+      "gate": 0.1899689882993698
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

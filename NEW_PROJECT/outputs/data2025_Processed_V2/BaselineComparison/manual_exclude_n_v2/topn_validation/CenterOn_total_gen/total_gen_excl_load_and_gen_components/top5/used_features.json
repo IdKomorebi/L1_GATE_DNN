@@ -1,0 +1,10 @@
+{
+  "center": "total_gen",
+  "features": [
+    "system_energy_price_da",
+    "total_losses",
+    "net_actual_interchange_mw",
+    "marginal_loss_price_da",
+    "da_as_mcp_synchronized_reserve"
+  ]
+}

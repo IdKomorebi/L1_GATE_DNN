@@ -1,0 +1,18 @@
+{
+  "threshold": 0.15,
+  "count": 2,
+  "features": [
+    {
+      "index": 4,
+      "name": "total_losses",
+      "gate": 0.18583959341049194
+    },
+    {
+      "index": 8,
+      "name": "system_energy_price_da",
+      "gate": 0.2975657284259796
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

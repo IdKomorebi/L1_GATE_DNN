@@ -1,0 +1,17 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "gen_fuel_nuclear_mw",
+    "system_energy_price_da",
+    "gen_fuel_coal_pct",
+    "total_losses",
+    "gen_fuel_gas_pct",
+    "net_actual_interchange_mw",
+    "total_lmp_da",
+    "gen_fuel_other_renewables_mw",
+    "gen_fuel_multiple_fuels_mw",
+    "marginal_loss_price_da",
+    "forecast_load_mw_day_ahead",
+    "gen_fuel_oil_pct"
+  ]
+}

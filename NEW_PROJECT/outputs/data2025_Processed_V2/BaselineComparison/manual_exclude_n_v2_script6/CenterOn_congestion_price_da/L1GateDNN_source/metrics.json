@@ -1,0 +1,13 @@
+{
+  "center": "congestion_price_da",
+  "model": "L1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_congestion_price_da/L1GateDNN_source",
+  "feature_count": 62,
+  "best_test_r2": 0.9999872446060181,
+  "best_epoch": 184,
+  "last_epoch_train_r2": 0.9999462962150574,
+  "last_epoch_test_r2": 0.999953031539917,
+  "final_train_r2": 0.9999892115592957,
+  "final_test_r2": 0.9999872446060181,
+  "epochs_completed": 200
+}

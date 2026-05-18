@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "method": "NMI",
+  "feature_count": 18,
+  "best_test_r2": 0.812332034111023,
+  "best_train_r2": 0.8805344700813293,
+  "min_test_loss": 0.19660540635178725,
+  "min_train_loss": 0.1194655612525899,
+  "final_test_r2": 0.8022353649139404,
+  "final_train_r2": 0.8730030655860901,
+  "final_test_loss": 0.20718293435582955,
+  "final_train_loss": 0.1269969595523071,
+  "best_epoch": 126,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_thirty_minutes_reserve/NMI"
+}

@@ -1,0 +1,827 @@
+{
+  "10": {
+    "threshold": 0.15,
+    "count": 62,
+    "features": [
+      {
+        "index": 1,
+        "name": "gen_fuel_oil_pct",
+        "gate": 0.8112510442733765
+      },
+      {
+        "index": 2,
+        "name": "forecast_load_mw_latest_available",
+        "gate": 0.7424460053443909
+      },
+      {
+        "index": 3,
+        "name": "marginal_loss_price_da",
+        "gate": 1.0434249639511108
+      },
+      {
+        "index": 4,
+        "name": "metered_load_mw",
+        "gate": 0.8526289463043213
+      },
+      {
+        "index": 5,
+        "name": "total_gen",
+        "gate": 0.7142713069915771
+      },
+      {
+        "index": 6,
+        "name": "forecast_load_mw_day_ahead",
+        "gate": 0.769773006439209
+      },
+      {
+        "index": 7,
+        "name": "gen_fuel_nuclear_pct",
+        "gate": 0.7466280460357666
+      },
+      {
+        "index": 8,
+        "name": "prelim_load_avg_hourly",
+        "gate": 0.8249238133430481
+      },
+      {
+        "index": 9,
+        "name": "gen_fuel_hydro_mw",
+        "gate": 0.8379873633384705
+      },
+      {
+        "index": 10,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.9005177021026611
+      },
+      {
+        "index": 11,
+        "name": "total_pjm_rt_load_mwh",
+        "gate": 0.9247683882713318
+      },
+      {
+        "index": 12,
+        "name": "gen_fuel_other_renewables_pct",
+        "gate": 0.6731130480766296
+      },
+      {
+        "index": 13,
+        "name": "gen_fuel_gas_mw",
+        "gate": 0.7967970371246338
+      },
+      {
+        "index": 14,
+        "name": "gen_fuel_coal_mw",
+        "gate": 0.8281205892562866
+      },
+      {
+        "index": 15,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.9996165037155151
+      },
+      {
+        "index": 16,
+        "name": "system_energy_price_rt",
+        "gate": 0.8574405312538147
+      },
+      {
+        "index": 17,
+        "name": "total_lmp_rt",
+        "gate": 0.8517030477523804
+      },
+      {
+        "index": 18,
+        "name": "total_lmp_da",
+        "gate": 1.1792899370193481
+      },
+      {
+        "index": 19,
+        "name": "system_energy_price_da",
+        "gate": 1.1610652208328247
+      },
+      {
+        "index": 20,
+        "name": "marginal_loss_price_rt",
+        "gate": 0.7283651232719421
+      },
+      {
+        "index": 21,
+        "name": "gen_fuel_oil_mw",
+        "gate": 0.8358579874038696
+      },
+      {
+        "index": 22,
+        "name": "da_as_mcp_primary_reserve",
+        "gate": 0.8300779461860657
+      },
+      {
+        "index": 23,
+        "name": "total_losses",
+        "gate": 0.9031501412391663
+      },
+      {
+        "index": 24,
+        "name": "gen_fuel_hydro_pct",
+        "gate": 0.7921934723854065
+      },
+      {
+        "index": 25,
+        "name": "da_as_as_req_mw_primary_reserve",
+        "gate": 0.7997139096260071
+      },
+      {
+        "index": 26,
+        "name": "da_as_as_mw_thirty_minutes_reserve",
+        "gate": 0.7943312525749207
+      },
+      {
+        "index": 27,
+        "name": "gen_fuel_storage_mw",
+        "gate": 0.6344498991966248
+      },
+      {
+        "index": 28,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.811164915561676
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_req_mw_synchronized_reserve",
+        "gate": 0.8593267798423767
+      },
+      {
+        "index": 30,
+        "name": "da_as_total_mw_synchronized_reserve",
+        "gate": 0.6329709887504578
+      },
+      {
+        "index": 31,
+        "name": "total_pjm_loc_credit",
+        "gate": 0.8968690037727356
+      },
+      {
+        "index": 32,
+        "name": "da_as_as_mw_synchronized_reserve",
+        "gate": 0.8328062891960144
+      },
+      {
+        "index": 33,
+        "name": "da_as_as_mw_primary_reserve",
+        "gate": 0.680361270904541
+      },
+      {
+        "index": 34,
+        "name": "da_as_total_mw_primary_reserve",
+        "gate": 0.599261462688446
+      },
+      {
+        "index": 35,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.9058552384376526
+      },
+      {
+        "index": 36,
+        "name": "total_pjm_rmccp_cr",
+        "gate": 0.7924575805664062
+      },
+      {
+        "index": 37,
+        "name": "rmccp",
+        "gate": 0.655129075050354
+      },
+      {
+        "index": 38,
+        "name": "gen_fuel_nuclear_mw",
+        "gate": 1.007037878036499
+      },
+      {
+        "index": 39,
+        "name": "gen_fuel_coal_pct",
+        "gate": 0.8207268714904785
+      },
+      {
+        "index": 40,
+        "name": "total_pjm_reg_purchases",
+        "gate": 0.6829037666320801
+      },
+      {
+        "index": 41,
+        "name": "gross_sched_interchange_mw",
+        "gate": 0.9537736177444458
+      },
+      {
+        "index": 42,
+        "name": "wind_generation_mw",
+        "gate": 0.7028898000717163
+      },
+      {
+        "index": 43,
+        "name": "congestion_price_rt",
+        "gate": 0.8990830779075623
+      },
+      {
+        "index": 44,
+        "name": "gen_fuel_multiple_fuels_mw",
+        "gate": 0.8464680314064026
+      },
+      {
+        "index": 45,
+        "name": "gross_actual_interchange_mw",
+        "gate": 0.9299319386482239
+      },
+      {
+        "index": 46,
+        "name": "total_pjm_assigned_reg",
+        "gate": 0.7573512196540833
+      },
+      {
+        "index": 47,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.9284207224845886
+      },
+      {
+        "index": 48,
+        "name": "gen_fuel_gas_pct",
+        "gate": 0.740439772605896
+      },
+      {
+        "index": 49,
+        "name": "gen_fuel_wind_mw",
+        "gate": 0.8253621459007263
+      },
+      {
+        "index": 50,
+        "name": "gen_fuel_multiple_fuels_pct",
+        "gate": 0.9148707389831543
+      },
+      {
+        "index": 51,
+        "name": "net_actual_interchange_mw",
+        "gate": 0.8989445567131042
+      },
+      {
+        "index": 52,
+        "name": "gen_fuel_solar_pct",
+        "gate": 0.7910311222076416
+      },
+      {
+        "index": 53,
+        "name": "gen_fuel_wind_pct",
+        "gate": 0.6811924576759338
+      },
+      {
+        "index": 54,
+        "name": "total_pjm_rmpcp_cr",
+        "gate": 0.7833540439605713
+      },
+      {
+        "index": 55,
+        "name": "gen_fuel_other_renewables_mw",
+        "gate": 0.9831688404083252
+      },
+      {
+        "index": 56,
+        "name": "net_inadv_interchange_mw",
+        "gate": 0.6164370179176331
+      },
+      {
+        "index": 57,
+        "name": "gen_fuel_solar_mw",
+        "gate": 0.8172450661659241
+      },
+      {
+        "index": 58,
+        "name": "da_as_ss_mw_synchronized_reserve",
+        "gate": 0.5218091607093811
+      },
+      {
+        "index": 59,
+        "name": "rmpcp",
+        "gate": 0.6609594225883484
+      },
+      {
+        "index": 60,
+        "name": "da_as_nsr_mw_primary_reserve",
+        "gate": 0.6723347902297974
+      },
+      {
+        "index": 61,
+        "name": "da_as_ss_mw_primary_reserve",
+        "gate": 0.6177957653999329
+      },
+      {
+        "index": 62,
+        "name": "da_as_ss_mw_thirty_minutes_reserve",
+        "gate": 0.5752739906311035
+      }
+    ],
+    "epoch": 10,
+    "source": "epoch_snapshot"
+  },
+  "20": {
+    "threshold": 0.15,
+    "count": 62,
+    "features": [
+      {
+        "index": 1,
+        "name": "gen_fuel_oil_pct",
+        "gate": 0.6935371160507202
+      },
+      {
+        "index": 2,
+        "name": "forecast_load_mw_latest_available",
+        "gate": 0.5658165812492371
+      },
+      {
+        "index": 3,
+        "name": "marginal_loss_price_da",
+        "gate": 0.9393439888954163
+      },
+      {
+        "index": 4,
+        "name": "metered_load_mw",
+        "gate": 0.7648512721061707
+      },
+      {
+        "index": 5,
+        "name": "total_gen",
+        "gate": 0.46798914670944214
+      },
+      {
+        "index": 6,
+        "name": "forecast_load_mw_day_ahead",
+        "gate": 0.6488348245620728
+      },
+      {
+        "index": 7,
+        "name": "gen_fuel_nuclear_pct",
+        "gate": 0.5410631895065308
+      },
+      {
+        "index": 8,
+        "name": "prelim_load_avg_hourly",
+        "gate": 0.6824858784675598
+      },
+      {
+        "index": 9,
+        "name": "gen_fuel_hydro_mw",
+        "gate": 0.6699995398521423
+      },
+      {
+        "index": 10,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.8565002083778381
+      },
+      {
+        "index": 11,
+        "name": "total_pjm_rt_load_mwh",
+        "gate": 0.8402840495109558
+      },
+      {
+        "index": 12,
+        "name": "gen_fuel_other_renewables_pct",
+        "gate": 0.5475988388061523
+      },
+      {
+        "index": 13,
+        "name": "gen_fuel_gas_mw",
+        "gate": 0.6823570132255554
+      },
+      {
+        "index": 14,
+        "name": "gen_fuel_coal_mw",
+        "gate": 0.7099921107292175
+      },
+      {
+        "index": 15,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.876973032951355
+      },
+      {
+        "index": 16,
+        "name": "system_energy_price_rt",
+        "gate": 0.8165926933288574
+      },
+      {
+        "index": 17,
+        "name": "total_lmp_rt",
+        "gate": 0.815663754940033
+      },
+      {
+        "index": 18,
+        "name": "total_lmp_da",
+        "gate": 1.2278724908828735
+      },
+      {
+        "index": 19,
+        "name": "system_energy_price_da",
+        "gate": 1.2024344205856323
+      },
+      {
+        "index": 20,
+        "name": "marginal_loss_price_rt",
+        "gate": 0.667595386505127
+      },
+      {
+        "index": 21,
+        "name": "gen_fuel_oil_mw",
+        "gate": 0.7590818405151367
+      },
+      {
+        "index": 22,
+        "name": "da_as_mcp_primary_reserve",
+        "gate": 0.7344434261322021
+      },
+      {
+        "index": 23,
+        "name": "total_losses",
+        "gate": 0.7657956480979919
+      },
+      {
+        "index": 24,
+        "name": "gen_fuel_hydro_pct",
+        "gate": 0.6156272888183594
+      },
+      {
+        "index": 25,
+        "name": "da_as_as_req_mw_primary_reserve",
+        "gate": 0.6305172443389893
+      },
+      {
+        "index": 26,
+        "name": "da_as_as_mw_thirty_minutes_reserve",
+        "gate": 0.6598609685897827
+      },
+      {
+        "index": 27,
+        "name": "gen_fuel_storage_mw",
+        "gate": 0.43799805641174316
+      },
+      {
+        "index": 28,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.6690041422843933
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_req_mw_synchronized_reserve",
+        "gate": 0.7291378378868103
+      },
+      {
+        "index": 30,
+        "name": "da_as_total_mw_synchronized_reserve",
+        "gate": 0.4034523665904999
+      },
+      {
+        "index": 31,
+        "name": "total_pjm_loc_credit",
+        "gate": 0.8231370449066162
+      },
+      {
+        "index": 32,
+        "name": "da_as_as_mw_synchronized_reserve",
+        "gate": 0.6850265860557556
+      },
+      {
+        "index": 33,
+        "name": "da_as_as_mw_primary_reserve",
+        "gate": 0.37194186449050903
+      },
+      {
+        "index": 34,
+        "name": "da_as_total_mw_primary_reserve",
+        "gate": 0.2741135358810425
+      },
+      {
+        "index": 35,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.8400897979736328
+      },
+      {
+        "index": 36,
+        "name": "total_pjm_rmccp_cr",
+        "gate": 0.6732672452926636
+      },
+      {
+        "index": 37,
+        "name": "rmccp",
+        "gate": 0.5462040305137634
+      },
+      {
+        "index": 38,
+        "name": "gen_fuel_nuclear_mw",
+        "gate": 0.8560172915458679
+      },
+      {
+        "index": 39,
+        "name": "gen_fuel_coal_pct",
+        "gate": 0.6433999538421631
+      },
+      {
+        "index": 40,
+        "name": "total_pjm_reg_purchases",
+        "gate": 0.5230667591094971
+      },
+      {
+        "index": 41,
+        "name": "gross_sched_interchange_mw",
+        "gate": 0.7667977213859558
+      },
+      {
+        "index": 42,
+        "name": "wind_generation_mw",
+        "gate": 0.4640791416168213
+      },
+      {
+        "index": 43,
+        "name": "congestion_price_rt",
+        "gate": 0.8219195604324341
+      },
+      {
+        "index": 44,
+        "name": "gen_fuel_multiple_fuels_mw",
+        "gate": 0.6716293096542358
+      },
+      {
+        "index": 45,
+        "name": "gross_actual_interchange_mw",
+        "gate": 0.7574309706687927
+      },
+      {
+        "index": 46,
+        "name": "total_pjm_assigned_reg",
+        "gate": 0.5749500393867493
+      },
+      {
+        "index": 47,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.7916983962059021
+      },
+      {
+        "index": 48,
+        "name": "gen_fuel_gas_pct",
+        "gate": 0.6684339642524719
+      },
+      {
+        "index": 49,
+        "name": "gen_fuel_wind_mw",
+        "gate": 0.6067749857902527
+      },
+      {
+        "index": 50,
+        "name": "gen_fuel_multiple_fuels_pct",
+        "gate": 0.7473015785217285
+      },
+      {
+        "index": 51,
+        "name": "net_actual_interchange_mw",
+        "gate": 0.7845863103866577
+      },
+      {
+        "index": 52,
+        "name": "gen_fuel_solar_pct",
+        "gate": 0.6212137341499329
+      },
+      {
+        "index": 53,
+        "name": "gen_fuel_wind_pct",
+        "gate": 0.5523122549057007
+      },
+      {
+        "index": 54,
+        "name": "total_pjm_rmpcp_cr",
+        "gate": 0.6231065988540649
+      },
+      {
+        "index": 55,
+        "name": "gen_fuel_other_renewables_mw",
+        "gate": 0.8429157137870789
+      },
+      {
+        "index": 56,
+        "name": "net_inadv_interchange_mw",
+        "gate": 0.35104289650917053
+      },
+      {
+        "index": 57,
+        "name": "gen_fuel_solar_mw",
+        "gate": 0.6826745271682739
+      },
+      {
+        "index": 58,
+        "name": "da_as_ss_mw_synchronized_reserve",
+        "gate": 0.31501904129981995
+      },
+      {
+        "index": 59,
+        "name": "rmpcp",
+        "gate": 0.4447104036808014
+      },
+      {
+        "index": 60,
+        "name": "da_as_nsr_mw_primary_reserve",
+        "gate": 0.40358322858810425
+      },
+      {
+        "index": 61,
+        "name": "da_as_ss_mw_primary_reserve",
+        "gate": 0.3403133749961853
+      },
+      {
+        "index": 62,
+        "name": "da_as_ss_mw_thirty_minutes_reserve",
+        "gate": 0.23797360062599182
+      }
+    ],
+    "epoch": 20,
+    "source": "epoch_snapshot"
+  },
+  "50": {
+    "threshold": 0.15,
+    "count": 26,
+    "features": [
+      {
+        "index": 1,
+        "name": "gen_fuel_oil_pct",
+        "gate": 0.26137152314186096
+      },
+      {
+        "index": 3,
+        "name": "marginal_loss_price_da",
+        "gate": 0.587382435798645
+      },
+      {
+        "index": 4,
+        "name": "metered_load_mw",
+        "gate": 0.4384206235408783
+      },
+      {
+        "index": 6,
+        "name": "forecast_load_mw_day_ahead",
+        "gate": 0.2568506896495819
+      },
+      {
+        "index": 10,
+        "name": "da_as_mcp_synchronized_reserve",
+        "gate": 0.5199970602989197
+      },
+      {
+        "index": 11,
+        "name": "total_pjm_rt_load_mwh",
+        "gate": 0.36870601773262024
+      },
+      {
+        "index": 13,
+        "name": "gen_fuel_gas_mw",
+        "gate": 0.1926737278699875
+      },
+      {
+        "index": 14,
+        "name": "gen_fuel_coal_mw",
+        "gate": 0.3137727379798889
+      },
+      {
+        "index": 15,
+        "name": "gross_inadv_interchange_mw",
+        "gate": 0.2593707740306854
+      },
+      {
+        "index": 16,
+        "name": "system_energy_price_rt",
+        "gate": 0.681857168674469
+      },
+      {
+        "index": 17,
+        "name": "total_lmp_rt",
+        "gate": 0.7059412002563477
+      },
+      {
+        "index": 18,
+        "name": "total_lmp_da",
+        "gate": 1.2460492849349976
+      },
+      {
+        "index": 19,
+        "name": "system_energy_price_da",
+        "gate": 1.2215690612792969
+      },
+      {
+        "index": 20,
+        "name": "marginal_loss_price_rt",
+        "gate": 0.38294458389282227
+      },
+      {
+        "index": 21,
+        "name": "gen_fuel_oil_mw",
+        "gate": 0.48689356446266174
+      },
+      {
+        "index": 22,
+        "name": "da_as_mcp_primary_reserve",
+        "gate": 0.221061572432518
+      },
+      {
+        "index": 23,
+        "name": "total_losses",
+        "gate": 0.18752925097942352
+      },
+      {
+        "index": 28,
+        "name": "da_as_as_req_mw_thirty_minutes_reserve",
+        "gate": 0.18318212032318115
+      },
+      {
+        "index": 29,
+        "name": "da_as_as_req_mw_synchronized_reserve",
+        "gate": 0.21683788299560547
+      },
+      {
+        "index": 31,
+        "name": "total_pjm_loc_credit",
+        "gate": 0.3453012704849243
+      },
+      {
+        "index": 35,
+        "name": "da_as_total_mw_thirty_minutes_reserve",
+        "gate": 0.45407959818840027
+      },
+      {
+        "index": 38,
+        "name": "gen_fuel_nuclear_mw",
+        "gate": 0.1814006119966507
+      },
+      {
+        "index": 43,
+        "name": "congestion_price_rt",
+        "gate": 0.30674684047698975
+      },
+      {
+        "index": 47,
+        "name": "net_sched_interchange_mw",
+        "gate": 0.1541062891483307
+      },
+      {
+        "index": 48,
+        "name": "gen_fuel_gas_pct",
+        "gate": 0.19682279229164124
+      },
+      {
+        "index": 55,
+        "name": "gen_fuel_other_renewables_mw",
+        "gate": 0.1764547973871231
+      }
+    ],
+    "epoch": 50,
+    "source": "epoch_snapshot"
+  },
+  "100": {
+    "threshold": 0.15,
+    "count": 5,
+    "features": [
+      {
+        "index": 3,
+        "name": "marginal_loss_price_da",
+        "gate": 0.17413154244422913
+      },
+      {
+        "index": 16,
+        "name": "system_energy_price_rt",
+        "gate": 0.46239134669303894
+      },
+      {
+        "index": 17,
+        "name": "total_lmp_rt",
+        "gate": 0.4875585436820984
+      },
+      {
+        "index": 18,
+        "name": "total_lmp_da",
+        "gate": 1.2335395812988281
+      },
+      {
+        "index": 19,
+        "name": "system_energy_price_da",
+        "gate": 1.2093021869659424
+      }
+    ],
+    "epoch": 100,
+    "source": "epoch_snapshot"
+  },
+  "200": {
+    "threshold": 0.15,
+    "count": 2,
+    "features": [
+      {
+        "index": 18,
+        "name": "total_lmp_da",
+        "gate": 1.1622389554977417
+      },
+      {
+        "index": 19,
+        "name": "system_energy_price_da",
+        "gate": 1.1345490217208862
+      }
+    ],
+    "epoch": 200,
+    "source": "epoch_snapshot"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "threshold": 0.15,
+  "count": 3,
+  "features": [
+    {
+      "index": 3,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.31199637055397034
+    },
+    {
+      "index": 11,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.2128159999847412
+    },
+    {
+      "index": 17,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.15704669058322906
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

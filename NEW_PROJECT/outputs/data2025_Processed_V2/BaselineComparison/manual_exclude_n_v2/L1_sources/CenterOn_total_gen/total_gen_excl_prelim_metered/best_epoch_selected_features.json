@@ -1,0 +1,7 @@
+{
+  "threshold": 0.15,
+  "count": 0,
+  "features": [],
+  "epoch": 190,
+  "source": "best_test_r2_epoch"
+}

@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "method": "Spearman",
+  "feature_count": 59,
+  "best_test_r2": 0.5348113775253296,
+  "best_train_r2": 0.9504071474075317,
+  "min_test_loss": 0.44510145228719566,
+  "min_train_loss": 0.049592854218553216,
+  "final_test_r2": 0.3689712882041931,
+  "final_train_r2": 0.9504071474075317,
+  "final_test_loss": 0.6037803887185164,
+  "final_train_loss": 0.049592854218553216,
+  "best_epoch": 33,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_congestion_price_rt/RemainingValidation/Spearman"
+}

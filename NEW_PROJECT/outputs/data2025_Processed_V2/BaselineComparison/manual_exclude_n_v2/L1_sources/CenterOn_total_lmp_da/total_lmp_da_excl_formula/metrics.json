@@ -1,0 +1,13 @@
+{
+  "center": "total_lmp_da",
+  "model": "L1GateDNN",
+  "run_dir": "NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2/L1_sources/CenterOn_total_lmp_da/total_lmp_da_excl_formula",
+  "feature_count": 61,
+  "best_test_r2": 0.9633005261421204,
+  "best_epoch": 138,
+  "last_epoch_train_r2": 0.994129478931427,
+  "last_epoch_test_r2": 0.9597413539886475,
+  "final_train_r2": 0.9910500049591064,
+  "final_test_r2": 0.9633005261421204,
+  "epochs_completed": 200
+}

@@ -1,0 +1,8 @@
+{
+  "center": "total_lmp_da",
+  "features": [
+    "da_as_mcp_synchronized_reserve",
+    "forecast_load_mw_day_ahead",
+    "da_as_as_mw_thirty_minutes_reserve"
+  ]
+}

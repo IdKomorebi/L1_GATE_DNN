@@ -1,0 +1,33 @@
+{
+  "threshold": 0.15,
+  "count": 5,
+  "features": [
+    {
+      "index": 3,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.4868801534175873
+    },
+    {
+      "index": 11,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.326539546251297
+    },
+    {
+      "index": 13,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.19641748070716858
+    },
+    {
+      "index": 17,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.22858594357967377
+    },
+    {
+      "index": 20,
+      "name": "total_losses",
+      "gate": 0.22455158829689026
+    }
+  ],
+  "epoch": 138,
+  "source": "best_test_r2_epoch"
+}

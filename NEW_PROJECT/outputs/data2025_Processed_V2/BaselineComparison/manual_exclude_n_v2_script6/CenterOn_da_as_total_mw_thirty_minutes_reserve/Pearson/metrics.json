@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "method": "Pearson",
+  "feature_count": 18,
+  "best_test_r2": 0.8586293458938599,
+  "best_train_r2": 0.9280325174331665,
+  "min_test_loss": 0.14810327166206624,
+  "min_train_loss": 0.07196748910802846,
+  "final_test_r2": 0.853742778301239,
+  "final_train_r2": 0.9256466031074524,
+  "final_test_loss": 0.153222585786942,
+  "final_train_loss": 0.07435339280297125,
+  "best_epoch": 144,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_da_as_total_mw_thirty_minutes_reserve/Pearson"
+}

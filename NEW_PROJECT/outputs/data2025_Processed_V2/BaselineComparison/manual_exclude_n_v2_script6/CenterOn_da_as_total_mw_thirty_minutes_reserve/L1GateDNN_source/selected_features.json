@@ -1,0 +1,13 @@
+{
+  "threshold": 0.15,
+  "count": 1,
+  "features": [
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.1615172177553177
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

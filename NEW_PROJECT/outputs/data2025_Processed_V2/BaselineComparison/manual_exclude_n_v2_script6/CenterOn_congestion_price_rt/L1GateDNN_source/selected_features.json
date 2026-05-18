@@ -1,0 +1,188 @@
+{
+  "threshold": 0.15,
+  "count": 36,
+  "features": [
+    {
+      "index": 1,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.4931412637233734
+    },
+    {
+      "index": 2,
+      "name": "gen_fuel_oil_pct",
+      "gate": 0.312356173992157
+    },
+    {
+      "index": 3,
+      "name": "marginal_loss_price_da",
+      "gate": 0.3078296184539795
+    },
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_pct",
+      "gate": 0.30074283480644226
+    },
+    {
+      "index": 5,
+      "name": "gen_fuel_multiple_fuels_pct",
+      "gate": 0.24567870795726776
+    },
+    {
+      "index": 6,
+      "name": "gen_fuel_storage_mw",
+      "gate": 0.23020172119140625
+    },
+    {
+      "index": 7,
+      "name": "total_lmp_rt",
+      "gate": 0.4350936710834503
+    },
+    {
+      "index": 8,
+      "name": "system_energy_price_rt",
+      "gate": 0.15852800011634827
+    },
+    {
+      "index": 9,
+      "name": "system_energy_price_da",
+      "gate": 0.17091386020183563
+    },
+    {
+      "index": 12,
+      "name": "rmccp",
+      "gate": 0.20383644104003906
+    },
+    {
+      "index": 14,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.33106422424316406
+    },
+    {
+      "index": 18,
+      "name": "gen_fuel_multiple_fuels_mw",
+      "gate": 0.182074174284935
+    },
+    {
+      "index": 20,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.32720234990119934
+    },
+    {
+      "index": 23,
+      "name": "gen_fuel_other_renewables_pct",
+      "gate": 0.2235211580991745
+    },
+    {
+      "index": 25,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.23839999735355377
+    },
+    {
+      "index": 26,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.311919242143631
+    },
+    {
+      "index": 27,
+      "name": "total_losses",
+      "gate": 0.38724485039711
+    },
+    {
+      "index": 28,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.31374552845954895
+    },
+    {
+      "index": 29,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.19187793135643005
+    },
+    {
+      "index": 30,
+      "name": "total_pjm_reg_purchases",
+      "gate": 0.20272612571716309
+    },
+    {
+      "index": 31,
+      "name": "gen_fuel_coal_pct",
+      "gate": 0.41600751876831055
+    },
+    {
+      "index": 32,
+      "name": "total_pjm_loc_credit",
+      "gate": 0.23102043569087982
+    },
+    {
+      "index": 33,
+      "name": "congestion_price_da",
+      "gate": 0.28170081973075867
+    },
+    {
+      "index": 34,
+      "name": "da_as_mcp_primary_reserve",
+      "gate": 0.23161828517913818
+    },
+    {
+      "index": 35,
+      "name": "net_sched_interchange_mw",
+      "gate": 0.24069525301456451
+    },
+    {
+      "index": 36,
+      "name": "total_pjm_assigned_reg",
+      "gate": 0.25555944442749023
+    },
+    {
+      "index": 37,
+      "name": "gen_fuel_gas_pct",
+      "gate": 0.3753773272037506
+    },
+    {
+      "index": 38,
+      "name": "gross_actual_interchange_mw",
+      "gate": 0.26823538541793823
+    },
+    {
+      "index": 39,
+      "name": "net_actual_interchange_mw",
+      "gate": 0.17939309775829315
+    },
+    {
+      "index": 40,
+      "name": "gen_fuel_hydro_pct",
+      "gate": 0.15880385041236877
+    },
+    {
+      "index": 41,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.25538164377212524
+    },
+    {
+      "index": 42,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.2341991662979126
+    },
+    {
+      "index": 43,
+      "name": "da_as_ss_mw_primary_reserve",
+      "gate": 0.2311408519744873
+    },
+    {
+      "index": 44,
+      "name": "total_pjm_rmpcp_cr",
+      "gate": 0.2593787908554077
+    },
+    {
+      "index": 45,
+      "name": "da_as_as_req_mw_thirty_minutes_reserve",
+      "gate": 0.3213725686073303
+    },
+    {
+      "index": 46,
+      "name": "da_as_nsr_mw_primary_reserve",
+      "gate": 0.15959210693836212
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

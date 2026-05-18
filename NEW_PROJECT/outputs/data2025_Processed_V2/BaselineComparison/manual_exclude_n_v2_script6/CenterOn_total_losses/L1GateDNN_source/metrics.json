@@ -1,0 +1,13 @@
+{
+  "center": "total_losses",
+  "model": "L1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_total_losses/L1GateDNN_source",
+  "feature_count": 62,
+  "best_test_r2": 0.9511741399765015,
+  "best_epoch": 128,
+  "last_epoch_train_r2": 0.9870718121528625,
+  "last_epoch_test_r2": 0.9498823285102844,
+  "final_train_r2": 0.9844099283218384,
+  "final_test_r2": 0.9511741399765015,
+  "epochs_completed": 200
+}

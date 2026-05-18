@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Center Relationship Graph - metered_load_mw</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; color: #17202a; background: #f7f8fa; }
+    header { padding: 14px 18px; background: #ffffff; border-bottom: 1px solid #d9dee7; }
+    h1 { margin: 0 0 8px; font-size: 18px; font-weight: 700; }
+    .controls { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; font-size: 13px; }
+    select, input { height: 28px; border: 1px solid #c8d0dc; border-radius: 4px; padding: 0 8px; background: white; }
+    #stats { color: #5b6573; }
+    #wrap { display: grid; grid-template-columns: minmax(680px, 1fr) 360px; height: calc(100vh - 78px); }
+    #graph { width: 100%; height: 100%; background: #ffffff; }
+    #side { border-left: 1px solid #d9dee7; background: #ffffff; overflow: auto; padding: 12px; }
+    .edge { stroke: #7f8fa6; stroke-opacity: 0.36; }
+    .edge.strong { stroke-opacity: 0.74; }
+    .node { stroke: #ffffff; stroke-width: 1.5px; cursor: pointer; }
+    .label { font-size: 10px; fill: #263241; pointer-events: none; }
+    .center { fill: #d64545; }
+    .normal { fill: #278f83; }
+    table { width: 100%; border-collapse: collapse; font-size: 12px; }
+    th, td { border-bottom: 1px solid #edf0f5; padding: 6px 4px; text-align: left; }
+    th { position: sticky; top: 0; background: #ffffff; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Center Relationship Graph - metered_load_mw</h1>
+    <div class="controls">
+      <label>Metric <select id="metric"></select></label>
+      <label>Min abs score <input id="minScore" type="number" value="0" min="0" max="1" step="0.01"></label>
+      <label>Search node <input id="search" type="text" placeholder="column name"></label>
+      <span id="stats"></span>
+    </div>
+  </header>
+  <div id="wrap">
+    <svg id="graph"></svg>
+    <aside id="side"><table id="edgeTable"></table></aside>
+  </div>
+  <script>
+    const payload = {"title": "Center Relationship Graph - metered_load_mw", "nodes": [{"id": "congestion_price_da", "label": "congestion_price_da", "level": 1, "is_center": false}, {"id": "congestion_price_rt", "label": "congestion_price_rt", "level": 1, "is_center": false}, {"id": "da_as_as_mw_primary_reserve", "label": "da_as_as_mw_primary_reserve", "level": 1, "is_center": false}, {"id": "da_as_as_mw_synchronized_reserve", "label": "da_as_as_mw_synchronized_reserve", "level": 1, "is_center": false}, {"id": "da_as_as_mw_thirty_minutes_reserve", "label": "da_as_as_mw_thirty_minutes_reserve", "level": 1, "is_center": false}, {"id": "da_as_as_req_mw_primary_reserve", "label": "da_as_as_req_mw_primary_reserve", "level": 1, "is_center": false}, {"id": "da_as_as_req_mw_synchronized_reserve", "label": "da_as_as_req_mw_synchronized_reserve", "level": 1, "is_center": false}, {"id": "da_as_as_req_mw_thirty_minutes_reserve", "label": "da_as_as_req_mw_thirty_minutes_reserve", "level": 1, "is_center": false}, {"id": "da_as_mcp_primary_reserve", "label": "da_as_mcp_primary_reserve", "level": 1, "is_center": false}, {"id": "da_as_mcp_synchronized_reserve", "label": "da_as_mcp_synchronized_reserve", "level": 1, "is_center": false}, {"id": "da_as_nsr_mw_primary_reserve", "label": "da_as_nsr_mw_primary_reserve", "level": 1, "is_center": false}, {"id": "da_as_ss_mw_primary_reserve", "label": "da_as_ss_mw_primary_reserve", "level": 1, "is_center": false}, {"id": "da_as_ss_mw_synchronized_reserve", "label": "da_as_ss_mw_synchronized_reserve", "level": 1, "is_center": false}, {"id": "da_as_ss_mw_thirty_minutes_reserve", "label": "da_as_ss_mw_thirty_minutes_reserve", "level": 1, "is_center": false}, {"id": "da_as_total_mw_primary_reserve", "label": "da_as_total_mw_primary_reserve", "level": 1, "is_center": false}, {"id": "da_as_total_mw_synchronized_reserve", "label": "da_as_total_mw_synchronized_reserve", "level": 1, "is_center": false}, {"id": "da_as_total_mw_thirty_minutes_reserve", "label": "da_as_total_mw_thirty_minutes_reserve", "level": 1, "is_center": false}, {"id": "gross_actual_interchange_mw", "label": "gross_actual_interchange_mw", "level": 1, "is_center": false}, {"id": "gross_inadv_interchange_mw", "label": "gross_inadv_interchange_mw", "level": 1, "is_center": false}, {"id": "gross_sched_interchange_mw", "label": "gross_sched_interchange_mw", "level": 1, "is_center": false}, {"id": "marginal_loss_price_da", "label": "marginal_loss_price_da", "level": 1, "is_center": false}, {"id": "marginal_loss_price_rt", "label": "marginal_loss_price_rt", "level": 1, "is_center": false}, {"id": "metered_load_mw", "label": "metered_load_mw", "level": 0, "is_center": true}, {"id": "net_actual_interchange_mw", "label": "net_actual_interchange_mw", "level": 1, "is_center": false}, {"id": "net_inadv_interchange_mw", "label": "net_inadv_interchange_mw", "level": 1, "is_center": false}, {"id": "net_sched_interchange_mw", "label": "net_sched_interchange_mw", "level": 1, "is_center": false}, {"id": "rmccp", "label": "rmccp", "level": 1, "is_center": false}, {"id": "rmpcp", "label": "rmpcp", "level": 1, "is_center": false}, {"id": "system_energy_price_da", "label": "system_energy_price_da", "level": 1, "is_center": false}, {"id": "system_energy_price_rt", "label": "system_energy_price_rt", "level": 1, "is_center": false}, {"id": "total_lmp_da", "label": "total_lmp_da", "level": 1, "is_center": false}, {"id": "total_lmp_rt", "label": "total_lmp_rt", "level": 1, "is_center": false}, {"id": "total_losses", "label": "total_losses", "level": 1, "is_center": false}, {"id": "total_pjm_assigned_reg", "label": "total_pjm_assigned_reg", "level": 1, "is_center": false}, {"id": "total_pjm_loc_credit", "label": "total_pjm_loc_credit", "level": 1, "is_center": false}, {"id": "total_pjm_reg_purchases", "label": "total_pjm_reg_purchases", "level": 1, "is_center": false}, {"id": "total_pjm_rmccp_cr", "label": "total_pjm_rmccp_cr", "level": 1, "is_center": false}, {"id": "total_pjm_rmpcp_cr", "label": "total_pjm_rmpcp_cr", "level": 1, "is_center": false}, {"id": "total_pjm_self_sched_reg", "label": "total_pjm_self_sched_reg", "level": 1, "is_center": false}], "edges": [{"source": "metered_load_mw", "target": "total_pjm_rmccp_cr", "pass_count": 6, "max_abs_score": 0.9381864664179348, "best_metric": "hsic", "best_value": 0.9381864664179348, "metrics": {"nmi": 0.6413646036159828, "spearman": 0.221294493063359, "pearson": 0.14490659917075052, "kendall": 0.1619373430892856, "distance_corr": 0.22674163644560386, "hsic": 0.9381864664179348}}, {"source": "metered_load_mw", "target": "gross_actual_interchange_mw", "pass_count": 6, "max_abs_score": 0.9032595168662189, "best_metric": "hsic", "best_value": 0.9032595168662189, "metrics": {"nmi": 0.05101117815951872, "spearman": 0.35255371199599184, "pearson": 0.3161015267452364, "kendall": 0.2775817036164909, "distance_corr": 0.3868677051065435, "hsic": 0.9032595168662189}}, {"source": "metered_load_mw", "target": "gross_inadv_interchange_mw", "pass_count": 6, "max_abs_score": 0.8962863293167977, "best_metric": "hsic", "best_value": 0.8962863293167977, "metrics": {"nmi": 0.06382935650099103, "spearman": 0.4534824241647138, "pearson": 0.46049611987583317, "kendall": 0.29660550458715595, "distance_corr": 0.44443296063586674, "hsic": 0.8962863293167977}}, {"source": "metered_load_mw", "target": "total_losses", "pass_count": 6, "max_abs_score": 0.7114637287921782, "best_metric": "spearman", "best_value": 0.7114637287921782, "metrics": {"nmi": 0.16119359648234166, "spearman": 0.7114637287921782, "pearson": 0.6507576493159848, "kendall": 0.5053446717194987, "distance_corr": 0.6535409702445265, "hsic": 0.45862507961813126}}, {"source": "metered_load_mw", "target": "total_lmp_rt", "pass_count": 6, "max_abs_score": 0.6990946598756709, "best_metric": "nmi", "best_value": 0.6990946598756709, "metrics": {"nmi": 0.6990946598756709, "spearman": 0.5880926275658475, "pearson": 0.4290492909843453, "kendall": 0.4395718654434251, "distance_corr": 0.5252432934960058, "hsic": 0.18853900176454083}}, {"source": "metered_load_mw", "target": "total_pjm_loc_credit", "pass_count": 6, "max_abs_score": 0.6895543672283039, "best_metric": "hsic", "best_value": 0.6895543672283039, "metrics": {"nmi": 0.0860218805695766, "spearman": 0.24004621890329514, "pearson": 0.22907663386561866, "kendall": 0.14571699856998646, "distance_corr": 0.2077792376432478, "hsic": 0.6895543672283039}}, {"source": "metered_load_mw", "target": "total_lmp_da", "pass_count": 6, "max_abs_score": 0.6870089870009985, "best_metric": "spearman", "best_value": 0.6870089870009985, "metrics": {"nmi": 0.38885978833533263, "spearman": 0.6870089870009985, "pearson": 0.6427542799587387, "kendall": 0.48541006394217406, "distance_corr": 0.6321873253652813, "hsic": 0.19090736417337786}}, {"source": "metered_load_mw", "target": "system_energy_price_da", "pass_count": 6, "max_abs_score": 0.6762730124282668, "best_metric": "spearman", "best_value": 0.6762730124282668, "metrics": {"nmi": 0.3429405217052234, "spearman": 0.6762730124282668, "pearson": 0.6223172557496047, "kendall": 0.47702603700930657, "distance_corr": 0.6272803832104812, "hsic": 0.18417775760349514}}, {"source": "metered_load_mw", "target": "system_energy_price_rt", "pass_count": 6, "max_abs_score": 0.6052563176270912, "best_metric": "spearman", "best_value": 0.6052563176270912, "metrics": {"nmi": 0.23628550209583296, "spearman": 0.6052563176270912, "pearson": 0.5285200378097258, "kendall": 0.4192127066747636, "distance_corr": 0.5207724834931552, "hsic": 0.18638307429496165}}, {"source": "metered_load_mw", "target": "da_as_nsr_mw_primary_reserve", "pass_count": 6, "max_abs_score": 0.39516219920200196, "best_metric": "hsic", "best_value": 0.39516219920200196, "metrics": {"nmi": 0.08702831002046586, "spearman": 0.20550562928957639, "pearson": 0.16913269182259413, "kendall": 0.1402551893527724, "distance_corr": 0.20844681343114688, "hsic": 0.39516219920200196}}, {"source": "metered_load_mw", "target": "congestion_price_da", "pass_count": 6, "max_abs_score": 0.3408902542705892, "best_metric": "pearson", "best_value": 0.3408902542705892, "metrics": {"nmi": 0.17614641354397756, "spearman": 0.20742304018116256, "pearson": 0.3408902542705892, "kendall": 0.09506678834224448, "distance_corr": 0.31629583316552057, "hsic": 0.0714478556990709}}, {"source": "metered_load_mw", "target": "da_as_mcp_synchronized_reserve", "pass_count": 6, "max_abs_score": 0.3345393198651681, "best_metric": "pearson", "best_value": 0.3345393198651681, "metrics": {"nmi": 0.3081412396469705, "spearman": 0.2366659764011788, "pearson": 0.3345393198651681, "kendall": 0.1960027975361156, "distance_corr": 0.32857458270172263, "hsic": 0.06703096801648709}}, {"source": "metered_load_mw", "target": "da_as_mcp_primary_reserve", "pass_count": 6, "max_abs_score": 0.3161955476708337, "best_metric": "pearson", "best_value": 0.3161955476708337, "metrics": {"nmi": 0.2318210046410395, "spearman": 0.19144891308742407, "pearson": 0.3161955476708337, "kendall": 0.13204482285689464, "distance_corr": 0.2712863274454468, "hsic": 0.06147814904510986}}, {"source": "metered_load_mw", "target": "da_as_as_req_mw_synchronized_reserve", "pass_count": 6, "max_abs_score": 0.2955659660985681, "best_metric": "pearson", "best_value": 0.2955659660985681, "metrics": {"nmi": 0.11516127716788103, "spearman": 0.2880107002620889, "pearson": 0.2955659660985681, "kendall": 0.22501894863372104, "distance_corr": 0.2885843281836121, "hsic": 0.06630314035962054}}, {"source": "metered_load_mw", "target": "da_as_as_mw_primary_reserve", "pass_count": 6, "max_abs_score": 0.28742047447649505, "best_metric": "distance_corr", "best_value": 0.28742047447649505, "metrics": {"nmi": 0.06902987782312288, "spearman": 0.24221946099336317, "pearson": 0.2552456543301656, "kendall": 0.1846651487301232, "distance_corr": 0.28742047447649505, "hsic": 0.12278518566331552}}, {"source": "metered_load_mw", "target": "da_as_as_req_mw_primary_reserve", "pass_count": 6, "max_abs_score": 0.2766119365649837, "best_metric": "pearson", "best_value": 0.2766119365649837, "metrics": {"nmi": 0.11666751615267412, "spearman": 0.2740621439500204, "pearson": 0.2766119365649837, "kendall": 0.19239537737223572, "distance_corr": 0.25851628296474544, "hsic": 0.06519958833147775}}, {"source": "metered_load_mw", "target": "da_as_total_mw_primary_reserve", "pass_count": 6, "max_abs_score": 0.26989546322280306, "best_metric": "spearman", "best_value": 0.26989546322280306, "metrics": {"nmi": 0.07100097255556082, "spearman": 0.26989546322280306, "pearson": 0.2671038792731289, "kendall": 0.156072302822349, "distance_corr": 0.24545927705347378, "hsic": 0.1239333999058893}}, {"source": "metered_load_mw", "target": "rmccp", "pass_count": 6, "max_abs_score": 0.21347384159661398, "best_metric": "spearman", "best_value": 0.21347384159661398, "metrics": {"nmi": 0.17249746127753435, "spearman": 0.21347384159661398, "pearson": 0.16832062570318215, "kendall": 0.13702187446649827, "distance_corr": 0.19470481999072295, "hsic": 0.20690979500641507}}, {"source": "metered_load_mw", "target": "marginal_loss_price_rt", "pass_count": 5, "max_abs_score": 1.0, "best_metric": "nmi", "best_value": 1.0, "metrics": {"nmi": 1.0, "spearman": 0.6528989253221885, "pearson": 0.4737233990648128, "kendall": 0.4479596213189059, "distance_corr": 0.5490005311076042, "hsic": 0.03113938245901796}}, {"source": "metered_load_mw", "target": "gross_sched_interchange_mw", "pass_count": 5, "max_abs_score": 0.8780403500948841, "best_metric": "hsic", "best_value": 0.8780403500948841, "metrics": {"nmi": 0.020784978312145954, "spearman": 0.19211017892247653, "pearson": 0.19325435775291885, "kendall": 0.12806783430636642, "distance_corr": 0.21262764621273672, "hsic": 0.8780403500948841}}, {"source": "metered_load_mw", "target": "marginal_loss_price_da", "pass_count": 5, "max_abs_score": 0.588571457632384, "best_metric": "spearman", "best_value": 0.588571457632384, "metrics": {"nmi": 0.23459136424999355, "spearman": 0.588571457632384, "pearson": 0.5577736293668614, "kendall": 0.38989157631359467, "distance_corr": 0.5387535071267147, "hsic": 0.041952686019293604}}, {"source": "metered_load_mw", "target": "net_inadv_interchange_mw", "pass_count": 5, "max_abs_score": 0.4035174120731161, "best_metric": "hsic", "best_value": 0.4035174120731161, "metrics": {"nmi": 0.01437385533876079, "spearman": 0.18578200121074367, "pearson": 0.20190643883864043, "kendall": 0.11370733507601792, "distance_corr": 0.1660721580878352, "hsic": 0.4035174120731161}}, {"source": "metered_load_mw", "target": "total_pjm_reg_purchases", "pass_count": 5, "max_abs_score": 0.37843018929906636, "best_metric": "hsic", "best_value": 0.37843018929906636, "metrics": {"nmi": 0.04035678161183692, "spearman": 0.2748128061208465, "pearson": 0.25192591014395105, "kendall": 0.20298304142340842, "distance_corr": 0.29834730699080264, "hsic": 0.37843018929906636}}, {"source": "metered_load_mw", "target": "congestion_price_rt", "pass_count": 5, "max_abs_score": 0.34863531261103003, "best_metric": "spearman", "best_value": 0.34863531261103003, "metrics": {"nmi": 0.05518575963659005, "spearman": 0.34863531261103003, "pearson": 0.32290601348952697, "kendall": 0.221016389348374, "distance_corr": 0.2953092594302897, "hsic": 0.03227591020328739}}, {"source": "metered_load_mw", "target": "da_as_as_req_mw_thirty_minutes_reserve", "pass_count": 5, "max_abs_score": 0.29196075875971805, "best_metric": "distance_corr", "best_value": 0.29196075875971805, "metrics": {"nmi": 0.10649790616959207, "spearman": 0.2644284814068566, "pearson": 0.27309209857665306, "kendall": 0.22356833390796546, "distance_corr": 0.29196075875971805, "hsic": 0.036489646900589465}}, {"source": "metered_load_mw", "target": "da_as_total_mw_synchronized_reserve", "pass_count": 5, "max_abs_score": 0.22155367213293428, "best_metric": "hsic", "best_value": 0.22155367213293428, "metrics": {"nmi": 0.05863743320191095, "spearman": 0.1000603826786264, "pearson": 0.10305093940992509, "kendall": 0.07435838869209327, "distance_corr": 0.14842040699298237, "hsic": 0.22155367213293428}}, {"source": "metered_load_mw", "target": "da_as_as_mw_synchronized_reserve", "pass_count": 5, "max_abs_score": 0.2201999194638974, "best_metric": "hsic", "best_value": 0.2201999194638974, "metrics": {"nmi": 0.08206065080941066, "spearman": 0.11278578189012577, "pearson": 0.11008131616600016, "kendall": 0.06920998357010504, "distance_corr": 0.15273843704037243, "hsic": 0.2201999194638974}}, {"source": "metered_load_mw", "target": "total_pjm_self_sched_reg", "pass_count": 4, "max_abs_score": 0.3485224519377839, "best_metric": "hsic", "best_value": 0.3485224519377839, "metrics": {"nmi": 0.02443433009806919, "spearman": 0.16323531222794319, "pearson": 0.12820245231223518, "kendall": 0.07734645353522407, "distance_corr": 0.13111742444323093, "hsic": 0.3485224519377839}}, {"source": "metered_load_mw", "target": "da_as_as_mw_thirty_minutes_reserve", "pass_count": 3, "max_abs_score": 0.9229768576233296, "best_metric": "hsic", "best_value": 0.9229768576233296, "metrics": {"nmi": 0.08174292912159253, "spearman": 0.06888278094052062, "pearson": -0.06793544721116669, "kendall": -0.00992912829261602, "distance_corr": 0.18360373087923665, "hsic": 0.9229768576233296}}, {"source": "metered_load_mw", "target": "da_as_total_mw_thirty_minutes_reserve", "pass_count": 3, "max_abs_score": 0.919158667773985, "best_metric": "hsic", "best_value": 0.919158667773985, "metrics": {"nmi": 0.054261231907130836, "spearman": 0.032253713780852, "pearson": -0.07897426693995176, "kendall": 0.03566886064070472, "distance_corr": 0.20121985612505672, "hsic": 0.919158667773985}}, {"source": "metered_load_mw", "target": "net_actual_interchange_mw", "pass_count": 3, "max_abs_score": 0.9114660501491264, "best_metric": "hsic", "best_value": 0.9114660501491264, "metrics": {"nmi": 0.03427571419585685, "spearman": -0.09063392207043577, "pearson": -0.10982553556912587, "kendall": -0.06375868779538504, "distance_corr": 0.14709697333701122, "hsic": 0.9114660501491264}}, {"source": "metered_load_mw", "target": "total_pjm_assigned_reg", "pass_count": 3, "max_abs_score": 0.44229837038453285, "best_metric": "hsic", "best_value": 0.44229837038453285, "metrics": {"nmi": 0.022052936020417992, "spearman": 0.09911834712369666, "pearson": 0.07374836987955644, "kendall": 0.0864031582114156, "distance_corr": 0.14959109859037814, "hsic": 0.44229837038453285}}, {"source": "metered_load_mw", "target": "da_as_ss_mw_primary_reserve", "pass_count": 3, "max_abs_score": 0.3376976574902954, "best_metric": "hsic", "best_value": 0.3376976574902954, "metrics": {"nmi": 0.05058657960168371, "spearman": 0.03476051219226923, "pearson": 0.005437378847705592, "kendall": 0.005404708185255592, "distance_corr": 0.11056288244380187, "hsic": 0.3376976574902954}}, {"source": "metered_load_mw", "target": "da_as_ss_mw_thirty_minutes_reserve", "pass_count": 3, "max_abs_score": 0.3347379178657094, "best_metric": "hsic", "best_value": 0.3347379178657094, "metrics": {"nmi": 0.050685071961579425, "spearman": 0.02062492715562897, "pearson": -0.0028025886865566205, "kendall": 0.02556195955387924, "distance_corr": 0.11533554112762417, "hsic": 0.3347379178657094}}, {"source": "metered_load_mw", "target": "total_pjm_rmpcp_cr", "pass_count": 3, "max_abs_score": 0.21712520701700197, "best_metric": "hsic", "best_value": 0.21712520701700197, "metrics": {"nmi": 0.06749982941159466, "spearman": -0.10208570382574858, "pearson": -0.02709378206052959, "kendall": -0.06534250808262858, "distance_corr": 0.07480149693415754, "hsic": 0.21712520701700197}}, {"source": "metered_load_mw", "target": "rmpcp", "pass_count": 3, "max_abs_score": 0.11455826162595144, "best_metric": "spearman", "best_value": -0.11455826162595144, "metrics": {"nmi": 0.06196333812686574, "spearman": -0.11455826162595144, "pearson": -0.059624822230054005, "kendall": -0.06937299473873673, "distance_corr": 0.09036679664979655, "hsic": 0.053747101348498284}}, {"source": "metered_load_mw", "target": "net_sched_interchange_mw", "pass_count": 2, "max_abs_score": 0.9154737362484046, "best_metric": "hsic", "best_value": 0.9154737362484046, "metrics": {"nmi": 0.017849542529915115, "spearman": -0.07863853985746425, "pearson": -0.09907259627924078, "kendall": -0.07128996385877119, "distance_corr": 0.15682906716538114, "hsic": 0.9154737362484046}}, {"source": "metered_load_mw", "target": "da_as_ss_mw_synchronized_reserve", "pass_count": 2, "max_abs_score": 0.3354112174702432, "best_metric": "hsic", "best_value": 0.3354112174702432, "metrics": {"nmi": 0.04205385482719347, "spearman": 0.009811815137311147, "pearson": -0.015867721389644904, "kendall": 0.008552784348475794, "distance_corr": 0.11597384160695234, "hsic": 0.3354112174702432}}], "metrics": ["nmi", "spearman", "pearson", "kendall", "distance_corr", "hsic"], "thresholds": {"nmi": 0.05, "spearman": 0.1, "pearson": 0.1, "kendall": 0.08, "distance_corr": 0.1, "hsic": 0.05}, "center": "metered_load_mw"};
+    const svg = document.getElementById("graph");
+    const metricSel = document.getElementById("metric");
+    const minScore = document.getElementById("minScore");
+    const search = document.getElementById("search");
+    const stats = document.getElementById("stats");
+    const edgeTable = document.getElementById("edgeTable");
+
+    metricSel.innerHTML = '<option value="any">any passed metric</option>' +
+      payload.metrics.map(m => `<option value="${m}">${m}</option>`).join("");
+
+    function filteredEdges() {
+      const metric = metricSel.value;
+      const min = Number(minScore.value || 0);
+      const q = search.value.trim().toLowerCase();
+      return payload.edges.filter(e => {
+        const metricOk = metric === "any"
+          ? e.pass_count > 0
+          : e.metrics[metric] !== null && Math.abs(e.metrics[metric]) >= (payload.thresholds[metric] || 0);
+        const scoreOk = Math.abs(metric === "any" ? e.max_abs_score : (e.metrics[metric] || 0)) >= min;
+        const searchOk = !q || e.source.toLowerCase().includes(q) || e.target.toLowerCase().includes(q);
+        return metricOk && scoreOk && searchOk;
+      }).sort((a, b) => b.max_abs_score - a.max_abs_score);
+    }
+
+    function layout(nodes, width, height) {
+      const pos = {};
+      if (payload.center) {
+        pos[payload.center] = {x: width / 2, y: height / 2};
+        const others = nodes.filter(n => n.id !== payload.center);
+        const r = Math.min(width, height) * 0.38;
+        others.forEach((n, i) => {
+          const angle = 2 * Math.PI * i / Math.max(others.length, 1) - Math.PI / 2;
+          pos[n.id] = {x: width / 2 + r * Math.cos(angle), y: height / 2 + r * Math.sin(angle)};
+        });
+      } else {
+        const r = Math.min(width, height) * 0.42;
+        nodes.forEach((n, i) => {
+          const angle = 2 * Math.PI * i / Math.max(nodes.length, 1) - Math.PI / 2;
+          pos[n.id] = {x: width / 2 + r * Math.cos(angle), y: height / 2 + r * Math.sin(angle)};
+        });
+      }
+      return pos;
+    }
+
+    function render() {
+      const width = svg.clientWidth || 900;
+      const height = svg.clientHeight || 650;
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.innerHTML = "";
+
+      const edges = filteredEdges();
+      const used = new Set();
+      edges.forEach(e => { used.add(e.source); used.add(e.target); });
+      const nodes = payload.nodes.filter(n => used.has(n.id));
+      const pos = layout(nodes, width, height);
+
+      edges.forEach(e => {
+        if (!pos[e.source] || !pos[e.target]) return;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", pos[e.source].x);
+        line.setAttribute("y1", pos[e.source].y);
+        line.setAttribute("x2", pos[e.target].x);
+        line.setAttribute("y2", pos[e.target].y);
+        line.setAttribute("class", "edge" + (e.pass_count >= 3 ? " strong" : ""));
+        line.setAttribute("stroke-width", String(0.7 + Math.min(5, e.max_abs_score * 5)));
+        line.innerHTML = `<title>${e.source} -> ${e.target}\n${e.best_metric}=${e.best_value.toFixed(4)}\npass_count=${e.pass_count}</title>`;
+        svg.appendChild(line);
+      });
+
+      nodes.forEach(n => {
+        const p = pos[n.id];
+        const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        circle.setAttribute("cx", p.x);
+        circle.setAttribute("cy", p.y);
+        circle.setAttribute("r", n.is_center ? 13 : 8);
+        circle.setAttribute("class", "node " + (n.is_center ? "center" : "normal"));
+        circle.innerHTML = `<title>${n.id}</title>`;
+        svg.appendChild(circle);
+
+        const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        label.setAttribute("x", p.x + 10);
+        label.setAttribute("y", p.y + 4);
+        label.setAttribute("class", "label");
+        label.textContent = n.label.length > 30 ? n.label.slice(0, 30) + "..." : n.label;
+        svg.appendChild(label);
+      });
+
+      stats.textContent = `${nodes.length} nodes, ${edges.length} edges`;
+      edgeTable.innerHTML = "<tr><th>source</th><th>target</th><th>best</th><th>score</th></tr>" +
+        edges.slice(0, 300).map(e =>
+          `<tr><td>${e.source}</td><td>${e.target}</td><td>${e.best_metric}</td><td>${e.best_value.toFixed(4)}</td></tr>`
+        ).join("");
+    }
+
+    metricSel.addEventListener("change", render);
+    minScore.addEventListener("input", render);
+    search.addEventListener("input", render);
+    window.addEventListener("resize", render);
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "gen_fuel_nuclear_mw",
+    "system_energy_price_da"
+  ]
+}

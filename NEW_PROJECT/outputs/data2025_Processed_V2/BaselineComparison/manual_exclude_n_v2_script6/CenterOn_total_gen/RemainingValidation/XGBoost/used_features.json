@@ -1,0 +1,32 @@
+{
+  "center": "total_gen",
+  "features": [
+    "rmccp",
+    "rmpcp",
+    "total_pjm_loc_credit",
+    "total_pjm_reg_purchases",
+    "total_pjm_self_sched_reg",
+    "total_pjm_assigned_reg",
+    "total_pjm_rmccp_cr",
+    "total_pjm_rmpcp_cr",
+    "da_as_mcp_primary_reserve",
+    "da_as_mcp_synchronized_reserve",
+    "da_as_mcp_thirty_minutes_reserve",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "da_as_total_mw_primary_reserve",
+    "da_as_total_mw_synchronized_reserve",
+    "da_as_as_mw_synchronized_reserve",
+    "da_as_ss_mw_primary_reserve",
+    "da_as_ss_mw_synchronized_reserve",
+    "da_as_ss_mw_thirty_minutes_reserve",
+    "da_as_ircmwt2_primary_reserve",
+    "da_as_ircmwt2_synchronized_reserve",
+    "da_as_ircmwt2_thirty_minutes_reserve",
+    "congestion_price_da",
+    "congestion_price_rt",
+    "net_inadv_interchange_mw",
+    "gross_actual_interchange_mw",
+    "gross_sched_interchange_mw",
+    "gross_inadv_interchange_mw"
+  ]
+}

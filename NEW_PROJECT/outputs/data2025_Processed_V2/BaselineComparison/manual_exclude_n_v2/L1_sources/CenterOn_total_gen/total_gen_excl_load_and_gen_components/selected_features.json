@@ -1,0 +1,23 @@
+{
+  "threshold": 0.15,
+  "count": 3,
+  "features": [
+    {
+      "index": 4,
+      "name": "total_losses",
+      "gate": 0.1848011612892151
+    },
+    {
+      "index": 6,
+      "name": "system_energy_price_da",
+      "gate": 0.26256874203681946
+    },
+    {
+      "index": 21,
+      "name": "net_actual_interchange_mw",
+      "gate": 0.16025114059448242
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

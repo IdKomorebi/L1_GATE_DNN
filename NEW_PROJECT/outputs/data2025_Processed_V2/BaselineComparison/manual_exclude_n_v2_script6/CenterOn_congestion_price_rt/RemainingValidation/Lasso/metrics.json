@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "method": "Lasso",
+  "feature_count": 59,
+  "best_test_r2": 0.7209880948066711,
+  "best_train_r2": 0.957765519618988,
+  "min_test_loss": 0.2669639695753775,
+  "min_train_loss": 0.04223448619556213,
+  "final_test_r2": 0.6980421543121338,
+  "final_train_r2": 0.9550201296806335,
+  "final_test_loss": 0.28891909158811335,
+  "final_train_loss": 0.04497984393970781,
+  "best_epoch": 34,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_congestion_price_rt/RemainingValidation/Lasso"
+}

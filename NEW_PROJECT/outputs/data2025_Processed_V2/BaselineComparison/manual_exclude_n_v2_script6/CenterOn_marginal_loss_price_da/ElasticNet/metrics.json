@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "method": "ElasticNet",
+  "feature_count": 12,
+  "best_test_r2": 0.8888623714447021,
+  "best_train_r2": 0.9397897720336914,
+  "min_test_loss": 0.11563924789746724,
+  "min_train_loss": 0.06021022375440047,
+  "final_test_r2": 0.8847036957740784,
+  "final_train_r2": 0.9347999095916748,
+  "final_test_loss": 0.11996636464737537,
+  "final_train_loss": 0.06520008144887415,
+  "best_epoch": 121,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_marginal_loss_price_da/ElasticNet"
+}

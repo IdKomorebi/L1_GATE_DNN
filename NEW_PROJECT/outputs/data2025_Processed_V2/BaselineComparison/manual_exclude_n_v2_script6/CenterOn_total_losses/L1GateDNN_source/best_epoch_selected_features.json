@@ -1,0 +1,38 @@
+{
+  "threshold": 0.15,
+  "count": 6,
+  "features": [
+    {
+      "index": 1,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.3392203152179718
+    },
+    {
+      "index": 7,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.17660140991210938
+    },
+    {
+      "index": 8,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.234526589512825
+    },
+    {
+      "index": 14,
+      "name": "total_lmp_rt",
+      "gate": 0.16626864671707153
+    },
+    {
+      "index": 25,
+      "name": "gen_fuel_coal_pct",
+      "gate": 0.15009483695030212
+    },
+    {
+      "index": 26,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.39097070693969727
+    }
+  ],
+  "epoch": 128,
+  "source": "best_test_r2_epoch"
+}
