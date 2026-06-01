@@ -1,0 +1,24 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "da_as_total_mw_thirty_minutes_reserve",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_as_mw_primary_reserve",
+    "da_as_total_mw_synchronized_reserve",
+    "total_lmp_da",
+    "da_as_mcp_synchronized_reserve",
+    "forecast_load_mw_day_ahead",
+    "system_energy_price_rt",
+    "da_as_mcp_primary_reserve",
+    "gen_fuel_multiple_fuels_pct",
+    "marginal_loss_price_rt",
+    "gen_fuel_gas_pct",
+    "gen_fuel_wind_pct",
+    "forecast_load_mw_latest_available",
+    "da_as_nsr_mw_primary_reserve",
+    "da_as_ss_mw_thirty_minutes_reserve",
+    "gen_fuel_coal_pct",
+    "da_as_ss_mw_primary_reserve",
+    "solar_generation_mw"
+  ]
+}
