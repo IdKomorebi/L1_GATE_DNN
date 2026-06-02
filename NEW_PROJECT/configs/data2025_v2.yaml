@@ -11,12 +11,12 @@ preprocessing:
 relations:
   metrics: [nmi, spearman, pearson, kendall, distance_corr, hsic]
   thresholds:
-    nmi: 0.05
-    spearman: 0.10
-    pearson: 0.10
-    kendall: 0.08
-    distance_corr: 0.10
-    hsic: 0.05
+    nmi: 0.06
+    spearman: 0.15
+    pearson: 0.15
+    kendall: 0.12
+    distance_corr: 0.20
+    hsic: 0.25
   sample_size: 3000
   expensive_sample_size: 1200
 
@@ -104,9 +104,9 @@ model_params:
     active_threshold: 0.06
 
   ImprovedL1GateDNN:
-    lambda_l1: 0.001
+    lambda_l1: 0.0015
     warmup_epochs: 50
-    active_threshold: 0.06
+    active_threshold: 0.50
 
   ImprovedL2GateDNN:
     lambda_l2: 0.001

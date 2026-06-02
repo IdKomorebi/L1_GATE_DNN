@@ -8,9 +8,32 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 from matplotlib.ticker import MaxNLocator, MultipleLocator
 import numpy as np
 import pandas as pd
+
+
+def _zh_path(path: str | Path) -> Path:
+    p = Path(path)
+    return p.with_name(f"{p.stem}_zh{p.suffix}")
+
+
+def _configure_chinese_font() -> None:
+    preferred = [
+        "Microsoft YaHei",
+        "SimHei",
+        "SimSun",
+        "Noto Sans CJK SC",
+        "Source Han Sans SC",
+        "Arial Unicode MS",
+    ]
+    available = {font.name for font in font_manager.fontManager.ttflist}
+    for name in preferred:
+        if name in available:
+            plt.rcParams["font.sans-serif"] = [name, *plt.rcParams.get("font.sans-serif", [])]
+            break
+    plt.rcParams["axes.unicode_minus"] = False
 
 
 def plot_loss_and_r2(log_df: pd.DataFrame, loss_path: str | Path, r2_path: str | Path) -> None:
@@ -45,6 +68,35 @@ def plot_loss_and_r2(log_df: pd.DataFrame, loss_path: str | Path, r2_path: str |
     ax.legend()
     plt.tight_layout()
     plt.savefig(r2_path, dpi=150)
+    plt.close()
+
+    _configure_chinese_font()
+    fig, ax = plt.subplots(figsize=(8, 4.8))
+    ax.plot(log_df["epoch"], log_df["train_loss"], label="Train loss")
+    ax.plot(log_df["epoch"], log_df["test_loss"], label="Test loss")
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel("MSE Loss")
+    ax.set_title("训练/测试 Loss")
+    ax.set_ylim(bottom=0.0, top=max_loss * 1.08 if max_loss > 0 else 1.0)
+    ax.yaxis.set_major_locator(MaxNLocator(nbins=6))
+    ax.grid(True, axis="y", alpha=0.2)
+    ax.legend()
+    plt.tight_layout()
+    plt.savefig(_zh_path(loss_path), dpi=150)
+    plt.close()
+
+    fig, ax = plt.subplots(figsize=(8, 4.8))
+    ax.plot(log_df["epoch"], log_df["train_r2"], label=r"Train $R^2$")
+    ax.plot(log_df["epoch"], log_df["test_r2"], label=r"Test $R^2$")
+    ax.set_xlabel("Epoch")
+    ax.set_ylabel(r"$R^2$")
+    ax.set_title(r"训练/测试 $R^2$")
+    ax.set_ylim(lower, upper)
+    ax.yaxis.set_major_locator(MultipleLocator(0.1))
+    ax.grid(True, axis="y", alpha=0.2)
+    ax.legend()
+    plt.tight_layout()
+    plt.savefig(_zh_path(r2_path), dpi=150)
     plt.close()
 
 
@@ -82,6 +134,32 @@ def plot_gate_history(
     plt.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close()
 
+    _configure_chinese_font()
+    plt.figure(figsize=(16, plot_height))
+    for idx in range(gate_history.shape[1]):
+        if feature_names and idx < len(feature_names):
+            label = str(feature_names[idx])
+        else:
+            label = f"Feature_{idx + 1}"
+        plt.plot(epochs, gate_history[:, idx], label=label, alpha=0.72, linewidth=1.5)
+    plt.xlabel("Epoch")
+    plt.ylabel("Gate Value")
+    plt.title("Gate 参数随 Epoch 变化")
+    ax = plt.gca()
+    ax.yaxis.set_major_locator(MultipleLocator(0.4))
+    ax.grid(True, axis="y", alpha=0.2)
+    plt.legend(
+        bbox_to_anchor=(1.02, 1),
+        loc="upper left",
+        fontsize=8,
+        labelspacing=0.55,
+        handlelength=2.6,
+        borderaxespad=0.8,
+    )
+    plt.tight_layout()
+    plt.savefig(_zh_path(output_path), dpi=150, bbox_inches="tight")
+    plt.close()
+
 
 def plot_active_features(log_df: pd.DataFrame, output_path: str | Path) -> None:
     if "active_features" not in log_df.columns:
@@ -94,6 +172,17 @@ def plot_active_features(log_df: pd.DataFrame, output_path: str | Path) -> None:
     plt.grid(True, alpha=0.3)
     plt.tight_layout()
     plt.savefig(output_path, dpi=150)
+    plt.close()
+
+    _configure_chinese_font()
+    plt.figure(figsize=(7, 4))
+    plt.plot(log_df["epoch"], log_df["active_features"], marker="o", linestyle="-")
+    plt.xlabel("Epoch")
+    plt.ylabel("活跃特征数")
+    plt.title("活跃特征数随 Epoch 变化")
+    plt.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(_zh_path(output_path), dpi=150)
     plt.close()
 
 
@@ -110,6 +199,18 @@ def plot_meta_history(w_history: np.ndarray, b_history: np.ndarray, epochs: Sequ
         plt.savefig(w_path, dpi=150)
         plt.close()
 
+        _configure_chinese_font()
+        plt.figure(figsize=(8, 4))
+        for idx in range(w_history.shape[1]):
+            plt.plot(epochs, w_history[:, idx], label=f"W_{idx + 1}")
+        plt.xlabel("Epoch")
+        plt.ylabel("W_meta")
+        plt.title("指标权重 W_meta 演化")
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig(_zh_path(w_path), dpi=150)
+        plt.close()
+
     if b_history.size:
         plt.figure(figsize=(7, 4))
         plt.plot(epochs, b_history)
@@ -118,4 +219,14 @@ def plot_meta_history(w_history: np.ndarray, b_history: np.ndarray, epochs: Sequ
         plt.title("b_meta Evolution")
         plt.tight_layout()
         plt.savefig(b_path, dpi=150)
+        plt.close()
+
+        _configure_chinese_font()
+        plt.figure(figsize=(7, 4))
+        plt.plot(epochs, b_history)
+        plt.xlabel("Epoch")
+        plt.ylabel("b_meta")
+        plt.title("风险容忍偏置 b_meta 演化")
+        plt.tight_layout()
+        plt.savefig(_zh_path(b_path), dpi=150)
         plt.close()
