@@ -1,0 +1,13 @@
+{
+  "center": "net_actual_interchange_mw",
+  "model": "ImprovedL1GateDNN",
+  "run_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\CenterOn_net_actual_interchange_mw\\ImprovedGateDNN\\ImprovedL1GateDNN\\run_20260602_152736_combo5_ImprovedL1GateDNN",
+  "feature_count": 55,
+  "best_test_r2": 0.9728579521179199,
+  "best_epoch": 195,
+  "last_epoch_train_r2": 0.9902960658073425,
+  "last_epoch_test_r2": 0.9711161255836487,
+  "final_train_r2": 0.9913015961647034,
+  "final_test_r2": 0.9728579521179199,
+  "epochs_completed": 200
+}
