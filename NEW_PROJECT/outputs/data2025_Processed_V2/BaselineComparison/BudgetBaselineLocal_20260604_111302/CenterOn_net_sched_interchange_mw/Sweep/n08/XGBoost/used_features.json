@@ -1,0 +1,13 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "gen_fuel_multiple_fuels_pct",
+    "da_as_as_req_mw_primary_reserve",
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "marginal_loss_price_da",
+    "total_pjm_reg_purchases",
+    "system_energy_price_da"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "method": "Spearman",
+  "feature_count": 13,
+  "best_test_r2": 0.8281574845314026,
+  "best_train_r2": 0.8920679688453674,
+  "min_test_loss": 0.1783306459517784,
+  "min_train_loss": 0.10793202415342674,
+  "final_test_r2": 0.8247612118721008,
+  "final_train_r2": 0.8872540593147278,
+  "final_test_loss": 0.18185514672850706,
+  "final_train_loss": 0.11274594715733259,
+  "best_epoch": 138,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineLocal_20260604_111302/CenterOn_net_actual_interchange_mw/Sweep/n13/Spearman"
+}

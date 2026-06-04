@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "total_pjm_rmccp_cr",
+    "rmccp",
+    "total_lmp_rt",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_as_req_mw_synchronized_reserve",
+    "system_energy_price_rt",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "marginal_loss_price_rt",
+    "gross_sched_interchange_mw",
+    "total_pjm_rmpcp_cr"
+  ]
+}

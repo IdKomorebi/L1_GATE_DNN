@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_full_all",
+  "exp_type": "all",
+  "x_label": "Full\nn=40",
+  "feature_count": 40,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.6779986619949341,
+  "final_test_r2": 0.6516327857971191,
+  "best_epoch": 41,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_l1params_lr00065_thr010/CenterOn_congestion_price_rt/L1GateDNN_source/redundancy_validation/top_series_congestion_rt_top31_current_e150/DNN_full_all"
+}

@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_da",
+  "method": "DNN_top16",
+  "feature_count": 16,
+  "best_test_r2": 0.9988588094711304,
+  "best_train_r2": 0.9994335174560547,
+  "min_test_loss": 0.0008325653204387704,
+  "min_train_loss": 0.0005664664240014941,
+  "final_test_r2": 0.9824246764183044,
+  "final_train_r2": 0.9829764366149902,
+  "final_test_loss": 0.012822064861323531,
+  "final_train_loss": 0.01702357450969448,
+  "best_epoch": 134,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/RedundantNoiseExplanation/RedundantNoiseExplanation_20260604_121500/CenterOn_congestion_price_da/TopNIncremental/DNN_top16"
+}

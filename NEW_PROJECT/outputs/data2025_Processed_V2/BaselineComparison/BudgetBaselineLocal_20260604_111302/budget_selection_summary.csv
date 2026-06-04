@@ -1,0 +1,5 @@
+﻿center,target_label,budget_ratio,full_feature_count,full_dnn_r2,selected_n,selection_rule,target_ratio,target_value,best_r2_at_n,ratio_at_n
+net_actual_interchange_mw,net_actual_interchange_mw,0.95,67,0.967963695526123,9,ratio_0.95,0.95,0.9195655107498169,0.9395973682403564,0.9706948438078058
+net_actual_interchange_mw,net_actual_interchange_mw,0.97,67,0.967963695526123,9,ratio_0.97,0.97,0.9389247846603394,0.9395973682403564,0.9706948438078058
+gross_actual_interchange_mw,gross_actual_interchange_mw,0.95,69,0.8499119877815247,8,ratio_0.95,0.95,0.8074163883924483,0.8364913463592529,0.9842093750703496
+gross_actual_interchange_mw,gross_actual_interchange_mw,0.97,69,0.8499119877815247,8,ratio_0.97,0.97,0.8244146281480789,0.8364913463592529,0.9842093750703496

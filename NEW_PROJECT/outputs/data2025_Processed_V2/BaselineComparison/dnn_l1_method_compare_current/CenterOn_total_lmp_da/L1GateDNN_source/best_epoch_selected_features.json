@@ -1,0 +1,58 @@
+{
+  "threshold": 0.1,
+  "count": 10,
+  "features": [
+    {
+      "index": 5,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.47527435421943665
+    },
+    {
+      "index": 7,
+      "name": "gen_fuel_oil_pct",
+      "gate": 0.11184334009885788
+    },
+    {
+      "index": 15,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.2923198342323303
+    },
+    {
+      "index": 19,
+      "name": "gen_fuel_other_renewables_pct",
+      "gate": 0.12731041014194489
+    },
+    {
+      "index": 21,
+      "name": "total_pjm_reg_purchases",
+      "gate": 0.1020989790558815
+    },
+    {
+      "index": 23,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.3142496943473816
+    },
+    {
+      "index": 25,
+      "name": "total_losses",
+      "gate": 0.23314745724201202
+    },
+    {
+      "index": 29,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.12439948320388794
+    },
+    {
+      "index": 34,
+      "name": "gen_fuel_gas_pct",
+      "gate": 0.10759063065052032
+    },
+    {
+      "index": 37,
+      "name": "net_actual_interchange_mw",
+      "gate": 0.12414248287677765
+    }
+  ],
+  "epoch": 160,
+  "source": "best_test_r2_epoch"
+}

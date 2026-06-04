@@ -1,0 +1,13 @@
+{
+  "center": "net_actual_interchange_mw",
+  "model": "ImprovedL1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/ImprovedGateDNN/ImprovedL1GateDNN/run_20260602_logits_oldparams_ImprovedL1GateDNN",
+  "feature_count": 55,
+  "best_test_r2": 0.9715520739555359,
+  "best_epoch": 174,
+  "last_epoch_train_r2": 0.9916191101074219,
+  "last_epoch_test_r2": 0.969655454158783,
+  "final_train_r2": 0.9924665689468384,
+  "final_test_r2": 0.9715520739555359,
+  "epochs_completed": 200
+}

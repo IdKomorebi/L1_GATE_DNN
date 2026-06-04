@@ -1,0 +1,7 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw"
+  ]
+}

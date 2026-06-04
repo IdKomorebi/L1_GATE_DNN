@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "method": "DNN_AllFeatures",
+  "feature_count": 67,
+  "best_test_r2": 0.8494500517845154,
+  "best_train_r2": 0.986961305141449,
+  "min_test_loss": 0.15203061440346263,
+  "min_train_loss": 0.013038691158479606,
+  "final_test_r2": 0.8390399217605591,
+  "final_train_r2": 0.9829182028770447,
+  "final_test_loss": 0.16254314240749654,
+  "final_train_loss": 0.017081808671426287,
+  "best_epoch": 74,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/DNN_vs_L1DNN_20260603_234500/CenterOn_da_as_total_mw_primary_reserve/DNN_AllFeatures"
+}

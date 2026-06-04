@@ -1,0 +1,13 @@
+{
+  "threshold": 0.5,
+  "count": 1,
+  "features": [
+    {
+      "index": 5,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.5196387767791748
+    }
+  ],
+  "epoch": 136,
+  "source": "best_test_r2_epoch"
+}

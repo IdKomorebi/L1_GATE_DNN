@@ -1,0 +1,118 @@
+{
+  "threshold": 0.5,
+  "count": 22,
+  "features": [
+    {
+      "index": 1,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.8003808259963989
+    },
+    {
+      "index": 2,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.8055828809738159
+    },
+    {
+      "index": 3,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.7287004590034485
+    },
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.7125650644302368
+    },
+    {
+      "index": 5,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.8498334288597107
+    },
+    {
+      "index": 14,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.5577691793441772
+    },
+    {
+      "index": 17,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.8183980584144592
+    },
+    {
+      "index": 19,
+      "name": "gen_fuel_wind_mw",
+      "gate": 0.6921878457069397
+    },
+    {
+      "index": 20,
+      "name": "da_as_total_mw_synchronized_reserve",
+      "gate": 0.5083293318748474
+    },
+    {
+      "index": 32,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.7611078023910522
+    },
+    {
+      "index": 33,
+      "name": "wind_generation_mw",
+      "gate": 0.7081565856933594
+    },
+    {
+      "index": 34,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.7857824563980103
+    },
+    {
+      "index": 37,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.8117741942405701
+    },
+    {
+      "index": 38,
+      "name": "metered_load_mw",
+      "gate": 0.8084378242492676
+    },
+    {
+      "index": 39,
+      "name": "forecast_load_mw_latest_available",
+      "gate": 0.8010933995246887
+    },
+    {
+      "index": 40,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.8003219366073608
+    },
+    {
+      "index": 41,
+      "name": "gross_actual_interchange_mw",
+      "gate": 0.7249987125396729
+    },
+    {
+      "index": 42,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.6992754936218262
+    },
+    {
+      "index": 43,
+      "name": "total_pjm_loc_credit",
+      "gate": 0.6870284676551819
+    },
+    {
+      "index": 45,
+      "name": "net_inadv_interchange_mw",
+      "gate": 0.6092188358306885
+    },
+    {
+      "index": 47,
+      "name": "total_pjm_self_sched_reg",
+      "gate": 0.5357146859169006
+    },
+    {
+      "index": 51,
+      "name": "gen_fuel_solar_mw",
+      "gate": 0.5108197927474976
+    }
+  ],
+  "epoch": 116,
+  "source": "final_epoch"
+}

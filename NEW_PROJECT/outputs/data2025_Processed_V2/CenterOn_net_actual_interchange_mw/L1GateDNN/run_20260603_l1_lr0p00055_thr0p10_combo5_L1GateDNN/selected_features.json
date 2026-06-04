@@ -1,0 +1,103 @@
+{
+  "threshold": 0.1,
+  "count": 19,
+  "features": [
+    {
+      "index": 3,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.16965775191783905
+    },
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.4786249101161957
+    },
+    {
+      "index": 5,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.9238704442977905
+    },
+    {
+      "index": 14,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.11942578852176666
+    },
+    {
+      "index": 19,
+      "name": "gen_fuel_wind_mw",
+      "gate": 0.22544743120670319
+    },
+    {
+      "index": 20,
+      "name": "da_as_total_mw_synchronized_reserve",
+      "gate": 0.10397767275571823
+    },
+    {
+      "index": 23,
+      "name": "gen_fuel_multiple_fuels_mw",
+      "gate": 0.19292262196540833
+    },
+    {
+      "index": 25,
+      "name": "gen_fuel_gas_pct",
+      "gate": 0.1561807245016098
+    },
+    {
+      "index": 32,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.7859047055244446
+    },
+    {
+      "index": 33,
+      "name": "wind_generation_mw",
+      "gate": 0.2868199348449707
+    },
+    {
+      "index": 34,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.11827099323272705
+    },
+    {
+      "index": 35,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.19065843522548676
+    },
+    {
+      "index": 37,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.8089017271995544
+    },
+    {
+      "index": 38,
+      "name": "metered_load_mw",
+      "gate": 0.6600478291511536
+    },
+    {
+      "index": 40,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.7579814791679382
+    },
+    {
+      "index": 42,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.4418608546257019
+    },
+    {
+      "index": 44,
+      "name": "total_losses",
+      "gate": 0.1596815437078476
+    },
+    {
+      "index": 51,
+      "name": "gen_fuel_solar_mw",
+      "gate": 0.6108703017234802
+    },
+    {
+      "index": 52,
+      "name": "gen_fuel_coal_pct",
+      "gate": 0.16587334871292114
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

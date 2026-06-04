@@ -1,0 +1,13 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "model": "L1GateDNN",
+  "run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_soft_n_caps_cong_rt18/CenterOn_gross_actual_interchange_mw/L1GateDNN_source",
+  "feature_count": 54,
+  "best_test_r2": 0.8719626665115356,
+  "best_epoch": 123,
+  "last_epoch_train_r2": 0.9612864851951599,
+  "last_epoch_test_r2": 0.867416262626648,
+  "final_train_r2": 0.9531174898147583,
+  "final_test_r2": 0.8719626665115356,
+  "epochs_completed": 200
+}

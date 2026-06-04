@@ -1,0 +1,30 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "gross_sched_interchange_mw",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "da_as_as_mw_primary_reserve",
+    "da_as_total_mw_primary_reserve",
+    "gen_fuel_gas_mw",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_as_req_mw_synchronized_reserve",
+    "gen_fuel_nuclear_mw",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "gen_fuel_multiple_fuels_pct",
+    "da_as_as_mw_synchronized_reserve",
+    "da_as_total_mw_synchronized_reserve",
+    "system_energy_price_da",
+    "gen_fuel_other_renewables_mw",
+    "total_lmp_da",
+    "total_pjm_assigned_reg",
+    "gen_fuel_gas_pct",
+    "marginal_loss_price_rt",
+    "gen_fuel_wind_pct",
+    "total_pjm_rmpcp_cr",
+    "marginal_loss_price_da",
+    "total_pjm_reg_purchases",
+    "total_pjm_rmccp_cr",
+    "gen_fuel_multiple_fuels_mw"
+  ]
+}

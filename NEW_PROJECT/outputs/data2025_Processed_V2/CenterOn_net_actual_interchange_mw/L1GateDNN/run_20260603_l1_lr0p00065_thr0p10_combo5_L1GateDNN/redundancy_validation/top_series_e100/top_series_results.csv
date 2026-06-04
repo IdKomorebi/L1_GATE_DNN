@@ -1,0 +1,15 @@
+﻿exp_name,exp_type,x_label,feature_count,dropped_id,dropped_feature,best_test_r2,final_test_r2,best_epoch,output_dir
+DNN_full_all,all,"Full
+n=55",55,,,0.9660659432411194,0.9639150500297546,95,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_full_all
+DNN_top05,selected,"Top5
+n=5",5,,,0.46327394247055054,0.46081990003585815,98,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_top05
+DNN_top10,selected,"Top10
+n=10",10,,,0.9217991828918457,0.921664297580719,92,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_top10
+DNN_top14,selected,"Top14
+n=14",14,,,0.9592440128326416,0.9543849229812622,97,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_top14
+DNN_top16,selected,"Top16
+n=16",16,,,0.962764322757721,0.9621149301528931,93,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_top16
+DNN_top18,selected,"Top18
+n=18",18,,,0.9681099653244019,0.9652233123779297,89,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_top18
+DNN_without_top18,unselected,"Without Top18
+n=37",37,,,0.7819943428039551,0.7722793817520142,46,/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_without_top18

@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "method": "RandomForest",
+  "feature_count": 25,
+  "best_test_r2": 0.9267959594726562,
+  "best_train_r2": 0.9736965298652649,
+  "min_test_loss": 0.07596795046468134,
+  "min_train_loss": 0.026303490759441887,
+  "final_test_r2": 0.9259377717971802,
+  "final_train_r2": 0.9734734892845154,
+  "final_test_loss": 0.07685852831348641,
+  "final_train_loss": 0.026526520880927024,
+  "best_epoch": 146,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaseline_20260604_104329/CenterOn_net_actual_interchange_mw/Sweep/n25/RandomForest"
+}

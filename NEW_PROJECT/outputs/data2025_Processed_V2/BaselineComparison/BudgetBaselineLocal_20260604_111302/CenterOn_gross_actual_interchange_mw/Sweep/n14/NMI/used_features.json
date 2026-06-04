@@ -1,0 +1,19 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "marginal_loss_price_rt",
+    "total_pjm_rmccp_cr",
+    "rmccp",
+    "gross_inadv_interchange_mw",
+    "total_lmp_rt",
+    "system_energy_price_rt",
+    "da_as_mcp_synchronized_reserve",
+    "gen_fuel_nuclear_mw",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "gross_sched_interchange_mw",
+    "congestion_price_da",
+    "total_lmp_da"
+  ]
+}

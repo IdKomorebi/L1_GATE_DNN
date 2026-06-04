@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_top14",
+  "exp_type": "selected",
+  "x_label": "Top14\nn=14",
+  "feature_count": 14,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.9592440128326416,
+  "final_test_r2": 0.9543849229812622,
+  "best_epoch": 97,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_e100/DNN_top14"
+}

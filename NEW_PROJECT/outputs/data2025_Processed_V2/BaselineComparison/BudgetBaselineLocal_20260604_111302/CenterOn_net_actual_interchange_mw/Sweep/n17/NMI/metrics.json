@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "method": "NMI",
+  "feature_count": 17,
+  "best_test_r2": 0.8126543164253235,
+  "best_train_r2": 0.901250422000885,
+  "min_test_loss": 0.1944191377861404,
+  "min_train_loss": 0.09874956046286265,
+  "final_test_r2": 0.8070259094238281,
+  "final_train_r2": 0.9012489318847656,
+  "final_test_loss": 0.20026006263076884,
+  "final_train_loss": 0.09875105978717641,
+  "best_epoch": 134,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineLocal_20260604_111302/CenterOn_net_actual_interchange_mw/Sweep/n17/NMI"
+}

@@ -1,0 +1,13 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "features": [
+    "da_as_mcp_primary_reserve",
+    "da_as_as_mw_synchronized_reserve",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "da_as_total_mw_synchronized_reserve",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "metered_load_mw",
+    "da_as_as_req_mw_primary_reserve"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "dnn_params": {
+    "epochs": 150,
+    "batch_size": 50,
+    "lr": 0.001,
+    "train_ratio": 0.8,
+    "random_state": 42,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "key_epochs": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ]
+  },
+  "base_l1": {
+    "epochs": 200,
+    "batch_size": 50,
+    "lr": 0.00065,
+    "train_ratio": 0.8,
+    "random_state": 42,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "key_epochs": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "lambda_l1": 0.002,
+    "active_threshold": 0.1
+  },
+  "combos": [
+    {
+      "tag": "lam002_thr010",
+      "lambda_l1": 0.002,
+      "active_threshold": 0.1
+    },
+    {
+      "tag": "lam003_thr010",
+      "lambda_l1": 0.003,
+      "active_threshold": 0.1
+    },
+    {
+      "tag": "lam0035_thr010",
+      "lambda_l1": 0.0035,
+      "active_threshold": 0.1
+    },
+    {
+      "tag": "lam004_thr010",
+      "lambda_l1": 0.004,
+      "active_threshold": 0.1
+    },
+    {
+      "tag": "lam0045_thr010",
+      "lambda_l1": 0.0045,
+      "active_threshold": 0.1
+    },
+    {
+      "tag": "lam004_thr008",
+      "lambda_l1": 0.004,
+      "active_threshold": 0.08
+    },
+    {
+      "tag": "lam004_thr012",
+      "lambda_l1": 0.004,
+      "active_threshold": 0.12
+    },
+    {
+      "tag": "lam003_thr015",
+      "lambda_l1": 0.003,
+      "active_threshold": 0.15
+    },
+    {
+      "tag": "lam004_thr015",
+      "lambda_l1": 0.004,
+      "active_threshold": 0.15
+    },
+    {
+      "tag": "lam005_thr015",
+      "lambda_l1": 0.005,
+      "active_threshold": 0.15
+    }
+  ]
+}

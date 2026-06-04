@@ -1,0 +1,7 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "gen_fuel_gas_mw",
+    "total_pjm_rt_load_mwh"
+  ]
+}

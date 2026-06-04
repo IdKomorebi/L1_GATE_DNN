@@ -1,0 +1,25 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "gross_inadv_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "total_losses",
+    "forecast_load_mw_day_ahead",
+    "gross_sched_interchange_mw",
+    "total_pjm_reg_purchases",
+    "gen_fuel_coal_pct",
+    "da_as_ss_mw_synchronized_reserve",
+    "total_lmp_da",
+    "solar_generation_mw",
+    "gen_fuel_gas_pct",
+    "gen_fuel_multiple_fuels_mw",
+    "gen_fuel_other_renewables_mw",
+    "da_as_as_req_mw_primary_reserve",
+    "gen_fuel_oil_pct",
+    "congestion_price_da",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "gen_fuel_wind_mw",
+    "net_sched_interchange_mw",
+    "gen_fuel_hydro_mw"
+  ]
+}

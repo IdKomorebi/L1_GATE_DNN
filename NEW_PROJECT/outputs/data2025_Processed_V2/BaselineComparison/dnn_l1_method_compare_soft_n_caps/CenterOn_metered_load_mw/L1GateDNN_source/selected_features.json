@@ -1,0 +1,98 @@
+{
+  "threshold": 0.1,
+  "count": 18,
+  "features": [
+    {
+      "index": 1,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.11887164413928986
+    },
+    {
+      "index": 2,
+      "name": "total_losses",
+      "gate": 0.2657791078090668
+    },
+    {
+      "index": 7,
+      "name": "gross_actual_interchange_mw",
+      "gate": 0.12203819304704666
+    },
+    {
+      "index": 8,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.12341656535863876
+    },
+    {
+      "index": 10,
+      "name": "total_lmp_da",
+      "gate": 0.15496067702770233
+    },
+    {
+      "index": 11,
+      "name": "system_energy_price_da",
+      "gate": 0.39741793274879456
+    },
+    {
+      "index": 12,
+      "name": "system_energy_price_rt",
+      "gate": 0.11914872378110886
+    },
+    {
+      "index": 13,
+      "name": "marginal_loss_price_da",
+      "gate": 0.19101497530937195
+    },
+    {
+      "index": 14,
+      "name": "total_pjm_reg_purchases",
+      "gate": 0.1151149794459343
+    },
+    {
+      "index": 15,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.1552981585264206
+    },
+    {
+      "index": 17,
+      "name": "da_as_as_req_mw_synchronized_reserve",
+      "gate": 0.13733486831188202
+    },
+    {
+      "index": 18,
+      "name": "da_as_as_req_mw_thirty_minutes_reserve",
+      "gate": 0.11256574839353561
+    },
+    {
+      "index": 19,
+      "name": "da_as_as_mw_primary_reserve",
+      "gate": 0.10222841054201126
+    },
+    {
+      "index": 23,
+      "name": "congestion_price_da",
+      "gate": 0.10972604900598526
+    },
+    {
+      "index": 26,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.22355559468269348
+    },
+    {
+      "index": 29,
+      "name": "net_sched_interchange_mw",
+      "gate": 0.13493937253952026
+    },
+    {
+      "index": 31,
+      "name": "total_pjm_assigned_reg",
+      "gate": 0.11135783046483994
+    },
+    {
+      "index": 34,
+      "name": "da_as_ss_mw_thirty_minutes_reserve",
+      "gate": 0.16011793911457062
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

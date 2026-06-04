@@ -1,0 +1,24 @@
+{
+  "features": [
+    "total_lmp_da",
+    "gen_fuel_gas_mw",
+    "system_energy_price_da",
+    "gen_fuel_multiple_fuels_mw",
+    "total_losses",
+    "forecast_load_mw_day_ahead",
+    "da_as_mcp_synchronized_reserve",
+    "gen_fuel_nuclear_mw",
+    "total_pjm_rt_load_mwh",
+    "gen_fuel_other_renewables_pct",
+    "congestion_price_da",
+    "gross_actual_interchange_mw",
+    "forecast_load_mw_latest_available",
+    "congestion_price_rt",
+    "gen_fuel_coal_pct",
+    "gen_fuel_oil_mw",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_mcp_primary_reserve"
+  ],
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_soft_n_caps/CenterOn_marginal_loss_price_da/L1GateDNN_source",
+  "selection_source": "top_gate_18"
+}

@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "method": "Lasso",
+  "feature_count": 18,
+  "best_test_r2": 0.9566015005111694,
+  "best_train_r2": 0.9690579175949097,
+  "min_test_loss": 0.045037045885625904,
+  "min_train_loss": 0.030942090416724643,
+  "final_test_r2": 0.9561470746994019,
+  "final_train_r2": 0.9690579175949097,
+  "final_test_loss": 0.0455086226404972,
+  "final_train_loss": 0.030942090416724643,
+  "best_epoch": 138,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaseline_20260604_104329/CenterOn_net_actual_interchange_mw/Sweep/n18/Lasso"
+}

@@ -1,0 +1,23 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "prelim_load_avg_hourly",
+    "metered_load_mw",
+    "gen_fuel_solar_mw",
+    "total_pjm_rt_load_mwh",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_wind_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_oil_mw",
+    "gen_fuel_gas_pct",
+    "gen_fuel_coal_pct",
+    "wind_generation_mw",
+    "gen_fuel_hydro_pct",
+    "forecast_load_mw_latest_available",
+    "total_losses",
+    "gen_fuel_wind_pct",
+    "gen_fuel_multiple_fuels_pct"
+  ]
+}

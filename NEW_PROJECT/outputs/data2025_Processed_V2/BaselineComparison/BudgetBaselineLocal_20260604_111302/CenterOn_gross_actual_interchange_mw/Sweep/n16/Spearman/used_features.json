@@ -1,0 +1,21 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "gross_inadv_interchange_mw",
+    "gross_sched_interchange_mw",
+    "solar_generation_mw",
+    "total_losses",
+    "gen_fuel_solar_pct",
+    "total_pjm_reg_purchases",
+    "gen_fuel_solar_mw",
+    "prelim_load_avg_hourly",
+    "gen_fuel_nuclear_mw",
+    "metered_load_mw",
+    "marginal_loss_price_rt",
+    "gen_fuel_coal_mw",
+    "total_pjm_rt_load_mwh",
+    "forecast_load_mw_latest_available",
+    "gen_fuel_gas_mw",
+    "forecast_load_mw_day_ahead"
+  ]
+}

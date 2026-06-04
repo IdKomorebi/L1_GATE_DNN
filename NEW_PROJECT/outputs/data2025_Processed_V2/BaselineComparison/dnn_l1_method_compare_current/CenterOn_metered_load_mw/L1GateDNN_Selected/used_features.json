@@ -1,0 +1,13 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "gross_inadv_interchange_mw",
+    "total_losses",
+    "system_energy_price_da",
+    "marginal_loss_price_da",
+    "da_as_mcp_synchronized_reserve",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "net_sched_interchange_mw",
+    "da_as_ss_mw_thirty_minutes_reserve"
+  ]
+}

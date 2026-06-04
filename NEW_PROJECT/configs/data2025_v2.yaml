@@ -101,17 +101,47 @@ model_params:
 
   L1GateDNN:
     lambda_l1: 0.002
-    active_threshold: 0.06
+    active_threshold: 0.10
 
   ImprovedL1GateDNN:
-    lambda_l1: 0.0015
+    lambda_l1: 0.016
     warmup_epochs: 50
+    lambda_ramp_epochs: 0
     active_threshold: 0.50
+    w_meta_lr: 0.005
+    b_meta_lr: 0.001
+    w_meta_weight_decay: 0.0
+    b_meta_weight_decay: 0.0
+    b_meta_lr_decay: 0.99
+    meta_init_scale: 0.0
+    b_meta_init: 0.0
+    gate_temperature: 1.0
+    binary_gate_beta: 0.0
+    adaptive_gate_l1: true
+    adaptive_l1_min: 0.6
+    adaptive_l1_max: 1.7
+    adaptive_l1_tau: 0.05
+    adaptive_l1_k: 2.0
+    high_gate_anchor_beta: 0.0
+    record_epoch0_gate: true
+    warmup_meta_lr_start_scale: 0.3
+    warmup_meta_lr_scale: 1.0
+    warmup_meta_lr_ramp_epochs: 20
 
   ImprovedL2GateDNN:
     lambda_l2: 0.001
-    warmup_epochs: 50
+    warmup_epochs: 30
+    lambda_ramp_epochs: 50
     risk_threshold: 0.50
+    w_meta_lr: 0.003
+    b_meta_lr: 0.0003
+    w_meta_weight_decay: 0.001
+    b_meta_weight_decay: 0.0005
+    b_meta_lr_decay: 0.99
+    meta_init_scale: 0.20
+    b_meta_init: 0.40
+    gate_temperature: 0.85
+    binary_gate_beta: 0.0003
     dropout: 0.05
     net_weight_decay: 0.0001
     meta_weight_decay: 0.00001

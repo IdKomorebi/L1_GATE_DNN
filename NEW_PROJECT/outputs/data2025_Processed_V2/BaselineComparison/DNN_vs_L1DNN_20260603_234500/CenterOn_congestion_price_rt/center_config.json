@@ -1,0 +1,9 @@
+{
+  "center": "congestion_price_rt",
+  "target_label": "congestion_price_rt",
+  "exclude_columns": [],
+  "full_feature_count": 69,
+  "l1_selected_count": 18,
+  "selection_source": "top_gate_18",
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/DNN_vs_L1DNN_20260603_234500/CenterOn_congestion_price_rt/L1GateDNN_source"
+}

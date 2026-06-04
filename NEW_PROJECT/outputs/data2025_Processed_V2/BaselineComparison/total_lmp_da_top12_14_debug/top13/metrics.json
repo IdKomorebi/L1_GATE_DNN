@@ -1,0 +1,15 @@
+{
+  "center": "total_lmp_da",
+  "method": "top13",
+  "feature_count": 13,
+  "best_test_r2": 0.9510478973388672,
+  "best_train_r2": 0.9833371043205261,
+  "min_test_loss": 0.046750679643393106,
+  "min_train_loss": 0.01666290759876893,
+  "final_test_r2": 0.9452133178710938,
+  "final_train_r2": 0.9823711514472961,
+  "final_test_loss": 0.05232285719546603,
+  "final_train_loss": 0.01762887161945417,
+  "best_epoch": 143,
+  "output_dir": "NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/total_lmp_da_top12_14_debug/top13"
+}

@@ -1,0 +1,13 @@
+﻿center,baseline_n,thr0.1,thr0.12,thr0.15,thr0.18,thr0.2,thr0.25,thr0.3,thr0.35,thr0.4
+net_actual_interchange_mw,13,18,16,11,10,9,8,8,8,7
+gross_actual_interchange_mw,12,35,32,24,17,13,7,4,3,1
+net_sched_interchange_mw,12,16,14,11,10,9,8,8,7,7
+total_gen,15,16,13,7,4,4,2,0,0,0
+metered_load_mw,15,18,11,7,4,3,2,1,1,0
+total_losses,16,23,19,9,6,6,3,1,1,0
+congestion_price_da,2,2,2,2,2,2,2,2,2,2
+congestion_price_rt,10,38,37,37,36,36,35,30,29,24
+marginal_loss_price_da,12,33,32,29,24,19,13,7,5,3
+total_lmp_da,12,11,8,4,4,4,3,3,1,1
+da_as_total_mw_primary_reserve,8,35,32,28,21,17,14,12,11,10
+da_as_total_mw_thirty_minutes_reserve,18,22,15,10,8,5,3,0,0,0

@@ -1,0 +1,3 @@
+﻿center,target_label,budget_ratio,full_feature_count,full_dnn_r2,selected_n,selection_rule,target_ratio,target_value,best_r2_at_n,ratio_at_n
+net_actual_interchange_mw,net_actual_interchange_mw,0.95,67,0.967963695526123,8,ratio_0.95,0.95,0.9195655107498169,0.9270702600479126,0.9577531309622275
+net_actual_interchange_mw,net_actual_interchange_mw,0.97,67,0.967963695526123,12,ratio_0.97,0.97,0.9389247846603394,0.9583391547203064,0.9900569196445065

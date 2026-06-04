@@ -1,0 +1,11 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "target_label": "da_as_total_mw_primary_reserve",
+  "exclude_columns": [
+    "da_as_as_mw_primary_reserve",
+    "da_as_nsr_mw_primary_reserve"
+  ],
+  "full_feature_count": 67,
+  "l1_selected_count": 35,
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/RedundantNoiseExplanation/RedundantNoiseExplanation_20260604_121500/CenterOn_da_as_total_mw_primary_reserve/L1GateDNN"
+}

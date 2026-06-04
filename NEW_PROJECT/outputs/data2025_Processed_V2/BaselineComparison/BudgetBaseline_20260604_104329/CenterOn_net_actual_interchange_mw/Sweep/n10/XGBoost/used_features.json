@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "gen_fuel_multiple_fuels_pct",
+    "da_as_as_req_mw_primary_reserve",
+    "gen_fuel_nuclear_mw",
+    "gross_sched_interchange_mw",
+    "total_pjm_reg_purchases",
+    "marginal_loss_price_da",
+    "total_pjm_assigned_reg",
+    "system_energy_price_da",
+    "total_losses"
+  ]
+}

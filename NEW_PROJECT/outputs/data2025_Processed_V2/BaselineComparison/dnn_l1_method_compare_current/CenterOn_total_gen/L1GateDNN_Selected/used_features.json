@@ -1,0 +1,14 @@
+{
+  "center": "total_gen",
+  "features": [
+    "total_losses",
+    "net_actual_interchange_mw",
+    "total_lmp_da",
+    "system_energy_price_da",
+    "marginal_loss_price_da",
+    "da_as_mcp_synchronized_reserve",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "total_pjm_assigned_reg",
+    "da_as_ss_mw_synchronized_reserve"
+  ]
+}

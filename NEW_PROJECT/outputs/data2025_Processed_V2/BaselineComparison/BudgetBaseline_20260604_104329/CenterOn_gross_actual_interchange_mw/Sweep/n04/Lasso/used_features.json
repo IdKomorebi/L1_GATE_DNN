@@ -1,0 +1,9 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "total_pjm_rt_load_mwh",
+    "total_gen",
+    "metered_load_mw",
+    "gen_fuel_gas_mw"
+  ]
+}

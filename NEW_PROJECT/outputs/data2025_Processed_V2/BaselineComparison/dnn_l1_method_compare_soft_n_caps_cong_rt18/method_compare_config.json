@@ -1,0 +1,276 @@
+{
+  "config_path": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/configs/data2025_v2.yaml",
+  "source_baseline": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6",
+  "data_path": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/data/processed/data2025_Processed_V2/pjm_rto_hourly_2025_aligned_processed_one_header.csv",
+  "dnn_params": {
+    "epochs": 150,
+    "batch_size": 50,
+    "lr": 0.001,
+    "train_ratio": 0.8,
+    "random_state": 42,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "key_epochs": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ]
+  },
+  "l1_params": {
+    "epochs": 200,
+    "batch_size": 50,
+    "lr": 0.00065,
+    "train_ratio": 0.8,
+    "random_state": 42,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "key_epochs": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "lambda_l1": 0.002,
+    "active_threshold": 0.1
+  },
+  "l1_param_run": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN",
+  "full_feature_source": "all-candidates",
+  "selected_top_n_overrides": {
+    "gross_actual_interchange_mw": 16,
+    "total_losses": 18,
+    "congestion_price_rt": 18,
+    "marginal_loss_price_da": 18,
+    "da_as_total_mw_primary_reserve": 14,
+    "metered_load_mw": 15
+  },
+  "preprocessing": {
+    "drop_all_zero_columns": false,
+    "exclude_columns": []
+  },
+  "centers": [
+    {
+      "kind": "center",
+      "id": "",
+      "name": "net_actual_interchange_mw",
+      "label": "net_actual_interchange_mw",
+      "center": "net_actual_interchange_mw",
+      "exclude_columns": [],
+      "raw_value": "net_actual_interchange_mw",
+      "baseline_exclude_columns": [
+        "net_sched_interchange_mw",
+        "total_gen"
+      ],
+      "n_features_override": 13,
+      "override_note": "manual_exclude_n_v2; full_r2=0.966883; topn_r2=0.959721; top13 is within 0.01 of full; old handoff used n=16"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "gross_actual_interchange_mw",
+      "label": "gross_actual_interchange_mw",
+      "center": "gross_actual_interchange_mw",
+      "exclude_columns": [],
+      "raw_value": "gross_actual_interchange_mw",
+      "baseline_exclude_columns": [],
+      "n_features_override": 12,
+      "override_note": "manual_exclude_n_v2; full_r2=0.864887; topn_r2=0.865801; top12 matches full; no over-accurate shortcut"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "net_sched_interchange_mw",
+      "label": "net_sched_interchange_mw",
+      "center": "net_sched_interchange_mw",
+      "exclude_columns": [],
+      "raw_value": "net_sched_interchange_mw",
+      "baseline_exclude_columns": [
+        "net_actual_interchange_mw",
+        "total_gen"
+      ],
+      "n_features_override": 12,
+      "override_note": "manual_exclude_n_v2; full_r2=0.964838; topn_r2=0.956095; excluding net_actual and total_gen breaks 0.999 shortcut; top12 within 0.01"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "total_gen",
+      "label": "total_gen",
+      "center": "total_gen",
+      "exclude_columns": [],
+      "raw_value": "total_gen",
+      "baseline_exclude_columns": [
+        "prelim_load_avg_hourly",
+        "metered_load_mw",
+        "total_pjm_rt_load_mwh",
+        "forecast_load_mw_latest_available",
+        "forecast_load_mw_day_ahead",
+        "wind_generation_mw",
+        "solar_generation_mw",
+        "gen_fuel_coal_mw",
+        "gen_fuel_gas_mw",
+        "gen_fuel_hydro_mw",
+        "gen_fuel_multiple_fuels_mw",
+        "gen_fuel_nuclear_mw",
+        "gen_fuel_oil_mw",
+        "gen_fuel_other_renewables_mw",
+        "gen_fuel_solar_mw",
+        "gen_fuel_storage_mw",
+        "gen_fuel_wind_mw",
+        "gen_fuel_coal_pct",
+        "gen_fuel_gas_pct",
+        "gen_fuel_hydro_pct",
+        "gen_fuel_multiple_fuels_pct",
+        "gen_fuel_nuclear_pct",
+        "gen_fuel_oil_pct",
+        "gen_fuel_other_renewables_pct",
+        "gen_fuel_solar_pct",
+        "gen_fuel_storage_pct",
+        "gen_fuel_wind_pct"
+      ],
+      "n_features_override": 15,
+      "override_note": "manual_exclude_n_v2; full_r2=0.920681; topn_r2=0.914915; single load excludes stayed near 0.999; broad proxy/component exclude gives full near 0.921 and top15 within 0.01"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "metered_load_mw",
+      "label": "metered_load_mw",
+      "center": "metered_load_mw",
+      "exclude_columns": [],
+      "raw_value": "metered_load_mw",
+      "baseline_exclude_columns": [
+        "total_gen",
+        "prelim_load_avg_hourly",
+        "total_pjm_rt_load_mwh",
+        "forecast_load_mw_latest_available",
+        "forecast_load_mw_day_ahead",
+        "wind_generation_mw",
+        "solar_generation_mw",
+        "gen_fuel_coal_mw",
+        "gen_fuel_gas_mw",
+        "gen_fuel_hydro_mw",
+        "gen_fuel_multiple_fuels_mw",
+        "gen_fuel_nuclear_mw",
+        "gen_fuel_oil_mw",
+        "gen_fuel_other_renewables_mw",
+        "gen_fuel_solar_mw",
+        "gen_fuel_storage_mw",
+        "gen_fuel_wind_mw",
+        "gen_fuel_coal_pct",
+        "gen_fuel_gas_pct",
+        "gen_fuel_hydro_pct",
+        "gen_fuel_multiple_fuels_pct",
+        "gen_fuel_nuclear_pct",
+        "gen_fuel_oil_pct",
+        "gen_fuel_other_renewables_pct",
+        "gen_fuel_solar_pct",
+        "gen_fuel_storage_pct",
+        "gen_fuel_wind_pct"
+      ],
+      "n_features_override": 15,
+      "override_note": "manual_exclude_n_v2; full_r2=0.916783; topn_r2=0.910171; direct-only excludes still stayed near 0.999; broad exclude gives full near 0.917 and top15 within 0.01"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "total_losses",
+      "label": "total_losses",
+      "center": "total_losses",
+      "exclude_columns": [],
+      "raw_value": "total_losses",
+      "baseline_exclude_columns": [],
+      "n_features_override": 16,
+      "override_note": "manual_exclude_n_v2; full_r2=0.943239; topn_r2=0.936411; no shortcut; top14 was just below full-0.01, top16 passes"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "congestion_price_da",
+      "label": "congestion_price_da",
+      "center": "congestion_price_da",
+      "exclude_columns": [],
+      "raw_value": "congestion_price_da",
+      "baseline_exclude_columns": [],
+      "n_features_override": 2,
+      "override_note": "manual_exclude_n_v2; full_r2=0.936812; topn_r2=0.995009; top2 captures formula pair; excluding one caused large drop in earlier test"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "congestion_price_rt",
+      "label": "congestion_price_rt",
+      "center": "congestion_price_rt",
+      "exclude_columns": [],
+      "raw_value": "congestion_price_rt",
+      "baseline_exclude_columns": [],
+      "n_features_override": 10,
+      "override_note": "manual_exclude_n_v2; full_r2=0.672150; topn_r2=0.676734; full itself is low/moderate; top10 first reaches full level"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "marginal_loss_price_da",
+      "label": "marginal_loss_price_da",
+      "center": "marginal_loss_price_da",
+      "exclude_columns": [],
+      "raw_value": "marginal_loss_price_da",
+      "baseline_exclude_columns": [],
+      "n_features_override": 12,
+      "override_note": "manual_exclude_n_v2; full_r2=0.897897; topn_r2=0.898318; top12 reaches full level"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "total_lmp_da",
+      "label": "total_lmp_da",
+      "center": "total_lmp_da",
+      "exclude_columns": [],
+      "raw_value": "total_lmp_da",
+      "baseline_exclude_columns": [
+        "system_energy_price_da",
+        "congestion_price_da",
+        "marginal_loss_price_da"
+      ],
+      "n_features_override": 12,
+      "override_note": "manual_exclude_n_v2; full_r2=0.957618; topn_r2=0.954802; formula components excluded; top12 within 0.01"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "da_as_total_mw_primary_reserve",
+      "label": "da_as_total_mw_primary_reserve",
+      "center": "da_as_total_mw_primary_reserve",
+      "exclude_columns": [],
+      "raw_value": "da_as_total_mw_primary_reserve",
+      "baseline_exclude_columns": [
+        "da_as_as_mw_primary_reserve",
+        "da_as_nsr_mw_primary_reserve"
+      ],
+      "n_features_override": 8,
+      "override_note": "manual_exclude_n_v2; full_r2=0.849734; topn_r2=0.876784; exclude exact as_mw and nsr proxy; top8 exceeds full"
+    },
+    {
+      "kind": "center",
+      "id": "",
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "label": "da_as_total_mw_thirty_minutes_reserve",
+      "center": "da_as_total_mw_thirty_minutes_reserve",
+      "exclude_columns": [],
+      "raw_value": "da_as_total_mw_thirty_minutes_reserve",
+      "baseline_exclude_columns": [
+        "da_as_as_mw_thirty_minutes_reserve"
+      ],
+      "n_features_override": 18,
+      "override_note": "manual_exclude_n_v2; full_r2=0.903935; topn_r2=0.896541; exclude exact as_mw; top18 within 0.01"
+    }
+  ]
+}

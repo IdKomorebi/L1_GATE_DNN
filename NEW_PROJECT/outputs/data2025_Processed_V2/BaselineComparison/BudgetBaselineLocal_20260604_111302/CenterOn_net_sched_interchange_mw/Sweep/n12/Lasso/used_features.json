@@ -1,0 +1,17 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "prelim_load_avg_hourly",
+    "total_pjm_rt_load_mwh",
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_solar_mw",
+    "metered_load_mw",
+    "gen_fuel_wind_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_oil_mw",
+    "solar_generation_mw",
+    "gen_fuel_hydro_pct"
+  ]
+}

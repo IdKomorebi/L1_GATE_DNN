@@ -1,0 +1,7 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "total_pjm_rmccp_cr",
+    "marginal_loss_price_rt"
+  ]
+}

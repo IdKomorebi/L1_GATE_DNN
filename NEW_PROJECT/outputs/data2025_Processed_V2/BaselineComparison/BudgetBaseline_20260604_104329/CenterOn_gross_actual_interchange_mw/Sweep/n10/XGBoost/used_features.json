@@ -1,0 +1,15 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "gross_inadv_interchange_mw",
+    "gen_fuel_solar_pct",
+    "metered_load_mw",
+    "gross_sched_interchange_mw",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "total_pjm_reg_purchases",
+    "da_as_as_req_mw_synchronized_reserve",
+    "prelim_load_avg_hourly",
+    "forecast_load_mw_day_ahead",
+    "da_as_ss_mw_thirty_minutes_reserve"
+  ]
+}

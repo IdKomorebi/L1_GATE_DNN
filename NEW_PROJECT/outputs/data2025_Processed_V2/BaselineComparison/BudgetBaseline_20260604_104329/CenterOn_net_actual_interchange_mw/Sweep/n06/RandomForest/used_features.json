@@ -1,0 +1,11 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "gen_fuel_nuclear_mw",
+    "gross_sched_interchange_mw",
+    "total_losses",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "da_as_as_req_mw_primary_reserve"
+  ]
+}

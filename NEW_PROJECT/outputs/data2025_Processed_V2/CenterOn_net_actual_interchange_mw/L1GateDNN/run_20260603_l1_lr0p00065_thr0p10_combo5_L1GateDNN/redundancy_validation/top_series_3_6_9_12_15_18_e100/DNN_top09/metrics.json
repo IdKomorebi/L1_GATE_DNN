@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_top09",
+  "exp_type": "selected",
+  "x_label": "Top9\nn=9",
+  "feature_count": 9,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.918613851070404,
+  "final_test_r2": 0.9135398864746094,
+  "best_epoch": 99,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/L1GateDNN/run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN/redundancy_validation/top_series_3_6_9_12_15_18_e100/DNN_top09"
+}

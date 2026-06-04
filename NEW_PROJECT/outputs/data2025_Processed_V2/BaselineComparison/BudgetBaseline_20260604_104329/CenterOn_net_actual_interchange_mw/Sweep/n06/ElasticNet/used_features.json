@@ -1,0 +1,11 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "prelim_load_avg_hourly",
+    "metered_load_mw",
+    "gen_fuel_solar_mw",
+    "total_pjm_rt_load_mwh"
+  ]
+}

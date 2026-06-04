@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_other_renewables_mw",
+    "da_as_total_mw_primary_reserve",
+    "system_energy_price_da",
+    "total_lmp_da",
+    "da_as_as_req_mw_synchronized_reserve",
+    "gross_sched_interchange_mw",
+    "gen_fuel_gas_mw",
+    "total_losses",
+    "gen_fuel_coal_pct"
+  ]
+}

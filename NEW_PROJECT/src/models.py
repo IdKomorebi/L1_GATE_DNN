@@ -25,6 +25,7 @@ class SimpleAdam:
             for group in params:
                 self.param_groups.append(
                     {
+                        "name": group.get("name", ""),
                         "params": [p for p in group["params"] if p.requires_grad],
                         "lr": group.get("lr", lr),
                         "betas": group.get("betas", betas),
@@ -35,6 +36,7 @@ class SimpleAdam:
         else:
             self.param_groups = [
                 {
+                    "name": "",
                     "params": [p for p in params if p.requires_grad],
                     "lr": lr,
                     "betas": betas,
@@ -121,19 +123,30 @@ class ImprovedGateRegressor(nn.Module):
         hidden_dims: Iterable[int],
         correlation_vectors: np.ndarray,
         dropout: float = 0.0,
+        meta_init_scale: float = 0.0,
+        b_meta_init: float = 0.0,
+        gate_temperature: float = 1.0,
     ) -> None:
         super().__init__()
         cor = torch.as_tensor(correlation_vectors, dtype=torch.float32)
         mean = cor.mean(dim=0, keepdim=True)
         std = cor.std(dim=0, keepdim=True) + 1e-8
         self.register_buffer("correlation_vectors", (cor - mean) / std)
-        self.W_meta = nn.Parameter(torch.zeros(cor.shape[1], 1))
-        self.b_meta = nn.Parameter(torch.zeros(1))
+        scale = float(meta_init_scale or 0.0)
+        if scale > 0:
+            self.W_meta = nn.Parameter(torch.empty(cor.shape[1], 1).uniform_(-scale, scale))
+        else:
+            self.W_meta = nn.Parameter(torch.zeros(cor.shape[1], 1))
+        self.b_meta = nn.Parameter(torch.tensor([float(b_meta_init)], dtype=torch.float32))
+        self.gate_temperature = max(float(gate_temperature or 1.0), 1e-6)
         self.net = make_mlp(in_dim, hidden_dims, dropout=dropout)
 
     def get_gates(self) -> torch.Tensor:
-        logits = torch.matmul(self.correlation_vectors, self.W_meta).squeeze(-1) + self.b_meta
-        return torch.sigmoid(logits)
+        logits = self.get_gate_logits()
+        return torch.sigmoid(logits / self.gate_temperature)
+
+    def get_gate_logits(self) -> torch.Tensor:
+        return torch.matmul(self.correlation_vectors, self.W_meta).squeeze(-1) + self.b_meta
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.net(x * self.get_gates())

@@ -1,0 +1,28 @@
+{
+  "threshold": 0.1,
+  "count": 4,
+  "features": [
+    {
+      "index": 5,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.36255794763565063
+    },
+    {
+      "index": 15,
+      "name": "forecast_load_mw_day_ahead",
+      "gate": 0.23366080224514008
+    },
+    {
+      "index": 23,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.25126513838768005
+    },
+    {
+      "index": 25,
+      "name": "total_losses",
+      "gate": 0.17664285004138947
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

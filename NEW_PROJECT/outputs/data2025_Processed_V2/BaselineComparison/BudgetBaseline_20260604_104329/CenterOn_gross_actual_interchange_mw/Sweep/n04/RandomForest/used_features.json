@@ -1,0 +1,9 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "gross_inadv_interchange_mw",
+    "gross_sched_interchange_mw",
+    "total_pjm_reg_purchases",
+    "gen_fuel_nuclear_mw"
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "center": "net_actual_interchange_mw",
+  "features": [
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "gen_fuel_multiple_fuels_pct"
+  ]
+}

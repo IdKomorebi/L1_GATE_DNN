@@ -1,0 +1,82 @@
+{
+  "dataset": "data2025_Processed_V2",
+  "center": "net_actual_interchange_mw",
+  "model": "ImprovedL1GateDNN",
+  "data_path": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/data/processed/data2025_Processed_V2/pjm_rto_hourly_2025_aligned_processed_one_header.csv",
+  "center_relationships": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/RelationshipAnalysis/thr_nmi0p06_sp0p15_pe0p15_ke0p12_dc0p2_hsic0p25_s3000_e1200_excle875882e/center_relationships.csv",
+  "relationship_analysis_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/RelationshipAnalysis/thr_nmi0p06_sp0p15_pe0p15_ke0p12_dc0p2_hsic0p25_s3000_e1200_excle875882e",
+  "combo_name": "combo5",
+  "preprocessing": {
+    "drop_all_zero_columns": false,
+    "exclude_columns": [
+      "net_sched_interchange_mw",
+      "total_gen"
+    ]
+  },
+  "feature_selection": {
+    "require_any_metric": true,
+    "fallback_top_k": 15,
+    "max_features": null,
+    "top_n_by_sum": 25
+  },
+  "feature_top_n": 25,
+  "features": [
+    "gross_sched_interchange_mw",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "gen_fuel_nuclear_mw",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "gen_fuel_gas_mw",
+    "total_pjm_rmccp_cr",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "da_as_as_req_mw_primary_reserve",
+    "forecast_load_mw_day_ahead",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_mw_synchronized_reserve",
+    "gen_fuel_coal_mw",
+    "da_as_total_mw_synchronized_reserve",
+    "da_as_as_mw_primary_reserve",
+    "gen_fuel_wind_mw",
+    "da_as_total_mw_primary_reserve",
+    "wind_generation_mw",
+    "total_pjm_assigned_reg",
+    "total_pjm_reg_purchases",
+    "total_pjm_rt_load_mwh",
+    "metered_load_mw",
+    "forecast_load_mw_latest_available",
+    "gross_inadv_interchange_mw",
+    "prelim_load_avg_hourly",
+    "total_lmp_da"
+  ],
+  "params": {
+    "epochs": 200,
+    "batch_size": 50,
+    "lr": 0.001,
+    "train_ratio": 0.8,
+    "random_state": 42,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "key_epochs": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ],
+    "lambda_l1": 0.01,
+    "warmup_epochs": 50,
+    "lambda_ramp_epochs": 0,
+    "active_threshold": 0.06,
+    "w_meta_lr": 0.005,
+    "b_meta_lr": 0.001,
+    "w_meta_weight_decay": 0.0,
+    "b_meta_weight_decay": 0.0,
+    "b_meta_lr_decay": 1.0,
+    "meta_init_scale": 0.5,
+    "b_meta_init": 0.0,
+    "gate_temperature": 1.0,
+    "binary_gate_beta": 0.0
+  }
+}

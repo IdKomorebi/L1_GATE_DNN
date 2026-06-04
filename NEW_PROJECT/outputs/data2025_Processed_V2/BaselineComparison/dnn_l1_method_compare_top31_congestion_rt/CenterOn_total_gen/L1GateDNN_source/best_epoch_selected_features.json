@@ -1,0 +1,103 @@
+{
+  "threshold": 0.1,
+  "count": 19,
+  "features": [
+    {
+      "index": 2,
+      "name": "total_losses",
+      "gate": 0.2697610557079315
+    },
+    {
+      "index": 3,
+      "name": "da_as_nsr_mw_primary_reserve",
+      "gate": 0.11143336445093155
+    },
+    {
+      "index": 5,
+      "name": "net_actual_interchange_mw",
+      "gate": 0.280521959066391
+    },
+    {
+      "index": 7,
+      "name": "gross_actual_interchange_mw",
+      "gate": 0.14917336404323578
+    },
+    {
+      "index": 8,
+      "name": "marginal_loss_price_rt",
+      "gate": 0.12757828831672668
+    },
+    {
+      "index": 9,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.14394783973693848
+    },
+    {
+      "index": 10,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.14726965129375458
+    },
+    {
+      "index": 11,
+      "name": "total_lmp_da",
+      "gate": 0.33428218960762024
+    },
+    {
+      "index": 12,
+      "name": "system_energy_price_da",
+      "gate": 0.33650314807891846
+    },
+    {
+      "index": 13,
+      "name": "total_lmp_rt",
+      "gate": 0.11832907050848007
+    },
+    {
+      "index": 15,
+      "name": "marginal_loss_price_da",
+      "gate": 0.2067796140909195
+    },
+    {
+      "index": 16,
+      "name": "total_pjm_reg_purchases",
+      "gate": 0.17266371846199036
+    },
+    {
+      "index": 17,
+      "name": "da_as_as_req_mw_synchronized_reserve",
+      "gate": 0.13593006134033203
+    },
+    {
+      "index": 22,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.18999195098876953
+    },
+    {
+      "index": 26,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.20955206453800201
+    },
+    {
+      "index": 27,
+      "name": "da_as_total_mw_thirty_minutes_reserve",
+      "gate": 0.10523354262113571
+    },
+    {
+      "index": 31,
+      "name": "total_pjm_self_sched_reg",
+      "gate": 0.11596878618001938
+    },
+    {
+      "index": 34,
+      "name": "total_pjm_assigned_reg",
+      "gate": 0.1643659472465515
+    },
+    {
+      "index": 35,
+      "name": "da_as_ss_mw_synchronized_reserve",
+      "gate": 0.15347233414649963
+    }
+  ],
+  "epoch": 165,
+  "source": "best_test_r2_epoch"
+}

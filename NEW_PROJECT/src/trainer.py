@@ -23,7 +23,7 @@ from .data_utils import (
 )
 from .knowledge_graph import generate_knowledge_graph
 from .models import DNNRegressor, ImprovedGateRegressor, L1GateRegressor, SimpleAdam
-from .plotting import plot_active_features, plot_gate_history, plot_loss_and_r2, plot_meta_history
+from .plotting import plot_active_features, plot_gate_history, plot_gate_logit_history, plot_loss_and_r2, plot_meta_history
 from .relation_analyzer import analyze_center_relationships, center_relation_analysis_dir, correlation_vectors, select_features
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -39,16 +39,25 @@ def r2_score(y_true: torch.Tensor, y_pred: torch.Tensor) -> float:
 
 def _model_params_for_optimizer(model: nn.Module, model_name: str, params: Dict[str, Any]):
     if model_name.startswith("Improved") and isinstance(model, ImprovedGateRegressor):
+        meta_lr = float(params.get("meta_lr", params.get("lr", 1e-3)))
         return [
             {
+                "name": "net",
                 "params": model.net.parameters(),
                 "lr": float(params.get("lr", 1e-3)),
                 "weight_decay": float(params.get("net_weight_decay", 0.0)),
             },
             {
-                "params": [model.W_meta, model.b_meta],
-                "lr": float(params.get("meta_lr", params.get("lr", 1e-3))),
-                "weight_decay": float(params.get("meta_weight_decay", 0.0)),
+                "name": "w_meta",
+                "params": [model.W_meta],
+                "lr": float(params.get("w_meta_lr", meta_lr)),
+                "weight_decay": float(params.get("w_meta_weight_decay", params.get("meta_weight_decay", 0.0))),
+            },
+            {
+                "name": "b_meta",
+                "params": [model.b_meta],
+                "lr": float(params.get("b_meta_lr", meta_lr)),
+                "weight_decay": float(params.get("b_meta_weight_decay", params.get("meta_weight_decay", 0.0))),
             },
         ]
     return model.parameters()
@@ -68,8 +77,90 @@ def _build_model(model_name: str, in_dim: int, params: Dict[str, Any], corr_vect
             hidden_dims,
             correlation_vectors=corr_vectors,
             dropout=float(params.get("dropout", 0.0)),
+            meta_init_scale=float(params.get("meta_init_scale", 0.0)),
+            b_meta_init=float(params.get("b_meta_init", 0.0)),
+            gate_temperature=float(params.get("gate_temperature", 1.0)),
         )
     raise ValueError(f"Unknown model: {model_name}")
+
+
+def _regularization_lambda(params: Dict[str, Any], key: str, epoch: int) -> float:
+    target = float(params.get(key, 0.0))
+    warmup = int(params.get("warmup_epochs", 0) or 0)
+    if epoch <= warmup:
+        return 0.0
+    ramp_epochs = int(params.get("lambda_ramp_epochs", 0) or 0)
+    if ramp_epochs <= 0:
+        return target
+    progress = min(max(epoch - warmup, 1), ramp_epochs) / ramp_epochs
+    return target * progress
+
+
+def _decay_b_meta_lr(optimizer: SimpleAdam, params: Dict[str, Any]) -> None:
+    if bool(params.get("use_epoch_lr_schedule", False)):
+        return
+    decay = float(params.get("b_meta_lr_decay", 1.0) or 1.0)
+    if decay <= 0 or decay >= 1.0:
+        return
+    for group in optimizer.param_groups:
+        if group.get("name") == "b_meta":
+            group["lr"] *= decay
+
+
+def _initialize_lr_schedule(optimizer: SimpleAdam) -> None:
+    for group in optimizer.param_groups:
+        group.setdefault("base_lr", group.get("lr", 0.0))
+
+
+def _apply_warmup_meta_lr_scale(optimizer: SimpleAdam, params: Dict[str, Any], epoch: int) -> None:
+    warmup = int(params.get("warmup_epochs", 0) or 0)
+    scale = float(params.get("warmup_meta_lr_scale", 1.0) or 1.0)
+    start_scale = float(params.get("warmup_meta_lr_start_scale", scale) or scale)
+    ramp_epochs = int(params.get("warmup_meta_lr_ramp_epochs", 0) or 0)
+    if scale <= 0 or start_scale <= 0:
+        return
+    b_decay = float(params.get("b_meta_lr_decay", 1.0) or 1.0)
+    has_warmup_schedule = warmup > 0 and (scale != 1.0 or start_scale != 1.0 or ramp_epochs > 0)
+    use_schedule = bool(params.get("use_epoch_lr_schedule", has_warmup_schedule))
+    if not use_schedule:
+        return
+    if use_schedule:
+        params["use_epoch_lr_schedule"] = True
+    for group in optimizer.param_groups:
+        name = group.get("name")
+        if name not in {"w_meta", "b_meta"}:
+            continue
+        base_lr = float(group.get("base_lr", group.get("lr", 0.0)))
+        lr = base_lr
+        if warmup > 0 and epoch <= warmup:
+            current_scale = scale
+            if ramp_epochs > 0:
+                progress = min(max(epoch - 1, 0), ramp_epochs) / ramp_epochs
+                current_scale = start_scale + (scale - start_scale) * progress
+            lr *= current_scale
+        if use_schedule and name == "b_meta" and 0 < b_decay < 1.0:
+            lr *= b_decay ** max(epoch - 1, 0)
+        group["lr"] = lr
+
+
+def _capture_gate_state(
+    model: nn.Module,
+    model_name: str,
+    params: Dict[str, Any],
+) -> tuple[np.ndarray | None, np.ndarray | None, np.ndarray | None, float | None, int | None]:
+    gates_np = None
+    logits_np = None
+    w_np = None
+    b_value = None
+    active_features = None
+    if hasattr(model, "get_gates"):
+        gates_np = model.get_gates().detach().cpu().numpy()  # type: ignore[attr-defined]
+        active_features = _active_count(model_name, gates_np, params)
+    if isinstance(model, ImprovedGateRegressor):
+        logits_np = model.get_gate_logits().detach().cpu().numpy().copy()
+        w_np = model.W_meta.detach().cpu().numpy().reshape(-1).copy()
+        b_value = float(model.b_meta.detach().cpu().numpy().reshape(-1)[0])
+    return gates_np, logits_np, w_np, b_value, active_features
 
 
 def _loss_for_model(
@@ -79,24 +170,62 @@ def _loss_for_model(
     model: nn.Module,
     params: Dict[str, Any],
     epoch: int,
+    high_gate_anchor: torch.Tensor | None = None,
 ) -> tuple[torch.Tensor, float, float]:
     mse = nn.functional.mse_loss(pred, target)
-    warmup = int(params.get("warmup_epochs", 0) or 0)
     if model_name == "L1GateDNN":
         gate = model.get_gates()  # type: ignore[attr-defined]
         reg = torch.sum(torch.abs(gate))
         return mse + float(params.get("lambda_l1", 0.0)) * reg, float(mse.detach()), float(reg.detach())
     if model_name == "ImprovedL1GateDNN":
         gate = model.get_gates()  # type: ignore[attr-defined]
-        reg = torch.mean(torch.abs(gate))
-        lam = 0.0 if epoch <= warmup else float(params.get("lambda_l1", 0.0))
-        return mse + lam * reg, float(mse.detach()), float(reg.detach())
+        reg = _improved_l1_gate_regularizer(gate, model, params)
+        lam = _regularization_lambda(params, "lambda_l1", epoch)
+        binary_beta = float(params.get("binary_gate_beta", 0.0) or 0.0)
+        binary_reg = torch.mean(gate * (1.0 - gate)) if binary_beta > 0 else torch.zeros((), device=gate.device)
+        anchor_reg = _high_gate_anchor_regularizer(gate, high_gate_anchor, params)
+        return mse + lam * reg + binary_beta * binary_reg + anchor_reg, float(mse.detach()), float(reg.detach())
     if model_name == "ImprovedL2GateDNN":
         gate = model.get_gates()  # type: ignore[attr-defined]
         reg = torch.mean(gate**2)
-        lam = 0.0 if epoch <= warmup else float(params.get("lambda_l2", 0.0))
-        return mse + lam * reg, float(mse.detach()), float(reg.detach())
+        lam = _regularization_lambda(params, "lambda_l2", epoch)
+        binary_beta = float(params.get("binary_gate_beta", 0.0) or 0.0)
+        binary_reg = torch.mean(gate * (1.0 - gate)) if binary_beta > 0 else torch.zeros((), device=gate.device)
+        anchor_reg = _high_gate_anchor_regularizer(gate, high_gate_anchor, params)
+        return mse + lam * reg + binary_beta * binary_reg + anchor_reg, float(mse.detach()), float(reg.detach())
     return mse, float(mse.detach()), 0.0
+
+
+def _improved_l1_gate_regularizer(gate: torch.Tensor, model: nn.Module, params: Dict[str, Any]) -> torch.Tensor:
+    if not bool(params.get("adaptive_gate_l1", False)):
+        return torch.mean(torch.abs(gate))
+    if not hasattr(model, "get_gate_logits"):
+        return torch.mean(torch.abs(gate))
+    logits = model.get_gate_logits().detach()  # type: ignore[attr-defined]
+    weight_min = float(params.get("adaptive_l1_min", 0.4))
+    weight_max = float(params.get("adaptive_l1_max", 1.6))
+    tau = float(params.get("adaptive_l1_tau", 0.0))
+    sharpness = float(params.get("adaptive_l1_k", 2.0))
+    weights = weight_min + (weight_max - weight_min) * torch.sigmoid(sharpness * (tau - logits))
+    return torch.mean(weights * torch.abs(gate))
+
+
+def _high_gate_anchor_regularizer(
+    gate: torch.Tensor,
+    high_gate_anchor: torch.Tensor | None,
+    params: Dict[str, Any],
+) -> torch.Tensor:
+    beta = float(params.get("high_gate_anchor_beta", 0.0) or 0.0)
+    if beta <= 0 or high_gate_anchor is None:
+        return torch.zeros((), device=gate.device)
+    threshold = float(params.get("high_gate_anchor_threshold", 0.65))
+    margin = float(params.get("high_gate_anchor_margin", 0.08))
+    anchor = high_gate_anchor.to(device=gate.device, dtype=gate.dtype)
+    high_mask = anchor >= threshold
+    if not bool(torch.any(high_mask)):
+        return torch.zeros((), device=gate.device)
+    drop = torch.relu(anchor[high_mask] - gate[high_mask] - margin)
+    return beta * torch.mean(drop)
 
 
 def _eval_model(model: nn.Module, loader: DataLoader) -> tuple[float, float, torch.Tensor, torch.Tensor]:
@@ -258,6 +387,7 @@ def train_center_model(
 
     model = _build_model(model_name, len(features), params, corr_vectors).to(DEVICE)
     optimizer = SimpleAdam(_model_params_for_optimizer(model, model_name, params), lr=float(params.get("lr", 1e-3)))
+    _initialize_lr_schedule(optimizer)
 
     run_dir = ensure_dir(output_run_dir) if output_run_dir is not None else create_run_dir(center_dir, model_name, run_name)
     write_name_mapping(run_dir / "name_mapping.csv", center, features)
@@ -285,7 +415,11 @@ def train_center_model(
 
     log_rows: List[Dict[str, Any]] = []
     gate_history: List[np.ndarray] = []
+    gate_epochs: List[int] = []
+    gate_logit_history: List[np.ndarray] = []
+    gate_logit_epochs: List[int] = []
     w_history: List[np.ndarray] = []
+    w_epochs: List[int] = []
     b_history: List[float] = []
     keydata: Dict[str, Any] = {}
     key_epochs = set(int(v) for v in params.get("key_epochs", []) if int(v) <= int(params.get("epochs", 1)))
@@ -299,8 +433,38 @@ def train_center_model(
     min_delta = float(params.get("early_stopping_min_delta", 0.0) or 0.0)
     patience = int(params.get("early_stopping_patience", 0) or 0)
     warmup = int(params.get("warmup_epochs", 0) or 0)
+    high_gate_anchor: torch.Tensor | None = None
+
+    if bool(params.get("record_epoch0_gate", False)):
+        gates_np, logits_np, w_np, b_value, active_features = _capture_gate_state(model, model_name, params)
+        if gates_np is not None:
+            gate_history.append(gates_np.copy())
+            gate_epochs.append(0)
+            keydata["0"] = _selected_features(model_name, features, gates_np, params, epoch=0, source="initial_state")
+            log_rows.append(
+                {
+                    "epoch": 0,
+                    "train_loss": np.nan,
+                    "train_r2": np.nan,
+                    "test_loss": np.nan,
+                    "test_r2": np.nan,
+                    "train_total_loss": np.nan,
+                    "train_mse_loss": np.nan,
+                    "train_reg_loss": np.nan,
+                    "active_features": active_features,
+                }
+            )
+        if logits_np is not None:
+            gate_logit_history.append(logits_np.copy())
+            gate_logit_epochs.append(0)
+        if w_np is not None and b_value is not None:
+            w_history.append(w_np.copy())
+            w_epochs.append(0)
+            b_history.append(b_value)
 
     for epoch in range(1, int(params.get("epochs", 200)) + 1):
+        if model_name.startswith("Improved"):
+            _apply_warmup_meta_lr_scale(optimizer, params, epoch)
         model.train()
         total_loss_sum = 0.0
         mse_sum = 0.0
@@ -310,7 +474,7 @@ def train_center_model(
             yb = yb.to(DEVICE)
             optimizer.zero_grad()
             pred = model(xb)
-            loss, mse_value, reg_value = _loss_for_model(model_name, pred, yb, model, params, epoch)
+            loss, mse_value, reg_value = _loss_for_model(model_name, pred, yb, model, params, epoch, high_gate_anchor)
             loss.backward()
             optimizer.step()
             total_loss_sum += float(loss.detach()) * xb.size(0)
@@ -325,12 +489,23 @@ def train_center_model(
         if hasattr(model, "get_gates"):
             gates_np = model.get_gates().detach().cpu().numpy()  # type: ignore[attr-defined]
             gate_history.append(gates_np.copy())
+            gate_epochs.append(epoch)
             active_features = _active_count(model_name, gates_np, params)
             if epoch in key_epochs:
                 keydata[str(epoch)] = _selected_features(model_name, features, gates_np, params, epoch=epoch, source="epoch_snapshot")
+            if (
+                model_name.startswith("Improved")
+                and high_gate_anchor is None
+                and float(params.get("high_gate_anchor_beta", 0.0) or 0.0) > 0
+                and epoch >= warmup
+            ):
+                high_gate_anchor = model.get_gates().detach().clone()  # type: ignore[attr-defined]
 
         if isinstance(model, ImprovedGateRegressor):
+            gate_logit_history.append(model.get_gate_logits().detach().cpu().numpy().copy())
+            gate_logit_epochs.append(epoch)
             w_history.append(model.W_meta.detach().cpu().numpy().reshape(-1).copy())
+            w_epochs.append(epoch)
             b_history.append(float(model.b_meta.detach().cpu().numpy().reshape(-1)[0]))
 
         row = {
@@ -376,6 +551,9 @@ def train_center_model(
             f"test_loss={test_loss:.5f} test_r2={test_r2:.5f}"
         )
 
+        if model_name.startswith("Improved"):
+            _decay_b_meta_lr(optimizer, params)
+
         if patience > 0 and epoch > warmup and no_improve >= patience:
             print(f"Early stopping at epoch {epoch}.")
             break
@@ -386,25 +564,49 @@ def train_center_model(
 
     if gate_history:
         gate_arr = np.asarray(gate_history)
-        epochs = log_df["epoch"].tolist()
+        epochs = gate_epochs
         gate_long = []
         for e_idx, epoch in enumerate(epochs):
             for f_idx, feature in enumerate(features):
                 gate_long.append({"epoch": epoch, "feature_index": f_idx + 1, "feature": feature, "gate": gate_arr[e_idx, f_idx]})
         pd.DataFrame(gate_long).to_csv(run_dir / "gate_params.csv", index=False, encoding="utf-8-sig")
-        plot_gate_history(gate_arr, epochs, run_dir / "gate_params.png", feature_names=features)
+        plot_gate_history(
+            gate_arr,
+            epochs,
+            run_dir / "gate_params.png",
+            feature_names=features,
+            warmup_epoch=warmup,
+            gate_threshold=float(params.get("active_threshold", params.get("risk_threshold", 0.5))),
+        )
         plot_active_features(log_df, run_dir / "active_features.png")
         if keydata:
             save_json(run_dir / "keydata_for_pointdata.json", keydata)
 
+    if gate_logit_history:
+        logit_arr = np.asarray(gate_logit_history)
+        epochs = gate_logit_epochs
+        logit_long = []
+        for e_idx, epoch in enumerate(epochs):
+            for f_idx, feature in enumerate(features):
+                logit_long.append(
+                    {
+                        "epoch": epoch,
+                        "feature_index": f_idx + 1,
+                        "feature": feature,
+                        "gate_logit": logit_arr[e_idx, f_idx],
+                    }
+                )
+        pd.DataFrame(logit_long).to_csv(run_dir / "gate_logits.csv", index=False, encoding="utf-8-sig")
+        plot_gate_logit_history(logit_arr, epochs, run_dir / "gate_logits.png", feature_names=features)
+
     if w_history:
         w_arr = np.asarray(w_history)
         b_arr = np.asarray(b_history)
-        pd.DataFrame(w_arr, columns=[f"W_{i + 1}" for i in range(w_arr.shape[1])]).assign(epoch=log_df["epoch"]).to_csv(
+        pd.DataFrame(w_arr, columns=[f"W_{i + 1}" for i in range(w_arr.shape[1])]).assign(epoch=w_epochs).to_csv(
             run_dir / "W_meta_evolution.csv", index=False, encoding="utf-8-sig"
         )
-        pd.DataFrame({"epoch": log_df["epoch"], "b_meta": b_arr}).to_csv(run_dir / "b_meta_evolution.csv", index=False, encoding="utf-8-sig")
-        plot_meta_history(w_arr, b_arr, log_df["epoch"].tolist(), run_dir / "W_meta_evolution.png", run_dir / "b_meta_evolution.png")
+        pd.DataFrame({"epoch": w_epochs, "b_meta": b_arr}).to_csv(run_dir / "b_meta_evolution.csv", index=False, encoding="utf-8-sig")
+        plot_meta_history(w_arr, b_arr, w_epochs, run_dir / "W_meta_evolution.png", run_dir / "b_meta_evolution.png")
 
     if best_state is not None:
         torch.save(best_state, run_dir / "model.pth")

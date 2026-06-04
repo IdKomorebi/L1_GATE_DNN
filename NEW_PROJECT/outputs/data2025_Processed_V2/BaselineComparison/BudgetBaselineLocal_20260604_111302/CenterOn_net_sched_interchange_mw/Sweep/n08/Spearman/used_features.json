@@ -1,0 +1,13 @@
+{
+  "center": "net_sched_interchange_mw",
+  "features": [
+    "gross_sched_interchange_mw",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "da_as_as_mw_primary_reserve",
+    "da_as_total_mw_primary_reserve",
+    "da_as_as_req_mw_primary_reserve",
+    "da_as_as_req_mw_synchronized_reserve",
+    "gen_fuel_nuclear_mw"
+  ]
+}

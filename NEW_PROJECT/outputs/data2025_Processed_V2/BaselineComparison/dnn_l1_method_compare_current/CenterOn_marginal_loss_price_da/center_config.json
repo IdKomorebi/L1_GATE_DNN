@@ -1,0 +1,8 @@
+{
+  "center": "marginal_loss_price_da",
+  "target_label": "marginal_loss_price_da",
+  "exclude_columns": [],
+  "full_feature_count": 69,
+  "l1_selected_count": 20,
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_current/CenterOn_marginal_loss_price_da/L1GateDNN_source"
+}

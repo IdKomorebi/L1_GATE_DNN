@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "method": "DNN_on_selected",
+  "feature_count": 27,
+  "best_test_r2": 0.6884466409683228,
+  "best_train_r2": 0.9514601826667786,
+  "min_test_loss": 0.29810022140239795,
+  "min_train_loss": 0.04853979421070543,
+  "final_test_r2": 0.6274040937423706,
+  "final_train_r2": 0.9426292777061462,
+  "final_test_loss": 0.3565069401591289,
+  "final_train_loss": 0.05737069549648522,
+  "best_epoch": 25,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/congestion_rt_gate_debug_grid/lam004_thr015/DNN_on_selected"
+}

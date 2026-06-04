@@ -1,0 +1,19 @@
+{
+  "center": "total_lmp_da",
+  "features": [
+    "da_as_mcp_synchronized_reserve",
+    "forecast_load_mw_day_ahead",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "total_losses",
+    "gen_fuel_other_renewables_pct",
+    "net_actual_interchange_mw",
+    "gross_inadv_interchange_mw",
+    "gen_fuel_oil_mw",
+    "gen_fuel_oil_pct",
+    "gen_fuel_gas_mw",
+    "gen_fuel_nuclear_mw",
+    "system_energy_price_rt",
+    "total_pjm_reg_purchases",
+    "gross_actual_interchange_mw"
+  ]
+}

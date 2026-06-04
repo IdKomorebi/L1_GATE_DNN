@@ -1,0 +1,18 @@
+{
+  "threshold": 0.1,
+  "count": 2,
+  "features": [
+    {
+      "index": 3,
+      "name": "total_lmp_da",
+      "gate": 1.184327244758606
+    },
+    {
+      "index": 4,
+      "name": "system_energy_price_da",
+      "gate": 1.1695541143417358
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

@@ -1,0 +1,7 @@
+{
+  "center": "gross_actual_interchange_mw",
+  "features": [
+    "gen_fuel_gas_mw",
+    "gross_inadv_interchange_mw"
+  ]
+}

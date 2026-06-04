@@ -1,0 +1,27 @@
+{
+  "center": "congestion_price_rt",
+  "features": [
+    "system_energy_price_rt",
+    "system_energy_price_da",
+    "total_lmp_da",
+    "total_pjm_rmccp_cr",
+    "metered_load_mw",
+    "total_pjm_rt_load_mwh",
+    "gen_fuel_gas_mw",
+    "gen_fuel_multiple_fuels_mw",
+    "gen_fuel_coal_mw",
+    "prelim_load_avg_hourly",
+    "total_gen",
+    "gen_fuel_other_renewables_pct",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "gen_fuel_storage_mw",
+    "total_pjm_reg_purchases",
+    "da_as_mcp_primary_reserve",
+    "total_pjm_loc_credit",
+    "gross_actual_interchange_mw",
+    "total_pjm_assigned_reg",
+    "da_as_ss_mw_synchronized_reserve",
+    "da_as_as_mw_synchronized_reserve"
+  ]
+}

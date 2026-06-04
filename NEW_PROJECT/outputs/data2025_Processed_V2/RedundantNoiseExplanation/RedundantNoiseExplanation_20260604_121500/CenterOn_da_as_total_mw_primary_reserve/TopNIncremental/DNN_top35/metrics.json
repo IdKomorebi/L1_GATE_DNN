@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "method": "DNN_top35",
+  "feature_count": 35,
+  "best_test_r2": 0.8536369800567627,
+  "best_train_r2": 0.9789820313453674,
+  "min_test_loss": 0.14780254842622614,
+  "min_train_loss": 0.021017965380262946,
+  "final_test_r2": 0.8420308232307434,
+  "final_train_r2": 0.9779608845710754,
+  "final_test_loss": 0.1595228625824902,
+  "final_train_loss": 0.02203909032228655,
+  "best_epoch": 58,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/RedundantNoiseExplanation/RedundantNoiseExplanation_20260604_121500/CenterOn_da_as_total_mw_primary_reserve/TopNIncremental/DNN_top35"
+}

@@ -1,0 +1,9 @@
+{
+  "features": [
+    "da_as_mcp_synchronized_reserve",
+    "forecast_load_mw_day_ahead",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "total_losses"
+  ],
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_current/CenterOn_total_lmp_da/L1GateDNN_source"
+}

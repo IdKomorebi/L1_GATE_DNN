@@ -1,0 +1,15 @@
+{
+  "center": "total_gen",
+  "method": "L1GateDNN_Selected",
+  "feature_count": 9,
+  "best_test_r2": 0.892695426940918,
+  "best_train_r2": 0.9366123080253601,
+  "min_test_loss": 0.10752781624714397,
+  "min_train_loss": 0.06338770153558043,
+  "final_test_r2": 0.8904268145561218,
+  "final_train_r2": 0.9363254308700562,
+  "final_test_loss": 0.10980117167920282,
+  "final_train_loss": 0.06367458372279049,
+  "best_epoch": 100,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_current/CenterOn_total_gen/L1GateDNN_Selected"
+}

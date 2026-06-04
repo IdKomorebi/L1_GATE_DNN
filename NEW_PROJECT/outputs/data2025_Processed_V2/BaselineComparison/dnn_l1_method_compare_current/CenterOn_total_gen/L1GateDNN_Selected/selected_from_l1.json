@@ -1,0 +1,14 @@
+{
+  "features": [
+    "total_losses",
+    "net_actual_interchange_mw",
+    "total_lmp_da",
+    "system_energy_price_da",
+    "marginal_loss_price_da",
+    "da_as_mcp_synchronized_reserve",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "total_pjm_assigned_reg",
+    "da_as_ss_mw_synchronized_reserve"
+  ],
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_current/CenterOn_total_gen/L1GateDNN_source"
+}

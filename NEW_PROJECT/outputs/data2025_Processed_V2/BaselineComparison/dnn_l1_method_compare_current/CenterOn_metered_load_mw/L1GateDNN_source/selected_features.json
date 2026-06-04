@@ -1,0 +1,48 @@
+{
+  "threshold": 0.1,
+  "count": 8,
+  "features": [
+    {
+      "index": 1,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.10362948477268219
+    },
+    {
+      "index": 2,
+      "name": "total_losses",
+      "gate": 0.18780174851417542
+    },
+    {
+      "index": 11,
+      "name": "system_energy_price_da",
+      "gate": 0.3240068554878235
+    },
+    {
+      "index": 13,
+      "name": "marginal_loss_price_da",
+      "gate": 0.15634793043136597
+    },
+    {
+      "index": 15,
+      "name": "da_as_mcp_synchronized_reserve",
+      "gate": 0.11068585515022278
+    },
+    {
+      "index": 26,
+      "name": "da_as_as_mw_thirty_minutes_reserve",
+      "gate": 0.18752841651439667
+    },
+    {
+      "index": 29,
+      "name": "net_sched_interchange_mw",
+      "gate": 0.10553953051567078
+    },
+    {
+      "index": 34,
+      "name": "da_as_ss_mw_thirty_minutes_reserve",
+      "gate": 0.11867637187242508
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

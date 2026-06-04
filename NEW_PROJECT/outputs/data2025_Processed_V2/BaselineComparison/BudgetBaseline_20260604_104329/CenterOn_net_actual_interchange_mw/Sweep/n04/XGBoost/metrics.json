@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "method": "XGBoost",
+  "feature_count": 4,
+  "best_test_r2": 0.617814302444458,
+  "best_train_r2": 0.6390109062194824,
+  "min_test_loss": 0.3966156651678423,
+  "min_train_loss": 0.36098909563119713,
+  "final_test_r2": 0.60596764087677,
+  "final_train_r2": 0.6247619390487671,
+  "final_test_loss": 0.4089095632473356,
+  "final_train_loss": 0.3752380651631243,
+  "best_epoch": 143,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaseline_20260604_104329/CenterOn_net_actual_interchange_mw/Sweep/n04/XGBoost"
+}

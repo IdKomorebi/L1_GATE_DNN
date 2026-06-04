@@ -1,0 +1,12 @@
+{
+  "exp_name": "DNN_top16",
+  "exp_type": "selected",
+  "x_label": "Top16\nn=16",
+  "feature_count": 16,
+  "dropped_id": null,
+  "dropped_feature": "",
+  "best_test_r2": 0.6977972984313965,
+  "final_test_r2": 0.6079684495925903,
+  "best_epoch": 43,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/dnn_l1_method_compare_l1params_lr00065_thr010/CenterOn_congestion_price_rt/L1GateDNN_source/redundancy_validation/top_series_congestion_rt_10_25_e150/DNN_top16"
+}

@@ -1,0 +1,43 @@
+{
+  "data_path": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/data/processed/data2025_Processed_V2/pjm_rto_hourly_2025_aligned_processed_one_header.csv",
+  "center": "net_actual_interchange_mw",
+  "method": "RandomForest",
+  "features": [
+    "gen_fuel_nuclear_mw",
+    "gross_sched_interchange_mw",
+    "total_losses",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_req_mw_thirty_minutes_reserve",
+    "da_as_as_req_mw_primary_reserve",
+    "marginal_loss_price_da",
+    "gen_fuel_coal_mw"
+  ],
+  "training_params": {
+    "epochs": 150,
+    "batch_size": 50,
+    "lr": 0.001,
+    "train_ratio": 0.8,
+    "random_state": 42,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "key_epochs": [
+      10,
+      20,
+      50,
+      100,
+      200
+    ]
+  },
+  "preprocessing": {
+    "drop_all_zero_columns": false,
+    "exclude_columns": [
+      "net_sched_interchange_mw",
+      "total_gen"
+    ]
+  },
+  "n_features": 8,
+  "l1_run_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/manual_exclude_n_v2_script6/CenterOn_net_actual_interchange_mw/L1GateDNN_source"
+}
