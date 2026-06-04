@@ -1,0 +1,19 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "prelim_load_avg_hourly",
+    "metered_load_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_gas_pct",
+    "total_pjm_rt_load_mwh",
+    "total_gen",
+    "wind_generation_mw",
+    "gen_fuel_gas_mw",
+    "solar_generation_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_wind_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_solar_pct",
+    "gen_fuel_wind_pct"
+  ]
+}

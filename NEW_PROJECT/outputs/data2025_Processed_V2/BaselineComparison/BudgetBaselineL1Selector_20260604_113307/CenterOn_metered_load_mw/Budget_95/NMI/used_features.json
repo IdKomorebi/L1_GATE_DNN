@@ -1,0 +1,16 @@
+{
+  "center": "metered_load_mw",
+  "features": [
+    "marginal_loss_price_rt",
+    "system_energy_price_rt",
+    "total_lmp_rt",
+    "total_pjm_rmccp_cr",
+    "rmccp",
+    "system_energy_price_da",
+    "total_lmp_da",
+    "da_as_mcp_synchronized_reserve",
+    "da_as_mcp_primary_reserve",
+    "congestion_price_da",
+    "marginal_loss_price_da"
+  ]
+}

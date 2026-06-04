@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "L1GateDNN",
+  "feature_count": 17,
+  "best_test_r2": 0.9127294421195984,
+  "best_train_r2": 0.9641672372817993,
+  "min_test_loss": 0.08666869808311604,
+  "min_train_loss": 0.03583276131696421,
+  "final_test_r2": 0.9041434526443481,
+  "final_train_r2": 0.957491397857666,
+  "final_test_loss": 0.09519547843650732,
+  "final_train_loss": 0.04250861756497203,
+  "best_epoch": 129,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_metered_load_mw/Sweep/n17/L1GateDNN"
+}

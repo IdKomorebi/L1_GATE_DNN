@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "method": "Pearson",
+  "feature_count": 10,
+  "best_test_r2": 0.5851618647575378,
+  "best_train_r2": 0.7903150320053101,
+  "min_test_loss": 0.35429699203907405,
+  "min_train_loss": 0.20968492428036267,
+  "final_test_r2": 0.5704516172409058,
+  "final_train_r2": 0.788932204246521,
+  "final_test_loss": 0.36686038246062547,
+  "final_train_loss": 0.2110677656746183,
+  "best_epoch": 81,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_congestion_price_rt/Budget_95/Pearson"
+}

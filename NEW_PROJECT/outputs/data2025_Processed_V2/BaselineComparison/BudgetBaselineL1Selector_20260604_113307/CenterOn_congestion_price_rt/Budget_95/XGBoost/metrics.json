@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "method": "XGBoost",
+  "feature_count": 10,
+  "best_test_r2": 0.6367721557617188,
+  "best_train_r2": 0.8049219846725464,
+  "min_test_loss": 0.31021860632279963,
+  "min_train_loss": 0.19507793282862648,
+  "final_test_r2": 0.6226046085357666,
+  "final_train_r2": 0.8019860982894897,
+  "final_test_loss": 0.3223186022172508,
+  "final_train_loss": 0.1980138246945872,
+  "best_epoch": 127,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_congestion_price_rt/Budget_95/XGBoost"
+}

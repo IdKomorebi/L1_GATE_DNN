@@ -1,0 +1,18 @@
+{
+  "center": "total_gen",
+  "features": [
+    "total_lmp_da",
+    "total_losses",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_as_req_mw_primary_reserve",
+    "net_sched_interchange_mw",
+    "net_actual_interchange_mw",
+    "system_energy_price_da",
+    "total_lmp_rt",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "system_energy_price_rt",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "da_as_as_mw_primary_reserve",
+    "marginal_loss_price_da"
+  ]
+}

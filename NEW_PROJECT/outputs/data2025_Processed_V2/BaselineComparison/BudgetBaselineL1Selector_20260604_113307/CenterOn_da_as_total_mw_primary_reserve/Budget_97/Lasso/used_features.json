@@ -1,0 +1,11 @@
+{
+  "center": "da_as_total_mw_primary_reserve",
+  "features": [
+    "prelim_load_avg_hourly",
+    "metered_load_mw",
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_wind_mw",
+    "wind_generation_mw"
+  ]
+}

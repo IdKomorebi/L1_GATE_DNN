@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "Pearson",
+  "feature_count": 11,
+  "best_test_r2": 0.8272026181221008,
+  "best_train_r2": 0.8790790438652039,
+  "min_test_loss": 0.17160569775220194,
+  "min_train_loss": 0.12092095432530868,
+  "final_test_r2": 0.825556218624115,
+  "final_train_r2": 0.8790790438652039,
+  "final_test_loss": 0.17324077303959354,
+  "final_train_loss": 0.12092095432530868,
+  "best_epoch": 147,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_metered_load_mw/Budget_97/Pearson"
+}

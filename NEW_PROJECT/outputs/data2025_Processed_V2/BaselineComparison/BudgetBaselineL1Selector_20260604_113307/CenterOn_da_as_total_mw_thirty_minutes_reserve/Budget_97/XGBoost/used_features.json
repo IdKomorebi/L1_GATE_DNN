@@ -1,0 +1,19 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "features": [
+    "da_as_mcp_synchronized_reserve",
+    "da_as_mcp_primary_reserve",
+    "system_energy_price_da",
+    "gen_fuel_nuclear_mw",
+    "da_as_total_mw_primary_reserve",
+    "da_as_as_mw_primary_reserve",
+    "forecast_load_mw_day_ahead",
+    "gen_fuel_oil_pct",
+    "gen_fuel_gas_mw",
+    "gen_fuel_multiple_fuels_pct",
+    "total_lmp_da",
+    "da_as_as_req_mw_primary_reserve",
+    "gen_fuel_multiple_fuels_mw",
+    "total_pjm_rmpcp_cr"
+  ]
+}

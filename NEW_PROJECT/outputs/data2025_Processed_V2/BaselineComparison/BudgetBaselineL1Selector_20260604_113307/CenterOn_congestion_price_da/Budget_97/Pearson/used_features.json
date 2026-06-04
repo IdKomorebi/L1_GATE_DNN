@@ -1,0 +1,7 @@
+{
+  "center": "congestion_price_da",
+  "features": [
+    "total_lmp_da",
+    "gen_fuel_oil_mw"
+  ]
+}

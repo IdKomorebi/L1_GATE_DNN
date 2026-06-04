@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "DNN_AllFeatures",
+  "feature_count": 42,
+  "best_test_r2": 0.9157376885414124,
+  "best_train_r2": 0.976943850517273,
+  "min_test_loss": 0.0836812094466327,
+  "min_train_loss": 0.023056149723265557,
+  "final_test_r2": 0.9093779921531677,
+  "final_train_r2": 0.9767968654632568,
+  "final_test_loss": 0.08999706646980352,
+  "final_train_loss": 0.023203154284024363,
+  "best_epoch": 120,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/DNN_vs_L1DNN_20260603_235906/CenterOn_metered_load_mw/DNN_AllFeatures"
+}

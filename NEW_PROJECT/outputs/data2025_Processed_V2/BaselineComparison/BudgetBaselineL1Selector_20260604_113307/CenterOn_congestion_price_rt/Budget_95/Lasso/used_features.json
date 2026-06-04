@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_rt",
+  "features": [
+    "total_lmp_rt",
+    "da_as_mcp_synchronized_reserve",
+    "system_energy_price_da",
+    "marginal_loss_price_rt",
+    "gen_fuel_multiple_fuels_mw",
+    "total_pjm_loc_credit",
+    "gen_fuel_coal_pct",
+    "total_losses",
+    "gen_fuel_storage_mw",
+    "da_as_mcp_primary_reserve"
+  ]
+}

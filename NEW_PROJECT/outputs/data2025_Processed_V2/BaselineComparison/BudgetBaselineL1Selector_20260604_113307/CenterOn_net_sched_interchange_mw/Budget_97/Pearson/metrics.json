@@ -1,0 +1,15 @@
+{
+  "center": "net_sched_interchange_mw",
+  "method": "Pearson",
+  "feature_count": 12,
+  "best_test_r2": 0.8236398100852966,
+  "best_train_r2": 0.8859212398529053,
+  "min_test_loss": 0.1830144669778473,
+  "min_train_loss": 0.11407875535553647,
+  "final_test_r2": 0.8172772526741028,
+  "final_train_r2": 0.878636360168457,
+  "final_test_loss": 0.18961706195349834,
+  "final_train_loss": 0.1213636273022297,
+  "best_epoch": 140,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_net_sched_interchange_mw/Budget_97/Pearson"
+}

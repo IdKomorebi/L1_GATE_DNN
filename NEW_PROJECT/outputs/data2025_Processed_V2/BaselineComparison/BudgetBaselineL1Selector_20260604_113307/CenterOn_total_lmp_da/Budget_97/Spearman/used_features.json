@@ -1,0 +1,15 @@
+{
+  "center": "total_lmp_da",
+  "features": [
+    "system_energy_price_rt",
+    "total_lmp_rt",
+    "marginal_loss_price_rt",
+    "gen_fuel_nuclear_pct",
+    "gen_fuel_oil_mw",
+    "prelim_load_avg_hourly",
+    "da_as_mcp_synchronized_reserve",
+    "metered_load_mw",
+    "total_pjm_rt_load_mwh",
+    "gen_fuel_oil_pct"
+  ]
+}

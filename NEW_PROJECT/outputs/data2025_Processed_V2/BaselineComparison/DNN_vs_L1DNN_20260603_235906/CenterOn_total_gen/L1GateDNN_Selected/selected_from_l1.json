@@ -1,0 +1,22 @@
+{
+  "features": [
+    "total_losses",
+    "net_actual_interchange_mw",
+    "gross_actual_interchange_mw",
+    "marginal_loss_price_rt",
+    "gross_inadv_interchange_mw",
+    "gross_sched_interchange_mw",
+    "total_lmp_da",
+    "system_energy_price_da",
+    "total_lmp_rt",
+    "marginal_loss_price_da",
+    "total_pjm_reg_purchases",
+    "da_as_as_req_mw_synchronized_reserve",
+    "da_as_mcp_synchronized_reserve",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "total_pjm_assigned_reg",
+    "da_as_ss_mw_synchronized_reserve"
+  ],
+  "l1_source_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/DNN_vs_L1DNN_20260603_235906/CenterOn_total_gen/L1GateDNN_source",
+  "selection_source": "threshold"
+}

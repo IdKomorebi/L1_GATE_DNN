@@ -1,0 +1,19 @@
+{
+  "center": "total_losses",
+  "features": [
+    "marginal_loss_price_rt",
+    "gen_fuel_coal_mw",
+    "gen_fuel_nuclear_mw",
+    "forecast_load_mw_day_ahead",
+    "gen_fuel_coal_pct",
+    "gen_fuel_other_renewables_mw",
+    "wind_generation_mw",
+    "total_lmp_rt",
+    "gross_actual_interchange_mw",
+    "marginal_loss_price_da",
+    "gen_fuel_multiple_fuels_mw",
+    "gen_fuel_gas_pct",
+    "net_actual_interchange_mw",
+    "system_energy_price_rt"
+  ]
+}

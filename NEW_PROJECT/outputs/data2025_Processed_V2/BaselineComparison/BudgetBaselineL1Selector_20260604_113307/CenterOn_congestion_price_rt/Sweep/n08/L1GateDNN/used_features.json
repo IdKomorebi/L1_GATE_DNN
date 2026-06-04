@@ -1,0 +1,13 @@
+{
+  "center": "congestion_price_rt",
+  "features": [
+    "marginal_loss_price_rt",
+    "total_lmp_rt",
+    "gen_fuel_coal_pct",
+    "total_losses",
+    "gen_fuel_gas_pct",
+    "gen_fuel_oil_mw",
+    "forecast_load_mw_day_ahead",
+    "da_as_as_req_mw_thirty_minutes_reserve"
+  ]
+}

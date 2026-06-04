@@ -1,0 +1,15 @@
+{
+  "center": "metered_load_mw",
+  "method": "NMI",
+  "feature_count": 11,
+  "best_test_r2": 0.7318519353866577,
+  "best_train_r2": 0.800197958946228,
+  "min_test_loss": 0.26629885599085185,
+  "min_train_loss": 0.19980206120903837,
+  "final_test_r2": 0.7218399047851562,
+  "final_train_r2": 0.7958930730819702,
+  "final_test_loss": 0.27624180266574094,
+  "final_train_loss": 0.204106974477144,
+  "best_epoch": 114,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_metered_load_mw/Budget_95/NMI"
+}

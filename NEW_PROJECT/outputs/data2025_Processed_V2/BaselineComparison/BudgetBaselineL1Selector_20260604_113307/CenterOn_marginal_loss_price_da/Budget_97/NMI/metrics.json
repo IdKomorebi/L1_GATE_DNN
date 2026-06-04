@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "method": "NMI",
+  "feature_count": 10,
+  "best_test_r2": 0.8103851079940796,
+  "best_train_r2": 0.8821461200714111,
+  "min_test_loss": 0.19038202635493112,
+  "min_train_loss": 0.11785387625432994,
+  "final_test_r2": 0.8042322397232056,
+  "final_train_r2": 0.8756307363510132,
+  "final_test_loss": 0.19655978357096174,
+  "final_train_loss": 0.12436925484075904,
+  "best_epoch": 107,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_marginal_loss_price_da/Budget_97/NMI"
+}

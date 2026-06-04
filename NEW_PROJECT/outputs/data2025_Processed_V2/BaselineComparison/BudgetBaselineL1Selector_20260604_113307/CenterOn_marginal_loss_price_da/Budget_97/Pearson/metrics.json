@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "method": "Pearson",
+  "feature_count": 10,
+  "best_test_r2": 0.7253824472427368,
+  "best_train_r2": 0.867518961429596,
+  "min_test_loss": 0.2857408532872796,
+  "min_train_loss": 0.13248103691803464,
+  "final_test_r2": 0.6927807331085205,
+  "final_train_r2": 0.867518961429596,
+  "final_test_loss": 0.3196631027158441,
+  "final_train_loss": 0.13248103691803464,
+  "best_epoch": 17,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_marginal_loss_price_da/Budget_97/Pearson"
+}

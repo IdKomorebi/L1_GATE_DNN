@@ -1,0 +1,15 @@
+{
+  "center": "da_as_total_mw_thirty_minutes_reserve",
+  "method": "Spearman",
+  "feature_count": 14,
+  "best_test_r2": 0.8306808471679688,
+  "best_train_r2": 0.9103264808654785,
+  "min_test_loss": 0.17738281256789298,
+  "min_train_loss": 0.08967352660105622,
+  "final_test_r2": 0.8194437623023987,
+  "final_train_r2": 0.906129777431488,
+  "final_test_loss": 0.18915499833552804,
+  "final_train_loss": 0.09387023763985058,
+  "best_epoch": 103,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_da_as_total_mw_thirty_minutes_reserve/Budget_97/Spearman"
+}

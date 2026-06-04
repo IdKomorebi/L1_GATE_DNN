@@ -1,0 +1,15 @@
+{
+  "center": "marginal_loss_price_da",
+  "features": [
+    "total_losses",
+    "total_lmp_da",
+    "system_energy_price_da",
+    "forecast_load_mw_latest_available",
+    "metered_load_mw",
+    "prelim_load_avg_hourly",
+    "forecast_load_mw_day_ahead",
+    "total_pjm_rt_load_mwh",
+    "marginal_loss_price_rt",
+    "total_gen"
+  ]
+}

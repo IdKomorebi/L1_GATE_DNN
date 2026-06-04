@@ -1,0 +1,15 @@
+{
+  "center": "net_actual_interchange_mw",
+  "method": "DNN_AllFeatures",
+  "feature_count": 67,
+  "best_test_r2": 0.967963695526123,
+  "best_train_r2": 0.9934613108634949,
+  "min_test_loss": 0.03034995329032493,
+  "min_train_loss": 0.006538710523891163,
+  "final_test_r2": 0.9655976295471191,
+  "final_train_r2": 0.9924269318580627,
+  "final_test_loss": 0.032591485341715555,
+  "final_train_loss": 0.007573068177812,
+  "best_epoch": 139,
+  "output_dir": "/Users/haocun/Desktop/AllProjects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/BaselineComparison/BudgetBaselineL1Selector_20260604_113307/CenterOn_net_actual_interchange_mw/DNN_AllFeatures"
+}
