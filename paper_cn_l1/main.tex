@@ -1,522 +1,638 @@
-%% 中文课程论文 LaTeX 草稿
-%% 基于 /Users/haocun/Downloads/main_templete.tex 的格式整理
-%% 主要内容由原英文论文 ieeeconf313.pdf 改写，并补充当前项目的 baseline 对比实验
+% !TeX program = xelatex
+% 中文期刊论文草稿：按照 csg_tech_journal_latex_template.tex 改写
+% 编译建议：XeLaTeX。若投稿机没有 macOS 字体，可将 Songti SC/Heiti SC 改为宋体/黑体。
+\documentclass[UTF8,zihao=5,twoside]{ctexart}
 
-\documentclass[10.5pt,compsoc,UTF8]{CjC}
-\usepackage{ctex}
+\usepackage[a4paper,top=22mm,bottom=20mm,left=18mm,right=18mm,headheight=14pt,headsep=6mm,columnsep=7mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{amsmath,amssymb,bm}
 \usepackage{graphicx}
-\usepackage{footmisc}
-\usepackage{subfigure}
-\usepackage{url}
-\usepackage{multirow}
-\usepackage{multicol}
-\usepackage[noadjust]{cite}
-\usepackage{amsmath,amsthm}
-\usepackage{amssymb,amsfonts}
-\usepackage{booktabs}
-\usepackage{color}
-\usepackage{ccaption}
 \usepackage{float}
-\usepackage{fancyhdr}
+\usepackage{booktabs,array,multirow,tabularx}
 \usepackage{caption}
-\usepackage{xcolor,stfloats}
-\usepackage{comment}
-\usepackage{cuted}
-\usepackage{captionhack}
-\usepackage{epstopdf}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{balance}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes.geometric,fit}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric}
+\usepackage[hidelinks]{hyperref}
 
-\setcounter{page}{1}
 \graphicspath{{figures/}}
-\newcommand{\missingimagebox}[1]{%
-    \fbox{\begin{minipage}[c][36mm][c]{0.78\linewidth}
-    \centering
-    \zihao{5-} 缺少图片文件：\texttt{\detokenize{#1}}
-    \end{minipage}}%
+
+% -------------------- 字体 --------------------
+\IfFontExistsTF{Songti SC}{\setCJKmainfont{Songti SC}}{\setCJKmainfont{STSong}}
+\IfFontExistsTF{Heiti SC}{\setCJKsansfont{Heiti SC}}{\setCJKsansfont{STHeiti}}
+\IfFontExistsTF{Kaiti SC}{\setCJKfamilyfont{kai}{Kaiti SC}}{\setCJKfamilyfont{kai}{Songti SC}}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{Times}}
+\IfFontExistsTF{Arial}{\setsansfont{Arial}}{\setsansfont{Helvetica}}
+\newcommand{\kaiti}{\CJKfamily{kai}}
+
+\zihao{5}
+\setlength{\parindent}{2em}
+\linespread{1.08}
+\setlist{nosep,leftmargin=2em}
+
+% -------------------- 页眉页脚 --------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\zihao{-5}第~\thepage~页}
+\fancyhead[CE]{\zihao{-5}南方电网技术}
+\fancyhead[RE]{\zihao{-5}第~XX~卷}
+\fancyhead[LO]{\zihao{-5}\thepage}
+\fancyhead[CO]{\zihao{-5}南方电网技术}
+\fancyhead[RO]{\zihao{-5}第~XX~卷}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% -------------------- 标题层级 --------------------
+\titleformat{\section}{\sffamily\zihao{4}\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\sffamily\zihao{5}\bfseries}{\thesubsection}{0.6em}{}
+\titleformat{\subsubsection}{\sffamily\zihao{5}\bfseries}{\thesubsubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.6em}{0.3em}
+\titlespacing*{\subsubsection}{0pt}{0.4em}{0.2em}
+
+% -------------------- 图表与公式 --------------------
+\captionsetup{font={small},labelfont=bf,labelsep=quad,justification=centering}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\numberwithin{equation}{section}
+\renewcommand{\theequation}{\arabic{equation}}
+
+\newcommand{\figbicaption}[2]{%
+  \caption{#1\\[-0.2em]\small Fig.\,\thefigure\ #2}
 }
-\newcommand{\safeincludegraphics}[2][]{%
-    \IfFileExists{#2}{%
-        \includegraphics[#1]{#2}%
-    }{%
-        \IfFileExists{figures/#2}{%
-            \includegraphics[#1]{figures/#2}%
-        }{%
-            \missingimagebox{#2}%
-        }%
-    }%
+\newcommand{\tabbicaption}[2]{%
+  \caption{#1\\[-0.2em]\small Tab.\,\thetable\ #2}
 }
+\newcommand{\metric}[1]{\mathrm{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
 
-\headevenname{\mbox{\quad} \hfill  \mbox{\zihao{5-}{\hfill CPS信息物理融合系统课程论文} \hspace {50mm} \mbox{2026 年 5 月}}}
-\headoddname{杜浩存 \hfill 基于 L1 门控深度神经网络的电力数据隐含推断风险分析}
-
-\renewcommand{\thefootnote}{\fnsymbol{footnote}}
-\setcounter{footnote}{0}
-\renewcommand\footnotelayout{\zihao{5-}}
-
-\newtheoremstyle{mystyle}{0pt}{0pt}{\normalfont}{1em}{\bf}{}{1em}{}
-\theoremstyle{mystyle}
-\renewcommand\figurename{图}
-\renewcommand\tablename{表}
-\renewcommand{\thesubfigure}{(\alph{subfigure})}
-\newcommand{\upcite}[1]{\textsuperscript{\cite{#1}}}
-\renewcommand{\labelenumi}{(\arabic{enumi})}
-\renewcommand{\bibsection}{}
+% -------------------- 参考文献格式 --------------------
+\renewcommand{\refname}{参考文献}
 \makeatletter
-\renewcommand{\@biblabel}[1]{[#1]\hfill}
+\renewenvironment{thebibliography}[1]{%
+  \section*{\refname}%
+  \small
+  \list{[\arabic{enumi}]}{%
+    \settowidth\labelwidth{[#1]}%
+    \leftmargin\labelwidth
+    \advance\leftmargin\labelsep
+    \usecounter{enumi}}
+  \sloppy\clubpenalty4000\widowpenalty4000\sfcode`\.\@m
+}{\def\@noitemerr{\@latex@warning{Empty `thebibliography' environment}}\endlist}
 \makeatother
-\setlength\parindent{2em}
+
+\newcommand{\articleinfo}{文章编号：1674-0629(20XX)XX-XXXX-XX\quad 中图分类号：TM73\quad 文献标志码：A\\
+DOI：10.13648/j.cnki.issn1674-0629.20XX.XX.XXX}
+
+\newcommand{\fundcn}{基金项目：无。}
+\newcommand{\funden}{Foundation item: None.}
 
 \begin{document}
 
-\hyphenpenalty=50000
-\makeatletter
-\newcommand\mysmall{\@setfontsize\mysmall{7}{9.5}}
-\newenvironment{tablehere}{\def\@captype{table}}
-
-\let\temp\footnote
-\renewcommand \footnote[1]{\temp{\zihao{5-}#1}}
-
-\thispagestyle{plain}
-\thispagestyle{empty}
-\pagestyle{CjCheadings}
-
-\vspace {-13mm}
-
-\onecolumn
-\zihao{5-}\noindent 杜浩存 \hfill CPS信息物理融合系统课程论文\hfill 2026 年 5 月\\
-\noindent\rule[0.25\baselineskip]{\textwidth}{1pt}
-
-{
-\centering
-\vspace {11mm}
-{\zihao{2} \heiti 基于 L1 门控深度神经网络的电力数据隐含推断风险分析}
-
-\vskip 5mm
-
-{\zihao{4}\fangsong 杜浩存}
-
-\vspace {5mm}
-
-\zihao{5}{(西安交通大学网络空间安全学院，西安 710049)}
-
-\zihao{5}{(CPS信息物理融合系统课程作业)}
-}
-
-\vskip 5mm
-
-\zihao{5}{
-\setlength{\baselineskip}{16pt}\selectfont{
-\noindent {\heiti 摘\quad 要\quad }
-电力系统数据由物理约束、调度策略和市场机制共同生成，不同字段之间存在稳定而复杂的统计关联。这些关联在数据共享中可能形成隐含推断路径：即使核心敏感字段不被直接发布，攻击者仍可能利用低敏字段组合恢复敏感目标。针对这一问题，本文研究一种结合多相关性筛选与 L1 门控深度神经网络的电力数据隐含推断风险分析方法。该方法首先利用 Pearson、Spearman、Kendall、归一化互信息、距离相关系数和 HSIC 等指标对候选变量进行多角度筛选；随后在深度神经网络输入端加入可学习门控层，通过 L1 正则化压缩冗余字段，识别能够维持敏感目标推断能力的紧凑非冗余推断源集合，并以普通 DNN 再训练方式量化该集合的实际推断能力。进一步地，本文引入相关性驱动的改进门控机制，使模型能够自动学习不同相关系数在推断风险形成中的权重，从而判断线性相关、排序相关、信息论相关或非线性相关中哪些证据更重要。实验在 2025 年 PJM 市场数据上覆盖 12 个敏感目标，并与全量特征 DNN、单相关性选择、Lasso、ElasticNet、随机森林和 XGBoost 等方法比较。结果显示，L1GateDNN 的平均测试 $R^2$ 为 0.9065，略高于全量特征 DNN 的 0.9031，并高于随机森林的 0.8803、ElasticNet 的 0.8415、Lasso 的 0.8413 和 XGBoost 的 0.8073。实验表明，该方法不仅能够筛选隐含推断源，还能量化不同字段集合的推断能力，并通过改进门控学习相关性指标的重要性，为电力数据发布前的字段分级、风险审查和推断路径阻断提供依据。
-\par}}
-\vspace {5mm}
-
-\zihao{5}{\noindent
-{\heiti 关键词 \quad }{电力数据安全；隐含推断风险；相关性分析；L1 门控神经网络；特征选择；基线对比}
-}
-
-\vskip 7mm
-
+% ==================== 首页题名与摘要：单栏 ====================
 \begin{center}
-\zihao{3}{ \heiti Implicit Inference Risk Analysis for Power Data Based on L1-Gated Deep Neural Network}\\
-\vspace {5mm}
-\zihao{5}{Haocun Du}\\
-\vspace {2mm}
-\zihao{5-}{School of Cyber Science and Engineering, Xi'an Jiaotong University, Xi'an 710049, China}
+{\zihao{-5}\articleinfo}\par\vspace{1.0em}
+{\sffamily\zihao{2}\bfseries 基于多相关性筛选与 L1 门控深度神经网络的电力数据隐含推断风险分析}\par\vspace{0.8em}
+{\zihao{4}杜浩存}\par\vspace{0.4em}
+{\zihao{5}（西安交通大学 网络空间安全学院，陕西 西安 710049）}\par\vspace{0.8em}
 \end{center}
 
-\zihao{5}{
-\setlength{\baselineskip}{18pt}\selectfont{
-{\bf Abstract}\quad
-Power system data are jointly shaped by physical constraints, dispatching strategies and market mechanisms. Therefore, different data fields often contain stable and structured dependencies, which may create implicit inference paths in data sharing. This paper studies an implicit inference risk analysis method based on multi-correlation screening and an L1-gated deep neural network. The method first screens candidate variables using Pearson correlation, Spearman correlation, Kendall correlation, normalized mutual information, distance correlation and HSIC. It then inserts a learnable gate before a deep neural network and applies L1 regularization to suppress redundant fields. The selected compact feature set is further evaluated by a standard DNN so that the inference risk can be quantitatively measured. In addition, an improved correlation-driven gate is introduced to learn the weights of different correlation metrics automatically, indicating which correlation evidence is more important for implicit inference. Experiments on the 2025 PJM market dataset cover 12 sensitive targets and compare L1GateDNN with all-feature DNN, single-correlation selection, Lasso, ElasticNet, Random Forest and XGBoost. L1GateDNN achieves an average test $R^2$ of 0.9065, higher than Random Forest, ElasticNet, Lasso and XGBoost, and slightly higher than the all-feature DNN. The results show that the proposed method can screen inference-source fields, quantify their inference capability, and learn interpretable correlation weights, which is useful for secure power data sharing.
-\par}}
-\vspace {5mm}
+\noindent\textbf{摘要：}电力系统运行、调度和市场数据由物理约束、业务流程和市场出清机制共同生成，不同字段之间存在稳定而复杂的统计关联。在数据开放共享场景下，攻击者可能利用低敏字段组合恢复高敏目标字段，形成隐含推断风险。针对传统相关性分析难以刻画联合推断能力、全量深度模型难以定位非冗余风险源的问题，提出一种结合多相关性筛选与 L1 门控深度神经网络的电力数据隐含推断风险分析方法。该方法首先利用 Pearson、Spearman、Kendall、归一化互信息、距离相关系数和 HSIC 对候选字段进行多角度初筛；随后在深度神经网络输入端加入可学习门控，并通过 L1 正则化压缩冗余字段，得到能够维持敏感目标推断能力的紧凑推断源集合；进一步构建相关性驱动的改进门控模型，学习由统计相关性到门控开闭的统一风险边界。基于 PJM 2025 年小时级市场数据的实验表明，针对净实际交换功率目标，L1 门控从 55 个候选字段中稳定筛选出 18 个活跃字段，Top18 字段的普通 DNN 验证 $R^2$ 达到 0.9681，高于全量字段的 0.9661，而未选中字段单独推断仅为 0.7820。在 12 个敏感目标上，L1DNN 平均使用 15.5 个字段，字段利用率约 22.46\%，平均测试 $R^2$ 为 0.9111，高于全量 DNN 的 0.9031。进一步的同预算 baseline 和冗余噪声解释实验验证了所提方法在字段压缩、推断能力保持和风险解释方面的有效性。\par
+\noindent\textbf{关键词：}电力数据安全；隐含推断风险；相关性分析；L1 门控神经网络；特征选择；数据共享\par\vspace{0.8em}
 
-{\noindent{\bf Keywords}\quad power data security; implicit inference risk; correlation analysis; L1-gated neural network; feature selection; baseline comparison\par}
+\begin{center}
+{\bfseries\large Implicit Inference Risk Analysis for Power Data Based on Multi-Correlation Screening and L1-Gated Deep Neural Network}\par\vspace{0.5em}
+{DU Haocun}\par\vspace{0.3em}
+{\small (School of Cyber Science and Engineering, Xi'an Jiaotong University, Xi'an 710049, China)}\par\vspace{0.5em}
+\end{center}
 
-\zihao{5}
-\vskip 10mm
+\noindent\textbf{Abstract:} Power operation, dispatching and market data are jointly shaped by physical constraints, business processes and market clearing mechanisms. The stable dependencies among data fields may create implicit inference paths in data sharing scenarios. To address the limitations of conventional correlation analysis in joint inference evaluation and the lack of source localization in all-feature deep models, this paper proposes an implicit inference risk analysis method based on multi-correlation screening and an L1-gated deep neural network. Six dependency measures, including Pearson, Spearman, Kendall, normalized mutual information, distance correlation and HSIC, are first used for candidate screening. A learnable gate is then inserted before the DNN input layer, and L1 regularization is applied to identify a compact inference-source set while preserving the prediction capability for sensitive targets. Furthermore, a correlation-driven improved gate is designed to learn a unified risk boundary from statistical evidence to gate activation. Experiments on the 2025 PJM hourly market dataset show that, for net actual interchange, the L1 gate selects 18 active features from 55 candidates. A standard DNN retrained with the Top18 features obtains a test $R^2$ of 0.9681, higher than the all-feature result of 0.9661, while the unselected features alone only reach 0.7820. Across 12 sensitive targets, L1DNN uses 15.5 features on average, corresponding to a feature usage ratio of 22.46\%, and achieves an average test $R^2$ of 0.9111, higher than the all-feature DNN. Same-budget baseline comparisons and redundant-noise explanation experiments further validate the effectiveness of the proposed method in feature compression, inference preservation and risk interpretation.\par
+\noindent\textbf{Key words:} power data security; implicit inference risk; correlation analysis; L1-gated neural network; feature selection; data sharing\par\vspace{0.8em}
 
-\section{\heiti 引言}
+\noindent{\small\fundcn\\\funden}
 
-电力系统正在持续向数字化、市场化和数据驱动运行演进。调度控制、市场交易、负荷预测、辅助服务和设备监测等环节每天都会产生大量结构化数据。已有研究表明，电力大数据能够支撑负荷预测、运行优化和市场分析\upcite{qing2017bigdata,wang2018smartmeter}。这些数据在开放共享时具有明显价值，可以服务于运行分析、市场研究和算法验证；但与此同时，电力数据并不是彼此独立的普通表格字段。它们受到潮流平衡、供需关系、出清规则和业务流程的共同约束，字段之间天然存在稳定关联。
+\begin{multicols}{2}
 
-这类关联带来的风险不一定表现为直接泄露。智能电表和电力市场数据的隐私研究已经指出，攻击者可以通过已发布或合法获得的数据恢复更细粒度的敏感信息\upcite{sankar2012privacy,giaconi2018privacy,adewole2022privacy}。即使某个核心敏感字段被隐藏，若其他公开字段能够联合推断它，则仍然存在实际安全风险。例如，价格分量可能恢复节点价格，负荷预测和燃料结构可能支撑负荷或发电量推断，辅助服务相关字段也可能形成对备用需求的间接推断路径。本文将这种由字段关联和模型推断能力共同形成的风险称为隐含推断风险。
+\section{引言}
+随着电力系统数字化、市场化和数据驱动运行程度不断提升，调度控制、市场交易、负荷预测、辅助服务、燃料结构和交换功率等环节持续产生大规模结构化数据。电力数据开放能够支撑运行分析、市场监管、算法验证和学术研究，但这些数据并不是彼此独立的普通表格字段。作为典型信息物理融合系统，电网运行状态受到潮流平衡、设备约束、调度策略和市场出清规则共同影响，字段之间天然存在稳定且有业务含义的统计关联\cite{ref-liu-cps,ref-ma-pjm,ref-fan-pjm}。
 
-围绕上述问题，现有隐含推断风险识别和电力数据相关性分析研究大体可以分为两条技术路线。第一类方法侧重传统统计相关性或信息论指标。例如，Pearson 相关系数常用于计算历史负荷与气象因素之间的线性相关程度，从而剔除弱相关变量；相关性分析也被用于光伏异常数据识别与修复，以及区域电网负荷预测中的特征提取\upcite{lan2021load,jiao2021pv,deng2022load}。这类方法计算简单、解释直观，但单一相关性指标受到理论假设限制，只能捕捉特定数学框架下的依赖关系。例如 Pearson 相关系数主要描述线性依赖，难以充分刻画由电力物理约束和业务流程耦合产生的高阶非线性结构。即使联合使用多个相关系数，统计强度也不能直接映射为实际推断能力，基于经验阈值的风险判断仍缺乏自适应性和客观性。
+这类关联带来的安全问题并不一定表现为敏感字段被直接公开。智能电表和电力市场数据隐私研究已经表明，攻击者可以基于合法获得或公开发布的数据恢复更细粒度的敏感信息\cite{ref-sankar,ref-giaconi,ref-adewole}。例如，负荷、燃料结构和交换功率字段可能共同支撑发电或潮流状态推断；日前和实时价格分量可能恢复价格类敏感字段；辅助服务容量和备用需求字段可能反映调度安全裕度。即使某一核心字段被隐藏，只要其余字段保留了足够的联合推断能力，数据发布仍可能暴露实际风险。本文将这种由字段关联和模型推断能力共同形成的间接泄露称为电力数据隐含推断风险。
 
-第二类方法基于推断建模，通过数据驱动模型直接验证变量或变量集合对敏感目标的恢复能力。已有 MIC-DNN 框架尝试将最大信息系数与 DNN 结合，以一对一推断建模方式验证变量间相关性\upcite{xing2025micdnn}。另一方面，智能电网隐私研究中也有工作从非侵入式负荷监测出发，说明攻击者可以由合法获得的聚合负荷数据高精度恢复细粒度用电行为\upcite{adewole2022privacy}。这类方法更接近实际攻击场景，但仍存在不足：成对建模只能验证一个变量是否能够推断另一个变量，不能识别联合推断下的非冗余源集合；全量变量建模虽然可以说明目标整体可被预测，却会引入大量冗余和噪声特征，提高训练成本和过拟合风险，并使结果对样本窗口、参数初始化和数据波动更加敏感。换言之，现有方法常常能够证明“目标可被推断”，却难以进一步说明“哪些变量起主导作用”。
+现有相关研究大体可以分为两类。第一类方法侧重统计相关性或信息论指标。Pearson 相关系数、Spearman 和 Kendall 秩相关系数常用于负荷预测和异常数据清洗中的特征筛选\cite{ref-lan-load,ref-jiao-pv,ref-deng-load}；归一化互信息、距离相关系数和核独立性指标可进一步刻画非线性依赖\cite{ref-szekely-dcorr,ref-gretton-hsic}。这类方法计算简单、解释直观，但单一指标只能描述特定数学意义下的依赖关系，多个指标并列使用时也缺少统一风险判定标准。更重要的是，统计相关性强并不等价于联合模型中不可替代，统计相关性弱的字段也可能在组合后提供有效信息。
 
-因此，隐含推断风险分析需要同时满足三个要求：第一，能够从大量字段中保留潜在相关变量；第二，能够验证这些变量对敏感目标的真实推断能力；第三，能够进一步压缩冗余，得到较小且可解释的推断源集合。基于这一思路，本文采用多相关性筛选与 L1 门控深度神经网络相结合的方法。整体流程如图 \ref{fig:flow} 所示。
+第二类方法基于推断建模，利用 DNN、随机森林、XGBoost 等机器学习模型直接验证目标字段是否可由其他字段恢复\cite{ref-wang-meter,ref-breiman-rf,ref-chen-xgboost}。这类方法更接近真实攻击场景，但普通全量模型只能说明目标整体可预测，难以回答“哪些字段构成主要风险源”。Lasso 和 ElasticNet 等稀疏线性模型能够进行变量选择\cite{ref-tibshirani-lasso,ref-zou-enet}，但表达能力受线性假设限制；树模型重要性排序能够提供启发式解释，却容易受到特征冗余和模型随机性的影响。已有 MIC-DNN 框架尝试把信息系数与深度模型结合，用于电力数据相关性验证\cite{ref-xing-micdnn}，但成对推断仍难以识别联合场景下的非冗余推断源集合。
 
-\begin{figure}[H]
-\centering
-\begin{tikzpicture}[
-    node distance=10mm and 13mm,
-    box/.style={draw, rounded corners, align=center, minimum width=29mm, minimum height=9mm, font=\small},
-    arrow/.style={-{Latex[length=2mm]}, thick}
-]
-\node[box] (data) {原始电力数据\\候选字段与敏感目标};
-\node[box, right=of data] (corr) {多相关性计算\\形成相关性向量};
-\node[box, right=of corr] (screen) {阈值筛选\\得到候选集合};
-\node[box, below=of screen] (l1) {L1 门控 DNN\\联合推断与稀疏化};
-\node[box, left=of l1] (source) {活跃特征集合\\非冗余推断源};
-\node[box, left=of source] (valid) {DNN 验证\\同数量字段比较};
-\node[box, below=of source] (risk) {风险解释\\字段分级与发布审查};
-\draw[arrow] (data) -- (corr);
-\draw[arrow] (corr) -- (screen);
-\draw[arrow] (screen) -- (l1);
-\draw[arrow] (l1) -- (source);
-\draw[arrow] (source) -- (valid);
-\draw[arrow] (source) -- (risk);
-\end{tikzpicture}
-\caption{面向敏感目标的隐含推断风险分析流程}
-\label{fig:flow}
-\end{figure}
+因此，面向数据发布前审查的隐含推断风险分析需要同时满足三个要求：一是从大量字段中保留潜在相关变量，避免过早漏筛；二是验证变量集合对敏感目标的实际推断能力；三是在保持推断能力的同时压缩冗余字段，使结果能够落到字段级风险处置。基于这一思路，本文在原有多相关性与 L1 门控框架基础上，使用 PJM 2025 年数据重构中文期刊实验体系，并新增 DNN/L1DNN 对比、同预算 baseline 对比和冗余噪声解释实验。主要工作如下：
 
-本文的主要工作如下：
-\begin{enumerate}
-    \item 构建多相关性筛选与 L1 门控深度推断相结合的分析流程，用于识别敏感目标的紧凑推断源集合；
-    \item 通过门控参数演化、活跃特征数量变化和逐一去除验证，说明模型不是简单证明目标可预测，而是在寻找非冗余推断路径；
-    \item 在 PJM 2025 年数据上加入 12 个敏感目标的 baseline 对比实验，验证 L1GateDNN 相比传统特征选择和机器学习基线的综合效果。
-\end{enumerate}
+1）提出多相关性初筛与 L1 门控 DNN 相结合的隐含推断风险分析流程，将统计依赖证据、非线性推断能力和字段稀疏选择统一到同一实验框架中。
 
-\section{\heiti 研究现状分析}
+2）针对净实际交换功率开展单目标细粒度实验，利用门控参数演化、活跃字段数量变化和 Top-n 再训练验证，说明所选字段集合具有充分推断能力，而未选中字段单独推断能力明显较弱。
 
-\subsection{\heiti 电力数据共享与隐私风险}
+3）面向 12 个敏感目标补充 DNN 与 L1DNN 的直接对比，以及 95\% 和 97\% 同预算 baseline 对比，验证所提方法在相同字段预算下相较单相关性选择、线性稀疏模型和树模型的重要性排序具有更稳定的综合表现。
 
-电力系统是典型的信息物理融合系统，运行数据不仅反映市场交易结果，也反映电网物理状态和调度控制策略。随着美国 PJM 等电力市场逐步形成较完整的信息披露机制，市场透明度和数据可获得性显著提升\upcite{ma2017market,fan2008pjm}。公开数据可以支持市场监管、算法验证和学术研究，但也使数据发布者面临新的安全边界问题：某些字段本身可能并不被定义为敏感字段，却能够通过统计关联和模型推断间接恢复核心运行信息。
+4）针对少量字段推断精度高于全量字段的现象，补充训练曲线与 Top-n 递增实验，说明全量输入中的冗余噪声会放大过拟合风险，合理压缩字段反而可能提升泛化性能。
 
-智能电表、电力市场和调度运行数据的隐私研究已经说明，电力数据泄露不一定表现为单个字段的直接公开。Wang 等\upcite{wang2018smartmeter}系统总结了智能电表数据分析的应用、方法和隐私挑战；Sankar 等\upcite{sankar2012privacy}从信息论角度讨论了智能电表隐私保护框架；Giaconi 等\upcite{giaconi2018privacy}指出，智能计量数据共享在隐私保护强度与数据可用性之间始终存在张力；Adewole 和 Torra\upcite{adewole2022privacy}则从能量分解角度说明，攻击者能够由聚合数据恢复更细粒度的用电行为。这些研究共同表明，电力数据安全不应只关注“哪些字段直接敏感”，还应关注“哪些字段组合后能够推断敏感目标”。
-
-从攻防视角看，电力信息物理系统中的安全风险还具有跨层传播特征。Liu 等\upcite{liu2019cps}指出，信息侧数据、通信和控制信号的异常可能进一步影响物理侧运行；Bhattacharjee 等\upcite{bhattacharjee2021vulnerability}则提出需要对信息物理系统中的脆弱性和隐私泄露风险进行量化。本文研究的隐含推断风险正处于数据开放与模型攻击之间：攻击者不需要篡改系统，也不一定需要获得敏感字段本身，只要公开字段中保留了足够的推断路径，就可能恢复敏感目标。
-
-\subsection{\heiti 相关性分析}
-
-相关性分析是识别隐含推断路径的自然起点。Pearson 相关系数适合描述线性幅值关系，Spearman 与 Kendall 系数适合描述排序一致性，归一化互信息能够刻画一般统计依赖，距离相关系数和 HSIC 则对非线性依赖更敏感。电力系统数据由物理平衡、市场出清和调度策略共同生成，字段关系既可能接近线性，也可能因分段规则、价格机制或辅助服务约束呈现非线性。因此，单一相关性指标通常不足以覆盖全部风险线索。
-
-在电力工程应用中，相关性分析已被广泛用于特征选择、异常清洗和预测建模。Lan 等\upcite{lan2021load}在短期负荷预测中利用相关因素构造深度学习输入；Jiao 等\upcite{jiao2021pv}结合方差变化点和相关性分析识别光伏异常数据；Deng 等\upcite{deng2022load}通过相关性分析和特征提取改进区域电网短期负荷预测。这些工作说明，相关性指标具有计算简单、解释直观和工程可落地的优点。
-
-但是，相关性分析也存在天然局限。首先，成对相关性不能直接描述多个字段的联合推断能力；其次，相关性强的字段可能只是另一关键字段的冗余表达；再次，相关性弱的字段在与其他字段组合后仍可能具有推断贡献。因此，在隐含推断风险分析中，相关性更适合作为候选变量筛选工具，而不宜作为最终风险判定依据。本文采用多相关性初筛，正是为了在不过早丢失候选推断源的前提下，将明显无关字段剔除，并为后续门控模型提供较干净的输入空间。
-
-\subsection{\heiti 推断模型与稀疏选择}
-
-与相关性方法相比，监督推断模型可以更直接地回答“敏感目标能否由其他字段预测”。普通 DNN、随机森林和 XGBoost 等模型具有较强的非线性拟合能力，能够在复杂字段组合中发现可学习关系。Xing 等\upcite{xing2025micdnn}提出 MIC-DNN 框架，将最大信息系数与深度模型结合，用于电力数据相关性验证。这类方法的优势在于能够把统计关联进一步转化为预测能力，从而更接近真实攻击场景。
-
-然而，推断模型本身并不等价于风险源定位。全量 DNN 可以证明某个目标可被预测，却无法说明预测主要依赖哪些字段；树模型的重要性排序能够给出启发式解释，但该解释受模型结构、特征冗余和随机性影响；Lasso 和 ElasticNet 可以输出稀疏系数，却主要适用于线性关系，对电力市场中的非线性耦合表达不足。换言之，现有方法要么偏向统计描述，要么偏向整体预测，缺少一个同时具备非线性推断能力和字段级稀疏解释的统一流程。
-
-L1 门控神经网络提供了一种折中路径：在 DNN 输入端为每个字段设置可学习门控，由 DNN 主体负责非线性拟合，由 L1 正则推动门控稀疏化。这样，模型训练不再只是优化预测误差，还会在保持推断能力的同时压缩输入字段。门控值天然对应字段是否被保留，因而比普通特征重要性更适合解释隐含推断路径。本文进一步将 L1 门控达到阈值的字段数量作为不同 baseline 的统一特征数量，使多目标对比不只比较预测性能，也比较在相同字段预算下的推断能力。
-
-\section{\heiti 方法}
-
-\subsection{\heiti 问题定义}
-
-给定数据集
-\[
+\section{方法}
+\subsection{问题定义}
+给定电力数据集
+\begin{equation}
 D=\{X_1,X_2,\ldots,X_w,Y\},
-\]
-其中 $Y\in\mathbb{R}^{n}$ 为敏感目标字段，$X_i\in\mathbb{R}^{n}$ 为候选字段。目标是识别一个尽量小的字段集合 $\mathcal{S}$，使得用 $\mathcal{S}$ 训练的推断模型仍能保持对 $Y$ 的较高预测能力。模型性能用决定系数衡量：
-\[
+\end{equation}
+其中 $Y\in\mathbb{R}^{n}$ 为待保护的敏感目标字段，$X_i\in\mathbb{R}^{n}$ 为候选字段，$w$ 为候选字段总数，$n$ 为样本数。隐含推断风险分析的目标不是单纯训练一个高精度预测模型，而是识别一个尽量小的字段集合 $\mathcal{S}$，使其能够维持对 $Y$ 的高精度推断：
+\begin{equation}
+\mathcal{S}^{*}=\arg\min_{\mathcal{S}\subseteq \{X_i\}}\left|\mathcal{S}\right|,
+\quad
+R^2(f_{\theta}(\mathcal{S}),Y)\geq \eta .
+\end{equation}
+其中 $f_{\theta}$ 为推断模型，$\eta$ 为可接受的推断能力阈值。模型性能采用决定系数衡量：
+\begin{equation}
 R^2=1-\frac{\sum_{k=1}^{n}(y_k-\hat{y}_k)^2}{\sum_{k=1}^{n}(y_k-\bar{y})^2}.
-\]
-在隐含推断风险分析中，$R^2$ 并不是普通预测任务中的唯一目标。若某个字段集合规模很大，即使能够取得较高 $R^2$，也难以说明风险来自哪些具体字段；若字段集合过小但 $R^2$ 明显下降，则说明其不足以代表真实推断路径。因此，本文关注的是“紧凑性”和“推断能力”的共同满足：一方面要求 $\mathcal{S}$ 尽可能小，另一方面要求由 $\mathcal{S}$ 训练的普通 DNN 仍能接近全量字段的推断效果。该定义使实验结论能够从“目标是否可预测”进一步转化为“哪些字段构成主要风险来源”。
+\end{equation}
+当一个较小字段集合能够取得接近或超过全量字段的 $R^2$ 时，说明该集合保留了主要推断路径；当未选中字段单独推断能力明显下降时，则说明被剔除字段主要提供冗余或噪声信息。
 
-如图 \ref{fig:flow} 所示，本文方法由两个阶段组成。第一阶段利用多相关性指标进行统计初筛，尽量保留潜在复杂关联，同时剔除明显无关变量；第二阶段使用 L1 门控深度推断模型，在保持敏感目标推断精度的同时压缩输入字段，从而识别最小化、非冗余的推断源集合。对于改进门控模型，相关性向量还会进一步用于学习统一风险边界，使统计相关性与实际推断能力之间建立可解释联系。
+\subsection{多相关性初筛}
+电力数据字段之间既可能存在近似线性关系，也可能因市场出清、辅助服务约束和分段调度规则呈现非线性耦合。为避免单一指标漏筛，本文对每个候选字段 $X_i$ 计算六维相关性向量：
+\begin{equation}
+R_i=[r_i^{(\metric{NMI})},r_i^{(\metric{Spear})},r_i^{(\metric{Pear})},
+r_i^{(\metric{Ken})},r_i^{(\metric{DC})},r_i^{(\metric{HSIC})}].
+\end{equation}
+六个分量分别对应归一化互信息、Spearman 秩相关系数、Pearson 相关系数、Kendall 秩相关系数、距离相关系数和 HSIC。若任一指标达到对应阈值，则保留该字段：
+\begin{equation}
+\max_j I\left(r_i^{(j)}\geq \mu_1^{(j)}\right)>0.
+\end{equation}
+本文采用“任一指标通过即保留”的宽松策略，其含义是：只要字段在某一种统计证据下表现出足够依赖，就进入后续门控模型，由推断能力和稀疏约束共同决定其是否最终保留。这样可以把初筛定位为候选空间压缩，而不是最终风险判定。
 
-\subsection{\heiti 多相关性初筛}
+\subsection{L1 门控深度推断模型}
+多相关性初筛后得到候选集合 $X=\{X_1,\ldots,X_m\}$。在普通 DNN 输入端加入可学习门控向量 $g=[g_1,\ldots,g_m]$，模型输出为
+\begin{equation}
+\hat{Y}=f_{\theta}(g\odot X),
+\end{equation}
+其中 $\odot$ 表示逐元素相乘。训练目标为
+\begin{equation}
+\mathcal{L}=\frac{1}{n}\sum_{k=1}^{n}(y_k-\hat{y}_k)^2+\lambda\sum_{i=1}^{m}|g_i|.
+\end{equation}
+第一项保证模型推断精度，第二项推动门控参数稀疏化。若某个字段对降低预测误差有稳定贡献，反向传播会维持其较大 $g_i$；若某个字段只提供重复信息或噪声，L1 惩罚会持续压低其门控值。训练结束后，满足
+\begin{equation}
+|g_i|\geq \mu_2
+\end{equation}
+的字段被视为活跃推断源。本文把活跃字段数量记为 $n_s$，并在后续 baseline 中作为统一字段预算，使不同方法在相同数量字段下进行比较。
 
-对于每个候选字段 $X_i$，计算其与目标 $Y$ 的相关性向量：
-\[
-R_i=[r_i^{(1)},r_i^{(2)},\ldots,r_i^{(6)}],
-\]
-六个分量分别为 Pearson、Spearman、Kendall、归一化互信息、距离相关系数和 HSIC。若
-\[
-\max_j r_i^{(j)}\geq \mu_1,
-\]
-则保留该变量进入候选集合。该阶段只负责去除明显无关字段，因此阈值设置较宽松。
-
-多相关性初筛的作用是覆盖不同类型的统计依赖，而不是直接给出最终风险结论。Pearson 更偏向线性幅值关系，Spearman 和 Kendall 关注单调排序一致性，归一化互信息可以从信息论角度描述一般非线性依赖，距离相关系数能够检测任意形式的依赖关系，HSIC 则在核空间中度量高阶非线性关联。电力市场字段中既存在物理平衡带来的近线性关系，也存在价格出清、辅助服务和燃料结构共同作用下的非线性关系，因此单一相关性指标容易漏掉部分候选推断源。
-
-本文将六类指标均归一化到 $[0,1]$ 区间，并设置较宽松的最小相关性阈值 $\mu_1$。其目的不是在这一阶段给出严格风险判定，而是尽可能避免漏掉潜在变量。初筛后得到候选集合
-\[
-X=\{X_1,X_2,\ldots,X_m\},\quad m\leq w.
-\]
-该阶段缩小了后续门控模型的搜索空间，也减少了明显噪声变量对深度推断模型的干扰。
-
-\subsection{\heiti L1 门控深度推断模型}
-
-候选集合进入 L1 门控 DNN。模型结构如图 \ref{fig:l1_structure} 所示。设筛选后共有 $m$ 个候选字段，输入矩阵为 $X\in\mathbb{R}^{n\times m}$，门控向量为 $g=[g_1,\ldots,g_m]$，则模型为：
-\[
-\hat{Y}=f_{\theta}(g\odot X).
-\]
-训练目标为：
-\[
-\mathcal{L}=\mathrm{MSE}+\lambda\sum_{i=1}^{m}|g_i|.
-\]
-其中 MSE 保证推断精度，L1 项推动门控收缩。两者之间形成一种直接竞争：若某个字段对降低预测误差有稳定贡献，则模型倾向于保留较大的 $g_i$；若某个字段只提供重复信息或噪声，则 L1 项会持续压低其门控值。与训练完成后再做特征重要性排序不同，L1GateDNN 在训练过程中同时学习非线性推断函数和输入字段开关，因此门控结果与最终推断能力具有更直接的对应关系。训练结束后，若
-\[
-|g_i|\geq \mu_2,
-\]
-则将 $X_i$ 视为活跃推断源。本文将活跃特征数量记为 $n$，后续 baseline 比较也统一使用该 $n$ 进行特征选择，以保证不同方法在相同特征数量下比较。
-
-从模型结构看，门控层对每个输入字段执行逐元素加权：
-\[
-X_i'=g_i\cdot X_i.
-\]
-当 $g_i$ 较大时，该字段能够较完整地进入后续 MLP；当 $g_i$ 接近 0 时，该字段对模型输出的影响被削弱。训练结束后，最终推断源集合可写为
-\[
-X_{\text{source}}=\{X_i\mid |g_i|\geq \mu_2\}.
-\]
-因此，L1GateDNN 将“预测敏感目标”和“筛选风险源字段”放在同一个优化过程中完成，而不是先预测后解释。
+图~\ref{fig:method_flow} 给出了本文整体流程。统计初筛负责覆盖多类型依赖，L1GateDNN 负责在推断训练中压缩冗余字段，普通 DNN 再训练则用于独立验证所选字段集合的实际推断能力。
 
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}[
-    node distance=9mm and 11mm,
-    box/.style={draw, rounded corners, align=center, minimum width=26mm, minimum height=9mm, font=\small},
-    arrow/.style={-{Latex[length=2mm]}, thick}
+    node distance=7mm and 5mm,
+    box/.style={draw, rounded corners, align=center, minimum width=22mm, minimum height=8mm, font=\scriptsize},
+    arrow/.style={-{Latex[length=1.6mm]}, thick}
 ]
-\node[box] (x) {候选输入\\$X_1,\ldots,X_m$};
-\node[box, right=of x] (gate) {可学习门控\\$g_1,\ldots,g_m$};
-\node[box, right=of gate] (gx) {加权输入\\$g\odot X$};
-\node[box, right=of gx] (mlp) {多层感知机\\$f_\theta(\cdot)$};
-\node[box, right=of mlp] (y) {敏感目标预测\\$\hat{Y}$};
-\node[box, below=of gate] (l1) {L1 正则\\压缩冗余字段};
-\draw[arrow] (x) -- (gate);
-\draw[arrow] (gate) -- (gx);
-\draw[arrow] (gx) -- (mlp);
-\draw[arrow] (mlp) -- (y);
-\draw[arrow] (l1) -- (gate);
+\node[box] (data) {原始数据\\候选字段};
+\node[box, right=of data] (corr) {六类相关性\\统计初筛};
+\node[box, right=of corr] (gate) {L1 门控\\DNN 推断};
+\node[box, below=of gate] (source) {活跃字段\\推断源集合};
+\node[box, left=of source] (valid) {普通 DNN\\再训练验证};
+\node[box, left=of valid] (risk) {风险解释\\字段处置};
+\draw[arrow] (data) -- (corr);
+\draw[arrow] (corr) -- (gate);
+\draw[arrow] (gate) -- (source);
+\draw[arrow] (source) -- (valid);
+\draw[arrow] (valid) -- (risk);
 \end{tikzpicture}
-\caption{L1 门控深度推断模型结构}
-\label{fig:l1_structure}
+\figbicaption{隐含推断风险分析流程}{Flowchart of implicit inference risk analysis}
+\label{fig:method_flow}
 \end{figure}
 
-\subsection{\heiti 改进门控与风险边界}
+\subsection{改进门控风险边界}
+普通 L1GateDNN 中每个字段的 gate 是独立可学习参数。为了进一步解释“哪些相关性证据促使 gate 打开”，本文引入相关性驱动的改进门控：
+\begin{equation}
+g_i=\sigma(W^{\mathrm{T}}R_i+b),
+\end{equation}
+其中 $W\in\mathbb{R}^{6}$ 为六类相关性指标的可学习权重，$b$ 为全局风险容忍偏置，$\sigma(\cdot)$ 为 Sigmoid 函数。由于 Sigmoid 在输入为 0 时输出为 0.5，且在该点附近变化最快，因此 $g_i=0.5$ 可作为门控开闭的自然边界，对应
+\begin{equation}
+W^{\mathrm{T}}R_i+b=0.
+\end{equation}
+当 $g_i>0.5$ 时，该字段被视为更可能构成活跃推断源；当 $g_i<0.5$ 时，该字段被视为冗余或低风险字段。与普通 L1GateDNN 相比，改进门控的主要作用不是单纯提高 $R^2$，而是把字段级 gate 与六类相关性指标联系起来，使模型能够学习统一风险边界和不同指标的相对贡献。
 
-为了将相关性证据和门控结果联系起来，可以进一步使用相关性驱动的门控结构：
-\[
-g_i=\sigma(W^T R_i+b).
-\]
-其中 $W$ 表示各相关性指标的权重，$b$ 表示风险判断偏置。当 $g_i=0.5$ 时，对应的边界为
-\[
-W^TR_i+b=0.
-\]
-该边界可以理解为多相关性空间中的统一风险判别边界。由于 Sigmoid 函数单调递增，且在输入为 0 时输出为 0.5，因此 $g_i=0.5$ 可以作为门控开闭的临界状态。当 $g_i>0.5$ 时，变量更倾向于被视为活跃推断源；当 $g_i<0.5$ 时，变量更倾向于被视为冗余或低风险变量。与固定阈值相比，改进门控不再默认所有相关性指标等价，而是让模型根据推断任务自动学习 $W$：若 Pearson 权重较高，说明线性相关对当前目标更重要；若 NMI、距离相关系数或 HSIC 权重较高，则说明非线性依赖对推断路径贡献更大。
-
-参数 $b$ 可以理解为风险容忍偏置，决定门控打开的整体难度。由 $g_i=0.5$ 可得统一边界 $W^TR_i+b=0$，因此当 $b$ 更小或更负时，变量需要更强的多维相关性证据才能保持 gate 打开，风险判定也更严格。实际训练中可加入 warm-up 策略：前期只优化 MSE，使模型先学习基本推断关系；后期再引入 L1 正则，逐步收紧风险边界，以避免重要变量过早被压低。这样，改进门控不仅输出字段级 gate 值，还能给出相关性指标层面和风险阈值层面的解释。
-
-\section{\heiti 实验设置}
-
-\subsection{\heiti 数据与目标}
-
-实验使用 PJM 2025 年小时级市场与运行数据，字段包括负荷、发电、燃料结构、交换功率、日前/实时价格、辅助服务等。本文选择 12 个具有代表性的敏感目标，包括交换功率、发电与负荷、价格和辅助服务容量。所有方法使用相同的数据预处理流程、训练测试划分和 DNN 验证结构。
-
-\subsection{\heiti 模型参数}
-
-L1GateDNN 的主干网络采用三层隐藏层，维度为 $[64,32,16]$；优化器为 Adam，学习率为 $10^{-3}$；L1 正则系数为 $2\times 10^{-3}$；活跃阈值设为 $\mu_2=0.06$。普通 DNN 验证模型采用相同主干结构。训练集比例为 0.8，测试集比例为 0.2。
-
-\subsection{\heiti 对比方法}
-
-为了验证 L1GateDNN 的字段筛选效果，本文设置了四类对比方法。第一类是全量特征 DNN，即使用所有候选字段训练普通 DNN，用于表示在不进行字段筛选时可达到的推断上限。第二类是单相关性选择方法，包括 Pearson、Spearman 和 NMI，分别按照单一相关性指标排序后选择字段。第三类是线性稀疏方法，包括 Lasso 和 ElasticNet，用于比较传统稀疏回归在该任务中的表现。第四类是基于模型重要性的非线性方法，包括 RandomForest 和 XGBoost，它们能够捕捉非线性关系，并根据特征重要性给出排序。
-
-上述 baseline 的评价方式保持一致：除全量特征 DNN 外，各方法均按照 L1 门控达到阈值的活跃特征数量 $n$ 选择字段，然后将所选字段输入同一普通 DNN 进行再训练和测试。这样做可以避免不同方法因选择字段数量不同而产生不公平比较，也能更直接地检验“在相同字段预算下，哪一种选择策略保留了更强的推断能力”。因此，表 \ref{tab:baseline_main} 和图 \ref{fig:baseline_target} 中的差异主要反映字段选择质量，而不是验证模型结构差异。
-
-\section{\heiti 单目标实验：门控收缩与非冗余验证}
-
-\subsection{\heiti 推断精度演化}
-
-本节以净实际交换功率（\texttt{net\_actual\_interchange\_mw}）为代表性敏感目标，展示 L1GateDNN 从推断能力到字段筛选的完整过程。图 \ref{fig:r2_curve} 给出了该目标上的训练 $R^2$ 曲线。可以看到，模型在早期迅速获得较高推断能力，随后在 L1 正则持续作用下保持稳定。该现象说明，门控层虽然不断压缩输入字段，但被保留字段已经能够支撑对净实际交换功率的主要推断信息，因此模型没有因为稀疏化而发生明显性能崩塌。
-
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.82\textwidth]{fig_r2_curve.png}
-\caption{净实际交换功率目标上 L1GateDNN 训练过程中的 $R^2$ 变化}
-\label{fig:r2_curve}
-\end{figure}
-
-\subsection{\heiti 门控参数演化}
-
-图 \ref{fig:gate_evolution} 展示了门控参数随 epoch 的变化。每条曲线对应一个候选输入字段的 gate 值。大量字段在训练过程中逐渐衰减到阈值以下，而少数关键字段维持较高 gate 值，表明模型在保留推断能力的同时完成了冗余压缩。图中曲线的分化过程也说明，不同字段对净实际交换功率的贡献并非只由初始相关性决定，而是在联合训练中由预测误差和 L1 约束共同塑造。
-
-从信息物理融合系统视角看，这一过程也可以理解为由物理运行约束和市场业务机制共同驱动的风险路径筛选。若某些字段只是与目标同步变化，却不能在联合模型中提供独立信息，其 gate 会在 L1 压力下逐步关闭；若某些字段承载了负荷平衡、交换功率或实时市场状态中的关键耦合信息，其 gate 会在误差反向传播中被持续保留。因此，门控曲线的收缩不是单纯的数值稀疏化，而是对跨字段隐含推断路径的一种可视化表达。
-
-\begin{figure}[htbp]
-\centering
-\safeincludegraphics[width=0.86\textwidth]{fig_gate_evolution.png}
-\caption{净实际交换功率目标上门控参数 $g_i$ 随训练 epoch 的变化}
-\label{fig:gate_evolution}
-\end{figure}
-
-图 \ref{fig:active_features} 进一步给出了活跃特征数量的变化。随着训练推进，活跃特征数量从较大候选集合逐步下降并趋于稳定。该结果与图 \ref{fig:gate_evolution} 相互印证：门控模型并不是在训练末尾一次性截断特征，而是在多个 epoch 中逐步形成稳定的活跃集合。本文后续 baseline 实验中使用的 $n$ 即由 L1 门控阈值下的活跃特征数量确定。
-
-\begin{figure}[htbp]
-\centering
-\safeincludegraphics[width=0.72\textwidth]{fig_active_features.png}
-\caption{净实际交换功率目标上活跃特征数量随训练 epoch 的变化}
-\label{fig:active_features}
-\end{figure}
-
-\subsection{\heiti 推断源集合验证}
-
-为了判断活跃集合是否具有实际推断能力，本文使用普通 DNN 对选中字段进行再训练，并与全量字段和逐一去除字段的设置进行比较。图 \ref{fig:nonredundancy_validation} 给出了净实际交换功率目标上的代表性验证结果。可以看到，仅使用 L1GateDNN 选出的 4 个字段时，测试 $R^2$ 达到 0.9989，已经略高于全量字段结果，这说明选中集合具备充分性；当去除第 1 个字段时，$R^2$ 明显下降到 0.1418，而去除其他字段时性能仍保持较高，这说明第 1 个字段是维持该推断路径的必要变量，其他字段更多起到补充或冗余作用。该结果直接体现了非冗余验证的核心逻辑：如果一个字段被去除后推断能力显著下降，则该字段不是“相关但可替代”的普通相关项，而是当前推断源集合中的关键风险源。
-
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.92\textwidth]{fig_nonredundancy_validation.png}
-\caption{净实际交换功率目标上的非冗余推断源验证}
-\label{fig:nonredundancy_validation}
-\end{figure}
-
-\subsection{\heiti 改进门控边界}
-
-相关性驱动门控可以将六维相关性向量映射到统一风险边界。图 \ref{fig:boundary_learning} 展示了改进门控训练过程中相关性指标权重 $W$ 与偏置 $b$ 的演化。左图反映不同相关性证据在训练中的相对权重变化，右图反映整体风险边界的平移。若某一类相关性指标的权重在训练后保持较高，说明该指标对应的依赖关系更能解释目标字段的推断风险；若偏置 $b$ 持续变化，则说明模型正在调整“打开 gate”的整体难度。
-
-\begin{figure}[H]
-\centering
-\subfigure[相关性指标权重 $W$ 的演化]{
-    \safeincludegraphics[width=0.48\textwidth]{fig_w_meta_evolution.png}
-}
-\subfigure[风险偏置 $b$ 的演化]{
-    \safeincludegraphics[width=0.48\textwidth]{fig_b_meta_evolution.png}
-}
-\caption{改进门控机制中相关性指标权重与风险偏置的学习过程}
-\label{fig:boundary_learning}
-\end{figure}
-
-\section{\heiti 多目标 baseline 对比实验}
-
-\subsection{\heiti 多目标结果}
-
-表 \ref{tab:baseline_main} 展示了 12 个敏感目标上的 baseline 对比。L1GateDNN 的特征数量 $n$ 由门控阈值下的活跃特征数量确定。可以看到，在多个目标上，L1GateDNN 能够用较小字段集合达到接近或超过全量 DNN 的结果。例如，日前一次备用总 MW、总实际交换功率和总损耗上，L1GateDNN 均超过全量 DNN；在净实际交换功率、日前总 LMP、计量负荷等目标上，L1GateDNN 与全量模型差距很小，但特征集合更紧凑。
+\section{实验设置}
+\subsection{数据集}
+实验使用 PJM 2025 年小时级市场与运行数据，数据路径为 \code{NEW\_PROJECT/data/processed/data2025\_Processed\_V2/pjm\_rto\_hourly\_2025\_aligned\_processed\_one\_header.csv}。原始表包含 8760 行、72 列，其中 2 列为时间字段，70 列为数值字段。字段覆盖总发电量、总损耗、风电和光伏发电、燃料结构、负荷预测、日前和实时 LMP 价格、阻塞价格、边际损失价格、辅助服务容量以及净/总交换功率等。表~\ref{tab:data_overview} 给出了数据概况。
 
 \begin{table}[H]
 \centering
-\zihao{5}
-\caption{L1GateDNN 与 baseline 的测试 $R^2$ 对比}
-\label{tab:baseline_main}
-\begin{tabular}{lcccc}
-\toprule
-敏感目标 & L1 活跃数 $n$ & 全量 DNN & L1GateDNN & 最佳传统基线 \\
-\midrule
-日前阻塞价格 & 2 & 0.941 & 0.995 & ElasticNet(0.995) \\
-实时阻塞价格 & 10 & 0.726 & 0.696 & RandomForest(0.666) \\
-日前一次备用总 MW & 8 & 0.849 & 0.884 & XGBoost(0.867) \\
-日前三十分钟备用总 MW & 18 & 0.897 & 0.898 & RandomForest(0.895) \\
-总实际交换功率 & 12 & 0.850 & 0.861 & RandomForest(0.855) \\
-日前边际损失价格 & 12 & 0.894 & 0.887 & Lasso(0.903) \\
-计量负荷 & 15 & 0.916 & 0.911 & ElasticNet(0.894) \\
-净实际交换功率 & 13 & 0.968 & 0.962 & ElasticNet(0.943) \\
-净计划交换功率 & 12 & 0.969 & 0.957 & ElasticNet(0.944) \\
-总发电量 & 15 & 0.925 & 0.917 & RandomForest(0.907) \\
-日前总 LMP & 12 & 0.962 & 0.957 & RandomForest(0.930) \\
-总损耗 & 16 & 0.941 & 0.951 & RandomForest(0.936) \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-图 \ref{fig:baseline_target} 以柱状图形式展示各目标上的测试 $R^2$。横轴为 12 个敏感目标，纵轴为测试集 $R^2$，不同颜色对应不同特征选择或建模方法。相比只看平均值，该图可以更清楚地看出不同目标的难度差异：价格类字段中，日前阻塞价格存在很强推断路径；实时阻塞价格整体较难推断；负荷、发电、交换功率和辅助服务类目标则多数保持在较高 $R^2$ 水平。L1GateDNN 在多数目标上与全量 DNN 接近，并在部分目标上优于传统基线，说明门控选择出的字段集合具有较强的跨目标稳定性。
-
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.96\textwidth]{fig_baseline_test_r2.png}
-\caption{12 个敏感目标上不同方法的测试 $R^2$ 对比}
-\label{fig:baseline_target}
-\end{figure}
-
-\subsection{\heiti 平均性能比较}
-
-除了逐目标结果，平均性能能够更直接地反映不同字段选择策略的总体可靠性。需要注意的是，平均 $R^2$ 并不意味着每个目标的风险完全相同，而是衡量一种方法在多个敏感目标上是否具有稳定表现。对于电力数据发布场景而言，稳定性很重要：如果某种方法只在少数目标上表现突出，却在其他目标上明显失效，那么它不适合作为统一的数据发布审查工具。相反，如果一种方法能够在负荷、发电、交换功率、价格和辅助服务等不同类型目标上保持较高推断能力，则说明它捕捉到的不是偶然相关，而是更普遍的隐含推断结构。
-
-图 \ref{fig:baseline_average} 与表 \ref{tab:avg} 给出了各方法在 12 个敏感目标上的平均测试 $R^2$。L1GateDNN 的平均 $R^2$ 为 0.9065，略高于全量特征 DNN 的 0.9031，明显高于随机森林、ElasticNet、Lasso、XGBoost 以及单相关性选择方法。这一结果很关键：L1GateDNN 并不是通过牺牲推断精度换取解释性，而是在保持甚至略微提升平均性能的同时，给出了更小的推断源集合。单相关性方法平均性能最低，说明仅根据某一种相关性排序选择字段不足以刻画电力数据中的联合推断路径；树模型和线性稀疏模型虽然能给出重要性排序，但其选择结果与 DNN 推断验证之间仍存在差距。
-
-从安全审查角度看，L1GateDNN 与全量 DNN 的接近甚至略高并不矛盾。全量字段中包含大量冗余和噪声变量，普通 DNN 在有限样本下可能受到这些变量干扰；L1 门控先压缩输入，再使用普通 DNN 验证，反而可能获得更稳定的泛化性能。换言之，L1GateDNN 的作用不是简单减少字段数量，而是把“可推断性”集中到更清晰的字段集合上，使风险解释和模型性能同时成立。
-
-\begin{figure}[H]
-\centering
-\safeincludegraphics[width=0.74\textwidth]{fig_baseline_average.png}
-\caption{各方法在 12 个敏感目标上的平均测试 $R^2$}
-\label{fig:baseline_average}
-\end{figure}
-
-\begin{table}[H]
-\centering
-\zihao{5}
-\caption{各方法平均测试 $R^2$}
-\label{tab:avg}
+\tabbicaption{PJM 2025 实验数据概况}{Overview of the PJM 2025 dataset}
+\label{tab:data_overview}
 \begin{tabular}{lc}
 \toprule
-方法 & 平均测试 $R^2$ \\
+项目 & 数值或说明 \\
 \midrule
-L1GateDNN & 0.9065 \\
-DNN\_AllFeatures & 0.9031 \\
-RandomForest & 0.8803 \\
-ElasticNet & 0.8415 \\
-Lasso & 0.8413 \\
-XGBoost & 0.8073 \\
-Spearman & 0.7735 \\
-Pearson & 0.7659 \\
-NMI & 0.7538 \\
+样本粒度 & 小时级 \\
+样本数 & 8760 \\
+原始字段数 & 72 \\
+时间字段数 & 2 \\
+数值字段数 & 70 \\
+主要字段类型 & 负荷、发电、价格、辅助服务、交换功率 \\
+训练/测试划分 & 80\% / 20\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\section{\heiti 讨论}
+为避免公式字段造成近似直接泄露，部分中心目标设置了排除字段。例如净实际交换功率 \code{net\_actual\_interchange\_mw} 实验采用 combo5，排除 \code{net\_sched\_interchange\_mw} 和 \code{total\_gen}，再基于多相关性阈值进行候选筛选。多目标实验中的排除策略与脚本配置保持一致。
 
-从实验可以看出，L1GateDNN 的优势不只是平均 $R^2$ 略高，更在于其结果形式适合安全审查。全量 DNN 告诉我们目标“能被推断”，但不能说明推断路径；单相关性排序告诉我们哪些字段单独相关，却不能说明联合推断中的必要性；树模型和线性稀疏模型可以给出重要性，但其选择结果与 DNN 推断能力之间并不总是一致。L1GateDNN 将稀疏选择嵌入到推断模型中，因此能在同一训练过程中兼顾预测能力和字段解释。
+\subsection{参数设置}
+关系分析阈值设置为：NMI 0.06、Spearman 0.15、Pearson 0.15、Kendall 0.12、Distance correlation 0.20、HSIC 0.25。所有阈值均用于“任一指标通过即保留”的初筛规则。DNN 主干网络采用三层隐藏层，维度为 $[64,32,16]$；优化器为 Adam；batch size 为 50；训练轮数为 200；随机种子为 42。普通 L1GateDNN 的 L1 正则系数为 0.002，活跃阈值为 0.10。改进 L1 门控实验中，门控阈值为 0.50，L1 正则系数为 0.016，$W$ 和 $b$ 分别设置独立学习率，以便稳定学习相关性权重和风险偏置。
 
-当然，该方法仍有局限。首先，L1 正则强度和门控阈值会影响活跃特征数量，因此实际应用中需要结合安全需求设置风险严格程度。其次，某些目标可能存在多个等价推断路径，单次训练得到的集合未必唯一。最后，本文主要围绕单个敏感目标展开，多敏感目标之间的联合风险仍需进一步建模。
+\subsection{对比方法}
+本文设置三组对比。第一组是 DNN 与 L1DNN 直接对比：全量 DNN 使用当前目标允许的全部候选字段，L1DNN 使用 L1GateDNN 选出的字段集合，两者均采用相同 DNN 结构评估。第二组是同预算 baseline 对比：先由 L1GateDNN 在不同特征预算下搜索，使其达到全量 DNN 的 95\% 或 97\% 水平；随后让 NMI、Pearson、Spearman、Lasso、ElasticNet、RandomForest 和 XGBoost 在相同字段数量 $n$ 下选择 Top-n 字段，并统一用普通 DNN 训练评估。第三组是冗余噪声解释实验：比较全量字段、L1 选中字段和不同 Top-n 字段的训练曲线与测试 $R^2$，分析少量字段优于全量字段的原因。
 
-\section{\heiti 结论}
+\section{单目标实验与门控演化}
+\subsection{初筛结果}
+以 \code{net\_actual\_interchange\_mw} 为中心目标时，在排除 \code{net\_sched\_interchange\_mw} 和 \code{total\_gen} 后共有 67 个可分析关系。多相关性初筛保留 55 个候选字段，筛除 12 个明显弱相关字段。六类指标通过数量分别为：NMI 23、Spearman 33、Pearson 25、Kendall 29、Distance correlation 27、HSIC 31。通过指标数的分布为：0 项 12 个、1 项 19 个、2 项 5 个、3 项 5 个、4 项 10 个、5 项 12 个、6 项 4 个。表~\ref{tab:screening_top} 展示了初筛排名靠前的字段。可以看到，辅助服务、交换功率和燃料结构字段在多种指标下均表现出较强依赖，说明净实际交换功率的隐含推断路径并非由单一线性相关决定。
 
-本文研究了电力数据共享中的隐含推断风险问题，并基于多相关性筛选与 L1 门控深度神经网络构建了一套可解释分析流程。方法先用多相关性指标缩小候选空间，再通过 L1 门控 DNN 在保持敏感目标推断能力的同时压缩冗余字段，并通过普通 DNN 验证选中字段的推断能力。
+\end{multicols}
 
-在 PJM 2025 年数据上的多目标 baseline 实验表明，L1GateDNN 在 12 个敏感目标上的平均测试 $R^2$ 达到 0.9065，略高于全量特征 DNN，并优于多数传统特征选择和机器学习基线。同时，L1GateDNN 通过门控阈值给出紧凑的活跃字段集合，使实验结论从“目标可被推断”进一步推进到“哪些字段构成主要推断源”。因此，该方法可以为电力数据发布前的字段审查、敏感等级调整和风险阻断提供参考。
+\begin{table}[H]
+\centering
+\small
+\tabbicaption{净实际交换功率目标的多相关性初筛结果节选}{Partial screening results for net actual interchange}
+\label{tab:screening_top}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{clrrrrrr}
+\toprule
+排名 & 相关字段 & NMI & Spearman & Pearson & Kendall & DC & HSIC \\
+\midrule
+1 & \code{da\_as\_as\_mw\_thirty\_minutes\_reserve} & 0.076 & -0.430 & -0.394 & -0.289 & 0.403 & 0.856 \\
+2 & \code{da\_as\_total\_mw\_thirty\_minutes\_reserve} & 0.067 & -0.428 & -0.397 & -0.252 & 0.374 & 0.845 \\
+3 & \code{gross\_sched\_interchange\_mw} & 0.133 & -0.465 & -0.483 & -0.318 & 0.458 & 0.813 \\
+4 & \code{gen\_fuel\_nuclear\_mw} & 0.116 & -0.354 & -0.424 & -0.248 & 0.442 & 0.795 \\
+5 & \code{gen\_fuel\_gas\_mw} & 0.027 & -0.329 & -0.327 & -0.200 & 0.287 & 0.906 \\
+6 & \code{da\_as\_as\_req\_mw\_thirty\_minutes\_reserve} & 0.180 & -0.324 & -0.406 & -0.302 & 0.476 & 0.036 \\
+7 & \code{da\_as\_as\_req\_mw\_primary\_reserve} & 0.190 & -0.327 & -0.402 & -0.248 & 0.450 & 0.067 \\
+8 & \code{da\_as\_as\_req\_mw\_synchronized\_reserve} & 0.177 & -0.324 & -0.405 & -0.235 & 0.413 & 0.065 \\
+9 & \code{total\_pjm\_assigned\_reg} & 0.040 & 0.237 & 0.265 & 0.168 & 0.259 & 0.409 \\
+10 & \code{da\_as\_as\_mw\_primary\_reserve} & 0.085 & -0.343 & -0.351 & -0.251 & 0.396 & 0.114 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
 
-未来可以从三个方面继续扩展：一是对不同时间窗口和随机种子下的门控稳定性进行评估；二是将单目标推断扩展为多目标风险图；三是把推断源识别结果转化为具体发布策略，例如字段降精度、延迟发布或分级授权。
+\begin{multicols}{2}
 
+\subsection{推断精度与门控收缩}
+图~\ref{fig:train_pair} 对比展示了净实际交换功率目标上的训练过程。全量 DNN 在 55 个候选字段上取得 best test $R^2=0.9675$；L1GateDNN 在同一候选空间内训练，best test $R^2=0.9775$，说明稀疏门控并未削弱推断能力，反而在当前数据划分下提升了泛化表现。其原因在于 L1 门控在训练过程中持续压缩冗余字段，使模型更集中地利用稳定推断路径。
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics[width=\linewidth]{net_dnn_r2_zh.png}\\[-0.4em]
+{\small (a) 全量 DNN 的 $R^2$ 演化}
+\end{minipage}
+\begin{minipage}{0.48\linewidth}
+\centering
+\includegraphics[width=\linewidth]{net_l1_loss_zh.png}\\[-0.4em]
+{\small (b) L1GateDNN 的损失演化}
+\end{minipage}
+\figbicaption{净实际交换功率目标上的训练过程对比}{Training processes for net actual interchange}
+\label{fig:train_pair}
+\end{figure}
+
+图~\ref{fig:l1_gate} 展示了 L1GateDNN 的门控参数演化。每条曲线对应一个候选字段的 gate 值。训练初期，不同字段门控值出现明显分化；随着 L1 惩罚持续作用，大量弱贡献字段逐步衰减到阈值以下，少量关键字段维持较高 gate 值。最终阈值 0.10 下保留 18 个字段，其中包含 \code{gen\_fuel\_gas\_mw}、\code{gen\_fuel\_coal\_mw}、\code{total\_pjm\_rt\_load\_mwh}、\code{metered\_load\_mw}、\code{prelim\_load\_avg\_hourly} 和 \code{gen\_fuel\_solar\_mw} 等。图~\ref{fig:l1_active} 则显示活跃字段数量逐渐下降并趋于稳定，说明模型不是在训练末尾一次性截断，而是在优化过程中逐步形成紧凑推断源集合。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.94\textwidth]{net_l1_gate_params_zh.png}
+\figbicaption{净实际交换功率目标上门控参数 gate 的值随 epoch 的变化}{Gate values over epochs for net actual interchange}
+\label{fig:l1_gate}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.68\textwidth]{net_l1_active_features_zh.png}
+\figbicaption{净实际交换功率目标上活跃特征数量随 epoch 的变化}{Number of active features over epochs}
+\label{fig:l1_active}
+\end{figure}
+
+\begin{multicols}{2}
+
+\subsection{Top-n 推断源验证}
+为验证 L1GateDNN 所选字段是否具有实际推断能力，按照最终 gate 值排序，分别取 Top3、Top6、Top9、Top12、Top15、Top18 字段训练普通 DNN，并与全量 55 字段和未选中 37 字段进行比较。图~\ref{fig:top_series} 和表~\ref{tab:top_series} 给出结果。Top3 和 Top6 由于字段数过少，$R^2$ 分别仅为 0.4469 和 0.5778；当字段数增加到 Top9 时，$R^2$ 提升至 0.9186；Top15 达到 0.9630；Top18 达到 0.9681，略高于全量 55 字段的 0.9661。相反，去除 Top18 后剩余 37 字段单独训练仅取得 0.7820。这说明 L1 门控并非简单挑选单个强相关字段，而是识别出能够共同支撑目标推断的核心字段集合；未选中字段虽然数量更多，但缺少关键路径，推断能力明显下降。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.82\textwidth]{net_top_series_r2_zh.png}
+\figbicaption{净实际交换功率目标上的 Top-n 推断源验证}{Top-n inference-source validation}
+\label{fig:top_series}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\tabbicaption{Top-n 推断源验证结果}{Results of Top-n source validation}
+\label{tab:top_series}
+\begin{tabular}{lccc}
+\toprule
+特征集合 & 字段数 & Best Test $R^2$ & 最佳 epoch \\
+\midrule
+全量字段 & 55 & 0.9661 & 95 \\
+Top3 & 3 & 0.4469 & 97 \\
+Top6 & 6 & 0.5778 & 97 \\
+Top9 & 9 & 0.9186 & 99 \\
+Top12 & 12 & 0.9470 & 97 \\
+Top15 & 15 & 0.9630 & 94 \\
+Top18 & 18 & 0.9681 & 89 \\
+未选中字段 & 37 & 0.7820 & 46 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{multicols}{2}
+
+\subsection{改进门控边界学习}
+图~\ref{fig:improved_gate} 至图~\ref{fig:improved_b} 展示了相关性驱动改进门控的训练结果。与普通 L1 gate 不同，改进门控的 gate 由六维相关性向量经 Sigmoid 映射生成，因此图~\ref{fig:improved_gate} 中的分界阈值为 0.5，而不是普通 L1GateDNN 的 0.10。该设置具有明确数学含义：当 $W^{\mathrm{T}}R_i+b=0$ 时，Sigmoid 输出为 0.5，对应风险边界；高于 0.5 表示相关性证据足以使 gate 打开，低于 0.5 则表示字段更可能被压制。
+
+在本次实验中，改进 L1 门控最终保留 17 个字段，best test $R^2=0.9726$。从权重演化看，HSIC 对应权重在训练后保持最高，说明非线性依赖证据对净实际交换功率目标的风险判断贡献较大；偏置 $b$ 从接近 0 逐步下降到约 -0.70，表明模型在 L1 压力下不断收紧 gate 打开条件。这一实验的意义在于，它把“六类相关性指标如何共同决定字段风险”转化为可学习边界，而不是依赖人工给每个指标设置孤立阈值。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{improved_l1_gate_params_zh.png}
+\figbicaption{改进 L1 门控的 gate 值演化}{Gate evolution of the improved L1 gate}
+\label{fig:improved_gate}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth]{improved_l1_w_meta_softmax_zh.png}\\[-0.4em]
+{\small (a) 相关性指标权重}
+\end{minipage}
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth]{improved_l1_b_meta_zh.png}\\[-0.4em]
+{\small (b) 风险容忍偏置 $b$}
+\end{minipage}
+\figbicaption{改进门控中的指标权重与风险偏置演化}{Evolution of metric weights and risk bias}
+\label{fig:improved_b}
+\end{figure}
+
+\begin{multicols}{2}
+
+\section{多目标对比实验}
+\subsection{DNN 与 L1DNN 直接对比}
+为了先展示本文方法本身的效果，本文在 12 个敏感目标上比较全量 DNN 与 L1DNN 选中特征 DNN。这里“全量 DNN”表示在当前目标允许的全部字段上训练，不考虑 L1 门控系统的筛选；“L1DNN 选中特征”表示先由 L1GateDNN 得到活跃字段，再使用相同 DNN 结构重新训练评估。结果见图~\ref{fig:dnn_l1_compare} 和表~\ref{tab:dnn_l1_compare}。
+
+从平均结果看，若按数据全集中 70 个数值字段扣除目标字段后的 69 个字段作为统一全量口径，则全量 DNN 字段利用率为 100\%，平均 $R^2$ 为 0.9031；L1DNN 平均使用 15.50 个字段，字段利用率约为 22.46\%，平均 $R^2$ 为 0.9111。在 \code{congestion\_price\_da}、\code{da\_as\_total\_mw\_primary\_reserve}、\code{gross\_actual\_interchange\_mw}、\code{net\_actual\_interchange\_mw} 等目标上，L1DNN 明显或略微优于全量 DNN；在 \code{congestion\_price\_rt} 和 \code{total\_lmp\_da} 上，L1DNN 略低于全量 DNN。这说明所提方法不是对所有目标机械压缩，而是在大多数目标上能以较小字段集合保持同等甚至更强的泛化能力。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{dnn_vs_l1_method_compare_zh.png}
+\figbicaption{12 个敏感目标上的全量 DNN 与 L1DNN 对比}{Comparison between all-feature DNN and L1DNN}
+\label{fig:dnn_l1_compare}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\small
+\tabbicaption{全量 DNN 与 L1DNN 选中特征对比}{All-feature DNN and L1DNN-selected feature comparison}
+\label{tab:dnn_l1_compare}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrr}
+\toprule
+中心目标 & 全量字段数 & L1 字段数 & 全量 DNN $R^2$ & L1DNN $R^2$ \\
+\midrule
+\code{congestion\_price\_da} & 69 & 2 & 0.9408 & 0.9954 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & 67 & 14 & 0.8495 & 0.8826 \\
+\code{gross\_actual\_interchange\_mw} & 69 & 16 & 0.8499 & 0.8677 \\
+\code{da\_as\_total\_mw\_thirty\_minutes\_reserve} & 68 & 22 & 0.8967 & 0.9086 \\
+\code{marginal\_loss\_price\_da} & 69 & 18 & 0.8936 & 0.8995 \\
+\code{net\_actual\_interchange\_mw} & 67 & 18 & 0.9680 & 0.9728 \\
+\code{total\_gen} & 42 & 16 & 0.9253 & 0.9271 \\
+\code{net\_sched\_interchange\_mw} & 67 & 16 & 0.9691 & 0.9694 \\
+\code{total\_losses} & 69 & 18 & 0.9413 & 0.9409 \\
+\code{metered\_load\_mw} & 42 & 15 & 0.9157 & 0.9139 \\
+\code{total\_lmp\_da} & 66 & 13 & 0.9622 & 0.9510 \\
+\code{congestion\_price\_rt} & 69 & 18 & 0.7255 & 0.7040 \\
+\midrule
+平均/统一全量口径 & 69.00 & 15.50 & 0.9031 & 0.9111 \\
+\bottomrule
+\end{tabular}
+}
+\par\smallskip
+\raggedright\small 注：单目标行中的全量字段数为对应实验的实际输入字段数；平均行按数据集总数值字段数减 1 的统一口径计算全量字段数和字段利用率。
+\end{table}
+
+\begin{multicols}{2}
+
+\subsection{同预算 baseline 对比}
+为了回应“baseline 的字段数 $n$ 是否由 L1DNN 单方面决定”的公平性问题，本文进一步采用同预算策略。具体做法是：先用 L1GateDNN 在特征预算序列上搜索，当某个 $n$ 使 L1GateDNN 的 $R^2$ 达到全量 DNN 的 95\% 或 97\% 时，锁定该 $n$；若继续增加若干候选预算仍无法达到目标，则采用当前可获得的最佳 $n$。随后所有 baseline 方法在相同 $n$ 下选择字段，并统一使用普通 DNN 训练测试。这样，比较对象不再是“谁选择更多字段”，而是在同一字段预算下“谁选择的字段更有推断能力”。
+
+图~\ref{fig:budget95} 和图~\ref{fig:budget97} 分别给出 95\% 与 97\% 预算下的结果。95\% 预算下，平均字段数为 8.92，L1GateDNN 平均 $R^2$ 为 0.8875，高于 RandomForest 的 0.8562、ElasticNet 的 0.8115、Lasso 的 0.7967 和 XGBoost 的 0.7798；97\% 预算下，平均字段数增加到 9.75，L1GateDNN 平均 $R^2$ 提升到 0.8943，仍优于各 baseline。两种预算下，单相关性方法整体偏低，说明仅依靠 NMI、Pearson 或 Spearman 排序难以稳定保留联合推断路径；树模型和线性稀疏模型虽在部分目标上表现较好，但平均上仍低于 L1GateDNN。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{budget95_baseline_r2_zh.png}
+\figbicaption{95\% 同预算下不同方法的测试 $R^2$ 对比}{Baseline comparison under the 95\% feature budget}
+\label{fig:budget95}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{budget97_baseline_r2_zh.png}
+\figbicaption{97\% 同预算下不同方法的测试 $R^2$ 对比}{Baseline comparison under the 97\% feature budget}
+\label{fig:budget97}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\tabbicaption{同预算 baseline 平均结果}{Average results of same-budget baselines}
+\label{tab:budget_avg}
+\begin{tabular}{lrrrr}
+\toprule
+方法 & 95\%平均字段数 & 95\%平均$R^2$ & 97\%平均字段数 & 97\%平均$R^2$ \\
+\midrule
+全量 DNN & 69.00 & 0.9031 & 69.00 & 0.9031 \\
+L1GateDNN & 8.92 & 0.8875 & 9.75 & 0.8943 \\
+NMI & 8.92 & 0.6842 & 9.75 & 0.7227 \\
+Pearson & 8.92 & 0.7419 & 9.75 & 0.7454 \\
+Spearman & 8.92 & 0.7586 & 9.75 & 0.7628 \\
+Lasso & 8.92 & 0.7967 & 9.75 & 0.8071 \\
+ElasticNet & 8.92 & 0.8115 & 9.75 & 0.8205 \\
+RandomForest & 8.92 & 0.8562 & 9.75 & 0.8644 \\
+XGBoost & 8.92 & 0.7798 & 9.75 & 0.7878 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{multicols}{2}
+
+\section{冗余噪声影响分析}
+\subsection{训练曲线对比}
+在部分目标上，少量 L1 选中特征的测试 $R^2$ 高于全量字段 DNN。该现象并不意味着全量字段信息不足，而是说明全量输入中存在冗余和噪声字段，普通 MLP 在有限样本下可能受到干扰，出现训练集拟合持续提高而测试集泛化下降的过拟合现象。为验证这一解释，本文选择差异更明显的 \code{congestion\_price\_da} 和 \code{da\_as\_total\_mw\_primary\_reserve} 两个目标，比较全量 DNN、L1GateDNN 和 L1 选中特征再训练 DNN 的训练曲线。
+
+图~\ref{fig:redundant_curve} 与表~\ref{tab:noise_curve} 显示，\code{congestion\_price\_da} 上全量 DNN 的 best test $R^2$ 为 0.9408，最终训练/测试泛化差距约 0.0621；而仅使用 L1 选出的 2 个字段重新训练，best test $R^2$ 达到 0.9954，最终泛化差距仅 0.0025。\code{da\_as\_total\_mw\_primary\_reserve} 上，全量 DNN 的泛化差距约 0.1439，L1 选中特征 DNN 的 test $R^2$ 从 0.8495 提升到 0.8580。可见，字段压缩降低了模型对弱相关和噪声字段的记忆压力，使测试集表现更稳定。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{redundant_training_r2_curves_zh.png}
+\figbicaption{全量字段与 L1 选中特征的训练 $R^2$ 曲线对比}{Training curves of all features and L1-selected features}
+\label{fig:redundant_curve}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\tabbicaption{冗余噪声解释实验的训练曲线统计}{Training-curve statistics for redundant-noise explanation}
+\label{tab:noise_curve}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+目标 & 方法 & 字段数 & Best Test $R^2$ & 最佳 epoch & 最终泛化差距 \\
+\midrule
+\code{congestion\_price\_da} & 全量 DNN & 69 & 0.9408 & 141 & 0.0621 \\
+\code{congestion\_price\_da} & L1GateDNN & 69 & 1.0000 & 194 & -0.0001 \\
+\code{congestion\_price\_da} & L1 选中特征 DNN & 2 & 0.9954 & 139 & 0.0025 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & 全量 DNN & 67 & 0.8495 & 74 & 0.1439 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & L1GateDNN & 67 & 0.8639 & 87 & 0.1170 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & L1 选中特征 DNN & 35 & 0.8580 & 112 & 0.1247 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{multicols}{2}
+
+\subsection{Top-n 递增实验}
+进一步地，本文按照 L1 gate 排名逐渐增加字段数，观察测试 $R^2$ 的变化。图~\ref{fig:topn_noise} 和表~\ref{tab:topn_noise} 显示，\code{congestion\_price\_da} 在 Top2 时已经达到 0.9954，Top3 提升到 0.9999，继续增加到 Top24 仍保持高水平，但 Top32 下降到 0.9851；全量 69 字段仅为 0.9408。对于 \code{da\_as\_total\_mw\_primary\_reserve}，$R^2$ 随字段数从 Top1 到 Top24 逐步提升至 0.8872，但继续增加到 Top32 和 Top35 后下降到 0.8545 和 0.8536，接近全量 DNN 的 0.8495。该结果说明，关键字段数量不足时模型无法恢复目标；字段数量达到合理区间后推断能力显著提高；当继续加入弱贡献字段时，冗余噪声会增加模型复杂度，导致泛化收益下降甚至反向。
+
+\end{multicols}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.86\textwidth]{redundant_topn_incremental_r2_zh.png}
+\figbicaption{按 L1 gate 排名逐步增加字段数的测试 $R^2$}{Test $R^2$ with incrementally added Top-n features}
+\label{fig:topn_noise}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\tabbicaption{Top-n 递增实验关键结果}{Key results of the Top-n incremental experiment}
+\label{tab:topn_noise}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrr}
+\toprule
+目标 & 设置 & 字段数 & Best Test $R^2$ & 最佳 epoch \\
+\midrule
+\code{congestion\_price\_da} & Top1 & 1 & 0.2251 & 140 \\
+\code{congestion\_price\_da} & Top2 & 2 & 0.9954 & 139 \\
+\code{congestion\_price\_da} & Top3 & 3 & 0.9999 & 148 \\
+\code{congestion\_price\_da} & Top24 & 24 & 0.9990 & 142 \\
+\code{congestion\_price\_da} & Top32 & 32 & 0.9851 & 120 \\
+\code{congestion\_price\_da} & 全量 & 69 & 0.9408 & 141 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & Top6 & 6 & 0.8091 & 143 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & Top10 & 10 & 0.8778 & 145 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & Top18 & 18 & 0.8855 & 61 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & Top24 & 24 & 0.8872 & 118 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & Top32 & 32 & 0.8545 & 142 \\
+\code{da\_as\_total\_mw\_primary\_reserve} & 全量 & 67 & 0.8495 & 74 \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{multicols}{2}
+
+\section{讨论}
+实验结果表明，L1GateDNN 的优势并不只是平均 $R^2$ 略高，而在于其输出形式更适合数据发布审查。全量 DNN 可以证明目标可被预测，却无法定位推断路径；单相关性方法可以说明字段两两相关，却无法判断联合推断中的不可替代性；线性稀疏模型和树模型能够给出排序，但其排序未必与 DNN 推断能力一致。L1GateDNN 将门控选择嵌入非线性推断训练过程，使字段是否保留直接受到预测误差和稀疏约束共同约束，因此更接近“哪些字段会被攻击模型实际利用”的风险语义。
+
+同预算 baseline 进一步说明，固定字段数 $n$ 并不是为了偏向 L1DNN，而是为了构造可解释的特征预算。若让每种方法任意选择不同数量字段，则性能差异可能来自字段数差异而非选择质量。本文采用 95\% 和 97\% 两组预算，一方面展示低容忍度下 L1GateDNN 的领先优势，另一方面展示更高容忍度下各方法接近全量 DNN 的趋势。对于个别目标，如果达到 97\% 需要明显增加字段数或若干预算点提升不明显，则采用最佳可用预算，以避免为了追求阈值而引入过多冗余字段。
+
+少量字段优于全量字段的现象也具有实际含义。在电力数据表中，很多字段并非独立信息源，而是由同一物理过程或市场机制派生出来。全量输入会把这些共线、弱相关或噪声字段同时交给 MLP，增加模型记忆训练样本细节的机会。L1 门控先筛出稳定推断路径，再进行普通 DNN 验证，相当于降低了输入维度和过拟合风险。因此，字段压缩并不是牺牲信息，而是在保留核心信息的同时减少噪声干扰。
+
+本文仍存在一些局限。第一，L1 正则强度和活跃阈值会影响最终字段数量，实际应用中需要根据发布场景设置风险严格程度。第二，部分敏感目标可能存在多个等价推断路径，单次训练得到的字段集合不一定唯一，后续应增加多随机种子和多时间窗口稳定性分析。第三，本文主要以单目标为中心识别风险源，多目标之间的联合泄露和风险传播仍需进一步建模。
+
+\section{结论}
+本文围绕电力数据共享中的隐含推断风险问题，提出了多相关性筛选与 L1 门控深度神经网络相结合的分析方法。该方法先通过六类相关性指标保留潜在候选字段，再利用 L1GateDNN 在保持敏感目标推断能力的同时压缩冗余字段，并通过普通 DNN 再训练验证所选字段集合的实际推断能力。相关性驱动的改进门控进一步把多相关性证据映射为统一风险边界，增强了方法的解释性。
+
+基于 PJM 2025 年小时级数据的实验表明，针对净实际交换功率目标，所提方法从 55 个候选字段中筛选出 18 个活跃字段，Top18 普通 DNN 验证 $R^2$ 为 0.9681，高于全量字段结果 0.9661，而未选中字段单独推断仅为 0.7820。在 12 个敏感目标上，L1DNN 以平均 15.5 个字段取得 0.9111 的平均测试 $R^2$，高于全量 DNN 的 0.9031；95\% 和 97\% 同预算 baseline 中，L1GateDNN 也保持最高平均 $R^2$。冗余噪声解释实验进一步说明，全量输入中的弱相关和冗余字段会增加过拟合风险，合理特征压缩有助于提升泛化性能。上述结果说明，所提方法可为电力数据发布前的字段审查、敏感等级调整和隐含推断路径阻断提供参考。
+
+未来工作将从三个方向展开：一是引入多随机种子和跨月份时间窗口，评估门控字段集合的稳定性；二是将单目标推断扩展为多目标风险图谱，描述不同敏感字段之间的联合泄露关系；三是把识别出的风险源集合与字段降精度、延迟发布、分级授权等处置策略结合，形成面向实际数据共享流程的闭环防护机制。
+
+\balance
 \begin{thebibliography}{99}
+\bibitem{ref-liu-cps}
+Liu T, Tian J, Wang J, et al. Integrated security threats and defense of cyber-physical systems[J]. Acta Automatica Sinica, 2019, 45(1): 5-24.
 
-\bibitem{qing2017bigdata}
-Qing L, Boyu Z, Qinqian L. Impact of big data on Electric-power industry[C]//International Conference on Big Data Analysis. 2017: 460--463.
+\bibitem{ref-ma-pjm}
+Ma Z, Zhang H, Zhu L. Information disclosure system in American electricity market and its enlightenment for China[J]. Automation of Electric Power Systems, 2017, 41(24): 49-57.
 
-\bibitem{wang2018smartmeter}
-Wang Y, Chen Q, Hong T, Kang C. Review of smart meter data analytics: Applications, methodologies, and challenges[J]. IEEE Transactions on Smart Grid, 2018, 10(3): 3125--3148.
+\bibitem{ref-fan-pjm}
+Fan Z, Horger T, Bastian J, et al. An overview of PJM energy market design and development[C]//2008 Third International Conference on Electric Utility Deregulation and Restructuring and Power Technologies. Piscataway: IEEE, 2008: 12-17.
 
-\bibitem{liu2019cps}
-Liu T, Tian J, Wang J, et al. Integrated security threats and defense of cyber-physical systems[J]. Acta Automatica Sinica, 2019, 45(1): 5--24.
+\bibitem{ref-sankar}
+Sankar L, Rajagopalan S R, Mohajer S, Poor H V. Smart meter privacy: A theoretical framework[J]. IEEE Transactions on Smart Grid, 2013, 4(2): 837-846.
 
-\bibitem{ma2017market}
-Ma Z, Zhang H, Zhu L. Information disclosure system in American electricity market and its enlightenment for China[J]. Automation of Electric Power Systems, 2017, 41(24): 49--57.
+\bibitem{ref-giaconi}
+Giaconi G, Gündüz D, Poor H V. Privacy-aware smart metering: Progress and challenges[J]. IEEE Signal Processing Magazine, 2018, 35(6): 59-78.
 
-\bibitem{sankar2012privacy}
-Sankar L, Rajagopalan S R, Mohajer S, Poor H V. Smart meter privacy: A theoretical framework[J]. IEEE Transactions on Smart Grid, 2012, 4(2): 837--846.
+\bibitem{ref-adewole}
+Adewole K S, Torra V. Privacy issues in smart grid data: from energy disaggregation to disclosure risk[C]//International Conference on Database and Expert Systems Applications. Cham: Springer, 2022: 71-84.
 
-\bibitem{bhattacharjee2021vulnerability}
-Bhattacharjee A, Badsha S, Hossain M T, et al. Vulnerability characterization and privacy quantification for cyber-physical systems[C]//IEEE International Conference on Internet of Things. 2021: 217--223.
+\bibitem{ref-lan-load}
+Lan D, Zhu H, Wu J, et al. A short-term load forecasting method of distribution network based on improved AlexNet-GRU deep learning network[C]//2021 IEEE 5th Conference on Energy Internet and Energy System Integration. Piscataway: IEEE, 2021: 3004-3010.
 
-\bibitem{giaconi2018privacy}
-Giaconi G, Gunduz D, Poor H V. Privacy-aware smart metering: Progress and challenges[J]. IEEE Signal Processing Magazine, 2018, 35(6): 59--78.
+\bibitem{ref-jiao-pv}
+Jiao X, Sun Y, Peng D, et al. Photovoltaic power abnormal data cleaning based on variance change point and correlation analysis[C]//2021 6th International Conference on Power and Renewable Energy. Piscataway: IEEE, 2021: 1140-1145.
 
-\bibitem{lan2021load}
-Lan D, Zhu H, Wu J, et al. A short-term load forecasting method of distribution network based on improved AlexNet-GRU deep learning network[C]//IEEE Conference on Energy Internet and Energy System Integration. 2021: 3004--3010.
+\bibitem{ref-deng-load}
+Deng X, Zhang C, Peng H, et al. Short-term load forecasting for regional power grids based on correlation analysis and feature extraction[C]//2022 7th Asia Conference on Power and Electrical Engineering. Piscataway: IEEE, 2022: 1081-1085.
 
-\bibitem{jiao2021pv}
-Jiao X, Sun Y, Peng D, et al. Photovoltaic power abnormal data cleaning based on variance change point and correlation analysis[C]//International Conference on Power and Renewable Energy. 2021: 1140--1145.
+\bibitem{ref-szekely-dcorr}
+Székely G J, Rizzo M L, Bakirov N K. Measuring and testing dependence by correlation of distances[J]. The Annals of Statistics, 2007, 35(6): 2769-2794.
 
-\bibitem{deng2022load}
-Deng X, Zhang C, Peng H, et al. Short-term load forecasting for regional power grids based on correlation analysis and feature extraction[C]//Asia Conference on Power and Electrical Engineering. 2022: 1081--1085.
+\bibitem{ref-gretton-hsic}
+Gretton A, Bousquet O, Smola A, Schölkopf B. Measuring statistical dependence with Hilbert-Schmidt norms[C]//Algorithmic Learning Theory. Berlin: Springer, 2005: 63-77.
 
-\bibitem{xing2025micdnn}
-Xing Z, Wang Z, Feng J, et al. MIC-DNN: Data-Driven Correlation Analysis Framework for Power Data[C]//Youth Academic Annual Conference of Chinese Association of Automation. 2025: 2969--2974.
+\bibitem{ref-wang-meter}
+Wang Y, Chen Q, Hong T, Kang C. Review of smart meter data analytics: Applications, methodologies, and challenges[J]. IEEE Transactions on Smart Grid, 2019, 10(3): 3125-3148.
 
-\bibitem{adewole2022privacy}
-Adewole K S, Torra V. Privacy issues in smart grid data: from energy disaggregation to disclosure risk[C]//International Conference on Database and Expert Systems Applications. Springer, 2022: 71--84.
+\bibitem{ref-breiman-rf}
+Breiman L. Random forests[J]. Machine Learning, 2001, 45(1): 5-32.
 
-\bibitem{fan2008pjm}
-Fan Z, Horger T, Bastian J, et al. An overview of PJM energy market design and development[C]//International Conference on Electric Utility Deregulation and Restructuring and Power Technologies. 2008: 12--17.
+\bibitem{ref-chen-xgboost}
+Chen T, Guestrin C. XGBoost: A scalable tree boosting system[C]//Proceedings of the 22nd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining. New York: ACM, 2016: 785-794.
 
+\bibitem{ref-tibshirani-lasso}
+Tibshirani R. Regression shrinkage and selection via the lasso[J]. Journal of the Royal Statistical Society: Series B, 1996, 58(1): 267-288.
+
+\bibitem{ref-zou-enet}
+Zou H, Hastie T. Regularization and variable selection via the elastic net[J]. Journal of the Royal Statistical Society: Series B, 2005, 67(2): 301-320.
+
+\bibitem{ref-xing-micdnn}
+Xing Z, Wang Z, Feng J, et al. MIC-DNN: Data-driven correlation analysis framework for power data[C]//2025 40th Youth Academic Annual Conference of Chinese Association of Automation. Piscataway: IEEE, 2025: 2969-2974.
 \end{thebibliography}
+
+\section*{收稿日期与作者简介}
+\noindent\textbf{收稿日期：}20XX-XX-XX
+
+\noindent\textbf{作者简介：}\par
+\noindent 杜浩存（出生年），男，研究方向为电力数据安全、信息物理系统安全与机器学习安全，邮箱：待补充。
+
+\end{multicols}
 
 \end{document}
