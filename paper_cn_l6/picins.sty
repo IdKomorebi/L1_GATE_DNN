@@ -1,0 +1,16 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{picins}[2026/05/21 local compatibility shim]
+
+% The original CjC class loads the legacy picins package for author
+% biographies. This paper does not use that biography environment, but a
+% lightweight fallback keeps the class loadable on TeX installations where
+% picins is unavailable.
+\providecommand{\parpic}[2][]{%
+  \par\noindent
+  \begin{minipage}{0.28\linewidth}
+    #2%
+  \end{minipage}%
+  \par
+}
+
+\endinput

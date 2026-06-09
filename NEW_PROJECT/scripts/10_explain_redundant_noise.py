@@ -200,18 +200,30 @@ def _plot_topn_curve(results: pd.DataFrame, output_path: Path, zh: bool = False)
     for ax, center in zip(axes, centers):
         df = results[results["center"] == center].copy()
         df = df.sort_values(["feature_count", "series_order"])
-        x = np.arange(len(df))
+        x = df["plot_feature_count"].to_numpy(dtype=float) if "plot_feature_count" in df.columns else df["feature_count"].to_numpy(dtype=float)
         values = df["best_test_r2"].to_numpy(dtype=float)
-        colors = ["#1f77b4" if row["exp_type"] == "topn" else "#4d4d4d" for _, row in df.iterrows()]
+        colors = [
+            "#1f77b4" if row["exp_type"] == "topn" else "#4d4d4d"
+            for _, row in df.iterrows()
+        ]
         ax.plot(x, values, color="#1f77b4", linewidth=2.7, marker="o", markersize=6.2)
         ax.scatter(x, values, c=colors, s=46, zorder=3)
 
-        for xi, yi in zip(x, values):
+        marker_counts = set(df.loc[df["exp_type"].eq("full_marker"), "feature_count"].astype(int).tolist())
+        label_counts = {1, 2, 10, 24, 32, 40, 50, 60, 69}
+        for i, (row, xi, yi) in enumerate(zip(df.to_dict("records"), x, values)):
+            feature_count = int(row["feature_count"])
+            plot_count = int(row.get("plot_feature_count", feature_count))
+            exp_type = str(row.get("exp_type", ""))
+            if exp_type == "full" and feature_count in marker_counts:
+                continue
+            if exp_type == "topn" and feature_count not in label_counts and plot_count not in label_counts:
+                continue
             if float(yi) >= 0.96:
-                offset_y = -13 - 11 * (int(xi) % 2)
+                offset_y = -13 - 11 * (int(i) % 2)
                 va = "top"
             else:
-                offset_y = 7 + 9 * (int(xi) % 2)
+                offset_y = 7 + 9 * (int(i) % 2)
                 va = "bottom"
             ax.annotate(
                 f"{yi:.4f}",
@@ -227,10 +239,13 @@ def _plot_topn_curve(results: pd.DataFrame, output_path: Path, zh: bool = False)
         ax.set_title(center, fontsize=15)
         ax.set_xlabel("Feature Count n" if not zh else "特征数量 n", fontsize=13)
         ax.set_ylabel(r"Best Test $R^2$" if not zh else r"最佳 Test $R^2$", fontsize=13)
-        ax.set_xticks(x)
-        ax.set_xticklabels(df["x_label"].tolist(), rotation=35, ha="right", fontsize=10)
+        max_x = max(70, int(np.nanmax(x)) if len(x) else 70)
+        ax.set_xlim(-0.5, max_x + 1.5)
+        ax.set_xticks(np.arange(0, max_x + 1, 10))
         ax.tick_params(axis="y", labelsize=11)
+        ax.tick_params(axis="x", labelsize=11)
         ax.grid(True, axis="y", alpha=0.25)
+        ax.grid(True, axis="x", alpha=0.14)
         finite = values[np.isfinite(values)]
         if finite.size:
             pad = max(0.02, (float(finite.max()) - float(finite.min())) * 0.22)
@@ -320,6 +335,26 @@ def _dedupe_top_ns(values: Sequence[int], full_n: int) -> List[int]:
     return top_ns
 
 
+def _metric_from_dir(output_dir: Path) -> Any:
+    script6 = _load_script6()
+    metrics = _load_json(output_dir / "metrics.json")
+    return script6.DNNResult(
+        center=str(metrics.get("center", "")),
+        method=str(metrics.get("method") or metrics.get("model") or output_dir.name),
+        feature_count=int(metrics["feature_count"]),
+        best_test_r2=float(metrics["best_test_r2"]),
+        best_train_r2=float(metrics.get("best_train_r2", np.nan)),
+        min_test_loss=float(metrics.get("min_test_loss", np.nan)),
+        min_train_loss=float(metrics.get("min_train_loss", np.nan)),
+        final_test_r2=float(metrics.get("final_test_r2", metrics.get("last_epoch_test_r2", np.nan))),
+        final_train_r2=float(metrics.get("final_train_r2", metrics.get("last_epoch_train_r2", np.nan))),
+        final_test_loss=float(metrics.get("final_test_loss", np.nan)),
+        final_train_loss=float(metrics.get("final_train_loss", np.nan)),
+        best_epoch=int(metrics["best_epoch"]),
+        output_dir=str(output_dir),
+    )
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Explain why selected features can outperform full DNN under redundant noise.")
     parser.add_argument("--config", default=str(PROJECT_ROOT / "configs" / "data2025_v2.yaml"))
@@ -332,7 +367,23 @@ def main() -> None:
             "run_20260603_l1_lr0p00065_thr0p10_combo5_L1GateDNN"
         ),
     )
-    parser.add_argument("--top-ns", nargs="+", type=int, default=[1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 24, 32])
+    parser.add_argument(
+        "--top-ns",
+        nargs="+",
+        type=int,
+        default=[1, 2, 3, 4, 5, 6, 8, 10, 12, 14, 16, 18, 24, 32, 40, 50, 60],
+    )
+    parser.add_argument(
+        "--topn-only-source",
+        default=None,
+        help="Reuse L1 rankings and all-feature DNN metrics from an existing RedundantNoiseExplanation run; only rerun Top-N DNNs.",
+    )
+    parser.add_argument(
+        "--plot-full-at",
+        type=int,
+        default=69,
+        help="Also plot the all-feature point at this x value. Useful when one center has fewer valid features than the global all count.",
+    )
     parser.add_argument("--quiet-l1", action=argparse.BooleanOptionalAction, default=True)
     args = parser.parse_args()
 
@@ -358,6 +409,8 @@ def main() -> None:
             "data_path": str(data_path),
             "centers": args.centers,
             "top_ns": args.top_ns,
+            "topn_only_source": args.topn_only_source,
+            "plot_full_at": args.plot_full_at,
             "dnn_params": dnn_params,
             "l1_params": l1_params,
             "l1_param_run": str(l1_param_run),
@@ -380,54 +433,74 @@ def main() -> None:
         if target_excludes:
             print(f"  exclude: {', '.join(target_excludes)}")
 
-        l1_dir = center_dir / "L1GateDNN"
-        train_kwargs = dict(
-            center=center,
-            model_name="L1GateDNN",
-            overrides=l1_params,
-            run_name=f"explain_l1_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{safe_name(label, 80)}",
-            force_relations=False,
-            exclude_columns=target_excludes,
-            combo_name=None,
-            output_run_dir=l1_dir,
-        )
-        if args.quiet_l1:
-            with contextlib.redirect_stdout(io.StringIO()):
-                train_center_model(cfg, **train_kwargs)
-        else:
-            train_center_model(cfg, **train_kwargs)
-
         full_features = _all_features(data_path, center, drop_all_zero_columns, target_excludes)
+
+        source_center_dir = None
+        if args.topn_only_source:
+            source_root = resolve_project_path(cfg, args.topn_only_source).expanduser().resolve()
+            source_center_dir = source_root / f"CenterOn_{safe_name(label)}"
+            if not source_center_dir.exists():
+                raise FileNotFoundError(f"Cannot find source center directory: {source_center_dir}")
+            l1_dir = source_center_dir / "L1GateDNN"
+            print(f"  reusing source rankings from {l1_dir}")
+        else:
+            l1_dir = center_dir / "L1GateDNN"
+            train_kwargs = dict(
+                center=center,
+                model_name="L1GateDNN",
+                overrides=l1_params,
+                run_name=f"explain_l1_{datetime.now().strftime('%Y%m%d_%H%M%S')}_{safe_name(label, 80)}",
+                force_relations=False,
+                exclude_columns=target_excludes,
+                combo_name=None,
+                output_run_dir=l1_dir,
+            )
+            if args.quiet_l1:
+                with contextlib.redirect_stdout(io.StringIO()):
+                    train_center_model(cfg, **train_kwargs)
+            else:
+                train_center_model(cfg, **train_kwargs)
+
         ranked = _ranked_gate_features(l1_dir)
         ranked.to_csv(center_dir / "ranked_features_by_gate.csv", index=False, encoding="utf-8-sig")
         selected_features = [feature for feature in _selected_features_from_l1(l1_dir) if feature in set(full_features)]
         if not selected_features:
             selected_features = ranked["related"].head(max(1, int(target.get("n_features_override") or 1))).astype(str).tolist()
 
-        dnn_full = script6._train_dnn(
-            data_path=data_path,
-            center=center,
-            features=full_features,
-            params=dnn_params,
-            output_dir=center_dir / "DNN_AllFeatures",
-            device=device,
-            drop_all_zero_columns=drop_all_zero_columns,
-            exclude_columns=target_excludes,
-        )
-        dnn_selected = script6._train_dnn(
-            data_path=data_path,
-            center=center,
-            features=selected_features,
-            params=dnn_params,
-            output_dir=center_dir / "DNN_SelectedByL1",
-            device=device,
-            drop_all_zero_columns=drop_all_zero_columns,
-            exclude_columns=target_excludes,
-        )
+        if args.topn_only_source:
+            if source_center_dir is None:
+                raise RuntimeError("source_center_dir was not initialized")
+            dnn_full = _metric_from_dir(source_center_dir / "DNN_AllFeatures")
+            selected_metrics_path = source_center_dir / "DNN_SelectedByL1" / "metrics.json"
+            dnn_selected = _metric_from_dir(source_center_dir / "DNN_SelectedByL1") if selected_metrics_path.exists() else None
+            l1_log = pd.read_csv(l1_dir / "log.csv") if (l1_dir / "log.csv").exists() else None
+        else:
+            dnn_full = script6._train_dnn(
+                data_path=data_path,
+                center=center,
+                features=full_features,
+                params=dnn_params,
+                output_dir=center_dir / "DNN_AllFeatures",
+                device=device,
+                drop_all_zero_columns=drop_all_zero_columns,
+                exclude_columns=target_excludes,
+            )
+            dnn_selected = script6._train_dnn(
+                data_path=data_path,
+                center=center,
+                features=selected_features,
+                params=dnn_params,
+                output_dir=center_dir / "DNN_SelectedByL1",
+                device=device,
+                drop_all_zero_columns=drop_all_zero_columns,
+                exclude_columns=target_excludes,
+            )
+            l1_log = pd.read_csv(l1_dir / "log.csv")
 
-        l1_log = pd.read_csv(l1_dir / "log.csv")
-        l1_best_idx = int(l1_log["test_r2"].idxmax())
-        l1_best_row = l1_log.loc[l1_best_idx]
+        l1_best_row = None
+        if l1_log is not None:
+            l1_best_idx = int(l1_log["test_r2"].idxmax())
+            l1_best_row = l1_log.loc[l1_best_idx]
         save_json(
             center_dir / "center_config.json",
             {
@@ -437,31 +510,35 @@ def main() -> None:
                 "full_feature_count": len(full_features),
                 "l1_selected_count": len(selected_features),
                 "l1_source_dir": str(l1_dir),
+                "topn_only_source": str(source_center_dir) if source_center_dir is not None else None,
             },
         )
 
-        training_specs.append(
-            {
-                "center": center,
-                "DNN_AllFeatures_log": str(center_dir / "DNN_AllFeatures" / "log.csv"),
-                "L1GateDNN_log": str(l1_dir / "log.csv"),
-                "DNN_Selected_log": str(center_dir / "DNN_SelectedByL1" / "log.csv"),
-            }
-        )
-
-        summary_rows.extend(
-            [
+        if not args.topn_only_source:
+            training_specs.append(
                 {
                     "center": center,
-                    "method": "DNN_AllFeatures",
-                    "feature_count": dnn_full.feature_count,
-                    "best_test_r2": dnn_full.best_test_r2,
-                    "best_train_r2": dnn_full.best_train_r2,
-                    "best_epoch": dnn_full.best_epoch,
-                    "final_test_r2": dnn_full.final_test_r2,
-                    "final_train_r2": dnn_full.final_train_r2,
-                    "generalization_gap_final": dnn_full.final_train_r2 - dnn_full.final_test_r2,
-                },
+                    "DNN_AllFeatures_log": str(center_dir / "DNN_AllFeatures" / "log.csv"),
+                    "L1GateDNN_log": str(l1_dir / "log.csv"),
+                    "DNN_Selected_log": str(center_dir / "DNN_SelectedByL1" / "log.csv"),
+                }
+            )
+
+        summary_rows.append(
+            {
+                "center": center,
+                "method": "DNN_AllFeatures",
+                "feature_count": dnn_full.feature_count,
+                "best_test_r2": dnn_full.best_test_r2,
+                "best_train_r2": dnn_full.best_train_r2,
+                "best_epoch": dnn_full.best_epoch,
+                "final_test_r2": dnn_full.final_test_r2,
+                "final_train_r2": dnn_full.final_train_r2,
+                "generalization_gap_final": dnn_full.final_train_r2 - dnn_full.final_test_r2,
+            }
+        )
+        if l1_log is not None and l1_best_row is not None:
+            summary_rows.append(
                 {
                     "center": center,
                     "method": "L1GateDNN",
@@ -472,7 +549,10 @@ def main() -> None:
                     "final_test_r2": float(l1_log["test_r2"].iloc[-1]),
                     "final_train_r2": float(l1_log["train_r2"].iloc[-1]),
                     "generalization_gap_final": float(l1_log["train_r2"].iloc[-1] - l1_log["test_r2"].iloc[-1]),
-                },
+                }
+            )
+        if dnn_selected is not None:
+            summary_rows.append(
                 {
                     "center": center,
                     "method": "DNN_SelectedByL1",
@@ -483,9 +563,8 @@ def main() -> None:
                     "final_test_r2": dnn_selected.final_test_r2,
                     "final_train_r2": dnn_selected.final_train_r2,
                     "generalization_gap_final": dnn_selected.final_train_r2 - dnn_selected.final_test_r2,
-                },
-            ]
-        )
+                }
+            )
 
         full_n = len(full_features)
         top_ns = _dedupe_top_ns([*args.top_ns, len(selected_features), int(target.get("n_features_override") or 0)], full_n)
@@ -513,6 +592,7 @@ def main() -> None:
                     "series_order": series_order,
                     "x_label": f"Top{top_n}",
                     "feature_count": top_n,
+                    "plot_feature_count": top_n,
                     "best_test_r2": result.best_test_r2,
                     "best_epoch": result.best_epoch,
                     "final_test_r2": result.final_test_r2,
@@ -527,20 +607,37 @@ def main() -> None:
                 "series_order": 9999,
                 "x_label": "Full",
                 "feature_count": full_n,
+                "plot_feature_count": full_n,
                 "best_test_r2": dnn_full.best_test_r2,
                 "best_epoch": dnn_full.best_epoch,
                 "final_test_r2": dnn_full.final_test_r2,
                 "output_dir": dnn_full.output_dir,
             }
         )
+        if args.plot_full_at and int(args.plot_full_at) != full_n:
+            topn_rows.append(
+                {
+                    "center": center,
+                    "exp_type": "full_marker",
+                    "series_order": 10000,
+                    "x_label": f"Full({full_n})",
+                    "feature_count": full_n,
+                    "plot_feature_count": int(args.plot_full_at),
+                    "best_test_r2": dnn_full.best_test_r2,
+                    "best_epoch": dnn_full.best_epoch,
+                    "final_test_r2": dnn_full.final_test_r2,
+                    "output_dir": dnn_full.output_dir,
+                }
+            )
 
     summary_df = pd.DataFrame(summary_rows)
     summary_df.to_csv(output_root / "training_curve_summary.csv", index=False, encoding="utf-8-sig")
     topn_df = pd.DataFrame(topn_rows)
     topn_df.to_csv(output_root / "topn_incremental_results.csv", index=False, encoding="utf-8-sig")
 
-    _plot_training_curves(training_specs, output_root / "training_r2_curves.png", zh=False)
-    _plot_training_curves(training_specs, _zh_path(output_root / "training_r2_curves.png"), zh=True)
+    if training_specs:
+        _plot_training_curves(training_specs, output_root / "training_r2_curves.png", zh=False)
+        _plot_training_curves(training_specs, _zh_path(output_root / "training_r2_curves.png"), zh=True)
     _plot_topn_curve(topn_df, output_root / "topn_incremental_r2.png", zh=False)
     _plot_topn_curve(topn_df, _zh_path(output_root / "topn_incremental_r2.png"), zh=True)
     _plot_topn_table(topn_df, output_root / "topn_incremental_table.png", zh=False)

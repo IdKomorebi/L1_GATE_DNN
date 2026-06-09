@@ -1,0 +1,10 @@
+{
+  "center": "congestion_price_da",
+  "features": [
+    "total_lmp_da",
+    "system_energy_price_da",
+    "marginal_loss_price_da",
+    "total_lmp_rt",
+    "system_energy_price_rt"
+  ]
+}
