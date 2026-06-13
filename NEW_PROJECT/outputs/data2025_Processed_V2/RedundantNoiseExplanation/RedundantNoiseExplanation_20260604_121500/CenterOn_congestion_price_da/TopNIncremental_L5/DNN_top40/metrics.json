@@ -1,0 +1,15 @@
+{
+  "center": "congestion_price_da",
+  "method": "DNN_top40",
+  "feature_count": 40,
+  "best_test_r2": 0.9703415036201477,
+  "best_train_r2": 0.997244119644165,
+  "min_test_loss": 0.03396605564353749,
+  "min_train_loss": 0.00275587697490669,
+  "final_test_r2": 0.9633126854896545,
+  "final_train_r2": 0.9963016510009766,
+  "final_test_loss": 0.04201576361012441,
+  "final_train_loss": 0.0036983441229885504,
+  "best_epoch": 133,
+  "output_dir": "E:\\L1_GATE_DNN\\NEW_PROJECT\\outputs\\data2025_Processed_V2\\RedundantNoiseExplanation\\RedundantNoiseExplanation_20260604_121500\\CenterOn_congestion_price_da\\TopNIncremental_L5\\DNN_top40"
+}
