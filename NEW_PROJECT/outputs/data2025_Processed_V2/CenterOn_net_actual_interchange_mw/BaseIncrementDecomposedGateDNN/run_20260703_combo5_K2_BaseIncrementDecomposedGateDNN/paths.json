@@ -1,0 +1,57 @@
+{
+  "base_features": [
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "total_pjm_rt_load_mwh",
+    "metered_load_mw",
+    "prelim_load_avg_hourly"
+  ],
+  "paths": [
+    {
+      "path": 1,
+      "base_count": 5,
+      "increment_count": 0,
+      "full_count": 5,
+      "direct_base_mse": 0.16880094088477696,
+      "direct_path_mse": 0.023537069134607274,
+      "direct_delta_mse": 0.1452638717501697,
+      "direct_path_r2": 0.9751551151275635,
+      "retrained_mse": 0.5325507327187352,
+      "retrained_r2": 0.4378587007522583,
+      "r2_full": 0.9690972566604614,
+      "r2_threshold": 0.9206423938274383,
+      "is_effective": false,
+      "increment_features": [],
+      "full_features": [
+        "gen_fuel_gas_mw",
+        "gen_fuel_coal_mw",
+        "total_pjm_rt_load_mwh",
+        "metered_load_mw",
+        "prelim_load_avg_hourly"
+      ]
+    },
+    {
+      "path": 2,
+      "base_count": 5,
+      "increment_count": 0,
+      "full_count": 5,
+      "direct_base_mse": 0.16880094088477696,
+      "direct_path_mse": 0.023536802879988966,
+      "direct_delta_mse": 0.145264138004788,
+      "direct_path_r2": 0.9751554131507874,
+      "retrained_mse": 0.5342223886400461,
+      "retrained_r2": 0.43609416484832764,
+      "r2_full": 0.9690972566604614,
+      "r2_threshold": 0.9206423938274383,
+      "is_effective": false,
+      "increment_features": [],
+      "full_features": [
+        "gen_fuel_gas_mw",
+        "gen_fuel_coal_mw",
+        "total_pjm_rt_load_mwh",
+        "metered_load_mw",
+        "prelim_load_avg_hourly"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "base_features": [
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_gas_mw",
+    "gen_fuel_wind_mw",
+    "gen_fuel_coal_mw",
+    "total_pjm_rt_load_mwh",
+    "metered_load_mw",
+    "prelim_load_avg_hourly",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_solar_mw"
+  ],
+  "paths": [
+    {
+      "path": 1,
+      "base_count": 9,
+      "increment_count": 4,
+      "full_count": 13,
+      "direct_base_mse": 0.02350676931134175,
+      "direct_path_mse": 0.023326997312989723,
+      "direct_delta_mse": 0.00017977199835202823,
+      "direct_path_r2": 0.9753768444061279,
+      "retrained_mse": 0.06812317602949716,
+      "retrained_r2": 0.9280916452407837,
+      "r2_full": 0.9690972566604614,
+      "r2_threshold": 0.9206423938274383,
+      "is_effective": false,
+      "increment_features": [
+        "da_as_as_mw_thirty_minutes_reserve",
+        "marginal_loss_price_rt",
+        "rmccp",
+        "da_as_mcp_primary_reserve"
+      ],
+      "full_features": [
+        "gen_fuel_nuclear_mw",
+        "gen_fuel_gas_mw",
+        "gen_fuel_wind_mw",
+        "gen_fuel_coal_mw",
+        "total_pjm_rt_load_mwh",
+        "metered_load_mw",
+        "prelim_load_avg_hourly",
+        "gen_fuel_hydro_mw",
+        "gen_fuel_solar_mw",
+        "da_as_as_mw_thirty_minutes_reserve",
+        "marginal_loss_price_rt",
+        "rmccp",
+        "da_as_mcp_primary_reserve"
+      ]
+    },
+    {
+      "path": 2,
+      "base_count": 9,
+      "increment_count": 4,
+      "full_count": 13,
+      "direct_base_mse": 0.02350676931134175,
+      "direct_path_mse": 0.022693514305723424,
+      "direct_delta_mse": 0.0008132550056183276,
+      "direct_path_r2": 0.976045548915863,
+      "retrained_mse": 0.06965421977816377,
+      "retrained_r2": 0.9264755249023438,
+      "r2_full": 0.9690972566604614,
+      "r2_threshold": 0.9206423938274383,
+      "is_effective": false,
+      "increment_features": [
+        "da_as_as_mw_synchronized_reserve",
+        "net_inadv_interchange_mw",
+        "da_as_ss_mw_synchronized_reserve",
+        "da_as_ss_mw_thirty_minutes_reserve"
+      ],
+      "full_features": [
+        "gen_fuel_nuclear_mw",
+        "gen_fuel_gas_mw",
+        "gen_fuel_wind_mw",
+        "gen_fuel_coal_mw",
+        "total_pjm_rt_load_mwh",
+        "metered_load_mw",
+        "prelim_load_avg_hourly",
+        "gen_fuel_hydro_mw",
+        "gen_fuel_solar_mw",
+        "da_as_as_mw_synchronized_reserve",
+        "net_inadv_interchange_mw",
+        "da_as_ss_mw_synchronized_reserve",
+        "da_as_ss_mw_thirty_minutes_reserve"
+      ]
+    }
+  ]
+}
