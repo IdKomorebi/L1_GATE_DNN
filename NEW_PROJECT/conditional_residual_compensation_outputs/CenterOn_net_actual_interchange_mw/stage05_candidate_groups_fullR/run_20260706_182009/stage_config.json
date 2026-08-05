@@ -1,0 +1,26 @@
+{
+  "stage": "stage05_candidate_groups_fullR",
+  "stage04_interface": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage04_residual_showing/run_20260706_000122/stage04_active_candidate_interface.json",
+  "xi": "prelim_load_avg_hourly",
+  "target_r2": 0.9618155312538148,
+  "target_rule": "max(min_target_r2, C_i_plus_R_r2 - target_margin)",
+  "min_target_r2": 0.95,
+  "target_margin": 0.005,
+  "ci_r2": 0.7707679271697998,
+  "ci_plus_r_r2": 0.9668155312538148,
+  "lambda_sweep": [
+    3e-05,
+    0.0001,
+    0.0003,
+    0.001
+  ],
+  "threshold_sweep": [
+    0.35,
+    0.5,
+    0.65,
+    0.8
+  ],
+  "anchor_count": 20,
+  "candidate_count": 46,
+  "validation_devices": "cuda:0,cuda:1,cuda:2,cuda:3"
+}

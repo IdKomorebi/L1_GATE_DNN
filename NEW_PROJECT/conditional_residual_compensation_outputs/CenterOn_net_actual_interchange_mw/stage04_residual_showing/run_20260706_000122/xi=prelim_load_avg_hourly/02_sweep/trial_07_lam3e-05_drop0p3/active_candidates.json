@@ -1,0 +1,33 @@
+{
+  "active_features": [
+    "gen_fuel_other_renewables_mw",
+    "congestion_price_da",
+    "total_pjm_self_sched_reg",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "gross_inadv_interchange_mw",
+    "total_losses",
+    "total_pjm_loc_credit",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "total_pjm_rt_load_mwh",
+    "da_as_mcp_primary_reserve",
+    "gen_fuel_gas_pct",
+    "gen_fuel_multiple_fuels_mw",
+    "forecast_load_mw_latest_available",
+    "total_lmp_da",
+    "metered_load_mw",
+    "system_energy_price_da",
+    "gross_actual_interchange_mw",
+    "congestion_price_rt",
+    "forecast_load_mw_day_ahead",
+    "da_as_mcp_synchronized_reserve",
+    "gen_fuel_multiple_fuels_pct",
+    "marginal_loss_price_da",
+    "net_inadv_interchange_mw"
+  ],
+  "active_count": 23,
+  "selection_reason": "best_within_active_bounds",
+  "selected_topk": 23,
+  "selected_val_mse": 0.8188344836235046,
+  "selected_val_r2": 0.19625705017265926,
+  "selected_mse_ratio_to_full": 1.166337961634344
+}

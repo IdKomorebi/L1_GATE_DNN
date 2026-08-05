@@ -1,0 +1,29 @@
+{
+  "xi": "prelim_load_avg_hourly",
+  "active_features": [
+    "gen_fuel_other_renewables_mw",
+    "congestion_price_da",
+    "total_losses",
+    "marginal_loss_price_da",
+    "metered_load_mw",
+    "marginal_loss_price_rt",
+    "total_lmp_da",
+    "total_pjm_rmccp_cr",
+    "system_energy_price_da",
+    "total_pjm_loc_credit",
+    "rmccp",
+    "gross_inadv_interchange_mw",
+    "total_pjm_self_sched_reg",
+    "gen_fuel_multiple_fuels_pct",
+    "total_pjm_assigned_reg"
+  ],
+  "active_count": 15,
+  "selected_trial": "trial_04_lam3e-06_drop0p45",
+  "selected_trial_dir": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage04_residual_showing/run_20260705_235405/xi=prelim_load_avg_hourly/02_sweep/trial_04_lam3e-06_drop0p45",
+  "selection_metric": "minimum selected_mse_ratio_to_full within active count bounds",
+  "selected_mse_ratio_to_full": 1.2261737071263334,
+  "selected_val_mse": 0.8711535930633545,
+  "selected_val_r2": 0.14490219252066305,
+  "full_r_val_mse": 0.7104650735855103,
+  "full_r_val_r2": 0.3026291794685755
+}

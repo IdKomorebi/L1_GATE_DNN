@@ -1,0 +1,37 @@
+{
+  "stage": "stage01_main_path",
+  "center": "net_actual_interchange_mw",
+  "combo": "5",
+  "exclude_columns": [
+    "net_sched_interchange_mw",
+    "total_gen"
+  ],
+  "output_root": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs",
+  "run_dir": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage01_main_path/run_20260705_175709",
+  "artifact_dirs": {
+    "dgating": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage01_main_path/run_20260705_175709/01_dgating",
+    "pruning": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage01_main_path/run_20260705_175709/02_pruning",
+    "validation": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage01_main_path/run_20260705_175709/03_validation"
+  },
+  "main_k": 9,
+  "dgate_params": {
+    "epochs": 200,
+    "lambda_dgate": 0.03,
+    "dgate_depth": 4,
+    "dgate_normalize_lambda_by_depth": false,
+    "active_threshold": 0.001,
+    "record_epoch0_gate": true,
+    "net_weight_decay": 0.0
+  },
+  "validation": {
+    "validation_epochs": 200,
+    "topk": "9",
+    "random_trials": 0,
+    "include_full_field_validation": true,
+    "compact_tau": 0.95,
+    "min_prune_k": 9,
+    "obvious_drop_r2": 0.02,
+    "seed": 42,
+    "resume_run_dir": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage01_main_path/run_20260705_175709"
+  }
+}

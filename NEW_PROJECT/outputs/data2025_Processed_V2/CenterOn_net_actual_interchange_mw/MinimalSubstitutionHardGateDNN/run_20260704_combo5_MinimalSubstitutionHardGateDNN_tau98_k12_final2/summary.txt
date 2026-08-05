@@ -1,0 +1,46 @@
+MinimalSubstitutionHardGateDNN summary
+
+Full-field baseline: R2_full=0.969259, MSE_full=0.029123, tau=0.949873.
+Main path P has 16 fields and reaches R2=0.821296, MSE=0.169297, meets_tau=False.
+Main path compact selection status: below_tau_compact_choice.
+Main path fields:
+  - gen_fuel_nuclear_mw
+  - da_as_as_req_mw_synchronized_reserve
+  - gen_fuel_wind_mw
+  - rmpcp
+  - total_pjm_reg_purchases
+  - da_as_total_mw_thirty_minutes_reserve
+  - gross_sched_interchange_mw
+  - congestion_price_rt
+  - da_as_ss_mw_primary_reserve
+  - gen_fuel_solar_mw
+  - net_inadv_interchange_mw
+  - total_pjm_rt_load_mwh
+  - system_energy_price_da
+  - gen_fuel_oil_mw
+  - rmccp
+  - gen_fuel_other_renewables_mw
+
+Residual-only test R=U-P: feature_count=39, R2=0.950717, MSE=0.046689, reaches_tau=True.
+No fully disjoint minimal path was confirmed beyond the residual-only diagnostic.
+
+Conditional substitution:
+  - No main-path field was redundant under the context-only tau test.
+  - No field was classified as non_substitutable.
+  - No substitutable field was confirmed.
+
+Top global necessity scores Nec_j = R2_full - R2(U - {xj}):
+  - gen_fuel_hydro_mw: Nec_j=0.018789, R2_minus_j=0.950470
+  - gen_fuel_nuclear_mw: Nec_j=0.012545, R2_minus_j=0.956714
+  - gen_fuel_solar_mw: Nec_j=0.010187, R2_minus_j=0.959072
+  - gen_fuel_oil_mw: Nec_j=0.009033, R2_minus_j=0.960225
+  - da_as_mcp_primary_reserve: Nec_j=0.008160, R2_minus_j=0.961098
+  - total_pjm_rt_load_mwh: Nec_j=0.007089, R2_minus_j=0.962169
+  - da_as_ss_mw_thirty_minutes_reserve: Nec_j=0.006642, R2_minus_j=0.962617
+  - gross_sched_interchange_mw: Nec_j=0.006543, R2_minus_j=0.962716
+  - gen_fuel_coal_mw: Nec_j=0.006322, R2_minus_j=0.962936
+  - total_pjm_rmpcp_cr: Nec_j=0.005559, R2_minus_j=0.963699
+  - gen_fuel_wind_pct: Nec_j=0.005440, R2_minus_j=0.963818
+  - gen_fuel_gas_pct: Nec_j=0.005154, R2_minus_j=0.964104
+
+Note: Nec_j is a global necessity diagnostic, not a direct feature-importance score.

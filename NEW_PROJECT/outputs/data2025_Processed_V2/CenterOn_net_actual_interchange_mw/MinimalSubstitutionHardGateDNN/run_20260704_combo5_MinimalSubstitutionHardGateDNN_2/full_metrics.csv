@@ -1,0 +1,2 @@
+﻿target_col,feature_count,r2_full,mse_full,best_epoch,r2_ratio,tau,train_ratio,random_state
+net_actual_interchange_mw,55,0.9697248339653015,0.028681517064730388,173,0.95,0.9212385922670364,0.8,42

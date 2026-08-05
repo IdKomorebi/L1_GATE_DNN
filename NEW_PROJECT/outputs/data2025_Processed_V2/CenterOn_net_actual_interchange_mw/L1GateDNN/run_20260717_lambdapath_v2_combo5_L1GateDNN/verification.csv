@@ -1,0 +1,14 @@
+stage,lambda,mode,n_features,best_test_r2
+1,0.0005,subset,55,0.967483
+2,0.001,subset,49,0.965128
+2,0.001,complement,6,0.430865
+3,0.002,subset,46,0.966678
+3,0.002,complement,9,0.529019
+4,0.004,subset,38,0.966384
+4,0.004,complement,17,0.717326
+5,0.008,subset,25,0.969229
+5,0.008,complement,30,0.777335
+6,0.016,subset,16,0.963921
+6,0.016,complement,39,0.790618
+7,0.032,subset,10,0.953034
+7,0.032,complement,45,0.850987

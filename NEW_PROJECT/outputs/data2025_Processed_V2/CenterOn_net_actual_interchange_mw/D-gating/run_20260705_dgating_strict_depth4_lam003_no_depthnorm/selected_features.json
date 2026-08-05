@@ -1,0 +1,23 @@
+{
+  "threshold": 0.1,
+  "count": 3,
+  "features": [
+    {
+      "index": 5,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.2948618531227112
+    },
+    {
+      "index": 32,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.1640896499156952
+    },
+    {
+      "index": 40,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.3023240864276886
+    }
+  ],
+  "epoch": 200,
+  "source": "final_epoch"
+}

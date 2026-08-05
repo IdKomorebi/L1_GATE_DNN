@@ -1,0 +1,13 @@
+{
+  "group_id": "group_012",
+  "candidate_group": [
+    "gen_fuel_multiple_fuels_mw",
+    "metered_load_mw"
+  ],
+  "group_size": 2,
+  "source_anchors": "gen_fuel_multiple_fuels_mw",
+  "best_test_r2": 0.9590361955803561,
+  "best_test_mse": 0.04251044421851716,
+  "target_r2": 0.95,
+  "meets_target": true
+}

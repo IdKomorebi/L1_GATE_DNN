@@ -1,0 +1,19 @@
+{
+  "stage": "stage05_candidate_groups",
+  "stage04_interface": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage04_residual_showing/run_20260706_000122/stage04_active_candidate_interface.json",
+  "xi": "prelim_load_avg_hourly",
+  "target_r2": 0.95,
+  "lambda_sweep": [
+    1e-05,
+    3e-05,
+    0.0001,
+    0.0003
+  ],
+  "threshold_sweep": [
+    0.25,
+    0.35,
+    0.5
+  ],
+  "anchor_count": 20,
+  "validation_devices": "cuda:0,cuda:1,cuda:2,cuda:3"
+}

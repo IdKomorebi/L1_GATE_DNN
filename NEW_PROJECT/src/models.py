@@ -116,6 +116,60 @@ class L1GateRegressor(nn.Module):
         return self.gate
 
 
+class DGatingRegressor(nn.Module):
+    def __init__(
+        self,
+        in_dim: int,
+        hidden_dims: Iterable[int],
+        dgate_depth: int = 3,
+        dropout: float = 0.0,
+    ) -> None:
+        super().__init__()
+        dims = [int(v) for v in hidden_dims]
+        if not dims:
+            dims = [64]
+        if int(dgate_depth) < 2:
+            raise ValueError("dgate_depth must be >= 2.")
+
+        self.in_dim = int(in_dim)
+        self.first_hidden_dim = dims[0]
+        self.dgate_depth = int(dgate_depth)
+        self.omega = nn.Parameter(torch.empty(self.in_dim, self.first_hidden_dim))
+        self.gamma = nn.Parameter(torch.ones(self.dgate_depth - 1, self.in_dim))
+        self.bias = nn.Parameter(torch.zeros(self.first_hidden_dim))
+        nn.init.kaiming_normal_(self.omega, nonlinearity="relu")
+
+        layers: List[nn.Module] = []
+        prev = self.first_hidden_dim
+        for dim in dims[1:]:
+            layers.append(nn.Linear(prev, int(dim)))
+            layers.append(nn.ReLU())
+            if dropout > 0:
+                layers.append(nn.Dropout(dropout))
+            prev = int(dim)
+        layers.append(nn.Linear(prev, 1))
+        self.tail = nn.Sequential(*layers)
+
+    def get_gates(self) -> torch.Tensor:
+        return torch.prod(self.gamma, dim=0)
+
+    def effective_weight(self) -> torch.Tensor:
+        return self.omega * self.get_gates().unsqueeze(1)
+
+    def effective_group_norms(self) -> torch.Tensor:
+        return torch.linalg.vector_norm(self.effective_weight(), ord=2, dim=1)
+
+    def omega_group_norms(self) -> torch.Tensor:
+        return torch.linalg.vector_norm(self.omega, ord=2, dim=1)
+
+    def dgate_regularizer(self) -> torch.Tensor:
+        return torch.sum(self.omega**2) + torch.sum(self.gamma**2)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        h = torch.relu(torch.matmul(x, self.effective_weight()) + self.bias)
+        return self.tail(h)
+
+
 class ImprovedGateRegressor(nn.Module):
     def __init__(
         self,

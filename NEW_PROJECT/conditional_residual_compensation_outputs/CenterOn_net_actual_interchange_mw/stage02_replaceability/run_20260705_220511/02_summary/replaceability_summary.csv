@@ -1,0 +1,12 @@
+﻿target_feature,C_i_feature_count,C_i_r2,C_i_meets_tau,C_i_plus_R_feature_count,C_i_plus_R_r2,C_i_plus_R_meets_tau,R_only_feature_count,R_only_r2,R_only_meets_tau,full_all_features_r2,replaceability_status
+prelim_load_avg_hourly,10,0.7946646213531494,False,54,0.9668155312538148,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+gen_fuel_gas_mw,10,0.8170267939567566,False,54,0.9644607305526732,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+gen_fuel_coal_mw,10,0.87142014503479,False,54,0.9679884314537048,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+gen_fuel_solar_mw,10,0.8518602848052979,False,54,0.956898272037506,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+gen_fuel_hydro_mw,10,0.9140466451644896,False,54,0.9576411247253418,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+gen_fuel_wind_mw,10,0.8657419681549072,False,54,0.9669984579086304,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+gross_sched_interchange_mw,10,0.954909086227417,True,54,0.9607446789741516,True,44,0.8501335978507996,False,0.968455970287323,main_path_redundant
+gen_fuel_nuclear_mw,10,0.9205331802368164,False,54,0.9603430032730104,True,44,0.8501335978507996,False,0.968455970287323,conditionally_replaceable
+da_as_nsr_mw_primary_reserve,10,0.9646458625793456,True,54,0.9692885279655457,True,44,0.8501335978507996,False,0.968455970287323,main_path_redundant
+gen_fuel_oil_mw,10,0.9570645689964294,True,54,0.963960826396942,True,44,0.8501335978507996,False,0.968455970287323,main_path_redundant
+gen_fuel_multiple_fuels_mw,10,0.9579027891159058,True,54,0.9670552015304564,True,44,0.8501335978507996,False,0.968455970287323,main_path_redundant

@@ -1,0 +1,36 @@
+{
+  "stage": "stage04_residual_showing",
+  "stage03_interface": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage03_oof_residuals/run_20260705_231558/stage03_oof_residual_interface.json",
+  "xi": "prelim_load_avg_hourly",
+  "center": "net_actual_interchange_mw",
+  "lambda_sweep": [
+    1e-06,
+    3e-06,
+    1e-05,
+    3e-05
+  ],
+  "dropout_sweep": [
+    0.3,
+    0.45
+  ],
+  "dgate_depth": 3,
+  "training": {
+    "epochs": 180,
+    "batch_size": 64,
+    "lr": 0.0007,
+    "hidden_dims": [
+      96,
+      48,
+      24
+    ],
+    "patience": 35,
+    "device": "cuda:0"
+  },
+  "active_selection": {
+    "gate_weight": 0.5,
+    "mse_tolerance": 0.15,
+    "min_active": 3,
+    "max_active": 24,
+    "max_topk": 24
+  }
+}

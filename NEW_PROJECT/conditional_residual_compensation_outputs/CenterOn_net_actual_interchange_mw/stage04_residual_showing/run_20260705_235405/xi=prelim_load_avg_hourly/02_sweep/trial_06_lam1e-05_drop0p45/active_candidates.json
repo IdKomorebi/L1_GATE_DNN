@@ -1,0 +1,25 @@
+{
+  "active_features": [
+    "gen_fuel_other_renewables_mw",
+    "congestion_price_da",
+    "rmccp",
+    "total_losses",
+    "total_pjm_rmccp_cr",
+    "marginal_loss_price_da",
+    "gen_fuel_multiple_fuels_mw",
+    "total_pjm_self_sched_reg",
+    "total_lmp_da",
+    "marginal_loss_price_rt",
+    "total_pjm_loc_credit",
+    "metered_load_mw",
+    "da_as_as_mw_thirty_minutes_reserve",
+    "gen_fuel_multiple_fuels_pct",
+    "system_energy_price_da"
+  ],
+  "active_count": 15,
+  "selection_reason": "best_within_active_bounds",
+  "selected_topk": 15,
+  "selected_val_mse": 0.9077949523925781,
+  "selected_val_r2": 0.10893615065460516,
+  "selected_mse_ratio_to_full": 1.2715271419426124
+}

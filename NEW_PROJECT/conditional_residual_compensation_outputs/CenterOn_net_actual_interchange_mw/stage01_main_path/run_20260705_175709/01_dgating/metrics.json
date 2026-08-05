@@ -1,0 +1,13 @@
+{
+  "center": "net_actual_interchange_mw",
+  "model": "DGatingDNN",
+  "run_dir": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage01_main_path/run_20260705_175709",
+  "feature_count": 55,
+  "best_test_r2": 0.9529446363449097,
+  "best_epoch": 153,
+  "last_epoch_train_r2": 0.9493120312690735,
+  "last_epoch_test_r2": 0.9458551406860352,
+  "final_train_r2": 0.9546411037445068,
+  "final_test_r2": 0.9529446363449097,
+  "epochs_completed": 200
+}

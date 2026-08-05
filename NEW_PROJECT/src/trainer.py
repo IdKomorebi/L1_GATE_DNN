@@ -22,8 +22,16 @@ from .data_utils import (
     write_name_mapping,
 )
 from .knowledge_graph import generate_knowledge_graph
-from .models import DNNRegressor, ImprovedGateRegressor, L1GateRegressor, SimpleAdam
-from .plotting import plot_active_features, plot_gate_history, plot_gate_logit_history, plot_loss_and_r2, plot_meta_history
+from .models import DGatingRegressor, DNNRegressor, ImprovedGateRegressor, L1GateRegressor, SimpleAdam
+from .plotting import (
+    plot_active_features,
+    plot_dgating_effective_norm_diagnostics,
+    plot_dgating_parameter_history,
+    plot_gate_history,
+    plot_gate_logit_history,
+    plot_loss_and_r2,
+    plot_meta_history,
+)
 from .relation_analyzer import analyze_center_relationships, center_relation_analysis_dir, correlation_vectors, select_features
 
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -38,6 +46,21 @@ def r2_score(y_true: torch.Tensor, y_pred: torch.Tensor) -> float:
 
 
 def _model_params_for_optimizer(model: nn.Module, model_name: str, params: Dict[str, Any]):
+    if model_name == "DGatingDNN" and isinstance(model, DGatingRegressor):
+        return [
+            {
+                "name": "dgate_factors",
+                "params": [model.omega, model.gamma],
+                "lr": float(params.get("lr", 1e-3)),
+                "weight_decay": 0.0,
+            },
+            {
+                "name": "tail",
+                "params": [model.bias, *model.tail.parameters()],
+                "lr": float(params.get("lr", 1e-3)),
+                "weight_decay": float(params.get("net_weight_decay", 0.0)),
+            },
+        ]
     if model_name.startswith("Improved") and isinstance(model, ImprovedGateRegressor):
         meta_lr = float(params.get("meta_lr", params.get("lr", 1e-3)))
         return [
@@ -69,6 +92,13 @@ def _build_model(model_name: str, in_dim: int, params: Dict[str, Any], corr_vect
         return DNNRegressor(in_dim, hidden_dims)
     if model_name == "L1GateDNN":
         return L1GateRegressor(in_dim, hidden_dims)
+    if model_name == "DGatingDNN":
+        return DGatingRegressor(
+            in_dim,
+            hidden_dims,
+            dgate_depth=int(params.get("dgate_depth", 3)),
+            dropout=float(params.get("dropout", 0.0)),
+        )
     if model_name in {"ImprovedL1GateDNN", "ImprovedL2GateDNN"}:
         if corr_vectors is None:
             raise ValueError(f"{model_name} requires correlation vectors.")
@@ -177,6 +207,14 @@ def _loss_for_model(
         gate = model.get_gates()  # type: ignore[attr-defined]
         reg = torch.sum(torch.abs(gate))
         return mse + float(params.get("lambda_l1", 0.0)) * reg, float(mse.detach()), float(reg.detach())
+    if model_name == "DGatingDNN":
+        if not isinstance(model, DGatingRegressor):
+            raise TypeError("DGatingDNN requires DGatingRegressor.")
+        reg = model.dgate_regularizer()
+        lam = float(params.get("lambda_dgate", 0.0))
+        if bool(params.get("dgate_normalize_lambda_by_depth", True)):
+            lam = lam / float(max(model.dgate_depth, 1))
+        return mse + lam * reg, float(mse.detach()), float(reg.detach())
     if model_name == "ImprovedL1GateDNN":
         gate = model.get_gates()  # type: ignore[attr-defined]
         reg = _improved_l1_gate_regularizer(gate, model, params)
@@ -248,7 +286,7 @@ def _eval_model(model: nn.Module, loader: DataLoader) -> tuple[float, float, tor
 
 
 def _active_count(model_name: str, gates: np.ndarray, params: Dict[str, Any]) -> int:
-    if model_name == "L1GateDNN":
+    if model_name in {"L1GateDNN", "DGatingDNN"}:
         threshold = float(params.get("active_threshold", 0.06))
         return int(np.sum(np.abs(gates) > threshold))
     if model_name == "ImprovedL2GateDNN":
@@ -266,7 +304,7 @@ def _selected_features(
     epoch: int | None = None,
     source: str | None = None,
 ) -> Dict[str, Any]:
-    if model_name == "L1GateDNN":
+    if model_name in {"L1GateDNN", "DGatingDNN"}:
         threshold = float(params.get("active_threshold", 0.06))
         mask = np.abs(gates) > threshold
     elif model_name == "ImprovedL2GateDNN":
@@ -282,6 +320,94 @@ def _selected_features(
     if source is not None:
         payload["source"] = source
     return payload
+
+
+def _dgate_strictness_summary(
+    features: List[str],
+    final_gates: np.ndarray,
+    best_gates: np.ndarray | None,
+    final_effective_norms: np.ndarray | None,
+    params: Dict[str, Any],
+) -> tuple[pd.DataFrame, Dict[str, Any]]:
+    gate_abs = np.abs(np.asarray(final_gates, dtype=np.float64).reshape(-1))
+    effective = None
+    if final_effective_norms is not None:
+        effective = np.asarray(final_effective_norms, dtype=np.float64).reshape(-1)
+
+    rows: List[Dict[str, Any]] = []
+    active_threshold = float(params.get("active_threshold", 0.06))
+    eps_values = sorted({1e-8, 1e-6, 1e-4, 1e-3, 1e-2, 5e-2, active_threshold})
+    for eps in eps_values:
+        rows.append(
+            {
+                "metric": "final_gate_abs",
+                "cutoff": eps,
+                "dropped_count": int(np.sum(gate_abs <= eps)),
+                "retained_count": int(np.sum(gate_abs > eps)),
+            }
+        )
+        if effective is not None:
+            rows.append(
+                {
+                    "metric": "final_effective_group_l2",
+                    "cutoff": eps,
+                    "dropped_count": int(np.sum(effective <= eps)),
+                    "retained_count": int(np.sum(effective > eps)),
+                }
+            )
+
+    order = np.argsort(gate_abs)[::-1]
+    sorted_gate_abs = gate_abs[order]
+    safe_sorted = np.maximum(sorted_gate_abs, 1e-12)
+    if len(safe_sorted) >= 2:
+        log_gaps = np.log10(safe_sorted[:-1]) - np.log10(safe_sorted[1:])
+        elbow_idx = int(np.argmax(log_gaps))
+        elbow_count = elbow_idx + 1
+        elbow_gap = float(log_gaps[elbow_idx])
+        elbow_left = float(sorted_gate_abs[elbow_idx])
+        elbow_right = float(sorted_gate_abs[elbow_idx + 1])
+    else:
+        elbow_count = int(len(safe_sorted))
+        elbow_gap = 0.0
+        elbow_left = float(safe_sorted[0]) if len(safe_sorted) else 0.0
+        elbow_right = 0.0
+
+    feature_rows = []
+    for rank, idx in enumerate(order, start=1):
+        feature_rows.append(
+            {
+                "rank_by_gate_abs": rank,
+                "feature_index": int(idx + 1),
+                "feature": features[idx],
+                "final_gate": float(final_gates[idx]),
+                "final_gate_abs": float(gate_abs[idx]),
+                "best_epoch_gate": float(best_gates[idx]) if best_gates is not None else None,
+                "final_effective_group_l2": float(effective[idx]) if effective is not None else None,
+                "selected_by_active_threshold": bool(gate_abs[idx] > active_threshold),
+                "selected_by_largest_log_gap": bool(rank <= elbow_count),
+            }
+        )
+
+    summary: Dict[str, Any] = {
+        "definition": (
+            "Objective D-gating strictness is controlled by the optimization objective "
+            "(dgate_depth, lambda_dgate, and whether lambda is normalized by depth). "
+            "Selection thresholds only summarize the learned gate distribution."
+        ),
+        "dgate_depth": int(params.get("dgate_depth", 3)),
+        "lambda_dgate": float(params.get("lambda_dgate", 0.0)),
+        "dgate_normalize_lambda_by_depth": bool(params.get("dgate_normalize_lambda_by_depth", True)),
+        "active_threshold": active_threshold,
+        "selected_by_active_threshold_count": int(np.sum(gate_abs > active_threshold)),
+        "largest_log_gap_selected_count": int(elbow_count),
+        "largest_log_gap": elbow_gap,
+        "largest_log_gap_left_gate_abs": elbow_left,
+        "largest_log_gap_right_gate_abs": elbow_right,
+        "gate_abs_quantiles": {
+            str(q): float(np.quantile(gate_abs, q)) for q in [0.0, 0.1, 0.25, 0.5, 0.75, 0.9, 1.0]
+        },
+    }
+    return pd.DataFrame(feature_rows), {"summary": summary, "threshold_counts": rows}
 
 
 def train_center_model(
@@ -421,6 +547,10 @@ def train_center_model(
     w_history: List[np.ndarray] = []
     w_epochs: List[int] = []
     b_history: List[float] = []
+    dgate_gamma_history: List[np.ndarray] = []
+    dgate_omega_norm_history: List[np.ndarray] = []
+    dgate_effective_norm_history: List[np.ndarray] = []
+    dgate_epochs: List[int] = []
     keydata: Dict[str, Any] = {}
     key_epochs = set(int(v) for v in params.get("key_epochs", []) if int(v) <= int(params.get("epochs", 1)))
     key_epochs.add(int(params.get("epochs", 1)))
@@ -461,6 +591,11 @@ def train_center_model(
             w_history.append(w_np.copy())
             w_epochs.append(0)
             b_history.append(b_value)
+        if isinstance(model, DGatingRegressor):
+            dgate_gamma_history.append(model.gamma.detach().cpu().numpy().copy())
+            dgate_omega_norm_history.append(model.omega_group_norms().detach().cpu().numpy().copy())
+            dgate_effective_norm_history.append(model.effective_group_norms().detach().cpu().numpy().copy())
+            dgate_epochs.append(0)
 
     for epoch in range(1, int(params.get("epochs", 200)) + 1):
         if model_name.startswith("Improved"):
@@ -507,6 +642,12 @@ def train_center_model(
             w_history.append(model.W_meta.detach().cpu().numpy().reshape(-1).copy())
             w_epochs.append(epoch)
             b_history.append(float(model.b_meta.detach().cpu().numpy().reshape(-1)[0]))
+
+        if isinstance(model, DGatingRegressor):
+            dgate_gamma_history.append(model.gamma.detach().cpu().numpy().copy())
+            dgate_omega_norm_history.append(model.omega_group_norms().detach().cpu().numpy().copy())
+            dgate_effective_norm_history.append(model.effective_group_norms().detach().cpu().numpy().copy())
+            dgate_epochs.append(epoch)
 
         row = {
             "epoch": epoch,
@@ -607,6 +748,71 @@ def train_center_model(
         )
         pd.DataFrame({"epoch": w_epochs, "b_meta": b_arr}).to_csv(run_dir / "b_meta_evolution.csv", index=False, encoding="utf-8-sig")
         plot_meta_history(w_arr, b_arr, w_epochs, run_dir / "W_meta_evolution.png", run_dir / "b_meta_evolution.png")
+
+    if dgate_gamma_history:
+        gamma_arr = np.asarray(dgate_gamma_history)
+        omega_norm_arr = np.asarray(dgate_omega_norm_history)
+        effective_norm_arr = np.asarray(dgate_effective_norm_history)
+        gamma_rows = []
+        omega_rows = []
+        effective_rows = []
+        for e_idx, epoch in enumerate(dgate_epochs):
+            for f_idx, feature in enumerate(features):
+                omega_rows.append(
+                    {
+                        "epoch": epoch,
+                        "feature_index": f_idx + 1,
+                        "feature": feature,
+                        "omega_group_l2": omega_norm_arr[e_idx, f_idx],
+                    }
+                )
+                effective_rows.append(
+                    {
+                        "epoch": epoch,
+                        "feature_index": f_idx + 1,
+                        "feature": feature,
+                        "effective_group_l2": effective_norm_arr[e_idx, f_idx],
+                    }
+                )
+                for g_idx in range(gamma_arr.shape[1]):
+                    gamma_rows.append(
+                        {
+                            "epoch": epoch,
+                            "feature_index": f_idx + 1,
+                            "feature": feature,
+                            "gamma_index": g_idx + 1,
+                            "gamma": gamma_arr[e_idx, g_idx, f_idx],
+                        }
+                    )
+        pd.DataFrame(gamma_rows).to_csv(run_dir / "dgate_gamma_params.csv", index=False, encoding="utf-8-sig")
+        pd.DataFrame(omega_rows).to_csv(run_dir / "dgate_omega_group_norms.csv", index=False, encoding="utf-8-sig")
+        pd.DataFrame(effective_rows).to_csv(run_dir / "dgate_effective_group_norms.csv", index=False, encoding="utf-8-sig")
+        plot_dgating_parameter_history(
+            gamma_arr,
+            omega_norm_arr,
+            effective_norm_arr,
+            dgate_epochs,
+            features,
+            run_dir / "dgate_gamma_params.png",
+            run_dir / "dgate_omega_group_norms.png",
+            run_dir / "dgate_effective_group_norms.png",
+        )
+        plot_dgating_effective_norm_diagnostics(effective_norm_arr, dgate_epochs, features, run_dir)
+        if gate_history:
+            strictness_df, strictness_payload = _dgate_strictness_summary(
+                features=features,
+                final_gates=np.asarray(gate_history[-1]),
+                best_gates=best_gate_values,
+                final_effective_norms=effective_norm_arr[-1],
+                params=params,
+            )
+            strictness_df.to_csv(run_dir / "dgate_strictness_features.csv", index=False, encoding="utf-8-sig")
+            pd.DataFrame(strictness_payload["threshold_counts"]).to_csv(
+                run_dir / "dgate_strictness_threshold_counts.csv",
+                index=False,
+                encoding="utf-8-sig",
+            )
+            save_json(run_dir / "dgate_strictness_summary.json", strictness_payload["summary"])
 
     if best_state is not None:
         torch.save(best_state, run_dir / "model.pth")

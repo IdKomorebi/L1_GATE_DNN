@@ -1,0 +1,21 @@
+{
+  "definition": "Objective D-gating strictness is controlled by the optimization objective (dgate_depth, lambda_dgate, and whether lambda is normalized by depth). Selection thresholds only summarize the learned gate distribution.",
+  "dgate_depth": 4,
+  "lambda_dgate": 0.03,
+  "dgate_normalize_lambda_by_depth": false,
+  "active_threshold": 0.001,
+  "selected_by_active_threshold_count": 11,
+  "largest_log_gap_selected_count": 11,
+  "largest_log_gap": 9.471581909004616,
+  "largest_log_gap_left_gate_abs": 0.0029619785491377115,
+  "largest_log_gap_right_gate_abs": 6.226638806340959e-14,
+  "gate_abs_quantiles": {
+    "0.0": 0.0,
+    "0.1": 0.0,
+    "0.25": 9.599605133026247e-36,
+    "0.5": 2.3429410213392176e-21,
+    "0.75": 7.587484501674383e-16,
+    "0.9": 0.00968026164919138,
+    "1.0": 0.04360037297010422
+  }
+}

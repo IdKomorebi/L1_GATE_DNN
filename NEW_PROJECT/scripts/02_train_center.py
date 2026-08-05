@@ -22,7 +22,7 @@ def main() -> None:
         "--model",
         required=True,
         nargs="+",
-        choices=["DNN", "L1GateDNN", "ImprovedL1GateDNN", "ImprovedL2GateDNN"],
+        choices=["DNN", "L1GateDNN", "DGatingDNN", "ImprovedL1GateDNN", "ImprovedL2GateDNN"],
         help="One or more model names.",
     )
     parser.add_argument("--epochs", type=int)
@@ -30,6 +30,14 @@ def main() -> None:
     parser.add_argument("--lr", type=float)
     parser.add_argument("--lambda-l1", type=float)
     parser.add_argument("--lambda-l2", type=float)
+    parser.add_argument("--lambda-dgate", type=float)
+    parser.add_argument("--dgate-depth", type=int, choices=[2, 3, 4, 5, 6])
+    parser.add_argument(
+        "--dgate-normalize-lambda-by-depth",
+        action=argparse.BooleanOptionalAction,
+        default=None,
+        help="Whether DGatingDNN divides lambda_dgate by dgate_depth.",
+    )
     parser.add_argument(
         "--top-n",
         type=int,
@@ -61,6 +69,9 @@ def main() -> None:
         "lr": args.lr,
         "lambda_l1": args.lambda_l1,
         "lambda_l2": args.lambda_l2,
+        "lambda_dgate": args.lambda_dgate,
+        "dgate_depth": args.dgate_depth,
+        "dgate_normalize_lambda_by_depth": args.dgate_normalize_lambda_by_depth,
     }
     for model_name in args.model:
         run_name = args.run_name

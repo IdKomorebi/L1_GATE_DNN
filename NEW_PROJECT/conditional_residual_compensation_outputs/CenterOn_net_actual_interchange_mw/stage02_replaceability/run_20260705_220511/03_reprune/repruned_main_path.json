@@ -1,0 +1,26 @@
+{
+  "tau": 0.95,
+  "candidate_order": [
+    "da_as_nsr_mw_primary_reserve",
+    "gen_fuel_multiple_fuels_mw",
+    "gen_fuel_oil_mw",
+    "gross_sched_interchange_mw"
+  ],
+  "dropped_features": [
+    "da_as_nsr_mw_primary_reserve",
+    "gen_fuel_multiple_fuels_mw"
+  ],
+  "final_main_path_count": 9,
+  "final_main_path_features": [
+    "prelim_load_avg_hourly",
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_wind_mw",
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_oil_mw"
+  ],
+  "stopped_after_first_below_tau": true
+}

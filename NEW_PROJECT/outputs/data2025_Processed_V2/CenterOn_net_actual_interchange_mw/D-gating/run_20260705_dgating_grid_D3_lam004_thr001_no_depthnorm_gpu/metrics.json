@@ -1,0 +1,13 @@
+{
+  "center": "net_actual_interchange_mw",
+  "model": "DGatingDNN",
+  "run_dir": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/outputs/data2025_Processed_V2/CenterOn_net_actual_interchange_mw/D-gating/run_20260705_dgating_grid_D3_lam004_thr001_no_depthnorm_gpu",
+  "feature_count": 55,
+  "best_test_r2": 0.970147967338562,
+  "best_epoch": 189,
+  "last_epoch_train_r2": 0.9758824706077576,
+  "last_epoch_test_r2": 0.9698704481124878,
+  "final_train_r2": 0.9759035110473633,
+  "final_test_r2": 0.970147967338562,
+  "epochs_completed": 200
+}

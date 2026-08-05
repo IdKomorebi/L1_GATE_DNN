@@ -1,0 +1,40 @@
+{
+  "xi": "prelim_load_avg_hourly",
+  "center": "net_actual_interchange_mw",
+  "ci_features": [
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_wind_mw",
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_oil_mw"
+  ],
+  "active_features": [
+    "gen_fuel_other_renewables_mw",
+    "congestion_price_da",
+    "total_losses",
+    "system_energy_price_da",
+    "total_pjm_self_sched_reg",
+    "total_lmp_da",
+    "total_pjm_loc_credit",
+    "gross_inadv_interchange_mw",
+    "gen_fuel_multiple_fuels_mw",
+    "gen_fuel_multiple_fuels_pct",
+    "rmccp",
+    "congestion_price_rt",
+    "marginal_loss_price_rt",
+    "da_as_total_mw_thirty_minutes_reserve",
+    "total_pjm_rmccp_cr",
+    "marginal_loss_price_da",
+    "net_inadv_interchange_mw",
+    "gross_actual_interchange_mw",
+    "da_as_mcp_primary_reserve",
+    "metered_load_mw"
+  ],
+  "anchor_count": 20,
+  "train_rows": 4196,
+  "val_rows": 1048,
+  "source_stage04_interface": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage04_residual_showing/run_20260706_000122/stage04_active_candidate_interface.json"
+}

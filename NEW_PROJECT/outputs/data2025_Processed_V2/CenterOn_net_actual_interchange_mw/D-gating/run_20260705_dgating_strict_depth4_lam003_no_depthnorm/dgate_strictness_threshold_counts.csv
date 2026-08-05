@@ -1,0 +1,15 @@
+﻿metric,cutoff,dropped_count,retained_count
+final_gate_abs,1e-08,40,15
+final_effective_group_l2,1e-08,40,15
+final_gate_abs,1e-06,40,15
+final_effective_group_l2,1e-06,40,15
+final_gate_abs,0.0001,40,15
+final_effective_group_l2,0.0001,40,15
+final_gate_abs,0.001,40,15
+final_effective_group_l2,0.001,41,14
+final_gate_abs,0.01,41,14
+final_effective_group_l2,0.01,45,10
+final_gate_abs,0.05,47,8
+final_effective_group_l2,0.05,52,3
+final_gate_abs,0.1,52,3
+final_effective_group_l2,0.1,53,2

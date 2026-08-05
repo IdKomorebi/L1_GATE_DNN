@@ -1,0 +1,15 @@
+{
+  "group_id": "group_021",
+  "candidate_group": [
+    "metered_load_mw",
+    "gen_fuel_multiple_fuels_pct",
+    "total_losses",
+    "da_as_nsr_mw_primary_reserve"
+  ],
+  "group_size": 4,
+  "source_anchors": "metered_load_mw",
+  "best_test_r2": 0.9634377603558736,
+  "best_test_mse": 0.03794269009012746,
+  "target_r2": 0.9618155312538148,
+  "meets_target": true
+}

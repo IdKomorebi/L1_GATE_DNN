@@ -1,0 +1,63 @@
+{
+  "threshold": 0.001,
+  "count": 11,
+  "features": [
+    {
+      "index": 3,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.008959322236478329
+    },
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.010936301201581955
+    },
+    {
+      "index": 5,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.035122908651828766
+    },
+    {
+      "index": 19,
+      "name": "gen_fuel_wind_mw",
+      "gate": 0.01132765132933855
+    },
+    {
+      "index": 23,
+      "name": "gen_fuel_multiple_fuels_mw",
+      "gate": 0.00347525835968554
+    },
+    {
+      "index": 32,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.022528959438204765
+    },
+    {
+      "index": 35,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.004715305753052235
+    },
+    {
+      "index": 40,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.050895050168037415
+    },
+    {
+      "index": 42,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.01160448882728815
+    },
+    {
+      "index": 46,
+      "name": "da_as_nsr_mw_primary_reserve",
+      "gate": 0.005464202258735895
+    },
+    {
+      "index": 51,
+      "name": "gen_fuel_solar_mw",
+      "gate": 0.01623545214533806
+    }
+  ],
+  "epoch": 153,
+  "source": "best_test_r2_epoch"
+}

@@ -14,6 +14,7 @@ import pandas as pd
 MODEL_OUTPUT_PARTS = {
     "DNN": ("DNN",),
     "L1GateDNN": ("L1GateDNN",),
+    "DGatingDNN": ("D-gating",),
     "ImprovedL1GateDNN": ("ImprovedGateDNN", "ImprovedL1GateDNN"),
     "ImprovedL2GateDNN": ("ImprovedGateDNN", "ImprovedL2GateDNN"),
 }

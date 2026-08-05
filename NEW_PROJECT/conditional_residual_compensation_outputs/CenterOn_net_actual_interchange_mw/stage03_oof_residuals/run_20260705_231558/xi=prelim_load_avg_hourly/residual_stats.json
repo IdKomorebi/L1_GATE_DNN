@@ -1,0 +1,14 @@
+{
+  "xi": "prelim_load_avg_hourly",
+  "target": "net_actual_interchange_mw",
+  "train_rows": 5244,
+  "test_rows": 1312,
+  "k_folds": 5,
+  "oof_r2": 0.751795330430138,
+  "oof_mse": 1631867.0,
+  "residual_mean": -13.997056007385254,
+  "residual_std_value": 1277.3687744140625,
+  "residual_variance": 1631671.125,
+  "y_train_variance": 6574683.0,
+  "gap_energy": 0.24817487597465515
+}

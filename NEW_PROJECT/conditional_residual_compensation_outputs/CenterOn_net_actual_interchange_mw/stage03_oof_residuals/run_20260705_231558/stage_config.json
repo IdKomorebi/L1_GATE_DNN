@@ -1,0 +1,49 @@
+{
+  "stage": "stage03_oof_residuals",
+  "stage02_interface": "/data1/duhaocun/projects/L1_GATE_DNN/NEW_PROJECT/conditional_residual_compensation_outputs/CenterOn_net_actual_interchange_mw/stage02_replaceability/run_20260705_220511/stage02_replaceability_interface.json",
+  "center": "net_actual_interchange_mw",
+  "main_path_features": [
+    "prelim_load_avg_hourly",
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_wind_mw",
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_oil_mw"
+  ],
+  "replaceable_features": [
+    "prelim_load_avg_hourly",
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_wind_mw",
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_oil_mw"
+  ],
+  "selected_xi": "prelim_load_avg_hourly",
+  "executed_xi_count": 1,
+  "k_folds": 5,
+  "training": {
+    "epochs": 160,
+    "batch_size": 50,
+    "lr": 0.0008,
+    "hidden_dims": [
+      64,
+      32,
+      16
+    ],
+    "dropout": 0.0,
+    "patience": 35,
+    "min_delta": 1e-05,
+    "seed": 42,
+    "device": "cuda:0"
+  },
+  "split": {
+    "train_rows": 5244,
+    "test_rows": 1312
+  }
+}

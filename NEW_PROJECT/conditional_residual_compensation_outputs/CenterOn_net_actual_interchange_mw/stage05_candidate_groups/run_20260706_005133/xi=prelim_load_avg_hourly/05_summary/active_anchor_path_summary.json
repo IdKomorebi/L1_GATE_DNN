@@ -1,0 +1,612 @@
+{
+  "schema_version": 2,
+  "summary_type": "stage05_20_anchor_path_summary",
+  "center": "net_actual_interchange_mw",
+  "xi": "prelim_load_avg_hourly",
+  "ci_features": [
+    "gen_fuel_gas_mw",
+    "gen_fuel_coal_mw",
+    "gen_fuel_solar_mw",
+    "gen_fuel_hydro_mw",
+    "gen_fuel_wind_mw",
+    "gross_sched_interchange_mw",
+    "gen_fuel_nuclear_mw",
+    "gen_fuel_oil_mw"
+  ],
+  "ci_feature_count": 8,
+  "stage05_scope": {
+    "R_feature_count_from_stage04": 46,
+    "active_A_count": 20,
+    "head_count": 20,
+    "per_head_gated_non_anchor_count": 19,
+    "note": "Stage05 uses the Stage04 active set A only. Each head fixes one active anchor and D-gates the other 19 active fields."
+  },
+  "reference_metrics": {
+    "C_i_r2": 0.7707679271697998,
+    "C_i_plus_R_r2": 0.9668155312538148,
+    "R_only_r2": 0.8583868741989136,
+    "full_all_features_r2": 0.968455970287323,
+    "target_r2": 0.95
+  },
+  "selected_trial": "trial_03_lam0p0001",
+  "threshold_ratio": 0.35,
+  "active_fields": [
+    {
+      "active_index": 1,
+      "active_feature": "gen_fuel_other_renewables_mw",
+      "stage04_scores": {
+        "gate_score": 0.98122203,
+        "mask_sensitivity": 0.0223169922828674,
+        "combined_score": 0.9906110167279312
+      },
+      "head_id": 0,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "gen_fuel_other_renewables_mw",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8797634840011597,
+        "anchor_sensitivity": 0.0439738929271698,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9558773312729446,
+        "best_test_mse": 0.0457885793955639,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_013"
+      }
+    },
+    {
+      "active_index": 2,
+      "active_feature": "congestion_price_da",
+      "stage04_scores": {
+        "gate_score": 1.0,
+        "mask_sensitivity": 0.0109443068504333,
+        "combined_score": 0.745201206130828
+      },
+      "head_id": 1,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "congestion_price_da",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8784675002098083,
+        "anchor_sensitivity": 0.0001286268234252,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9521429942520876,
+        "best_test_mse": 0.049663908814838,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_017"
+      }
+    },
+    {
+      "active_index": 3,
+      "active_feature": "total_losses",
+      "stage04_scores": {
+        "gate_score": 0.73504156,
+        "mask_sensitivity": 0.0142872929573059,
+        "combined_score": 0.6876197599053443
+      },
+      "head_id": 2,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "total_losses",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8790530562400818,
+        "anchor_sensitivity": 0.0445698201656341,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.955058879326603,
+        "best_test_mse": 0.0466379290212745,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_011"
+      }
+    },
+    {
+      "active_index": 4,
+      "active_feature": "system_energy_price_da",
+      "stage04_scores": {
+        "gate_score": 0.81736296,
+        "mask_sensitivity": 0.0100055932998657,
+        "combined_score": 0.6328513247820751
+      },
+      "head_id": 3,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "system_energy_price_da",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.883337140083313,
+        "anchor_sensitivity": 0.0252902805805206,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9535597842379324,
+        "best_test_mse": 0.0481936272518649,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_001"
+      }
+    },
+    {
+      "active_index": 5,
+      "active_feature": "total_pjm_self_sched_reg",
+      "stage04_scores": {
+        "gate_score": 0.55881816,
+        "mask_sensitivity": 0.0151652693748474,
+        "combined_score": 0.6191786424738916
+      },
+      "head_id": 4,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "total_pjm_self_sched_reg",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8790050745010376,
+        "anchor_sensitivity": 0.0020115077495574,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9464410222799,
+        "best_test_mse": 0.0555811647647889,
+        "meets_target_0p95": false,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_014"
+      }
+    },
+    {
+      "active_index": 6,
+      "active_feature": "total_lmp_da",
+      "stage04_scores": {
+        "gate_score": 0.7159437,
+        "mask_sensitivity": 0.0089011192321777,
+        "combined_score": 0.5573965526573933
+      },
+      "head_id": 5,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "total_lmp_da",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8813723921775818,
+        "anchor_sensitivity": 0.0357909202575683,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.952097364309795,
+        "best_test_mse": 0.0497112602910311,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_005"
+      }
+    },
+    {
+      "active_index": 7,
+      "active_feature": "total_pjm_loc_credit",
+      "stage04_scores": {
+        "gate_score": 0.604039,
+        "mask_sensitivity": 0.0111570954322814,
+        "combined_score": 0.5519881245596131
+      },
+      "head_id": 6,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "total_pjm_loc_credit",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8807865381240845,
+        "anchor_sensitivity": 0.0030126869678497,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9484068948093284,
+        "best_test_mse": 0.0535410717964282,
+        "meets_target_0p95": false,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_008"
+      }
+    },
+    {
+      "active_index": 8,
+      "active_feature": "gross_inadv_interchange_mw",
+      "stage04_scores": {
+        "gate_score": 0.60286456,
+        "mask_sensitivity": 0.007554292678833,
+        "combined_score": 0.4706820754042153
+      },
+      "head_id": 7,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "gross_inadv_interchange_mw",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8771224021911621,
+        "anchor_sensitivity": 0.0470758080482482,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9537369076390884,
+        "best_test_mse": 0.0480098155280362,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_019"
+      }
+    },
+    {
+      "active_index": 9,
+      "active_feature": "gen_fuel_multiple_fuels_mw",
+      "stage04_scores": {
+        "gate_score": 0.5577509,
+        "mask_sensitivity": 0.0078184604644775,
+        "combined_score": 0.4540437687124253
+      },
+      "head_id": 8,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "gen_fuel_multiple_fuels_mw",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8798233866691589,
+        "anchor_sensitivity": 0.020043522119522,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.959036195580356,
+        "best_test_mse": 0.0425104442185171,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_012"
+      }
+    },
+    {
+      "active_index": 10,
+      "active_feature": "gen_fuel_multiple_fuels_pct",
+      "stage04_scores": {
+        "gate_score": 0.6096665,
+        "mask_sensitivity": 0.0065522193908691,
+        "combined_score": 0.4516321531598856
+      },
+      "head_id": 9,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "gen_fuel_multiple_fuels_pct",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8808133602142334,
+        "anchor_sensitivity": 0.0764076709747314,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9573237425354718,
+        "best_test_mse": 0.0442875561380937,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_007"
+      }
+    },
+    {
+      "active_index": 11,
+      "active_feature": "rmccp",
+      "stage04_scores": {
+        "gate_score": 0.75279814,
+        "mask_sensitivity": 0.0029584169387817,
+        "combined_score": 0.4426807826574316
+      },
+      "head_id": 10,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "rmccp",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8812924027442932,
+        "anchor_sensitivity": 0.0005104839801788,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9479262781603968,
+        "best_test_mse": 0.0540398310903953,
+        "meets_target_0p95": false,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_006"
+      }
+    },
+    {
+      "active_index": 12,
+      "active_feature": "congestion_price_rt",
+      "stage04_scores": {
+        "gate_score": 0.8725581,
+        "mask_sensitivity": -0.0093687772750854,
+        "combined_score": 0.4362790584564209
+      },
+      "head_id": 11,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "congestion_price_rt",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8805326223373413,
+        "anchor_sensitivity": -0.0007760822772979,
+        "anchor_status": "inactive_or_dummy_anchor",
+        "validated": true,
+        "best_test_r2": 0.9477963331150616,
+        "best_test_mse": 0.0541746838541369,
+        "meets_target_0p95": false,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_010"
+      }
+    },
+    {
+      "active_index": 13,
+      "active_feature": "marginal_loss_price_rt",
+      "stage04_scores": {
+        "gate_score": 0.76463693,
+        "mask_sensitivity": 0.0017057657241821,
+        "combined_score": 0.4205352145370597
+      },
+      "head_id": 12,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "marginal_loss_price_rt",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8830409646034241,
+        "anchor_sensitivity": 0.0196626782417297,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9503175993369802,
+        "best_test_mse": 0.051558221496464,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_002"
+      }
+    },
+    {
+      "active_index": 14,
+      "active_feature": "da_as_total_mw_thirty_minutes_reserve",
+      "stage04_scores": {
+        "gate_score": 0.593138,
+        "mask_sensitivity": 0.0038825273513793,
+        "combined_score": 0.3835548904968534
+      },
+      "head_id": 13,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "da_as_total_mw_thirty_minutes_reserve",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8820813298225403,
+        "anchor_sensitivity": 0.0320815742015838,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9531738096451408,
+        "best_test_mse": 0.04859417026568,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_004"
+      }
+    },
+    {
+      "active_index": 15,
+      "active_feature": "total_pjm_rmccp_cr",
+      "stage04_scores": {
+        "gate_score": 0.7066129,
+        "mask_sensitivity": 0.0004634261131286,
+        "combined_score": 0.3636892509716014
+      },
+      "head_id": 14,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "total_pjm_rmccp_cr",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8805756568908691,
+        "anchor_sensitivity": -0.0023731589317321,
+        "anchor_status": "inactive_or_dummy_anchor",
+        "validated": true,
+        "best_test_r2": 0.9501294691914216,
+        "best_test_mse": 0.0517534578403397,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_009"
+      }
+    },
+    {
+      "active_index": 16,
+      "active_feature": "marginal_loss_price_da",
+      "stage04_scores": {
+        "gate_score": 0.5375199,
+        "mask_sensitivity": 0.0040482282638549,
+        "combined_score": 0.3594582751079462
+      },
+      "head_id": 15,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "marginal_loss_price_da",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8789893388748169,
+        "anchor_sensitivity": 0.0247571468353271,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9518956677118332,
+        "best_test_mse": 0.0499205728035981,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_015"
+      }
+    },
+    {
+      "active_index": 17,
+      "active_feature": "net_inadv_interchange_mw",
+      "stage04_scores": {
+        "gate_score": 0.5137578,
+        "mask_sensitivity": 0.0044821500778198,
+        "combined_score": 0.3572990322573192
+      },
+      "head_id": 16,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "net_inadv_interchange_mw",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8774814605712891,
+        "anchor_sensitivity": 0.0018494725227355,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9473741869108516,
+        "best_test_mse": 0.0546127700938717,
+        "meets_target_0p95": false,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_018"
+      }
+    },
+    {
+      "active_index": 18,
+      "active_feature": "gross_actual_interchange_mw",
+      "stage04_scores": {
+        "gate_score": 0.5250461,
+        "mask_sensitivity": 0.0038368701934814,
+        "combined_score": 0.3484860321811584
+      },
+      "head_id": 17,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "gross_actual_interchange_mw",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.878577709197998,
+        "anchor_sensitivity": 0.0392431914806366,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.9504157116857704,
+        "best_test_mse": 0.0514564073363374,
+        "meets_target_0p95": true,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_016"
+      }
+    },
+    {
+      "active_index": 19,
+      "active_feature": "da_as_mcp_primary_reserve",
+      "stage04_scores": {
+        "gate_score": 0.6525218,
+        "mask_sensitivity": -0.0027726888656616,
+        "combined_score": 0.326260894536972
+      },
+      "head_id": 18,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "da_as_mcp_primary_reserve",
+          "metered_load_mw"
+        ],
+        "candidate_group_size": 2,
+        "stage05_internal_reconstructed_y_val_r2": 0.8822411894798279,
+        "anchor_sensitivity": 0.0100397169589996,
+        "anchor_status": "active_anchor",
+        "validated": true,
+        "best_test_r2": 0.949192540530836,
+        "best_test_mse": 0.0527257567338568,
+        "meets_target_0p95": false,
+        "ci_plus_q_feature_count": 10,
+        "group_id_from_validation": "group_003"
+      }
+    },
+    {
+      "active_index": 20,
+      "active_feature": "metered_load_mw",
+      "stage04_scores": {
+        "gate_score": 0.3389368,
+        "mask_sensitivity": 0.0065430998802185,
+        "combined_score": 0.3160629752178119
+      },
+      "head_id": 19,
+      "selected_trial": "trial_03_lam0p0001",
+      "threshold_ratio": 0.35,
+      "path": {
+        "candidate_group_q": [
+          "metered_load_mw",
+          "gen_fuel_other_renewables_mw",
+          "congestion_price_da",
+          "total_losses",
+          "system_energy_price_da",
+          "total_pjm_self_sched_reg",
+          "total_lmp_da",
+          "total_pjm_loc_credit",
+          "gross_inadv_interchange_mw",
+          "gen_fuel_multiple_fuels_mw",
+          "gen_fuel_multiple_fuels_pct",
+          "rmccp",
+          "congestion_price_rt",
+          "marginal_loss_price_rt",
+          "da_as_total_mw_thirty_minutes_reserve",
+          "marginal_loss_price_da",
+          "net_inadv_interchange_mw",
+          "gross_actual_interchange_mw",
+          "da_as_mcp_primary_reserve"
+        ],
+        "candidate_group_size": 19,
+        "stage05_internal_reconstructed_y_val_r2": 0.8809729218482971,
+        "anchor_sensitivity": 22.308462142944336,
+        "anchor_status": "active_anchor",
+        "validated": false,
+        "best_test_r2": null,
+        "best_test_mse": null,
+        "meets_target_0p95": null,
+        "ci_plus_q_feature_count": 27,
+        "group_id_from_validation": null
+      }
+    }
+  ]
+}

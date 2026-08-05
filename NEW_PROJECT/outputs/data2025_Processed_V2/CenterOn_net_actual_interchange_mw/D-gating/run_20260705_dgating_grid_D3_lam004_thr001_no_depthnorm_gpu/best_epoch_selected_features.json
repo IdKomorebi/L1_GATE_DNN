@@ -1,0 +1,108 @@
+{
+  "threshold": 0.001,
+  "count": 20,
+  "features": [
+    {
+      "index": 3,
+      "name": "gross_sched_interchange_mw",
+      "gate": 0.0622585229575634
+    },
+    {
+      "index": 4,
+      "name": "gen_fuel_nuclear_mw",
+      "gate": 0.10829850286245346
+    },
+    {
+      "index": 5,
+      "name": "gen_fuel_gas_mw",
+      "gate": 0.36234185099601746
+    },
+    {
+      "index": 6,
+      "name": "da_as_as_req_mw_thirty_minutes_reserve",
+      "gate": 0.03361597657203674
+    },
+    {
+      "index": 14,
+      "name": "gen_fuel_other_renewables_mw",
+      "gate": 0.04647752642631531
+    },
+    {
+      "index": 19,
+      "name": "gen_fuel_wind_mw",
+      "gate": 0.09102087467908859
+    },
+    {
+      "index": 21,
+      "name": "system_energy_price_da",
+      "gate": 0.006852021906524897
+    },
+    {
+      "index": 22,
+      "name": "gen_fuel_multiple_fuels_pct",
+      "gate": 0.06191091984510422
+    },
+    {
+      "index": 32,
+      "name": "gen_fuel_coal_mw",
+      "gate": 0.2279214859008789
+    },
+    {
+      "index": 34,
+      "name": "gross_inadv_interchange_mw",
+      "gate": 0.030334774404764175
+    },
+    {
+      "index": 35,
+      "name": "gen_fuel_oil_mw",
+      "gate": 0.04246954619884491
+    },
+    {
+      "index": 37,
+      "name": "total_pjm_rt_load_mwh",
+      "gate": 0.05093419551849365
+    },
+    {
+      "index": 38,
+      "name": "metered_load_mw",
+      "gate": 0.02414068765938282
+    },
+    {
+      "index": 40,
+      "name": "prelim_load_avg_hourly",
+      "gate": 0.3571578562259674
+    },
+    {
+      "index": 42,
+      "name": "gen_fuel_hydro_mw",
+      "gate": 0.10868726670742035
+    },
+    {
+      "index": 44,
+      "name": "total_losses",
+      "gate": 0.06127132847905159
+    },
+    {
+      "index": 45,
+      "name": "net_inadv_interchange_mw",
+      "gate": 0.004736555274575949
+    },
+    {
+      "index": 46,
+      "name": "da_as_nsr_mw_primary_reserve",
+      "gate": 0.05209140107035637
+    },
+    {
+      "index": 51,
+      "name": "gen_fuel_solar_mw",
+      "gate": 0.13602913916110992
+    },
+    {
+      "index": 53,
+      "name": "congestion_price_rt",
+      "gate": 0.017308300361037254
+    }
+  ],
+  "epoch": 189,
+  "source": "best_test_r2_epoch"
+}

@@ -34,6 +34,7 @@ experiment:
   models:
     - DNN
     - L1GateDNN
+    - DGatingDNN
     - ImprovedL1GateDNN
     - ImprovedL2GateDNN
 
@@ -102,6 +103,14 @@ model_params:
   L1GateDNN:
     lambda_l1: 0.002
     active_threshold: 0.10
+
+  DGatingDNN:
+    lambda_dgate: 0.004
+    dgate_depth: 4
+    dgate_normalize_lambda_by_depth: false
+    active_threshold: 0.001
+    record_epoch0_gate: true
+    net_weight_decay: 0.0
 
   ImprovedL1GateDNN:
     lambda_l1: 0.016

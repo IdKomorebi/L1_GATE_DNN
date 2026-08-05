@@ -1,0 +1,9 @@
+gen_fuel_gas_mw
+gen_fuel_coal_mw
+gen_fuel_solar_mw
+gen_fuel_nuclear_mw
+gen_fuel_wind_mw
+gen_fuel_hydro_mw
+total_pjm_rt_load_mwh
+gross_sched_interchange_mw
+gen_fuel_oil_mw

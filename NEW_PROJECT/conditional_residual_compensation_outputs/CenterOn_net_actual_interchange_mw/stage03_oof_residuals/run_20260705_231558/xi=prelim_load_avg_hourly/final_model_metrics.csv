@@ -1,0 +1,2 @@
+﻿xi,model,input_feature_count,train_r2,train_mse,test_r2,test_mse,best_test_r2,best_test_mse,best_epoch
+prelim_load_avg_hourly,f_C_full,8,0.8811524252405021,781385.125,0.7652443786442835,1462198.625,0.7652443786442835,1462198.625,160
