@@ -1,0 +1,6 @@
+field,entity_type,entity_id,physical_quantity,mathematical_status,variance,n_unique,is_constant,sensitivity_tier,tier_reason
+gen_121_nuclear_1_status,generator,121_NUCLEAR_1,status,control_or_operational_state,0.03192460998802261,2,0,T3_high,节点相角、线路状态或具名机组状态；作为高敏感主目标保留
+gen_313_cc_1_status,generator,313_CC_1,status,control_or_operational_state,0.1998554122041732,2,0,T3_high,节点相角、线路状态或具名机组状态；作为高敏感主目标保留
+gen_218_cc_1_status,generator,218_CC_1,status,control_or_operational_state,0.17744876219720573,2,0,T3_high,节点相角、线路状态或具名机组状态；作为高敏感主目标保留
+gen_321_cc_1_status,generator,321_CC_1,status,control_or_operational_state,0.24911713081160974,2,0,T3_high,节点相角、线路状态或具名机组状态；作为高敏感主目标保留
+gen_123_steam_3_status,generator,123_STEAM_3,status,control_or_operational_state,0.20516251605004626,2,0,T3_high,节点相角、线路状态或具名机组状态；作为高敏感主目标保留

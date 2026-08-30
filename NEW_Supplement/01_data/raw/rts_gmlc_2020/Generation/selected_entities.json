@@ -1,0 +1,45 @@
+{
+  "buses": [
+    118,
+    115,
+    218,
+    215,
+    318,
+    315,
+    107,
+    203,
+    113,
+    123,
+    217,
+    325
+  ],
+  "branches": [
+    "AB1",
+    "AB2",
+    "AB3",
+    "CA-1",
+    "CB-1",
+    "C6",
+    "C10",
+    "C2",
+    "B10",
+    "A10"
+  ],
+  "generators": [
+    "122_WIND_1",
+    "317_WIND_1",
+    "223_STEAM_3",
+    "121_NUCLEAR_1",
+    "303_WIND_1",
+    "218_CC_1",
+    "313_CC_1",
+    "216_STEAM_1",
+    "321_CC_1",
+    "316_STEAM_1"
+  ],
+  "selection_rule": {
+    "buses": "Top two base-load buses per area, followed by endpoints of mandatory inter-area branches, capped at configured count.",
+    "branches": "Mandatory inter-area branches plus highest base-scenario 95th-percentile AC loading.",
+    "generators": "Eight largest annual-energy units plus highest-output-variability units, capped at configured count."
+  }
+}

@@ -1,0 +1,504 @@
+% !TeX program = xelatex
+% 面向推断型数据泄露风险的电力数据发布审查方法（修改版 2024.08.18）
+% 基于 paper10/main2.tex，按新题目与引言重构第2章，调整第3—5章表述
+%
+% 修改标记说明：
+%   蓝色文字（\rev{...}）= 相对 8.18 版 Word 稿的修改内容
+%   普通黑色文字 = 与 8.18 版 Word 稿一致
+%
+\documentclass[UTF8,zihao=5,twoside,fontset=none]{ctexart}
+
+\usepackage[paperwidth=210mm,paperheight=285mm,%
+            twoside=false,left=19.5mm,right=17.7mm,top=30mm,textheight=232mm,%
+            headheight=14pt,headsep=6mm,columnsep=7mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{booktabs,array,multirow,tabularx}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,shapes.geometric,decorations.pathreplacing,calc}
+\usepackage{placeins}
+\usepackage{balance}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+
+\graphicspath{{../paper10/figures/}}
+
+% ---- 修改标记命令 ----
+\newcommand{\rev}[1]{{\color{blue}#1}}
+
+% -------------------- 字体 --------------------
+\IfFontExistsTF{Songti SC}
+  {\setCJKmainfont{Songti SC}}
+  {\IfFontExistsTF{SimSun}
+    {\setCJKmainfont{SimSun}}
+    {\setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]}}
+\IfFontExistsTF{Heiti SC}
+  {\setCJKsansfont{Heiti SC}}
+  {\IfFontExistsTF{SimHei}
+    {\setCJKsansfont{SimHei}}
+    {\setCJKsansfont{FandolHei-Regular.otf}[BoldFont=FandolHei-Bold.otf]}}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}%
+  {\IfFontExistsTF{TeX Gyre Termes}{\setmainfont{TeX Gyre Termes}}{\setmainfont{Latin Modern Roman}}}
+
+\zihao{5}
+\setlength{\parindent}{2em}
+\linespread{1.254}
+\setlist{nosep,leftmargin=2em}
+\setlength{\textfloatsep}{0.7em plus 0.2em minus 0.2em}
+\setlength{\floatsep}{0.6em plus 0.2em minus 0.2em}
+\setlength{\intextsep}{0.6em plus 0.2em minus 0.2em}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.80}
+\renewcommand{\dbltopfraction}{0.92}
+\renewcommand{\dblfloatpagefraction}{0.75}
+\setcounter{dbltopnumber}{3}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{5}
+
+% -------------------- 页眉页脚 --------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\zihao{-5}第~\thepage~页}
+\fancyhead[CE]{\zihao{-5}南方电网技术}
+\fancyhead[RE]{\zihao{-5}第~XX~卷}
+\fancyhead[LO]{\zihao{-5}\thepage}
+\fancyhead[CO]{\zihao{-5}南方电网技术}
+\fancyhead[RO]{\zihao{-5}第~XX~卷}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% -------------------- 标题层级 --------------------
+\titleformat{\section}{\sffamily\zihao{4}\bfseries}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\sffamily\zihao{5}\bfseries}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{0.8em}{0.4em}
+\titlespacing*{\subsection}{0pt}{0.6em}{0.3em}
+
+% -------------------- 图表与公式 --------------------
+\captionsetup{font={small},labelfont=bf,labelsep=quad,justification=centering}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\theequation}{\arabic{equation}}
+\newcommand{\figbicaption}[2]{\caption{#1\\[-0.2em]\small Fig.\,\thefigure\ #2}}
+\newcommand{\tabbicaption}[2]{\caption{#1\\[-0.2em]\small Tab.\,\thetable\ #2}}
+\renewcommand{\refname}{参考文献}
+
+\newcommand{\articleinfo}{文章编号：1674-0629(20XX)XX-XXXX-XX\quad 中图分类号：TM73\quad 文献标志码：A\\
+DOI：10.13648/j.cnki.issn1674-0629.20XX.XX.XXX}
+
+\begin{document}
+\twocolumn[
+
+\begin{center}
+{\zihao{-5}\articleinfo}\par\vspace{1.0em}
+{\sffamily\zihao{2}\bfseries 面向推断型数据泄露风险的电力数据发布审查方法}\par\vspace{0.8em}
+{\zihao{4}郑茂然$^{1}$，陶文伟$^{1}$，李家璐$^{1}$，雷傲宇$^{1}$，谭伟涛$^{2}$，王宏$^{2}$，杜浩存$^{2}$}\par\vspace{0.4em}
+{\zihao{5}（1.~中国南方电力调度控制中心，广州 510663；2.~南方电网科学研究院有限责任公司，广州 510663）}\par\vspace{0.8em}
+\end{center}
+
+\noindent\textbf{摘要：}随着新型电力系统建设、电力市场化改革以及电力数据开放共享的持续推进，调度运行、市场出清和负荷预测等环节产生的大量数据面临对外发布需求。由于电力数据之间存在复杂关联，多个单独不敏感的拟公开字段联合后可能推断出未公开的运行状态和设备信息，形成推断型数据泄露风险。现有发布审查方法主要依赖字段敏感性判定、显式规则核查或相关性分析，对多字段联合关联形成的推断型数据泄露风险识别能力有限，难以支撑针对性审查与处置。针对上述问题，本文提出一种面向推断型数据泄露风险的电力数据发布审查方法，并将承载主要敏感信息推断能力的字段集合定义为隐性推断源。首先，评估拟发布字段联合推断敏感信息的能力，将字段间还原关系划分为公式及近似关系和隐性推断关系，通过已知公式剔除与近似关系迭代剥离排除显式还原路径；其次，构建分解式稀疏门控深度网络，从剩余候选字段中定位隐性推断源；最后，对风险字段实施加噪、降精度和时间聚合等处置，并重新评估残余推断风险。PJM市场数据和RTS-GMLC交流潮流数据上的实验结果表明，平均选取28.3\%和18.9\%的候选字段即可获得与全量字段模型相当的推断能力；实施综合处置后，平均推断精度分别由0.8512和0.9743降至0.4224和0.6786。结果表明，所提方法能够有效评估、定位和处置推断型数据泄露风险，可为电力数据安全发布提供技术支撑。\par
+\noindent\textbf{关键词：}推断型数据泄露风险；电力数据发布审查；隐性推断源；数据安全；稀疏门控\par\vspace{0.8em}
+
+\begin{center}
+{\bfseries\large A Power Data Release Review Method for Inference-Based Data Leakage Risks}\par\vspace{0.5em}
+{ZHENG Maoran$^{1}$, TAO Wenwei$^{1}$, LI Jialu$^{1}$, LEI Aoyu$^{1}$, TAN Weitao$^{2}$, WANG Hong$^{2}$, DU Haocun$^{2}$}\par\vspace{0.3em}
+{\small (1. CSG Power Dispatching Control Center, Guangzhou 510663, China; 2. Electric Power Research Institute of China Southern Power Grid Co., Ltd., Guangzhou 510663, China)}\par\vspace{0.5em}
+\end{center}
+
+\noindent\textbf{Abstract:} With the development of new power systems, electricity market reform, and power data sharing, increasing amounts of operational and market data are released externally. Due to complex dependencies among power data, multiple individually non-sensitive fields may jointly reveal non-public operating states or equipment information, resulting in inference-based data leakage risks. Existing release review methods mainly rely on field-level sensitivity assessment, explicit rule checking, or correlation analysis, and are inadequate for identifying risks caused by joint dependencies among multiple fields. To address this issue, a power data release review method for inference-based data leakage risks is proposed, and the fields carrying the primary capability to infer sensitive information are defined as implicit inference sources. First, the joint inferability of candidate fields is evaluated, and explicit recovery paths are removed by eliminating known formulas and iteratively stripping approximate relationships. Second, a factorized sparse-gating deep neural network is used to locate implicit inference sources from the remaining fields. Finally, noise addition, precision reduction, and temporal aggregation are applied to the identified risk fields, followed by residual risk reassessment. Experiments on PJM market data and RTS-GMLC AC power-flow data show that only 28.3\% and 18.9\% of the candidate fields are required, on average, to achieve inference performance comparable to that of the full-field models. After combined mitigation, the average inference accuracy decreases from 0.8512 to 0.4224 and from 0.9743 to 0.6786, respectively. The results demonstrate the effectiveness of the proposed method for assessing, locating, and mitigating inference-based data leakage risks in power data release.\par
+\noindent\textbf{Key words:} inference-based data leakage risk; power data release review; implicit inference source; data security; sparse gating\par\vspace{0.8em}
+]
+
+% ======================================================================
+%                            第 1 节  引言
+% ======================================================================
+\section{引言}
+
+新型电力系统建设与电力市场化改革的持续推进，使调度运行、市场出清、负荷预测等环节产生并积累了大量结构化数据\cite{ref-liu-cps}。电力数据开放共享能够为市场分析、负荷预测和能源政策研究提供重要数据支撑\cite{ref-zhu-sharing}，我国也相继出台数据分类分级规范，推动电力数据有序开放\cite{ref-gbt-classify}。随着开放共享范围不断扩大，越来越多的运行与市场数据面临对外发布需求。然而，受物理约束、业务规则和运行方式等因素共同作用，电力数据字段之间存在复杂的结构关联与统计依赖，即使拟发布字段本身不属于敏感数据，多个字段联合后仍可能推断出未公开的运行状态、设备信息等敏感信息，进而造成数据泄露。
+
+已有研究表明，电力数据之间的关联关系可能被用于推断受保护信息。例如，智能电表数据可用于分析用户用电行为\cite{ref-sankar,ref-giaconi}，非侵入式负荷监测可用于识别电器运行状态\cite{ref-chen-privacy,ref-wang-meter}，由此引发数据安全与隐私问题\cite{ref-adewole,ref-zhang-sgcc,ref-xi-fdia}。文献\cite{ref-liu-data-inference}将利用外部可获取数据及其关联关系推断系统受保护信息的行为归纳为推断型数据泄露。在电力数据发布场景中，该类威胁可能表现为多个公开字段通过关联关系联合推断本次未公开的运行状态、设备信息等敏感信息，从而产生推断型数据泄露风险。
+
+面向上述推断型数据泄露风险，电力数据发布审查不仅需要判断拟发布数据是否具有敏感信息推断能力，还需要进一步识别推断能力的来源，并评估采取处置措施后的残余风险。对于能够通过数据定义、业务规则或明确函数关系直接识别的推断路径，可通过规则核查予以发现和剥离；而在剥离此类显式关系后，剩余字段仍可能依赖多字段之间的联合统计关系对敏感信息形成较强的推断能力。本文将这种无法由显式关系解释、由多字段联合统计依赖形成的推断称为隐性推断，并将其中对敏感信息推断起主要作用的字段集合定义为隐性推断源。因此，面向推断型数据泄露风险的发布审查需要依次解决风险评估、显式关系识别、隐性推断源定位以及处置后再评估等问题。
+
+目前，电力数据发布审查主要依据数据分类分级结果、字段业务属性和数据之间的显式规则判断数据是否可以发布。相关性分析也被广泛用于数据关联关系识别，其中Pearson、Spearman和Kendall相关系数\cite{ref-pearson,ref-spearman,ref-kendall}常用于负荷预测和数据清洗中的特征筛选\cite{ref-lan-load,ref-jiao-pv,ref-deng-load,ref-wang-evload}，归一化互信息\cite{ref-cover-info}、距离相关系数\cite{ref-szekely-dcorr}、最大信息系数\cite{ref-reshef-mic}以及Hilbert-Schmidt独立性准则\cite{ref-gretton-hsic}可进一步刻画非线性依赖，文献\cite{ref-xing-micdnn}还将最大信息系数与深度模型结合用于电力数据关联验证。此外，Lasso、ElasticNet、随机森林、XGBoost及深度神经网络等机器学习模型可用于评估目标变量能否由其他字段预测\cite{ref-tibshirani-lasso,ref-zou-enet,ref-breiman-rf,ref-chen-xgboost,ref-lecun-deep,ref-li-feature}，STG\cite{ref-stg}、LassoNet\cite{ref-lassonet}等输入端特征选择方法则能够在模型训练过程中同时完成预测与字段筛选。
+
+然而，上述方法在面向推断型数据泄露风险的发布审查中仍存在一定局限。首先，基于业务定义和专家知识的规则方法主要适用于具有明确表达式的确定性关系，难以识别由多字段联合统计依赖形成的隐性推断。其次，相关系数及其他依赖性指标主要描述单个候选字段与敏感目标之间的边际或两两关联，难以反映多字段联合条件下各字段对整体推断能力的贡献，字段的边际关联强度也不能直接表征其在联合推断中的作用。最后，机器学习模型能够评估敏感信息是否可由拟发布字段预测，但全量模型主要反映字段集合整体的推断能力，难以直接确定主要风险来源。基于特征重要性或输入端门控的字段筛选方法虽然能够进一步识别重要字段，但结果可能受到字段冗余、训练随机性以及阈值或正则化强度等因素影响。上述局限使现有方法难以同时完成推断风险评估、风险来源定位和处置效果验证，从而难以直接形成面向数据发布决策的完整审查依据。
+
+针对上述问题，本文提出一种面向推断型数据泄露风险的电力数据发布审查方法，主要工作如下：
+
+1）将电力数据发布审查形式化为可推断性度量问题，以拟发布字段对未公开敏感信息的联合预测能力表征推断风险；根据推断关系的形成方式，将其区分为可显式识别的公式及近似关系和显式关系剥离后仍存在的隐性推断关系，为不同类型推断风险的识别与处置提供分析基础。
+
+2）提出公式及近似关系的迭代剥离方法。首先依据数据定义和业务规则剔除已知公式关系，再以回归拟合优度为判据，通过迭代消元识别并剥离数据中未显式记载的近似关系，将可由显式关系解释的推断路径与隐性推断相分离。
+
+3）提出基于分解式稀疏门控的隐性推断源定位方法，通过结构化稀疏门控从剩余候选字段中筛选承载主要推断能力的字段，并通过对定位字段实施加噪、降精度和时间聚合等处置及残余可推断性再评估，验证定位结果对风险处置的有效性，形成"评估—剥离—定位—处置—再评估"的发布审查闭环。
+
+% ======================================================================
+%                       第 2 节  问题描述（重构）
+% ======================================================================
+\section{问题描述}
+
+% ---------- 2.1 新增节：先讲审查分两类 ----------
+{\color{blue}
+\subsection{发布审查中的推断关系与隐性推断源}
+
+在电力数据发布审查中，设经过常规敏感性与合规性审查后形成的拟发布候选字段集合为 $F$，不予公开的敏感信息集合为 $S$。审查所关心的核心问题是：候选字段之间的关联关系能否对敏感信息形成有效推断，进而产生推断型数据泄露风险。根据推断关系的形成方式与可识别性，可将其分为两类。
+
+第一类为显式推断关系，包括公式关系与近似关系。公式关系具有明确的业务定义或物理规律作为依据，例如数据字典中的汇总口径、功率守恒关系以及市场结算中的会计恒等式，可依据数据定义和业务规则直接识别。近似关系虽未在业务规则或数据文档中明确给出，但在实际数据中表现为稳定且拟合精度较高的函数关系，例如敏感信息可由若干候选字段的线性组合或乘积关系近似表示。两者虽来源不同，但均具有关系形式可表达、可复核的特点，可通过规则核查或数据拟合进行识别，进而逐条剥离并纳入规范管理。
+
+第二类为隐性推断关系。在公式关系与近似关系被剥离之后，剩余候选字段仍可能通过多字段联合统计依赖对敏感信息保持较强的推断能力。这类统计依赖由潮流约束、机组组合、市场出清与调度行为等多种因素长期耦合形成，无法用简单公式表达，需要容量较大的非线性模型才能刻画，且随运行方式与市场规则的变化而改变。本文将这种在显式关系剥离后仍由多字段联合统计依赖形成的推断称为隐性推断，并将其中对敏感信息推断起主要作用的字段集合定义为隐性推断源。
+
+两类推断关系在审查中具有本质不同的管理方式。显式推断关系可枚举，可写入发布规范并在相当长的时间内有效；隐性推断关系不可枚举，只能依靠数据评估，且需定期重估。因此，合理的审查流程是先识别并剥离显式推断关系，排除其对风险评估的干扰，再对剩余候选字段中的隐性推断风险进行定位。隐性推断源的规模与对应的还原精度共同刻画推断型数据泄露风险的集中程度与强度，构成后续字段处置的直接依据。
+}
+
+% ---------- 2.2 形式化（由原 2.1 调整而来） ----------
+\subsection{\rev{推断型数据泄露风险的形式化}}
+
+\rev{为定量描述拟发布字段集合对敏感信息的推断能力，}记待发布的候选字段集合为 $F=\{f_1,\dots,f_n\}$，不公开的敏感量集合为 $S=\{s_1,\dots,s_m\}$。对任意子集 $A\subseteq F$，定义敏感量 $s$ 关于 $A$ 的可推断性
+\begin{equation}
+\rho(s\mid A)=\sup_{g\in\mathcal{G}}\ R^2\big(s,\ g(A)\big)
+\end{equation}
+式中：$\mathcal{G}$ 为容量足够的函数类；$R^2$ 为决定系数，在独立测试集上计算，\rev{用于衡量候选字段对敏感信息的推断精度，}其定义为
+\begin{equation}
+R^2=1-\frac{\sum_{k=1}^{N}(y_k-\hat y_k)^2}{\sum_{k=1}^{N}(y_k-\bar y)^2}
+\end{equation}
+式中：$y_k$ 为真实值；$\hat y_k$ 为模型预测值；$\bar y$ 为真实值均值；$N$ 为测试样本数。\rev{$R^2$ 越大，表明字段集合 $A$ 对敏感信息 $s$ 的推断能力越强。}
+
+发布决策即选择拟发布集合 $A\subseteq F$，使
+\begin{equation}
+\max_{s\in S}\ \rho(s\mid A)\le \rho^{\ast}
+\end{equation}
+式中：$\rho^{\ast}$ 为\rev{根据数据安全管理要求设定的}可接受的还原精度上限。\rev{当式（3）不满足时，表明当前拟发布字段集合中存在推断型数据泄露风险，需要进一步识别主要风险来源并采取处置措施。}
+
+该形式化表明审查的决策对象是字段子集而非单个字段，$2^n$ 个子集无法穷举；制度可以规定单个字段是否敏感，但无法预先给出任意组合的还原效果。因此需要一种方法，在可接受的计算量内给出"推断能力由哪些字段承载、强度如何"的判断。
+
+{\color{blue}结合第2.1节的分析，本文所研究的推断型数据泄露风险审查问题可分解为三个相互衔接的环节：首先评估拟发布字段集合对敏感信息的可推断性；其次在剥离显式推断关系后定位承载主要隐性推断能力的字段（即隐性推断源）；最后对定位出的字段实施处置并重新评估残余可推断性。上述问题分解为后续"显式关系剥离—隐性推断源定位—处置与再评估"的方法设计提供基础。}
+
+% ======================================================================
+%                  第 3 节  审查方法（原"隐性推断源定位方法"）
+% ======================================================================
+\section{\rev{审查方法}}
+
+\subsection{总体流程}
+
+\rev{针对第2节所述的推断型数据泄露风险，本文审查方法的}流程如图~\ref{fig:flow} 所示，包含三个阶段：\rev{显式推断关系的识别与剥离、基于分解式稀疏门控的隐性推断源定位、处置与残余风险再评估}。第一阶段\rev{输出排除显式推断路径后的候选字段池}；第二阶段在该池上定位隐性推断源并给出风险度量；第三阶段对定位结果实施处置并重新评估残余可推断性。
+
+\begin{figure}[!tbp]
+\centering
+\begin{tikzpicture}[node distance=2.9mm,
+  box/.style={draw,rounded corners=1pt,align=center,inner sep=2pt,
+              font=\zihao{-5},minimum width=0.82\columnwidth,minimum height=6.2mm},
+  ar/.style={-{Latex[length=1.6mm]},thick}]
+\node[box] (a) {候选字段集合 $F$ 与受保护目标 $s$};
+\node[box,below=of a,fill=black!5] (b) {已知公式剔除\\数据定义、守恒与会计恒等、汇总口径};
+\node[box,below=of b,fill=black!5] (c) {近似关系迭代剥离\\线性（对数线性）拟合，$R^2>0.95$ 判定};
+\node[box,below=of c] (d) {与公式及近似关系无关的候选池 $\tilde F$};
+\node[box,below=of d,fill=black!10] (e) {分解式稀疏门控网络\\门控值为多因子乘积，因子受二次惩罚};
+\node[box,below=of e] (f) {隐性推断源 $A^{\ast}$ 与风险度量 $(|A^{\ast}|,\rho)$};
+\node[box,below=of f,fill=black!5] (g) {处置\rev{与}残余可推断性再评估};
+\foreach \x/\y in {a/b,b/c,c/d,d/e,e/f,f/g} \draw[ar] (\x)--(\y);
+\end{tikzpicture}
+\figbicaption{\rev{审查方法}总体流程}{\rev{Overall workflow of the proposed review method}}
+\label{fig:flow}
+\end{figure}
+
+\subsection{规则公式与近似关系的剥离}
+
+\rev{本阶段的目标是识别并剥离候选字段中可显式表达的推断路径，排除其对后续隐性推断风险评估的干扰，使进入定位模型的候选字段不再携带可由公式解释的还原关系。}剥离分两步衔接进行：先剔除已有定义的已知公式，再迭代发现数据中自行存在的近似关系。
+
+第一步，按数据定义剔除已知公式，包括数据字典载明的汇总口径、功率守恒等物理规律以及市场结算中的会计恒等式；若目标字段参与某条公式，则该公式涉及的其他拟发布字段一并剔除。设已枚举的公式集合为 $\mathcal{H}$，对目标 $s$ 的剥离结果为
+\begin{equation}
+F^{(1)}=F\setminus\bigcup_{h\in\mathcal{H}:\,s\in h}\big(\mathrm{fields}(h)\setminus\{s\}\big)
+\end{equation}
+式中：$\mathrm{fields}(h)$ 为公式 $h$ 涉及的全部字段。
+
+第二步，迭代发现并剥离近似关系。第一步完成后，数据中可能仍存在未写入文档、但确实成立的还原路径。为此，在剩余候选上以线性回归拟合目标与候选字段的组合；对疑似乘积或比值形式的关系，先对相应字段取对数化为线性形式。若拟合优度满足 $R^2>0.95$，则判定存在一条近似关系，剥离其中标准化贡献 $|\beta_i|\sigma_i$ 最大的一个字段（$\beta_i$ 为回归系数，$\sigma_i$ 为字段标准差），随后重新拟合，直至不再存在满足判定的关系组合。
+
+两处设计需要说明。其一，每轮只剥离一个字段而非整组。整组删除会连带移除可能参与其他路径的字段，导致发现深度不足；每轮只删贡献最大者，相当于对该路径实施部分屏蔽，再考察剩余字段能否重新构成新的还原路径。其二，采用从全集出发的反向消元而非前向贪心搜索。对形如"某字段等于两个大数之差"的关系，目标值是小量，仅加入其中单个字段时残差反而增大，前向贪心无法到达正确组合；反向消元从保留全部字段出发，逐次删去贡献最小者，不需要猜测起点。
+
+\subsection{分解式稀疏门控定位模型}
+
+经过 3.2 节剥离，候选\rev{字段}池中\rev{的显式推断路径}已\rev{被排除，剩余推断能力即为第2.1节所定义的}隐性推断。为定位\rev{承载该推断风险的关键}字段，本文构建作用于输入字段的稀疏门控网络：深度网络第一隐层的每个输入端串联一个门控系数，门控值的大小直接对应字段参与推断的程度，训练结果可以直接解释为字段级结论。
+
+为使字段取舍由训练自身完成，本文借鉴文献\cite{ref-dgating}的结构稀疏化思路，将第 $j$ 个字段的门控值参数化为 $D-1$ 个因子的乘积
+\begin{equation}
+g_j=\prod_{d=1}^{D-1}\gamma_{d,j}
+\end{equation}
+并对各因子施加二次惩罚。式中：$\gamma_{d,j}$ 为第 $j$ 个字段的第 $d$ 个门控因子，全部初始化为 1，因而训练起点各字段的门控值均为 1。网络结构如图~\ref{fig:gating} 所示，第一层的等效权重为 $\bm{\omega}_j g_j$，训练目标为
+\begin{equation}
+\min_{\bm{\omega},\bm{\gamma},\bm{\theta}}\ \mathcal{L}\big(y,\hat y\big)
++\lambda\Big(\|\bm{\omega}\|_2^2+\|\bm{\gamma}\|_2^2\Big)
+\end{equation}
+式中：$\mathcal{L}$ 为均方误差损失；$\bm{\theta}$ 为网络其余层参数；$\lambda$ 为惩罚系数。
+
+\begin{figure}[!tbp]
+\centering
+\includegraphics[width=\columnwidth]{fig_gating_architecture_image2.png}
+\figbicaption{分解式稀疏门控网络结构示意}{Architecture of the factorized sparse gating network}
+\label{fig:gating}
+\end{figure}
+
+按文献\cite{ref-dgating}的等价性结论，对分解后各因子施加光滑的二次惩罚，其局部极小点对应于对原分组权重施加 $\ell_{2,2/D}$ 结构化惩罚，其中 $D$ 为含主权重向量在内的因子总数；$D=2$ 时退化为组 Lasso，本文取 $D=4$，对应 $\ell_{2,1/2}$，稀疏性强于 $\ell_1$。其效果是门控值在收敛后精确达到零而非仅趋近于零，被淘汰字段与保留字段之间形成明显断崖，字段取舍由模型自身完成。这一性质使选中结果在很宽的阈值范围内保持不变（见 4.3 节），有效避免了门控类方法中常见的阈值依赖问题。稀疏性由标准随机梯度下降求解获得，不需要非光滑优化器或事后剪枝。
+
+此外，门控值与第一层权重之间存在尺度不确定性：同时缩小 $g_j$ 并放大 $\bm{\omega}_j$ 不改变网络输出，却使门控值失去可比性。为此，每步更新后对第一层权重按列归一化，并将其范数并入门控值
+\begin{equation}
+\tilde g_j=g_j\|\bm{\omega}_j\|_2,\qquad
+\tilde{\bm{\omega}}_j=\bm{\omega}_j/\|\bm{\omega}_j\|_2
+\end{equation}
+从而保证不同字段的门控值处于同一尺度。
+
+训练收敛后，取门控值不低于活跃阈值 $\tau_g$ 的字段构成候选推断源 $A^{\ast}$，并在其上重新训练一个不含门控的普通网络，以独立重训的测试 $R^2$ 作为 $\rho(s\mid A^{\ast})$。重新训练而不直接采用门控模型自身的精度，是为了避免把门控层的训练偏差计入字段贡献。
+
+\subsection{处置策略与残余可推断性评估}
+
+发布实践中，对定位出的字段通常可采用以下处置方式：
+
+(1) 加噪：对字段 $f_j$ 叠加零均值高斯噪声，标准差取该字段自身标准差的 $r$ 倍，对应发布时引入随机扰动；
+
+(2) 降精度：将字段取值量化到 $n_B$ 个等宽区间并以区间中点代替，对应降低发布的有效数字位数；
+
+(3) 时间聚合：以 $h$ 小时均值回填，对应降低发布的时间分辨率。
+
+三者可叠加使用，记综合处置为 $T$。处置只作用于 $A^{\ast}$ 中的字段，其余字段照常发布。处置后重新训练普通网络并在测试集上计算 $R^2$，得到残余可推断性 $\rho\big(s\mid T(A^{\ast})\big)$：若显著下降，说明推断能力集中于定位出的字段，且该处置强度足以破坏相应的统计依赖；若仍高于管理上限 $\rho^{\ast}$，则需提高处置强度或扩大处置范围。此外，处置改变了字段分布，可能产生新的推断路径，因此应在新的发布口径上重新执行完整审查。
+
+% ======================================================================
+%                       第 4 节  实验与结果分析
+% ======================================================================
+\section{实验与结果分析}
+
+\subsection{实验设置}
+
+\rev{为验证所提审查方法在推断型数据泄露风险的评估、定位与处置中的有效性，}实验采用两个数据集。
+
+PJM 2025 年小时级公开数据\cite{ref-pjm-dataminer}包含 8\,760 个样本、69 个数值字段，涵盖负荷、发电、交换功率、备用与市场价格等。选取 12 个具有代表意义的运行状态量与市场量作为审查目标，包括净实际交换功率、总网损、总发电量、计量负荷、日前与实时电价分量、两类备用总量等；每次将其中一个字段遮蔽为受保护目标，以剥离后的其余字段为候选输入。
+
+RTS-GMLC 交流潮流算例\cite{ref-rtsgmlc}包含 8\,784 个样本，由官方公开的 2020 年负荷与新能源出力曲线经逐小时机组组合与交流潮流求解生成，全部小时收敛、无缺失。候选字段为系统级、分区级与分燃料级汇总量共 58 个（12 个全年恒定，实际可用 46 个），审查目标为节点电压相角、线路负载率与机组出力/投入状态共 12 个设备级量。该数据集的审查场景具有明确的公开/敏感边界：汇总量在实际运营中普遍公开，设备级量则涉及电网运行的具体细节。
+
+推断模型为三层全连接网络（64--32--16），训练 200 轮，批大小 50，采用 Adam 优化器\cite{ref-kingma-adam}，学习率 $10^{-3}$，样本按 8:2 随机划分训练集与测试集，种子固定。门控惩罚系数 $\lambda=0.005$，因子数 $D-1=3$，活跃阈值取 0.01。处置实验中，加噪比例 $r=0.2$，量化档数 $n_B=10$，聚合时长 $h=6$ 小时；处置强度以说明机制为目的设定，未做针对性调参。所有对比方法使用相同的候选池、数据划分与评估流程。
+
+\subsection{规则公式与近似关系的剥离结果}
+
+PJM 数据中，第一步剔除的已知公式包括净交换账目关系（净实际交换功率等于计划交换与非计划交换之差）、日前电价三分量分解等；第二步继续发现的代表性近似关系见表~\ref{tab:formula}。其中净实际交换功率与总发电量、计量负荷的关系即功率守恒的统计形式，回归系数接近 $\pm 1$；两类阻塞价均可由对应的能量价格与总电价组合高精度拟合，是电价分量口径不完全对外公布时留下的还原路径。这些关系未见于任何数据文档，若不剥离，后续模型的推断能力将被其主导，掩盖隐性推断。12 个目标中，第二步对总发电量与计量负荷分别再剥离 5 层和 6 层近似关系，其余目标未发现新的关系；剥离后各目标的线性还原 $R^2$ 从 0.22 到 0.95 不等，剩余可推断性差异较大。
+
+\begin{table}[!tbp]
+\centering
+\tabbicaption{PJM 数据中发现的代表性近似关系}{Representative approximate relations discovered in PJM data}
+\label{tab:formula}
+\zihao{6}\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{p{1.72cm}p{3.62cm}c}
+\toprule
+目标字段 & 拟合关系 & 相对残差 \\
+\midrule
+实时阻塞价 & -1.001$\times$实时能量价格+1.000$\times$实时总电价+0.005 & $5.8\times10^{-2}$ \\
+日前阻塞价 & -0.993$\times$日前能量价格+0.981$\times$日前总电价+0.297 & $6.5\times10^{-2}$ \\
+净实际交换功率 & 1.001$\times$净计划交换功率+34.04 & $3.6\times10^{-2}$ \\
+净实际交换功率 & -0.998$\times$总发电量+0.998$\times$计量负荷-41.06 & $2.5\times10^{-2}$ \\
+…… & …… & …… \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+表~\ref{tab:strip} 给出 RTS-GMLC 的剥离结果。三类目标形态不同。节点电压相角不是任何公开汇总量的组成部分，也不存在满足判定的近似关系，其推断风险全部来自隐性推断——这类目标无法通过核对公式发现风险。线路负载率为跨区联络线的潮流指标，在剔除三个区域净送出字段后不再存在近似关系。机组 121 核电出力在剔除其参与求和的四个层级汇总量之后，线性还原 $R^2$ 仍达 1.0000；第二步继续逐层剥离 14 层，每层剥离的关系本质上是分区功率平衡的间接表达——核电出力约等于本区域负荷减去其余燃料出力之和，回归系数接近 $\pm 1$，只是随已剥字段的不同而由不同的等价组合承载。14 层全部剥完后残差才超出判定门槛，说明仅维护一张已知公式清单不足以清除全部确定性路径。
+
+\begin{table}[!tbp]
+\centering
+\tabbicaption{RTS-GMLC 上的剥离结果}{Stripping results on RTS-GMLC}
+\label{tab:strip}
+\zihao{6}\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{lcccc}
+\toprule
+目标类别 & 起点 & 已知公式 & 近似关系 & 剩余 \\
+\midrule
+节点电压相角（3 个） & 46 & 0 & 0 & 46 \\
+线路负载率（5 个） & 46 & 3 & 0 & 43 \\
+机组 121 核电出力 & 46 & 4 & 14 & 28 \\
+其余机组量（3 个） & 46 & 4 & 0 & 42 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{单目标定位与门控特性}
+
+以 PJM 净实际交换功率为例考察定位过程。将该字段遮蔽为受保护目标，以剥离后的 48 个候选字段为输入，全量模型的测试 $R^2$ 为 0.9673。
+
+门控值的演化过程如图~\ref{fig:gate}(a) 所示：训练开始时全部字段的门控值均为 1，随后大部分字段迅速被压低，约 75 轮后已有多数字段落到 $10^{-7}$ 以下并继续趋向精确零；保留下来的字段则稳定在 $10^{-2}$ 以上，二者之间形成清晰断崖。图~\ref{fig:gate}(b) 给出选中字段数随活跃阈值的变化：48 个候选中有 35 个的门控值被精确压至零，其余 13 个非零，活跃阈值在 $10^{-13}$ 至 $6\times10^{-3}$ 之间任意取值均得到同样的 13 个字段，跨度超过 10 个数量级；本文取 0.01 时进一步收缩为 11 个。字段的主要取舍由模型自身完成，阈值的选取只影响边际字段的保留与否。
+
+\begin{figure}[!tbp]
+\centering
+\begin{minipage}[t]{\columnwidth}
+\centering
+\includegraphics[width=0.98\columnwidth]{fig2a_gate_evolution.png}
+\par\vspace{0.2em}{\zihao{-5}(a) 门控值随训练轮次的演化}
+\end{minipage}
+\par\vspace{0.5em}
+\begin{minipage}[t]{\columnwidth}
+\centering
+\includegraphics[width=0.98\columnwidth]{fig2b_threshold.png}
+\par\vspace{0.2em}{\zihao{-5}(b) 选中字段数随活跃阈值的变化}
+\end{minipage}
+\figbicaption{净实际交换功率的门控值演化与阈值敏感性}{Gate evolution and threshold sensitivity for net actual interchange}
+\label{fig:gate}
+\end{figure}
+
+在选中的 11 个字段上重新训练普通网络，测试 $R^2$ 为 0.9605，与全量模型的 0.9673 仅相差 0.0068，而字段数仅为原来的 23\%。这 11 个字段包括预估小时负荷、总计划交换功率与多类分燃料出力，与交换功率由区域供需差额决定的物理认识一致，定位结果具有可解释的业务含义。
+
+\subsection{多目标定位结果与方法对比}
+
+为验证定位结果确实抓住了承载推断能力的字段，将两个数据集各 12 个目标的三种情形并列比较：使用全部候选字段、仅使用门控选中的字段、仅使用其余未选中的字段，结果如图~\ref{fig:sel} 所示。
+
+\begin{figure*}[!t]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig3a_selected_pjm.png}
+\par\vspace{0.2em}{\zihao{-5}(a) PJM}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig3b_selected_rts.png}
+\par\vspace{0.2em}{\zihao{-5}(b) RTS-GMLC}
+\end{minipage}
+\figbicaption{全部字段、选中字段与未选中字段的还原精度对比}{Recovery accuracy of all, selected and unselected fields on both datasets}
+\label{fig:sel}
+\par\vspace{0.8em}
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig4a_compare_pjm.png}
+\par\vspace{0.2em}{\zihao{-5}(a) PJM}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig4b_compare_rts.png}
+\par\vspace{0.2em}{\zihao{-5}(b) RTS-GMLC}
+\end{minipage}
+\figbicaption{同预算下各方法在两个数据集上的逐目标测试 $R^2$}{Per-target test $R^2$ of each method under an equal budget on both datasets}
+\label{fig:cmp}
+\end{figure*}
+
+PJM 上，12 个目标平均而言，选中字段（平均 13.1 个，占候选 28.3\%）的测试 $R^2$ 达到 0.8512，与使用全部 46.2 个字段的 0.8438 相当；而其余未选中的 33.1 个字段仅达到 0.4220，平均低 0.43。差距在交换功率类目标上尤为显著：净计划交换功率为 0.9592 对 0.2487，净实际交换功率为 0.9605 对 0.3230。这表明门控并非简单地按数量压缩字段，而是识别出了承载主要推断路径的那一部分。
+
+RTS-GMLC 上，选中字段（平均 8.0 个，占候选 18.9\%）的测试 $R^2$ 达到 0.9743，与全部 42.2 个候选的 0.9837 相当，而其余未选中的 34.2 个字段仅达 0.5839，平均低 0.39，推断能力同样集中于定位出的少数字段。
+
+进一步在同预算下与现有方法比较，包括 STG\cite{ref-stg}、LassoNet\cite{ref-lassonet}、XGBoost\cite{ref-chen-xgboost}、Lasso\cite{ref-tibshirani-lasso}与相关系数排序（Pearson）：先由本文方法给出每个目标的字段数 $n$，其余方法按各自的重要性排序取前 $n$ 个，再统一用同一普通网络训练评估。逐目标结果如图~\ref{fig:cmp} 所示。本文方法在两个数据集上均取得最高平均值：PJM 上为 0.8512，次优的 STG 为 0.8420；RTS-GMLC 上为 0.9743，次优的 STG 为 0.9423。从逐目标曲线可以观察到，容易推断的目标上各方法差距较小，差距主要出现在中等难度与较难的目标上——这部分目标在审查中恰恰最需要准确判断。RTS-GMLC 上本文方法在 12 个目标中的 9 个取得最优，PJM 上为 7 个。
+
+\FloatBarrier
+
+\subsection{处置示范与残余可推断性}
+
+按 3.4 节的处置方式，对每个目标的选中字段分别实施加噪（$r=0.2$）、降精度（$n_B=10$）、时间聚合（$h=6$ 小时）及三者叠加的综合处置——处置仅作用于选中字段，其余字段照常发布；处置后重新训练普通网络并计算测试 $R^2$。表~\ref{tab:mit} 给出 12 个目标的平均结果，图~\ref{fig:mit} 给出综合处置下的逐目标对比。
+
+\begin{figure*}[!t]
+\centering
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig5a_mitigation_pjm.png}
+\par\vspace{0.2em}{\zihao{-5}(a) PJM}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig5b_mitigation_rts.png}
+\par\vspace{0.2em}{\zihao{-5}(b) RTS-GMLC}
+\end{minipage}
+\figbicaption{对选中字段实施综合处置前后的测试 $R^2$（柱上数字为选中字段数/候选数）}{Test $R^2$ before and after combined mitigation on the selected fields (numbers above bars: selected/candidates)}
+\label{fig:mit}
+\end{figure*}
+
+两个数据集的全部 24 个目标在综合处置后测试 $R^2$ 均有明显下降。PJM 上平均由 0.8512 降至 0.4224：日前 30 分钟备用总量由 0.9029 降至 0.1018，净计划交换功率由 0.9592 降至 0.3179，总网损由 0.9409 降至 0.3190，净实际交换功率由 0.9605 降至 0.3671。RTS-GMLC 上平均由 0.9743 降至 0.6786，12 个目标全部下降 0.13 以上，其中线路 AB3 负载率由 0.9518 降至 0.5071，降幅最大；具名机组中，投入状态由 0.9971 降至 0.6198，核电出力由 0.9993 降至 0.6507，联合循环出力由 0.9989 降至 0.6197。取得上述效果仅需处置 28.3\%（PJM）与 18.9\%（RTS-GMLC）的候选字段。
+
+不同处置手段的效果存在差异。PJM 上加噪与综合处置效果接近，均优于单独降精度和时间聚合；RTS-GMLC 上综合处置的残余精度最低，单独时间聚合次之。两个数据集对处置方式的响应不同，实际应用中需根据目标特点选择，并以再评估结果确定处置强度。
+
+结合图~\ref{fig:sel} 与图~\ref{fig:mit} 可以看到，处置之后，选中字段提供的推断能力已被有效干扰，但多数目标仍保留一定残余精度。当前实验尚不能进一步区分残余能力的具体来源：它可能包含其余字段的分散贡献，也可能来自处置后尚未完全破坏的统计依赖。因此，定位结果给出了优先处置对象，但并不意味着单次处置即可完全消除推断能力；实际审查中若残余可推断性仍高于管理要求，应提高处置强度或扩大处置范围后重新评估。
+
+处置示范的核心结论是：对门控定位出的少量字段实施处置，即可显著压制推断能力，说明定位结果确实指向了风险的承载字段。"评估—剥离—定位—处置—再评估"的闭环在操作上是可行的：若处置后残余可推断性仍高于管理上限，可参照表~\ref{tab:mit} 的梯度提高处置强度或扩大范围，再重新执行完整审查。
+
+\begin{table}[!t]
+\centering
+\tabbicaption{处置前后 12 个目标的平均测试 $R^2$}{Average test $R^2$ of 12 targets before and after mitigation}
+\label{tab:mit}
+\zihao{6}\setlength{\tabcolsep}{4.0pt}
+\begin{tabular}{lcc}
+\toprule
+处置方式 & PJM & RTS-GMLC \\
+\midrule
+处置前（仅选中字段） & 0.8512 & 0.9743 \\
+\midrule
+加噪 20\% & \textbf{0.4201} & 0.8781 \\
+降精度 10 档 & 0.4614 & 0.9192 \\
+时间聚合 6 小时 & 0.5306 & 0.7063 \\
+综合处置 & 0.4224 & \textbf{0.6786} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\FloatBarrier
+
+\subsection{鲁棒性分析}
+
+实际电网数据常存在缺失、延迟与字段不齐等问题。构造三类降级条件：块状缺失（逐字段随机选取 6 小时时段置为缺失后线性插值，比例 5\%/15\%/30\%）、整字段缺失（随机移除 10\%/20\% 的候选字段）与数据延迟（随机一半字段整体后移 1/3 小时）。在 PJM 的净实际交换功率、日前主用备用总量与日前阻塞价三个目标上的结果如图~\ref{fig:rob} 所示。
+
+\begin{figure*}[!tbp]
+\centering
+\begin{minipage}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig6a_robustness.png}
+\par\vspace{0.2em}{\zihao{-5}(a) 净实际交换功率}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig6b_robustness.png}
+\par\vspace{0.2em}{\zihao{-5}(b) 日前主用备用总量}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\textwidth}
+\centering
+\includegraphics[width=0.98\linewidth]{fig6c_robustness.png}
+\par\vspace{0.2em}{\zihao{-5}(c) 日前阻塞价}
+\end{minipage}
+\figbicaption{降级条件下全量模型与选中字段子集的精度}{Accuracy of the full model and the selected subset under degraded conditions}
+\label{fig:rob}
+\end{figure*}
+
+结果表明两点。其一，隐性推断对数据降级相当稳健：净实际交换功率在 30\% 块状缺失下全量模型仍达 0.9199，字段缺失 20\% 时为 0.9533，延迟 3 小时时为 0.9516。这意味着数据本身的不完善不足以阻止外部还原，发布前的主动处置是必要的。其二，全部降级条件下选中字段子集与全量模型的精度之差介于 $-0.022$ 与 $+0.130$ 之间，平均仅为 $+0.019$，表明门控选出的字段集合确实承载了主要推断能力，\rev{推断型数据泄露风险的定位结论}在数据不完善时仍然成立。
+
+% ======================================================================
+%                          第 5 节  结论
+% ======================================================================
+\section{结论}
+
+\rev{本文面向电力数据发布场景中的推断型数据泄露风险，提出一种发布审查方法：将拟发布字段与敏感信息之间的推断关系区分为可显式识别的公式及近似关系与剥离后仍存在的隐性推断关系，通过已知公式剔除与近似关系迭代剥离排除显式推断路径，再以分解式稀疏门控网络定位隐性推断源，并以处置与再评估完成审查闭环的验证。}主要结论如下。
+
+\rev{1）对推断型数据泄露风险中两类推断关系的区分与剥离是必要的。显式推断关系可枚举并写入发布规范，隐性推断关系只能依靠数据评估。}实验表明节点电压相角不存在任何可枚举的公式路径，其风险完全来自隐性推断；而具名机组量在剥除四个层级的汇总量后，仍需逐层剥离 14 层近似关系才能清除确定性还原路径，说明公开字段之间的冗余结构会产生大量等价表达。
+
+2）所提定位模型在无需人工设定阈值的前提下完成字段取舍。门控值收敛后大部分字段被精确压至零，选中结果在超过 10 个数量级的阈值范围内保持不变。PJM 上 12 个目标平均使用 28.3\% 的候选字段即达到全量模型精度，其余未选中字段的推断能力平均低 0.43；RTS-GMLC 上所需字段占比为 18.9\%，未选中字段平均低 0.39。同预算下本文方法在两个数据集上均优于所比较的基线方法。
+
+3）处置示范验证了\rev{审查}闭环的可操作性。对定位出的推断源实施综合处置后，两个数据集的平均推断精度分别由 0.8512 和 0.9743 降至 0.4224 和 0.6786，全部 24 个目标均有明显下降。多数目标在处置后仍存在一定残余精度，实际审查中需按管理要求继续调整处置强度和范围。在块状缺失、字段缺失与数据延迟等降级条件下，推断能力与定位结果均保持稳定。\rev{所提方法可为电力数据发布前的推断型数据泄露风险审查提供技术支撑。}
+
+本文的处置示范采用统一强度以说明机制，实际应用中可按目标的残余风险逐一定制处置策略。后续工作将围绕多个敏感目标共享推断源时的联合处置、不同处置措施在安全与可用性之间的权衡展开。
+
+\balance
+\begin{thebibliography}{99}
+\setlength{\itemsep}{0.15ex}\setlength{\parskip}{0pt}
+\input{../paper10/bib.tex}
+\end{thebibliography}
+
+\vspace{0.6em}
+\noindent\begin{minipage}{\columnwidth}
+{\zihao{6}\textbf{基金项目：}国家科技重大专项课题资助项目（2026ZD0809803）；中国南方电网有限责任公司科技项目（ZDKJXM20240099）。\\
+\textbf{Foundation item:} Supported by National Science and Technology Major Project (2026ZD0809803); Science and Technology Project of China Southern Power Grid Co., Ltd. (ZDKJXM20240099).}
+\end{minipage}
+
+\vspace{0.6em}
+\noindent{\zihao{6}\textbf{作者简介：}\\
+郑茂然（1981），男，高级工程师，硕士，研究方向为电力系统继电保护与安全自动控制，ranran\_zheng@126.com；\\
+陶文伟（1973），男，高级工程师，博士，主要研究方向为电力监控系统网络安全、电力系统自动化；\\
+李家璐（1986），男，高级工程师，硕士，研究方向为电力系统运行调控、电网运行风险控制。}
+
+\end{document}

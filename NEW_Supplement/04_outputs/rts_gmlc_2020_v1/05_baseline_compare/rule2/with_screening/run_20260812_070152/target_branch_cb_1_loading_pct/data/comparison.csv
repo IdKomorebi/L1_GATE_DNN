@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+branch_cb_1_loading_pct,线路CB-1负载率,95%,6,XGBoost,DGatingDNN,0.936453989011595,0.9568182781536965,20,gen_fuel_coal_mw|gen_fuel_natural_gas_mw|gen_fuel_wind_mw|gen_fuel_solar_mw|system_losses_mw|reserve_spin_r1_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,6,XGBoost,STG,0.912174276704386,0.9568182781536965,20,gen_fuel_coal_mw|gen_fuel_natural_gas_mw|gen_fuel_solar_mw|area_3_load_day_ahead_mw|system_losses_mw|gen_fuel_wind_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,6,XGBoost,LassoNet,0.8739657241825961,0.9568182781536965,20,gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw|reserve_reg_down_mw|reserve_reg_up_mw|gen_fuel_coal_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,6,XGBoost,XGBoost,0.9387648903143211,0.9568182781536965,20,gen_fuel_wind_mw|system_losses_mw|gen_fuel_natural_gas_mw|gen_fuel_solar_mw|gen_fuel_coal_mw|area_1_load_day_ahead_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,6,XGBoost,Lasso,0.9353585372166715,0.9568182781536965,20,gen_fuel_coal_mw|gen_fuel_solar_mw|area_1_load_actual_mw|gen_fuel_wind_mw|system_losses_mw|gen_fuel_natural_gas_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,6,XGBoost,Pearson,0.82130159053492,0.9568182781536965,20,gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw|reserve_reg_up_mw|reserve_reg_down_mw|gen_fuel_nuclear_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,6,XGBoost,DGatingDNN,0.936453989011595,0.9568182781536965,20,gen_fuel_coal_mw|gen_fuel_natural_gas_mw|gen_fuel_wind_mw|gen_fuel_solar_mw|system_losses_mw|reserve_spin_r1_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,6,XGBoost,STG,0.912174276704386,0.9568182781536965,20,gen_fuel_coal_mw|gen_fuel_natural_gas_mw|gen_fuel_solar_mw|area_3_load_day_ahead_mw|system_losses_mw|gen_fuel_wind_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,6,XGBoost,LassoNet,0.8739657241825961,0.9568182781536965,20,gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw|reserve_reg_down_mw|reserve_reg_up_mw|gen_fuel_coal_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,6,XGBoost,XGBoost,0.9387648903143211,0.9568182781536965,20,gen_fuel_wind_mw|system_losses_mw|gen_fuel_natural_gas_mw|gen_fuel_solar_mw|gen_fuel_coal_mw|area_1_load_day_ahead_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,6,XGBoost,Lasso,0.9353585372166715,0.9568182781536965,20,gen_fuel_coal_mw|gen_fuel_solar_mw|area_1_load_actual_mw|gen_fuel_wind_mw|system_losses_mw|gen_fuel_natural_gas_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,6,XGBoost,Pearson,0.82130159053492,0.9568182781536965,20,gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw|reserve_reg_up_mw|reserve_reg_down_mw|gen_fuel_nuclear_mw

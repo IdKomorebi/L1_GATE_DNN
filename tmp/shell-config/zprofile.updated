@@ -1,0 +1,7 @@
+
+# >>> Codex installer >>>
+export PATH="/Users/haocun/.local/bin:$PATH"
+# <<< Codex installer <<<
+
+# Local user executables
+export PATH="/Users/haocun/bin:$PATH"

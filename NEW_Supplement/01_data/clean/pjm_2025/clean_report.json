@@ -1,0 +1,38 @@
+{
+  "year": 2025,
+  "raw_rows": 8760,
+  "raw_cols": 70,
+  "dropped_cols": [
+    "forecast_load_mw_day_ahead"
+  ],
+  "interpolated": {
+    "gen_fuel_coal_mw": 3,
+    "gen_fuel_coal_pct": 3,
+    "gen_fuel_gas_mw": 3,
+    "gen_fuel_gas_pct": 3,
+    "gen_fuel_hydro_mw": 3,
+    "gen_fuel_hydro_pct": 3,
+    "gen_fuel_multiple_fuels_mw": 3,
+    "gen_fuel_multiple_fuels_pct": 3,
+    "gen_fuel_nuclear_mw": 3,
+    "gen_fuel_nuclear_pct": 3,
+    "gen_fuel_oil_mw": 3,
+    "gen_fuel_oil_pct": 3,
+    "gen_fuel_other_renewables_mw": 3,
+    "gen_fuel_other_renewables_pct": 3,
+    "gen_fuel_solar_mw": 3,
+    "gen_fuel_solar_pct": 3,
+    "gen_fuel_storage_mw": 3,
+    "gen_fuel_storage_pct": 3,
+    "gen_fuel_wind_mw": 3,
+    "gen_fuel_wind_pct": 3
+  },
+  "main_shape": [
+    8760,
+    69
+  ],
+  "allcols_shape": [
+    6558,
+    70
+  ]
+}

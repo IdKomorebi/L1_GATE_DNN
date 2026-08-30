@@ -1,0 +1,15 @@
+{
+  "dataset_name": "RTS-GMLC 2020 hourly AC power-flow state dataset",
+  "source_repository": "https://github.com/GridMod/RTS-GMLC",
+  "source_commit": "3ece0d3725c844056132393ee252b3083dd4eab4",
+  "time_resolution": "1 hour",
+  "expected_hours": 8784,
+  "noise_scenarios_pct": [0, 1, 3, 5],
+  "random_seed_base": 20200811,
+  "slack_target_mw": 35.0,
+  "selected_bus_count_target": 12,
+  "selected_branch_count_target": 10,
+  "selected_generator_count_target": 10,
+  "mandatory_interarea_branches": ["AB1", "AB2", "AB3", "CA-1", "CB-1"]
+}
+

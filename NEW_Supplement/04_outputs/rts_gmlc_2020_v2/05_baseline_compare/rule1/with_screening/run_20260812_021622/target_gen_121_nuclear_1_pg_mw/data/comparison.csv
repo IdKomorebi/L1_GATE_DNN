@@ -1,0 +1,7 @@
+方法,说明,n,前n个字段
+DGatingDNN,本文方法：可微稀疏门控（NeurIPS 2025）,0.99928693670227,area_1_load_day_ahead_mw|area_1_fuel_wind_mw|area_1_fuel_solar_mw|area_1_fuel_hydro_mw
+STG,随机门控，高斯松弛逼近 L0（ICML 2020）,0.999272844560102,area_1_fuel_hydro_mw|area_1_fuel_wind_mw|area_1_fuel_solar_mw|reserve_spin_r1_mw
+LassoNet,神经网络旁挂线性通路的特征级稀疏（JMLR 2021）,0.8437677773263285,area_1_fuel_wind_mw|area_1_net_export_mw|area_2_fuel_coal_mw|area_1_fuel_solar_mw
+XGBoost,树模型特征重要性（2016）,0.8800253380651226,area_1_fuel_wind_mw|area_2_fuel_coal_mw|area_2_fuel_natural_gas_mw|reserve_spin_r1_mw
+Lasso,线性稀疏（1996）,0.8926318077774763,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw|area_1_fuel_wind_mw
+Pearson,相关系数排序（只看两两关系）,0.7494594142599142,area_1_fuel_wind_mw|area_1_net_export_mw|area_2_net_export_mw|area_3_fuel_natural_gas_mw

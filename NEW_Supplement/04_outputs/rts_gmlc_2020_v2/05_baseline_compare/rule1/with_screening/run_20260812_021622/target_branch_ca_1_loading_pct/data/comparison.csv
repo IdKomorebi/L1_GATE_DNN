@@ -1,0 +1,7 @@
+方法,说明,n,前n个字段
+DGatingDNN,本文方法：可微稀疏门控（NeurIPS 2025）,0.881549515713236,gen_fuel_wind_mw|system_losses_mw|area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_nuclear_mw
+STG,随机门控，高斯松弛逼近 L0（ICML 2020）,0.8787163294170461,area_3_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw|gen_fuel_solar_mw
+LassoNet,神经网络旁挂线性通路的特征级稀疏（JMLR 2021）,0.8822645305543774,gen_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw|gen_fuel_nuclear_mw
+XGBoost,树模型特征重要性（2016）,0.8609223758348632,area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_solar_mw|system_losses_mw|gen_fuel_solar_mw
+Lasso,线性稀疏（1996）,0.882471101432918,area_3_fuel_solar_mw|system_losses_mw|area_1_fuel_wind_mw|gen_fuel_nuclear_mw|gen_fuel_wind_mw
+Pearson,相关系数排序（只看两两关系）,0.8734496676167813,gen_fuel_wind_mw|area_3_fuel_wind_mw|area_1_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw

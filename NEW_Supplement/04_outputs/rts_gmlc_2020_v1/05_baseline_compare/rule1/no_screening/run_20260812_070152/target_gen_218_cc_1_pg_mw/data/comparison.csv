@@ -1,0 +1,7 @@
+方法,说明,n,前n个字段
+DGatingDNN,本文方法：可微稀疏门控（NeurIPS 2025）,0.9451765567477457,reserve_spin_r2_mw|gen_fuel_hydro_mw|gen_fuel_solar_mw|gen_fuel_coal_mw|gen_fuel_wind_mw|system_losses_mw
+STG,随机门控，高斯松弛逼近 L0（ICML 2020）,0.9416979693519815,gen_fuel_solar_mw|gen_fuel_hydro_mw|area_2_load_day_ahead_mw|gen_fuel_coal_mw|system_losses_mw|area_2_load_actual_mw
+LassoNet,神经网络旁挂线性通路的特征级稀疏（JMLR 2021）,0.938154493582436,gen_fuel_coal_mw|system_losses_mw|gen_fuel_solar_mw|gen_fuel_hydro_mw|area_2_load_actual_mw|area_2_load_day_ahead_mw
+XGBoost,树模型特征重要性（2016）,0.8453858087340042,reserve_spin_r2_mw|area_2_load_day_ahead_mw|gen_fuel_coal_mw|gen_fuel_solar_mw|reserve_spin_r1_mw|area_2_load_actual_mw
+Lasso,线性稀疏（1996）,0.941978330260827,gen_fuel_coal_mw|system_losses_mw|gen_fuel_hydro_mw|area_2_load_actual_mw|gen_fuel_solar_mw|gen_fuel_nuclear_mw
+Pearson,相关系数排序（只看两两关系）,0.8282432931670614,gen_fuel_coal_mw|reserve_spin_r2_mw|area_2_load_actual_mw|area_2_load_day_ahead_mw|system_losses_mw|reserve_spin_r1_mw

@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+bus_215_va_deg,节点215电压相角,95%,5,XGBoost,DGatingDNN,0.9498954989401875,0.9883109653661862,24,gen_fuel_natural_gas_mw|area_1_load_day_ahead_mw|gen_fuel_coal_mw|gen_fuel_solar_mw|gen_fuel_wind_mw
+bus_215_va_deg,节点215电压相角,95%,5,XGBoost,STG,0.9119787245558819,0.9883109653661862,24,area_1_load_actual_mw|gen_fuel_natural_gas_mw|gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw
+bus_215_va_deg,节点215电压相角,95%,5,XGBoost,LassoNet,0.9347106476314394,0.9883109653661862,24,system_losses_mw|gen_fuel_solar_mw|area_3_net_export_mw|area_1_load_actual_mw|gen_fuel_wind_mw
+bus_215_va_deg,节点215电压相角,95%,5,XGBoost,XGBoost,0.9603815484964513,0.9883109653661862,24,system_losses_mw|gen_fuel_solar_mw|area_1_load_day_ahead_mw|area_3_net_export_mw|gen_fuel_coal_mw
+bus_215_va_deg,节点215电压相角,95%,5,XGBoost,Lasso,0.9439001871848869,0.9883109653661862,24,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw|gen_fuel_wind_mw|gen_fuel_natural_gas_mw
+bus_215_va_deg,节点215电压相角,95%,5,XGBoost,Pearson,0.6830568691145977,0.9883109653661862,24,system_losses_mw|reserve_spin_r2_mw|area_2_load_actual_mw|area_2_load_day_ahead_mw|gen_fuel_wind_mw
+bus_215_va_deg,节点215电压相角,97%,5,XGBoost,DGatingDNN,0.9498954989401875,0.9883109653661862,24,gen_fuel_natural_gas_mw|area_1_load_day_ahead_mw|gen_fuel_coal_mw|gen_fuel_solar_mw|gen_fuel_wind_mw
+bus_215_va_deg,节点215电压相角,97%,5,XGBoost,STG,0.9119787245558819,0.9883109653661862,24,area_1_load_actual_mw|gen_fuel_natural_gas_mw|gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw
+bus_215_va_deg,节点215电压相角,97%,5,XGBoost,LassoNet,0.9347106476314394,0.9883109653661862,24,system_losses_mw|gen_fuel_solar_mw|area_3_net_export_mw|area_1_load_actual_mw|gen_fuel_wind_mw
+bus_215_va_deg,节点215电压相角,97%,5,XGBoost,XGBoost,0.9603815484964513,0.9883109653661862,24,system_losses_mw|gen_fuel_solar_mw|area_1_load_day_ahead_mw|area_3_net_export_mw|gen_fuel_coal_mw
+bus_215_va_deg,节点215电压相角,97%,5,XGBoost,Lasso,0.9439001871848869,0.9883109653661862,24,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw|gen_fuel_wind_mw|gen_fuel_natural_gas_mw
+bus_215_va_deg,节点215电压相角,97%,5,XGBoost,Pearson,0.6830568691145977,0.9883109653661862,24,system_losses_mw|reserve_spin_r2_mw|area_2_load_actual_mw|area_2_load_day_ahead_mw|gen_fuel_wind_mw

@@ -1,0 +1,4 @@
+field,variance_full,std_train,n_unique,is_constant,model_role
+gen_fuel_oil_mw,0.0,0.0,1,1,drop_quality_constant
+gen_fuel_storage_mw,0.0,0.0,1,1,drop_quality_constant
+gen_sync_condenser_mw,0.0,0.0,1,1,drop_quality_constant

@@ -1,0 +1,9 @@
+field
+system_losses_mw
+gen_fuel_coal_mw
+area_2_net_export_mw
+area_3_net_export_mw
+gen_fuel_hydro_mw
+gen_fuel_nuclear_mw
+reserve_spin_r1_mw
+gen_fuel_wind_mw

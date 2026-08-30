@@ -1,0 +1,9 @@
+target,step,n_pool,residual_ratio,removed,support
+net_actual_interchange_mw,0,68,3.2297212131433834e-14,net_sched_interchange_mw,"['net_inadv_interchange_mw', 'net_sched_interchange_mw']"
+net_actual_interchange_mw,1,67,0.021959336016492442,,
+total_lmp_da,0,68,2.2679843705751407e-08,system_energy_price_da,"['congestion_price_da', 'marginal_loss_price_da', 'system_energy_price_da']"
+total_lmp_da,1,67,0.26942488262101394,,
+congestion_price_da,0,68,1.2566035822624385e-07,total_lmp_da,"['marginal_loss_price_da', 'system_energy_price_da', 'total_lmp_da']"
+congestion_price_da,1,67,0.5912188678709037,,
+metered_load_mw,0,68,0.009829203524044192,,
+total_gen,0,68,0.003050392375717615,,

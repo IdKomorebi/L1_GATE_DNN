@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+branch_ab2_loading_pct,线路AB2负载率,95%,4,XGBoost,DGatingDNN,0.9082028639431002,0.9663430352299719,21,reserve_spin_r1_mw|gen_fuel_wind_mw|gen_fuel_natural_gas_mw|gen_fuel_solar_mw
+branch_ab2_loading_pct,线路AB2负载率,95%,4,XGBoost,STG,0.8243208315338704,0.9663430352299719,21,gen_fuel_coal_mw|gen_fuel_hydro_mw|gen_fuel_wind_mw|system_losses_mw
+branch_ab2_loading_pct,线路AB2负载率,95%,4,XGBoost,LassoNet,0.8702783677145338,0.9663430352299719,21,system_losses_mw|gen_fuel_solar_mw|reserve_spin_r1_mw|area_1_load_actual_mw
+branch_ab2_loading_pct,线路AB2负载率,95%,4,XGBoost,XGBoost,0.9294179959671185,0.9663430352299719,21,system_losses_mw|gen_fuel_solar_mw|area_1_load_day_ahead_mw|gen_fuel_coal_mw
+branch_ab2_loading_pct,线路AB2负载率,95%,4,XGBoost,Lasso,0.9015937450473703,0.9663430352299719,21,gen_fuel_wind_mw|gen_fuel_natural_gas_mw|gen_fuel_hydro_mw|area_1_load_actual_mw
+branch_ab2_loading_pct,线路AB2负载率,95%,4,XGBoost,Pearson,0.6596118686729504,0.9663430352299719,21,system_losses_mw|reserve_spin_r2_mw|area_2_load_actual_mw|area_2_load_day_ahead_mw
+branch_ab2_loading_pct,线路AB2负载率,97%,5,DGatingDNN,DGatingDNN,0.9467013384776511,0.9663430352299719,21,reserve_spin_r1_mw|gen_fuel_wind_mw|gen_fuel_natural_gas_mw|gen_fuel_solar_mw|gen_fuel_coal_mw
+branch_ab2_loading_pct,线路AB2负载率,97%,5,DGatingDNN,STG,0.8995898451970734,0.9663430352299719,21,gen_fuel_coal_mw|gen_fuel_hydro_mw|gen_fuel_wind_mw|system_losses_mw|gen_fuel_solar_mw
+branch_ab2_loading_pct,线路AB2负载率,97%,5,DGatingDNN,LassoNet,0.9015958914293192,0.9663430352299719,21,system_losses_mw|gen_fuel_solar_mw|reserve_spin_r1_mw|area_1_load_actual_mw|gen_fuel_wind_mw
+branch_ab2_loading_pct,线路AB2负载率,97%,5,DGatingDNN,XGBoost,0.9284294531706927,0.9663430352299719,21,system_losses_mw|gen_fuel_solar_mw|area_1_load_day_ahead_mw|gen_fuel_coal_mw|area_1_load_actual_mw
+branch_ab2_loading_pct,线路AB2负载率,97%,5,DGatingDNN,Lasso,0.9442359169275246,0.9663430352299719,21,gen_fuel_wind_mw|gen_fuel_natural_gas_mw|gen_fuel_hydro_mw|area_1_load_actual_mw|reserve_spin_r3_mw
+branch_ab2_loading_pct,线路AB2负载率,97%,5,DGatingDNN,Pearson,0.6966678570121607,0.9663430352299719,21,system_losses_mw|reserve_spin_r2_mw|area_2_load_actual_mw|area_2_load_day_ahead_mw|reserve_spin_r1_mw

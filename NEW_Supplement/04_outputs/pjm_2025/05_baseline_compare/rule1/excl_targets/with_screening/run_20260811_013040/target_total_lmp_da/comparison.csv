@@ -1,0 +1,7 @@
+方法,说明,n,前n个字段
+DGatingDNN,本文方法：可微稀疏门控（NeurIPS 2025）,0.9865040577460306,system_energy_price_da
+STG,随机门控，高斯松弛逼近 L0（ICML 2020）,0.9865040577460306,system_energy_price_da
+LassoNet,神经网络旁挂线性通路的特征级稀疏（JMLR 2021）,0.9865040577460306,system_energy_price_da
+XGBoost,树模型特征重要性（2016）,0.9865040577460306,system_energy_price_da
+Lasso,线性稀疏（1996）,0.9865040577460306,system_energy_price_da
+Pearson,相关系数排序（只看两两关系）,0.9865040577460306,system_energy_price_da

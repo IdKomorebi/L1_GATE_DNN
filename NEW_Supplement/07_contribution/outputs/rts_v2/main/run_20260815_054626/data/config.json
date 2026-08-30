@@ -1,0 +1,48 @@
+{
+  "数据集": "rts_v2",
+  "代理模型": {
+    "hidden": [
+      384,
+      256,
+      192,
+      128
+    ],
+    "dropout": 0.0,
+    "epochs": 1000,
+    "batch_size": 256,
+    "lr": 0.001,
+    "weight_decay": 0.003,
+    "patience": 150,
+    "min_epochs": 150,
+    "seed": 42,
+    "split": "temporal",
+    "train_frac": 0.7,
+    "val_frac": 0.1,
+    "masks_per_sample": 1,
+    "p_full": 0.1,
+    "p_empty": 0.02,
+    "mask_dist": "kernel",
+    "kernel_w": 0.5,
+    "use_gate": false,
+    "lambda_dgate": 0.005,
+    "dgate_depth": 4
+  },
+  "抽取组合数": 32768,
+  "评估行数": 1500,
+  "注入噪声字段数": 8,
+  "目标": [
+    "bus_115_va_deg",
+    "bus_215_va_deg",
+    "bus_315_va_deg",
+    "branch_ab1_loading_pct",
+    "branch_ab2_loading_pct",
+    "branch_ab3_loading_pct",
+    "branch_ca_1_loading_pct",
+    "branch_cb_1_loading_pct",
+    "gen_121_nuclear_1_pg_mw",
+    "gen_218_cc_1_pg_mw",
+    "gen_317_wind_1_pg_mw",
+    "gen_321_cc_1_status"
+  ],
+  "总耗时秒": 2778.7
+}

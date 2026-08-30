@@ -1,0 +1,20 @@
+space,kind,tier,lead,support,n_support,residual_ratio,cross_year,clean_coefs,text
+linear,constant,constant,gen_fuel_storage_pct,,0,0.0,0.0,True,gen_fuel_storage_pct = 0
+linear,constant,constant,da_as_mcp_thirty_minutes_reserve,,0,0.0,0.0,True,da_as_mcp_thirty_minutes_reserve = 0
+linear,duplicate,duplicate,da_as_total_mw_primary_reserve,da_as_as_mw_primary_reserve,1,1.3370329409857457e-13,1.5714297491405607e-13,True,da_as_total_mw_primary_reserve = +1*da_as_as_mw_primary_reserve
+linear,duplicate,duplicate,da_as_total_mw_synchronized_reserve,da_as_as_mw_synchronized_reserve,1,7.419885859172678e-14,8.445690444465232e-14,True,da_as_total_mw_synchronized_reserve = +1*da_as_as_mw_synchronized_reserve
+linear,duplicate,duplicate,da_as_total_mw_thirty_minutes_reserve,da_as_as_mw_thirty_minutes_reserve,1,9.117723462555773e-15,9.884772654195907e-15,True,da_as_total_mw_thirty_minutes_reserve = +1*da_as_as_mw_thirty_minutes_reserve
+linear,duplicate,duplicate,da_as_ss_mw_primary_reserve,da_as_ss_mw_thirty_minutes_reserve,1,1.2872255708561549e-14,1.228914193318476e-14,True,da_as_ss_mw_primary_reserve = +1*da_as_ss_mw_thirty_minutes_reserve
+linear,duplicate,duplicate,da_as_ss_mw_synchronized_reserve,da_as_ss_mw_thirty_minutes_reserve,1,1.2872255708561549e-14,1.228914193318476e-14,True,da_as_ss_mw_synchronized_reserve = +1*da_as_ss_mw_thirty_minutes_reserve
+linear,constant,constant,da_as_ircmwt2_primary_reserve,,0,0.0,0.0,True,da_as_ircmwt2_primary_reserve = 0
+linear,constant,constant,da_as_ircmwt2_synchronized_reserve,,0,0.0,0.0,True,da_as_ircmwt2_synchronized_reserve = 0
+linear,constant,constant,da_as_ircmwt2_thirty_minutes_reserve,,0,0.0,0.0,True,da_as_ircmwt2_thirty_minutes_reserve = 0
+linear,formula,恒等式,net_actual_interchange_mw,net_inadv_interchange_mw|net_sched_interchange_mw,2,2.0140107162875954e-15,2.1505870798508677e-15,True,net_actual_interchange_mw = -1*net_inadv_interchange_mw +1*net_sched_interchange_mw
+linear,formula,规则型(跨年退化),da_as_as_req_mw_primary_reserve,da_as_as_req_mw_synchronized_reserve,1,8.585620863938315e-05,0.039315896211649146,False,da_as_as_req_mw_primary_reserve = +1.49995*da_as_as_req_mw_synchronized_reserve -94.9004
+linear,formula,恒等式,da_as_nsr_mw_primary_reserve,da_as_total_mw_primary_reserve|da_as_total_mw_synchronized_reserve,2,2.2416944291400234e-05,9.146757719034625e-06,False,da_as_nsr_mw_primary_reserve = +1*da_as_total_mw_primary_reserve -1*da_as_total_mw_synchronized_reserve +0.00367707
+linear,formula,恒等式,system_energy_price_da,congestion_price_da|marginal_loss_price_da|total_lmp_da,3,1.526896436277785e-08,2.6045078590101276e-08,True,system_energy_price_da = -1*congestion_price_da -1*marginal_loss_price_da +1*total_lmp_da -6.29557e-09
+linear,formula,近似关系,system_energy_price_rt,congestion_price_rt|total_lmp_rt,2,0.0001847979617515742,0.0003397312564601617,False,system_energy_price_rt = -0.994154*congestion_price_rt +0.999242*total_lmp_rt +0.0049832
+log,duplicate,duplicate,da_as_total_mw_primary_reserve,da_as_as_mw_primary_reserve,1,1.6197004967007985e-12,1.8795317143694338e-12,True,da_as_total_mw_primary_reserve = exp +1*da_as_as_mw_primary_reserve
+log,duplicate,duplicate,da_as_total_mw_synchronized_reserve,da_as_as_mw_synchronized_reserve,1,3.2211174310075266e-13,3.580263435905739e-13,True,da_as_total_mw_synchronized_reserve = exp +1*da_as_as_mw_synchronized_reserve
+log,duplicate,duplicate,da_as_total_mw_thirty_minutes_reserve,da_as_as_mw_thirty_minutes_reserve,1,1.0482511263160968e-13,1.1667423499435953e-13,True,da_as_total_mw_thirty_minutes_reserve = exp +1*da_as_as_mw_thirty_minutes_reserve
+log,formula,近似关系,da_as_as_req_mw_primary_reserve,da_as_as_req_mw_synchronized_reserve,1,0.0005010831137678353,0.033299773466933726,False,da_as_as_req_mw_primary_reserve = exp +1.02948*da_as_as_req_mw_synchronized_reserve +0.149149

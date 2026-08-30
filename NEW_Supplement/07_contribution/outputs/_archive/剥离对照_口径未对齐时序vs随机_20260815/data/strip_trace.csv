@@ -1,0 +1,13 @@
+目标,未剥离,公式剔除,逐层剔除,已剥离,产物记录的剩余,公式剔除字段,逐层剔除字段
+115号母线电压相角,46,0,0,46,46,,
+215号母线电压相角,46,0,0,46,46,,
+315号母线电压相角,46,0,0,46,46,,
+AB1联络线负载率,46,3,0,43,43,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw,
+AB2联络线负载率,46,3,0,43,43,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw,
+AB3联络线负载率,46,3,0,43,43,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw,
+CA1联络线负载率,46,3,0,43,43,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw,
+CB1联络线负载率,46,3,0,43,43,area_1_net_export_mw|area_2_net_export_mw|area_3_net_export_mw,
+121号核电机组出力,46,4,14,28,28,area_1_fuel_nuclear_mw|area_1_generation_mw|gen_fuel_nuclear_mw|system_generation_mw,system_load_day_ahead_mw|gen_fuel_wind_mw|system_load_actual_mw|gen_fuel_solar_mw|gen_fuel_natural_gas_mw|area_3_fuel_solar_mw|area_2_generation_mw|gen_fuel_coal_mw|area_2_load_actual_mw|gen_fuel_hydro_mw|reserve_spin_r2_mw|area_2_load_day_ahead_mw|area_1_load_actual_mw|area_1_fuel_coal_mw
+218号联合循环机组出力,46,4,0,42,42,area_2_fuel_natural_gas_mw|area_2_generation_mw|gen_fuel_natural_gas_mw|system_generation_mw,
+317号风电机组出力,46,4,0,42,42,area_3_fuel_wind_mw|area_3_generation_mw|gen_fuel_wind_mw|system_generation_mw,
+321号联合循环机组启停状态,46,4,0,42,42,area_3_fuel_natural_gas_mw|area_3_generation_mw|gen_fuel_natural_gas_mw|system_generation_mw,

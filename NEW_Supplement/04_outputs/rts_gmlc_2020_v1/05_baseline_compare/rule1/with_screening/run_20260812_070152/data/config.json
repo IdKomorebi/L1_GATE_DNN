@@ -1,0 +1,37 @@
+{
+  "rule": "rule1",
+  "数据集": "RTS-GMLC 2020 原版（候选 27）",
+  "初筛": "with_screening",
+  "targets": [
+    "bus_115_va_deg",
+    "bus_215_va_deg",
+    "bus_315_va_deg",
+    "branch_ab1_loading_pct",
+    "branch_ab2_loading_pct",
+    "branch_ab3_loading_pct",
+    "branch_ca_1_loading_pct",
+    "branch_cb_1_loading_pct",
+    "gen_121_nuclear_1_pg_mw",
+    "gen_218_cc_1_pg_mw",
+    "gen_317_wind_1_pg_mw",
+    "gen_321_cc_1_status"
+  ],
+  "hidden": [
+    64,
+    32,
+    16
+  ],
+  "epochs": 200,
+  "batch_size": 50,
+  "lr": 0.001,
+  "train_ratio": 0.8,
+  "seed": 42,
+  "lambda_l1": 0.01,
+  "active_threshold": 0.05,
+  "lambda_dgate": 0.005,
+  "dgate_depth": 4,
+  "dgate_threshold": 0.01,
+  "lambda_stg": 0.005,
+  "stg_sigma": 0.5,
+  "stg_threshold": 0.0
+}

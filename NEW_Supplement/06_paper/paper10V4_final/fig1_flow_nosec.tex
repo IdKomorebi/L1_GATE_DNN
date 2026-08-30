@@ -1,0 +1,80 @@
+% !TeX program = xelatex
+% 图1：发布审查方法总体流程（三阶段，分别对应 3.2 / 3.3 / 3.4）
+% 阶段名置于虚线框内的标题栏（不带节号）；子步骤仅保留主名称；第三阶段为一个总阶段
+% 独立编译，用于导出高分辨率位图
+\documentclass[border=2pt,varwidth=false]{standalone}
+
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{amsmath,amssymb,bm}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,backgrounds,calc}
+
+\IfFontExistsTF{Songti SC}
+  {\setCJKmainfont{Songti SC}}
+  {\IfFontExistsTF{SimSun}{\setCJKmainfont{SimSun}}
+    {\setCJKmainfont{FandolSong-Regular.otf}[BoldFont=FandolSong-Bold.otf]}}
+\IfFontExistsTF{Heiti SC}
+  {\setCJKsansfont{Heiti SC}}
+  {\IfFontExistsTF{SimHei}{\setCJKsansfont{SimHei}}
+    {\setCJKsansfont{FandolHei-Regular.otf}}}
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}
+  {\setmainfont{Latin Modern Roman}}
+
+\begin{document}
+
+\begin{tikzpicture}[
+  font=\small,
+  node distance=0pt,
+  % 阶段标题栏
+  hbar/.style={draw,rounded corners=1.2pt,align=center,inner xsep=3pt,inner ysep=3.0pt,
+               minimum width=62mm,fill=black!14,line width=0.7pt,
+               font=\sffamily\small\bfseries},
+  % 子步骤
+  pbox/.style={draw,rounded corners=1.2pt,align=center,inner xsep=2pt,inner ysep=3.0pt,
+               text width=58mm,fill=white,line width=0.5pt},
+  % 阶段输出
+  obox/.style={draw,rounded corners=1.2pt,align=center,inner xsep=2pt,inner ysep=3.0pt,
+               text width=58mm,fill=black!7,line width=0.7pt},
+  % 起点/终点
+  tbox/.style={draw,rounded corners=5pt,align=center,inner xsep=2pt,inner ysep=3.0pt,
+               text width=62mm,fill=black!4,line width=0.7pt},
+  ar/.style={-{Latex[length=1.7mm,width=1.4mm]},line width=0.55pt},
+]
+
+% ============ 输入 ============
+\node[tbox] (in) {候选字段集合 $F$ 与受保护目标 $s$};
+
+% ============ 阶段一（3.2 节）============
+\node[hbar,below=4.0mm of in]  (hA) {阶段一\quad 显式推断关系识别与去除};
+\node[pbox,below=2.6mm of hA]  (a1) {已知公式剔除};
+\node[pbox,below=2.6mm of a1]  (a2) {近似关系迭代去除};
+\node[obox,below=2.6mm of a2]  (a3) {候选字段池 $\tilde F$（无显式推断路径）};
+
+% ============ 阶段二（3.3 节）============
+\node[hbar,below=4.6mm of a3]  (hB) {阶段二\quad 隐性推断源定位};
+\node[pbox,below=2.6mm of hB]  (b1) {分解式稀疏门控网络训练};
+\node[pbox,below=2.6mm of b1]  (b2) {活跃阈值 $\tau_g$ 筛选与独立重训验证};
+\node[obox,below=2.6mm of b2]  (b3) {隐性推断源 $A^{\ast}$ 与风险度量 $(|A^{\ast}|,\rho)$};
+
+% ============ 阶段三（3.4 节）：一个总阶段 ============
+\node[hbar,below=4.6mm of b3]  (hC) {阶段三\quad 处置与残余风险再评估};
+
+% ============ 输出 ============
+\node[tbox,below=4.0mm of hC]  (fin) {通过审查，按处置后口径发布};
+
+% ============ 箭头 ============
+\foreach \x/\y in {in/hA,hA/a1,a1/a2,a2/a3,a3/hB,hB/b1,b1/b2,b2/b3,b3/hC,hC/fin}
+  \draw[ar] (\x)--(\y);
+
+% ============ 阶段一、二的虚线分组框（含标题栏）============
+\begin{scope}[on background layer]
+  \node[fit=(hA)(a3),draw=black!60,dashed,line width=0.55pt,rounded corners=2pt,
+        inner xsep=1.8mm,inner ysep=1.5mm,fill=black!3] (gA) {};
+  \node[fit=(hB)(b3),draw=black!60,dashed,line width=0.55pt,rounded corners=2pt,
+        inner xsep=1.8mm,inner ysep=1.5mm,fill=black!3] (gB) {};
+\end{scope}
+
+\end{tikzpicture}
+
+\end{document}

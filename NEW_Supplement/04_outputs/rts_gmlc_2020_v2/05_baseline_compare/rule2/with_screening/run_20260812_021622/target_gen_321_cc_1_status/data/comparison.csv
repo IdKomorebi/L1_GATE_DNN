@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+gen_321_cc_1_status,机组321投入状态,95%,3,STG,DGatingDNN,0.9663643872321945,0.999949942932964,42,area_3_fuel_solar_mw|area_3_fuel_wind_mw|reserve_spin_r3_mw
+gen_321_cc_1_status,机组321投入状态,95%,3,STG,STG,0.9666237018195386,0.999949942932964,42,area_3_fuel_solar_mw|area_3_fuel_wind_mw|area_3_load_actual_mw
+gen_321_cc_1_status,机组321投入状态,95%,3,STG,LassoNet,0.8715101860442397,0.999949942932964,42,area_3_fuel_coal_mw|area_3_fuel_wind_mw|area_3_fuel_solar_mw
+gen_321_cc_1_status,机组321投入状态,95%,3,STG,XGBoost,0.8474691666283702,0.999949942932964,42,area_3_fuel_coal_mw|reserve_spin_r3_mw|area_3_load_actual_mw
+gen_321_cc_1_status,机组321投入状态,95%,3,STG,Lasso,0.8715101860442397,0.999949942932964,42,area_3_fuel_coal_mw|area_3_fuel_wind_mw|area_3_fuel_solar_mw
+gen_321_cc_1_status,机组321投入状态,95%,3,STG,Pearson,0.8580795564876562,0.999949942932964,42,area_3_fuel_coal_mw|gen_fuel_coal_mw|area_3_fuel_wind_mw
+gen_321_cc_1_status,机组321投入状态,97%,4,DGatingDNN,DGatingDNN,0.9970968414271708,0.999949942932964,42,area_3_fuel_solar_mw|area_3_fuel_wind_mw|reserve_spin_r3_mw|area_3_fuel_coal_mw
+gen_321_cc_1_status,机组321投入状态,97%,4,DGatingDNN,STG,0.9970811115424044,0.999949942932964,42,area_3_fuel_solar_mw|area_3_fuel_wind_mw|area_3_load_actual_mw|area_3_fuel_coal_mw
+gen_321_cc_1_status,机组321投入状态,97%,4,DGatingDNN,LassoNet,0.8704575395944063,0.999949942932964,42,area_3_fuel_coal_mw|area_3_fuel_wind_mw|area_3_fuel_solar_mw|gen_fuel_solar_mw
+gen_321_cc_1_status,机组321投入状态,97%,4,DGatingDNN,XGBoost,0.9162391142367272,0.999949942932964,42,area_3_fuel_coal_mw|reserve_spin_r3_mw|area_3_load_actual_mw|area_3_fuel_wind_mw
+gen_321_cc_1_status,机组321投入状态,97%,4,DGatingDNN,Lasso,0.8782595610337847,0.999949942932964,42,area_3_fuel_coal_mw|area_3_fuel_wind_mw|area_3_fuel_solar_mw|gen_fuel_coal_mw
+gen_321_cc_1_status,机组321投入状态,97%,4,DGatingDNN,Pearson,0.8574540656167551,0.999949942932964,42,area_3_fuel_coal_mw|gen_fuel_coal_mw|area_3_fuel_wind_mw|gen_fuel_wind_mw

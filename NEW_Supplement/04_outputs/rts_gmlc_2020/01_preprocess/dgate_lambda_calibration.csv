@@ -1,0 +1,4 @@
+target,seed,lambda_dgate,best_epoch,validation_r2,test_r2_report_only,n_active_at_0_01,n_numerically_nonzero_at_1e_6,eligible_within_0_005_validation_r2,chosen
+bus_115_va_deg,42,0.002,126,0.9453744499409138,0.9487135688749245,14,14,1,0
+bus_115_va_deg,42,0.005,139,0.9426354088793631,0.9516304630582382,11,11,1,1
+bus_115_va_deg,42,0.01,99,0.9327985495631522,0.9410534933024248,7,8,0,0

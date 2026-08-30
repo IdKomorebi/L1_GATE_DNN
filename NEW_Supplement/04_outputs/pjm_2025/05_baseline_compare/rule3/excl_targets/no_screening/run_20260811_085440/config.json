@@ -1,0 +1,41 @@
+{
+  "rule": "rule3",
+  "候选池": "excl_targets",
+  "初筛": "no_screening",
+  "固定阈值": {
+    "XGBoost": 0.02,
+    "Pearson": 0.3
+  },
+  "targets": [
+    "net_actual_interchange_mw",
+    "gross_actual_interchange_mw",
+    "net_sched_interchange_mw",
+    "total_gen",
+    "metered_load_mw",
+    "total_losses",
+    "congestion_price_da",
+    "congestion_price_rt",
+    "marginal_loss_price_da",
+    "total_lmp_da",
+    "da_as_total_mw_primary_reserve",
+    "da_as_total_mw_thirty_minutes_reserve"
+  ],
+  "hidden": [
+    64,
+    32,
+    16
+  ],
+  "epochs": 200,
+  "batch_size": 50,
+  "lr": 0.001,
+  "train_ratio": 0.8,
+  "seed": 42,
+  "lambda_l1": 0.01,
+  "active_threshold": 0.05,
+  "lambda_dgate": 0.002,
+  "dgate_depth": 4,
+  "dgate_threshold": 0.01,
+  "lambda_stg": 0.005,
+  "stg_sigma": 0.5,
+  "stg_threshold": 0.5
+}

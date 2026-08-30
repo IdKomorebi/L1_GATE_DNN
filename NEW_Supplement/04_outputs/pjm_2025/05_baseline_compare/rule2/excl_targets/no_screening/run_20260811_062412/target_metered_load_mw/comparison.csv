@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+metered_load_mw,计量负荷,95%,2,DGatingDNN,DGatingDNN,0.9768414391517228,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_nuclear_mw
+metered_load_mw,计量负荷,95%,2,DGatingDNN,STG,0.8992393297400612,0.9960679285387208,43,gen_fuel_coal_mw|gen_fuel_gas_mw
+metered_load_mw,计量负荷,95%,2,DGatingDNN,LassoNet,0.9243820431470814,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_gas_mw
+metered_load_mw,计量负荷,95%,2,DGatingDNN,XGBoost,0.9768414391517228,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_nuclear_mw
+metered_load_mw,计量负荷,95%,2,DGatingDNN,Lasso,0.8997272796046204,0.9960679285387208,43,gen_fuel_gas_mw|gen_fuel_coal_mw
+metered_load_mw,计量负荷,95%,2,DGatingDNN,Pearson,0.9243820431470814,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_gas_mw
+metered_load_mw,计量负荷,97%,2,DGatingDNN,DGatingDNN,0.9768414391517228,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_nuclear_mw
+metered_load_mw,计量负荷,97%,2,DGatingDNN,STG,0.8992393297400612,0.9960679285387208,43,gen_fuel_coal_mw|gen_fuel_gas_mw
+metered_load_mw,计量负荷,97%,2,DGatingDNN,LassoNet,0.9243820431470814,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_gas_mw
+metered_load_mw,计量负荷,97%,2,DGatingDNN,XGBoost,0.9768414391517228,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_nuclear_mw
+metered_load_mw,计量负荷,97%,2,DGatingDNN,Lasso,0.8997272796046204,0.9960679285387208,43,gen_fuel_gas_mw|gen_fuel_coal_mw
+metered_load_mw,计量负荷,97%,2,DGatingDNN,Pearson,0.9243820431470814,0.9960679285387208,43,gen_fuel_nuclear_pct|gen_fuel_gas_mw

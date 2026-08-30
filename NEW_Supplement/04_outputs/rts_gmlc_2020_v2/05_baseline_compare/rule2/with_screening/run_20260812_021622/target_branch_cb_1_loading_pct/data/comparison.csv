@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+branch_cb_1_loading_pct,线路CB-1负载率,95%,5,DGatingDNN,DGatingDNN,0.8777500347787063,0.8990679523046702,13,area_3_fuel_wind_mw|system_losses_mw|area_1_fuel_coal_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,5,DGatingDNN,STG,0.8640040105573559,0.8990679523046702,13,system_losses_mw|area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_coal_mw|area_3_fuel_coal_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,5,DGatingDNN,LassoNet,0.8529014009200324,0.8990679523046702,13,area_1_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_nuclear_mw|area_3_fuel_coal_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,5,DGatingDNN,XGBoost,0.7515277791917971,0.8990679523046702,13,area_1_fuel_wind_mw|area_1_fuel_solar_mw|area_3_fuel_coal_mw|area_3_fuel_solar_mw|gen_fuel_solar_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,5,DGatingDNN,Lasso,0.8351547544174778,0.8990679523046702,13,area_1_fuel_wind_mw|area_3_fuel_solar_mw|system_losses_mw|gen_fuel_nuclear_mw|area_1_fuel_nuclear_mw
+branch_cb_1_loading_pct,线路CB-1负载率,95%,5,DGatingDNN,Pearson,0.8605839212261526,0.8990679523046702,13,area_1_fuel_wind_mw|gen_fuel_wind_mw|area_3_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,5,DGatingDNN,DGatingDNN,0.8777500347787063,0.8990679523046702,13,area_3_fuel_wind_mw|system_losses_mw|area_1_fuel_coal_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,5,DGatingDNN,STG,0.8640040105573559,0.8990679523046702,13,system_losses_mw|area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_coal_mw|area_3_fuel_coal_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,5,DGatingDNN,LassoNet,0.8529014009200324,0.8990679523046702,13,area_1_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_nuclear_mw|area_3_fuel_coal_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,5,DGatingDNN,XGBoost,0.7515277791917971,0.8990679523046702,13,area_1_fuel_wind_mw|area_1_fuel_solar_mw|area_3_fuel_coal_mw|area_3_fuel_solar_mw|gen_fuel_solar_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,5,DGatingDNN,Lasso,0.8351547544174778,0.8990679523046702,13,area_1_fuel_wind_mw|area_3_fuel_solar_mw|system_losses_mw|gen_fuel_nuclear_mw|area_1_fuel_nuclear_mw
+branch_cb_1_loading_pct,线路CB-1负载率,97%,5,DGatingDNN,Pearson,0.8605839212261526,0.8990679523046702,13,area_1_fuel_wind_mw|gen_fuel_wind_mw|area_3_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw

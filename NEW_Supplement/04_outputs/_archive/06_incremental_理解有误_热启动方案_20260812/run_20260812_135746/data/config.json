@@ -1,0 +1,8 @@
+{
+  "target": "net_actual_interchange_mw",
+  "候选数": 48,
+  "从头轮次": 200,
+  "增量轮次": 60,
+  "活跃阈值": 0.01,
+  "lambda_dgate": 0.005
+}

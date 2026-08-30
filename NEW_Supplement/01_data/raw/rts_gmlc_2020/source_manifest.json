@@ -1,0 +1,52 @@
+{
+  "dataset_name": "RTS-GMLC 2020 hourly AC power-flow state dataset",
+  "generated_on": "2026-08-11",
+  "source": {
+    "repository": "https://github.com/GridMod/RTS-GMLC",
+    "commit": "3ece0d3725c844056132393ee252b3083dd4eab4",
+    "commit_url": "https://github.com/GridMod/RTS-GMLC/tree/3ece0d3725c844056132393ee252b3083dd4eab4",
+    "archive": "Generation/source/rts_gmlc_official_inputs_3ece0d3.zip",
+    "archive_size_bytes": 15040375,
+    "archive_sha256": "5a0647a63c5471e92e30f74130e608c57f14a6025f943a192435efdafcc0ec93",
+    "included_paths": [
+      "RTS_Data/SourceData",
+      "RTS_Data/timeseries_data_files",
+      "RTS_Data/FormattedData/pandapower/pandapower_net.json"
+    ]
+  },
+  "generation": {
+    "script": "Generation/generate_rts_gmlc_dataset.py",
+    "configuration": "Generation/config.json",
+    "selected_entities": "Generation/selected_entities.json",
+    "command_from_generation_directory": "python generate_rts_gmlc_dataset.py",
+    "python_dependencies": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.16.1",
+      "pandapower": "3.1.2"
+    }
+  },
+  "outputs": {
+    "field_dictionary.csv": {
+      "size_bytes": 34214,
+      "sha256": "7b047cd42cf930de016b7c88e9253993577f36613152fcff3d441bd27621e628"
+    },
+    "rts_gmlc_hourly_2020_acpf_base.csv": {
+      "size_bytes": 12320225,
+      "sha256": "90a9859114737fd7fbc1be6cbfa5e24e569ca69bd706e049a0b7512aff8693a6"
+    },
+    "rts_gmlc_hourly_2020_acpf_noise_1pct.csv": {
+      "size_bytes": 12414721,
+      "sha256": "ea7bd015cdddf23b1ece258c0db2dc748ae3203f18f01e35285c414f3910cff2"
+    },
+    "rts_gmlc_hourly_2020_acpf_noise_3pct.csv": {
+      "size_bytes": 12413224,
+      "sha256": "26f74a9e0d4053556fa2e03a7c9afd1294ddacde6ea31924e7e3eaec15600383"
+    },
+    "rts_gmlc_hourly_2020_acpf_noise_5pct.csv": {
+      "size_bytes": 12413783,
+      "sha256": "af0ddc56b75f333f36f69457fad30afbcc4a6451bf392d04c94a32e77387cf4d"
+    }
+  },
+  "integrity_note": "SHA-256 values are for the committed generation outputs described by quality_report.json. Re-running the deterministic script with the pinned source and dependency versions should reproduce these files."
+}

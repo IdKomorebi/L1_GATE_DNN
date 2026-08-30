@@ -1,0 +1,48 @@
+{
+  "数据集": "pjm_2025",
+  "代理模型": {
+    "hidden": [
+      384,
+      256,
+      192,
+      128
+    ],
+    "dropout": 0.0,
+    "epochs": 1000,
+    "batch_size": 256,
+    "lr": 0.001,
+    "weight_decay": 0.003,
+    "patience": 150,
+    "min_epochs": 150,
+    "seed": 42,
+    "split": "random",
+    "train_frac": 0.7,
+    "val_frac": 0.1,
+    "masks_per_sample": 1,
+    "p_full": 0.1,
+    "p_empty": 0.02,
+    "mask_dist": "kernel",
+    "kernel_w": 0.5,
+    "use_gate": false,
+    "lambda_dgate": 0.005,
+    "dgate_depth": 4
+  },
+  "抽取组合数": 32768,
+  "评估行数": 1500,
+  "注入噪声字段数": 8,
+  "目标": [
+    "net_actual_interchange_mw",
+    "gross_actual_interchange_mw",
+    "net_sched_interchange_mw",
+    "total_gen",
+    "metered_load_mw",
+    "total_losses",
+    "congestion_price_da",
+    "congestion_price_rt",
+    "marginal_loss_price_da",
+    "total_lmp_da",
+    "da_as_total_mw_primary_reserve",
+    "da_as_total_mw_thirty_minutes_reserve"
+  ],
+  "总耗时秒": 3615.3
+}

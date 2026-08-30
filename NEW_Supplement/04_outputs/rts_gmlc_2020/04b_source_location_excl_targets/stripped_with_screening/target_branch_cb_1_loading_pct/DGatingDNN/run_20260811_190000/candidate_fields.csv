@@ -1,0 +1,12 @@
+field
+gen_fuel_solar_mw
+area_1_net_export_mw
+gen_fuel_wind_mw
+area_2_net_export_mw
+system_losses_mw
+gen_fuel_nuclear_mw
+gen_fuel_natural_gas_mw
+gen_fuel_coal_mw
+reserve_reg_down_mw
+reserve_reg_up_mw
+area_3_net_export_mw

@@ -1,0 +1,25 @@
+{
+  "rule": "rule2",
+  "候选池": "excl_targets",
+  "初筛": "no_screening",
+  "达标水平": [
+    0.95,
+    0.97
+  ],
+  "搜索轮次": 100,
+  "最终评估轮次": 200,
+  "targets": [
+    "net_actual_interchange_mw",
+    "gross_actual_interchange_mw",
+    "net_sched_interchange_mw",
+    "total_gen",
+    "metered_load_mw",
+    "total_losses",
+    "congestion_price_da",
+    "congestion_price_rt",
+    "marginal_loss_price_da",
+    "total_lmp_da",
+    "da_as_total_mw_primary_reserve",
+    "da_as_total_mw_thirty_minutes_reserve"
+  ]
+}

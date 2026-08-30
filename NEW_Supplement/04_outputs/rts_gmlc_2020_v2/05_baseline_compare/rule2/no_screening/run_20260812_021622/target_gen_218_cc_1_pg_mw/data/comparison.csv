@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+gen_218_cc_1_pg_mw,机组218联合循环出力,95%,3,Lasso,DGatingDNN,0.9446315757778998,0.9998121294055673,42,area_2_load_day_ahead_mw|area_2_fuel_hydro_mw|area_2_fuel_coal_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,95%,3,Lasso,STG,0.8222079562064477,0.9998121294055673,42,area_2_fuel_hydro_mw|reserve_spin_r2_mw|area_2_load_day_ahead_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,95%,3,Lasso,LassoNet,0.859999618519857,0.9998121294055673,42,area_2_fuel_solar_mw|system_losses_mw|area_2_load_day_ahead_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,95%,3,Lasso,XGBoost,0.9221228739320149,0.9998121294055673,42,area_2_fuel_coal_mw|reserve_spin_r2_mw|area_2_fuel_solar_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,95%,3,Lasso,Lasso,0.9935931388530616,0.9998121294055673,42,area_2_load_actual_mw|area_2_fuel_solar_mw|area_2_fuel_hydro_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,95%,3,Lasso,Pearson,0.8677873554695049,0.9998121294055673,42,area_2_fuel_coal_mw|gen_fuel_coal_mw|reserve_spin_r2_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,97%,3,Lasso,DGatingDNN,0.9446315757778998,0.9998121294055673,42,area_2_load_day_ahead_mw|area_2_fuel_hydro_mw|area_2_fuel_coal_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,97%,3,Lasso,STG,0.8222079562064477,0.9998121294055673,42,area_2_fuel_hydro_mw|reserve_spin_r2_mw|area_2_load_day_ahead_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,97%,3,Lasso,LassoNet,0.859999618519857,0.9998121294055673,42,area_2_fuel_solar_mw|system_losses_mw|area_2_load_day_ahead_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,97%,3,Lasso,XGBoost,0.9221228739320149,0.9998121294055673,42,area_2_fuel_coal_mw|reserve_spin_r2_mw|area_2_fuel_solar_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,97%,3,Lasso,Lasso,0.9935931388530616,0.9998121294055673,42,area_2_load_actual_mw|area_2_fuel_solar_mw|area_2_fuel_hydro_mw
+gen_218_cc_1_pg_mw,机组218联合循环出力,97%,3,Lasso,Pearson,0.8677873554695049,0.9998121294055673,42,area_2_fuel_coal_mw|gen_fuel_coal_mw|reserve_spin_r2_mw

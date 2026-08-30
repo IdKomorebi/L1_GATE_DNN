@@ -1,0 +1,25 @@
+{
+  "rule": "rule2",
+  "数据集": "RTS-GMLC 2020 扩展版",
+  "初筛": "no_screening",
+  "达标水平": [
+    0.95,
+    0.97
+  ],
+  "搜索轮次": 100,
+  "最终评估轮次": 200,
+  "targets": [
+    "bus_115_va_deg",
+    "bus_215_va_deg",
+    "bus_315_va_deg",
+    "branch_ab1_loading_pct",
+    "branch_ab2_loading_pct",
+    "branch_ab3_loading_pct",
+    "branch_ca_1_loading_pct",
+    "branch_cb_1_loading_pct",
+    "gen_121_nuclear_1_pg_mw",
+    "gen_218_cc_1_pg_mw",
+    "gen_317_wind_1_pg_mw",
+    "gen_321_cc_1_status"
+  ]
+}

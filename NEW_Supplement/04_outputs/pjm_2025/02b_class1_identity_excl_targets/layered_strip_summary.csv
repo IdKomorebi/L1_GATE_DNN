@@ -1,0 +1,13 @@
+target,中文名,n_start,r2_start,n_layers,removed,n_final,r2_final,n_old_exclude,r2_old_exclude,overlap_with_old,bands
+net_actual_interchange_mw,净实际交换功率,49,0.9336725186991822,0,,49,0.9336725186991822,2,0.9336725186991822,0,
+gross_actual_interchange_mw,总实际交换功率,49,0.7525060634855023,0,,49,0.7525060634855023,0,,0,
+net_sched_interchange_mw,净计划交换功率,49,0.933470066876915,0,,49,0.933470066876915,2,0.933470066876915,0,
+total_gen,总发电量,49,0.9985994054650347,10,da_as_nsr_mw_primary_reserve|da_as_as_req_mw_primary_reserve|total_lmp_rt|total_pjm_rt_load_mwh|gen_fuel_coal_mw|gen_fuel_gas_mw|prelim_load_avg_hourly|forecast_load_mw_latest_available|gen_fuel_gas_pct|gen_fuel_nuclear_pct,39,0.9723046374994606,27,0.5882453051433693,7,近似关系|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系
+metered_load_mw,计量负荷,49,0.9999232811644145,6,da_as_nsr_mw_primary_reserve|da_as_as_req_mw_synchronized_reserve|prelim_load_avg_hourly|total_pjm_rt_load_mwh|total_lmp_rt|forecast_load_mw_latest_available,43,0.9875966664217488,27,0.5866103662604807,3,高精度近似|高精度近似|高精度近似|高精度近似|近似关系|近似关系
+total_losses,总网损,49,0.9062579156580169,0,,49,0.9062579156580169,0,,0,
+congestion_price_da,日前阻塞价,49,0.22435622144240552,0,,49,0.22435622144240552,0,,0,
+congestion_price_rt,实时阻塞价,49,0.9996014882868587,1,total_lmp_rt,48,0.412179693358791,0,,0,近似关系
+marginal_loss_price_da,日前边际损耗价,49,0.7646205002367142,0,,49,0.7646205002367142,0,,0,
+total_lmp_da,日前总电价,49,0.988097239542466,0,,49,0.988097239542466,3,0.8885628195969695,0,
+da_as_total_mw_primary_reserve,日前主用备用总量,48,0.9999999994415546,1,da_as_nsr_mw_primary_reserve,47,0.6622197804778445,2,0.6622197804778445,1,含舍入的公式
+da_as_total_mw_thirty_minutes_reserve,日前30分钟备用总量,48,0.7422965572783322,0,,48,0.7422965572783322,1,0.7422965572783322,0,

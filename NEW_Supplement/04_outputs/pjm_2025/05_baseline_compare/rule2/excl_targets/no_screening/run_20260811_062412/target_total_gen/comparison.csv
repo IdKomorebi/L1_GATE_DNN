@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+total_gen,总发电量,95%,2,DGatingDNN,DGatingDNN,0.9473548785872129,0.9952709713514851,39,gen_fuel_hydro_mw|gen_fuel_hydro_pct
+total_gen,总发电量,95%,2,DGatingDNN,STG,0.3620269529277318,0.9952709713514851,39,solar_generation_mw|gen_fuel_hydro_mw
+total_gen,总发电量,95%,2,DGatingDNN,LassoNet,0.6928227458747434,0.9952709713514851,39,gen_fuel_other_renewables_pct|gen_fuel_oil_mw
+total_gen,总发电量,95%,2,DGatingDNN,XGBoost,0.6960196387334224,0.9952709713514851,39,gen_fuel_oil_mw|gen_fuel_other_renewables_pct
+total_gen,总发电量,95%,2,DGatingDNN,Lasso,0.4290061312286759,0.9952709713514851,39,gen_fuel_hydro_mw|gen_fuel_multiple_fuels_mw
+total_gen,总发电量,95%,2,DGatingDNN,Pearson,0.6928227458747434,0.9952709713514851,39,gen_fuel_other_renewables_pct|gen_fuel_oil_mw
+total_gen,总发电量,97%,4,DGatingDNN,DGatingDNN,0.9795648211456814,0.9952709713514851,39,gen_fuel_hydro_mw|gen_fuel_hydro_pct|gen_fuel_multiple_fuels_mw|gen_fuel_multiple_fuels_pct
+total_gen,总发电量,97%,4,DGatingDNN,STG,0.8647423673280574,0.9952709713514851,39,solar_generation_mw|gen_fuel_hydro_mw|gen_fuel_multiple_fuels_mw|gen_fuel_nuclear_mw
+total_gen,总发电量,97%,4,DGatingDNN,LassoNet,0.9060992987439588,0.9952709713514851,39,gen_fuel_other_renewables_pct|gen_fuel_oil_mw|gen_fuel_nuclear_mw|gen_fuel_coal_pct
+total_gen,总发电量,97%,4,DGatingDNN,XGBoost,0.9240951247863289,0.9952709713514851,39,gen_fuel_oil_mw|gen_fuel_other_renewables_pct|gen_fuel_nuclear_mw|system_energy_price_da
+total_gen,总发电量,97%,4,DGatingDNN,Lasso,0.7241541263765421,0.9952709713514851,39,gen_fuel_hydro_mw|gen_fuel_multiple_fuels_mw|gen_fuel_other_renewables_pct|gen_fuel_solar_mw
+total_gen,总发电量,97%,4,DGatingDNN,Pearson,0.9026918343363755,0.9952709713514851,39,gen_fuel_other_renewables_pct|gen_fuel_oil_mw|gen_fuel_oil_pct|system_energy_price_da

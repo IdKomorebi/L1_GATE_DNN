@@ -1,0 +1,13 @@
+field,中文名,score
+gen_fuel_wind_mw,风电出力,16350.2275390625
+system_losses_mw,系统网损,12892.04296875
+area_3_fuel_solar_mw,区域3光伏出力,9578.9775390625
+area_1_fuel_wind_mw,区域1风电出力,4603.76123046875
+gen_fuel_nuclear_mw,核电出力,1174.0888671875
+gen_fuel_solar_mw,光伏出力,175.4221649169922
+area_1_fuel_solar_mw,区域1光伏出力,158.88525390625
+area_2_fuel_solar_mw,区域2光伏出力,141.08555603027344
+area_2_fuel_natural_gas_mw,区域2燃气出力,138.31918334960938
+area_1_fuel_nuclear_mw,区域1核电出力,135.60704040527344
+area_3_fuel_wind_mw,区域3风电出力,127.78553771972656
+hour_of_day,小时,120.41516876220703

@@ -1,0 +1,8 @@
+{
+  "seed": 43,
+  "epochs_completed": 240,
+  "best_epoch": 231,
+  "best_validation_standardized_mse": 0.04808416962623596,
+  "elapsed_seconds": 3.335329055786133,
+  "device": "cpu"
+}

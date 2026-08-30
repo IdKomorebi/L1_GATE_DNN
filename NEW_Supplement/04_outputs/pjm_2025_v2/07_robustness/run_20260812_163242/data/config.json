@@ -1,0 +1,11 @@
+{
+  "targets": [
+    "net_actual_interchange_mw",
+    "da_as_total_mw_primary_reserve",
+    "congestion_price_da"
+  ],
+  "轮次": 200,
+  "种子数": 5,
+  "缺失块长小时": 6,
+  "候选池": "排除其余关注字段、两层剥离、不初筛"
+}

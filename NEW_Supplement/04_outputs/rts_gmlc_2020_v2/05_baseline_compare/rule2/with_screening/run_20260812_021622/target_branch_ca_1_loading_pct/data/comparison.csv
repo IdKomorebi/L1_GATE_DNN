@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+branch_ca_1_loading_pct,线路CA-1负载率,95%,4,STG,DGatingDNN,0.8750136573361023,0.9083036419524949,12,gen_fuel_wind_mw|system_losses_mw|area_1_fuel_wind_mw|area_3_fuel_solar_mw
+branch_ca_1_loading_pct,线路CA-1负载率,95%,4,STG,STG,0.8752113463057304,0.9083036419524949,12,area_3_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw
+branch_ca_1_loading_pct,线路CA-1负载率,95%,4,STG,LassoNet,0.8760649267850021,0.9083036419524949,12,gen_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw
+branch_ca_1_loading_pct,线路CA-1负载率,95%,4,STG,XGBoost,0.8583795278229281,0.9083036419524949,12,area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_solar_mw|system_losses_mw
+branch_ca_1_loading_pct,线路CA-1负载率,95%,4,STG,Lasso,0.8626480429261085,0.9083036419524949,12,area_3_fuel_solar_mw|system_losses_mw|area_1_fuel_wind_mw|gen_fuel_nuclear_mw
+branch_ca_1_loading_pct,线路CA-1负载率,95%,4,STG,Pearson,0.6855374559524346,0.9083036419524949,12,gen_fuel_wind_mw|area_3_fuel_wind_mw|area_1_fuel_wind_mw|system_losses_mw
+branch_ca_1_loading_pct,线路CA-1负载率,97%,5,LassoNet,DGatingDNN,0.881549515713236,0.9083036419524949,12,gen_fuel_wind_mw|system_losses_mw|area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_nuclear_mw
+branch_ca_1_loading_pct,线路CA-1负载率,97%,5,LassoNet,STG,0.8787163294170461,0.9083036419524949,12,area_3_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw|gen_fuel_solar_mw
+branch_ca_1_loading_pct,线路CA-1负载率,97%,5,LassoNet,LassoNet,0.8822645305543774,0.9083036419524949,12,gen_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw|area_1_fuel_wind_mw|gen_fuel_nuclear_mw
+branch_ca_1_loading_pct,线路CA-1负载率,97%,5,LassoNet,XGBoost,0.8609223758348632,0.9083036419524949,12,area_1_fuel_wind_mw|area_3_fuel_solar_mw|area_1_fuel_solar_mw|system_losses_mw|gen_fuel_solar_mw
+branch_ca_1_loading_pct,线路CA-1负载率,97%,5,LassoNet,Lasso,0.882471101432918,0.9083036419524949,12,area_3_fuel_solar_mw|system_losses_mw|area_1_fuel_wind_mw|gen_fuel_nuclear_mw|gen_fuel_wind_mw
+branch_ca_1_loading_pct,线路CA-1负载率,97%,5,LassoNet,Pearson,0.8734496676167813,0.9083036419524949,12,gen_fuel_wind_mw|area_3_fuel_wind_mw|area_1_fuel_wind_mw|system_losses_mw|area_3_fuel_solar_mw

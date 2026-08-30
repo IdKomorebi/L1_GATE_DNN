@@ -1,0 +1,13 @@
+target,中文名,n_start,r2_start,n_layers,removed,n_final,r2_final,n_old_exclude,r2_old_exclude,overlap_with_old,bands
+net_actual_interchange_mw,净实际交换功率,58,0.9999999999999961,3,net_sched_interchange_mw|da_as_nsr_mw_primary_reserve|total_gen,55,0.9300223298058378,2,0.9300882614610142,2,近似关系|高精度近似|高精度近似
+gross_actual_interchange_mw,总实际交换功率,58,0.746080842911057,0,,58,0.746080842911057,0,,0,
+net_sched_interchange_mw,净计划交换功率,58,0.999999999999996,4,net_actual_interchange_mw|da_as_nsr_mw_primary_reserve|da_as_as_req_mw_synchronized_reserve|total_gen,54,0.9297462425235429,2,0.9298748693861845,2,近似关系|近似关系|近似关系|近似关系
+total_gen,总发电量,58,0.9999594258418517,12,da_as_nsr_mw_primary_reserve|metered_load_mw|da_as_as_req_mw_synchronized_reserve|prelim_load_avg_hourly|total_pjm_rt_load_mwh|total_lmp_da|total_lmp_rt|gen_fuel_gas_mw|forecast_load_mw_latest_available|gen_fuel_coal_mw|gen_fuel_gas_pct|gen_fuel_nuclear_pct,46,0.9747661717962153,27,0.7018815809920609,8,高精度近似|高精度近似|高精度近似|高精度近似|高精度近似|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系
+metered_load_mw,计量负荷,58,0.9999398017011282,12,da_as_nsr_mw_primary_reserve|da_as_as_req_mw_synchronized_reserve|total_gen|prelim_load_avg_hourly|total_pjm_rt_load_mwh|total_lmp_da|total_lmp_rt|forecast_load_mw_latest_available|gen_fuel_gas_mw|gen_fuel_coal_mw|gen_fuel_gas_pct|gen_fuel_nuclear_pct,46,0.9732791910695534,27,0.6833251236021363,8,高精度近似|高精度近似|高精度近似|高精度近似|高精度近似|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系|近似关系
+total_losses,总网损,58,0.9384714879269878,0,,58,0.9384714879269878,0,,0,
+congestion_price_da,日前阻塞价,58,0.9999999999999867,1,total_lmp_da,57,0.19056663627650205,0,,0,近似关系
+congestion_price_rt,实时阻塞价,58,0.9995988182643241,1,total_lmp_rt,57,0.39894885189017715,0,,0,近似关系
+marginal_loss_price_da,日前边际损耗价,58,0.9999999999929652,1,total_lmp_da,57,0.7687768131310091,0,,0,精确公式
+total_lmp_da,日前总电价,58,0.9999999999999998,1,system_energy_price_da,57,0.9174975138371566,3,0.8707568922636485,1,高精度近似
+da_as_total_mw_primary_reserve,日前主用备用总量,58,0.9999999994215136,1,da_as_nsr_mw_primary_reserve,57,0.6970809593998155,2,0.6970809593998155,1,含舍入的公式
+da_as_total_mw_thirty_minutes_reserve,日前30分钟备用总量,58,0.7448379198775602,0,,58,0.7448379198775602,1,0.7448379198775602,0,

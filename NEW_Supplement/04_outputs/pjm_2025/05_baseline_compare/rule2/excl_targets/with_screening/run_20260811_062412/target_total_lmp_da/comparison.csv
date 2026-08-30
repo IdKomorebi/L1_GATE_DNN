@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+total_lmp_da,日前总电价,95%,1,DGatingDNN,DGatingDNN,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,95%,1,DGatingDNN,STG,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,95%,1,DGatingDNN,LassoNet,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,95%,1,DGatingDNN,XGBoost,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,95%,1,DGatingDNN,Lasso,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,95%,1,DGatingDNN,Pearson,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,97%,1,DGatingDNN,DGatingDNN,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,97%,1,DGatingDNN,STG,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,97%,1,DGatingDNN,LassoNet,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,97%,1,DGatingDNN,XGBoost,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,97%,1,DGatingDNN,Lasso,0.9865040577460306,0.9943075006907909,35,system_energy_price_da
+total_lmp_da,日前总电价,97%,1,DGatingDNN,Pearson,0.9865040577460306,0.9943075006907909,35,system_energy_price_da

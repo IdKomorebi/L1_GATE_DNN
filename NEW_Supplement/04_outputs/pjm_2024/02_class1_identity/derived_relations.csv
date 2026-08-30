@@ -1,0 +1,12 @@
+kind,relation,residual_ratio,cross_year
+比值,gen_fuel_gas_pct = gen_fuel_gas_mw / Σ gen_fuel_mw,0.027634541731569616,0.013796662241326986
+比值,gen_fuel_nuclear_pct = gen_fuel_nuclear_mw / Σ gen_fuel_mw,0.027778401689628553,0.012892236666119323
+比值,gen_fuel_solar_pct = gen_fuel_solar_mw / Σ gen_fuel_mw,0.0353391278784918,0.01153893642781868
+比值,gen_fuel_coal_pct = gen_fuel_coal_mw / Σ gen_fuel_mw,0.039849473502835894,0.0148530020777565
+比值,gen_fuel_wind_pct = gen_fuel_wind_mw / Σ gen_fuel_mw,0.052151608094106856,0.019052381178699597
+乘积,total_pjm_rmccp_cr = rmccp × total_pjm_reg_purchases,0.09420133076212768,0.048205304921789274
+比值,gen_fuel_hydro_pct = gen_fuel_hydro_mw / Σ gen_fuel_mw,0.11997564925530646,0.039670068131019025
+比值,gen_fuel_multiple_fuels_pct = gen_fuel_multiple_fuels_mw / Σ gen_fuel_mw,0.2615125541470352,0.08638340504484711
+比值,gen_fuel_oil_pct = gen_fuel_oil_mw / Σ gen_fuel_mw,0.3750895599829381,0.09578013959617127
+比值,gen_fuel_other_renewables_pct = gen_fuel_other_renewables_mw / Σ gen_fuel_mw,0.9362663217865307,0.5155777857451215
+比值,gen_fuel_storage_pct = gen_fuel_storage_mw / Σ gen_fuel_mw,,

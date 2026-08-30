@@ -1,0 +1,19 @@
+{
+  "target": "net_actual_interchange_mw",
+  "候选数": 48,
+  "轮次": 10,
+  "活跃阈值": 0.01,
+  "指标": [
+    "pearson",
+    "spearman",
+    "kendall",
+    "nmi",
+    "distance_corr",
+    "hsic"
+  ],
+  "留出字段": [
+    "prelim_load_avg_hourly",
+    "total_pjm_rmpcp_cr",
+    "total_pjm_self_sched_reg"
+  ]
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "year":2024,
+    "raw_rows":8784,
+    "raw_cols":70,
+    "dropped_cols":[
+      "forecast_load_mw_day_ahead"
+    ],
+    "interpolated":{
+      "forecast_load_mw_latest_available":12
+    },
+    "main_shape":[
+      8784,
+      69
+    ],
+    "allcols_shape":[
+      6539,
+      70
+    ]
+  }
+]

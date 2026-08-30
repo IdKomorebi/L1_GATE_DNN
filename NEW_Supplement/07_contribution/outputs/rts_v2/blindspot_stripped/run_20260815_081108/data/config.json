@@ -1,0 +1,8 @@
+{
+  "数据集": "rts_v2",
+  "划分": "random",
+  "剥离产物": "/Users/haocun/Desktop/AllProjects/SchoolSever_Projects/L1_GATE_DNN/NEW_Supplement/04_outputs/rts_gmlc_2020_v2/02_class1_identity/data/strip_summary.csv",
+  "门控阈值": 0.01,
+  "独立能力量法": "逐字段真训普通网络",
+  "总耗时秒": 710.9
+}

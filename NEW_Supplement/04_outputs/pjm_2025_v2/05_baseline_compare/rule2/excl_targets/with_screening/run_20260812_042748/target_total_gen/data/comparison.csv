@@ -1,0 +1,13 @@
+目标,中文名,达标水平,预算n,先达标的方法,方法,测试R2,全量R2,候选数,选中字段
+total_gen,总发电量,95%,1,DGatingDNN,DGatingDNN,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,95%,1,DGatingDNN,STG,0.8628333482926177,0.9954656983891175,22,gen_fuel_nuclear_pct
+total_gen,总发电量,95%,1,DGatingDNN,LassoNet,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,95%,1,DGatingDNN,XGBoost,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,95%,1,DGatingDNN,Lasso,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,95%,1,DGatingDNN,Pearson,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,97%,1,DGatingDNN,DGatingDNN,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,97%,1,DGatingDNN,STG,0.8628333482926177,0.9954656983891175,22,gen_fuel_nuclear_pct
+total_gen,总发电量,97%,1,DGatingDNN,LassoNet,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,97%,1,DGatingDNN,XGBoost,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,97%,1,DGatingDNN,Lasso,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
+total_gen,总发电量,97%,1,DGatingDNN,Pearson,0.9737396712612811,0.9954656983891175,22,forecast_load_mw_latest_available
